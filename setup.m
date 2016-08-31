@@ -474,8 +474,7 @@ if ( target_is_rpi )
   command = sprintf( '%s pi@%s "sudo usermod -a -G i2c pi"', ssh_command, piip );
   [ status, out ] = system( command );
   disp( '  > *** Manual action required ***' );
-  disp( '    - Reboot and check that the command ''dmesg|grep baudrate'' gives you something like:' );
-  disp( '      [    6.437895] bcm2708_i2c 20804000.i2c: BSC1 Controller at 0x20804000 (irq 79) (baudrate 400000)' );
+  disp( '    - Reboot and check that the command ''sudo cat /sys/module/i2c_bcm2708/parameters/baudrate'' gives 400000.' );
 end
 
 disp( '*** Configuration of RPIt successfully completed ***' );
