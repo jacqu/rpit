@@ -234,9 +234,9 @@ void rpit_socket_client_init( uint8_T IP1, uint8_T IP2, uint8_T IP3, uint8_T IP4
 	
 	pthread_create( &mes_thread, NULL, rpit_socket_client_update, (void*) NULL );
   
-  /* Wait for 4 periods so that the periodic thread can update the measurement */
+  /* Wait for 10 periods so that the periodic thread can update the measurement */
   
-  usleep( 4* RPIT_SOCKET_PERIOD );
+  usleep( 10 * RPIT_SOCKET_PERIOD );
 
 }
  
