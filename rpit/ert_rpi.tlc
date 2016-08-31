@@ -1,0 +1,51 @@
+%% SYSTLC: RTW Embedded Coder RPI target TMF: ert_rpi.tmf MAKE: make_rtw EXTMODE: ext_comm
+%%
+%% $RCSfile: ert.tlc,v $
+%% $Revision: 1.57.4.19 $
+%%
+%% Copyright 1994-2010 The MathWorks, Inc.
+%% Abstract: Embedded real-time system target file.
+%%
+%selectfile NULL_FILE
+
+%assign CodeFormat = "Embedded-C"
+
+%assign TargetType = "RT"
+%assign Language   = "C"
+%if !EXISTS("AutoBuildProcedure")
+  %assign AutoBuildProcedure = !GenerateSampleERTMain
+%endif
+
+%% The model_SetEventsForThisBaseRate function is not required for the
+%% VxWorks environment, i.e., when using an operating system.
+%assign SuppressSetEventsForThisBaseRateFcn = (TargetOS == "VxWorksExample") 
+%if !EXISTS("InlineSetEventsForThisBaseRateFcn")
+  %assign InlineSetEventsForThisBaseRateFcn  = TLC_TRUE
+%endif
+%if !EXISTS("SuppressMultiTaskScheduler")
+  %assign SuppressMultiTaskScheduler = TLC_TRUE
+%endif
+
+%include "codegenentry.tlc"
+
+%% The contents between 'BEGIN_RTW_OPTIONS' and 'END_RTW_OPTIONS' in this file
+%% are used to maintain backward compatibility to R13 and preR13 custom target 
+%% file only.  If you want to use this file as a template to develop your
+%% own system target file, you need to remove the 'CONFIGSET_TARGET_COMPONENT'
+%% section at the end of this file.
+%%
+/%
+  BEGIN_RTW_OPTIONS
+
+  %----------------------------------------%
+  % Configure RTW code generation settings %
+  %----------------------------------------%
+  
+  rtwgensettings.DerivedFrom    = 'ert.tlc';
+  rtwgensettings.BuildDirSuffix = '_ert_rtw';
+  rtwgensettings.Version        = '1';
+  rtwgensettings.SelectCallback = ['rpi_callback_handler(hDlg, hSrc)'];
+  rtwgensettings.ActivateCallback = ['rpi_callback_handler(hDlg, hSrc)'];
+  
+  END_RTW_OPTIONS 
+ %/

@@ -1,0 +1,45 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% $RCSfile: example_file_process.tlc,v $
+%% $Revision: 1.1.6.5 $
+%% $Date: 2010/09/13 16:20:21 $
+%%
+%% Abstract:
+%%   Example Embedded Coder custom file processing template.
+%%
+%%   Note: This file can contain any valid TLC code, which Embedded Coder
+%%   executes just prior to writing the generated source files to disk.
+%%   Using this template "hook" file, you are able to augment the generated
+%%   source code and create additional files.
+%%
+%% Copyright 1994-2010 The MathWorks, Inc.
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%selectfile NULL_FILE
+
+%%  Uncomment this TLC line to execute the example
+%%   ||   ||
+%%   ||   ||
+%%   \/   \/
+  %assign ERTCustomFileTest = TLC_TRUE
+
+%if EXISTS("ERTCustomFileTest") && ERTCustomFileTest == TLC_TRUE
+  
+  %% Need to set the template compliance flag before you can use the API
+  %<LibSetCodeTemplateComplianceLevel(1)>
+
+  %% Add a new C file timestwo.c and put a simple function in it
+  
+  
+  %% Create a simple main.  Files are located in MATLAB/rtw/c/tlc/mw.
+  
+  %include "qnxertmainlib.tlc"
+  %if LibIsSingleRateModel() || LibIsSingleTasking()
+    %%breakpoint
+    %%<SLibCreateSampleMain()>
+  %else
+   
+    %%<SLibCreateSampleMain()>
+    
+  %endif
+   
+%endif

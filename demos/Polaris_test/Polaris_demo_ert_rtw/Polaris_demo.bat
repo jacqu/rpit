@@ -1,0 +1,2 @@
+set MATLAB=E:\Program Files\MATLAB\R2010bSP2
+make -f Polaris_demo.mk  GENERATE_REPORT=0 GENERATE_ASAP2=0

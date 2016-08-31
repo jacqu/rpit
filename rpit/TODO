@@ -1,0 +1,6 @@
+* Remove the keys in the tool dir !!!
+* Remove the mex executables in distribution zip file
+* Don't prompt the password
+* Manage error cases : EV3 off or not connected
+* Valgrind mpu9150 code
+* Hint: for customizing TLC, refer to rtw/c/tlc/mw/ertmain_grtinterface.tlc

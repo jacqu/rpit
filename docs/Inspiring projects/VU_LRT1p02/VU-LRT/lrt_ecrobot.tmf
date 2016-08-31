@@ -1,0 +1,42 @@
+SYS_TARGET_FILE		 = lrt.tlc
+MODEL                = |>MODEL_NAME<|
+MODULES				 = |>MODEL_MODULES<|
+MATLAB_ROOT          = |>ALT_MATLAB_ROOT<|
+MATLAB_BIN           = |>ALT_MATLAB_BIN<|
+MASTER_ANCHOR_DIR    = |>MASTER_ANCHOR_DIR<|
+START_DIR            = |>START_DIR<|
+S_FUNCTIONS          = |>S_FUNCTIONS<|
+S_FUNCTIONS_LIB      = |>S_FUNCTIONS_LIB<|
+NUMST                = |>NUMST<|
+NCSTATES             = |>NCSTATES<|
+TID01EQ              = |>TID01EQ<|
+
+USER_C_OPT     = -DMODEL=$(MODEL) -DRT -DNUMST=$(NUMST) \
+                 -DNCSTATES=$(NCSTATES) -DUNIX \
+                 -DHAVESTDIO
+
+WIN_BASE	   = C:/
+POSIX_BASE	   = /cygdrive/c/
+
+# Target specific macros
+TARGET = $(MODEL)
+TARGET_SOURCES = \
+	$(MODEL).c \
+	$(MODULES) \
+	rt_nonfinite.c \
+	$(MATLAB_ROOT)/rtw/c/src/rt_sim.c \
+	$(POSIX_BASE)$(LRT_PATH)/lrt_main.c
+	
+USER_INC_PATH = \
+	$(MATLAB_ROOT)/extern/include \
+	$(MATLAB_ROOT)/simulink/include \
+	$(MATLAB_ROOT)/rtw/c/src \
+	$(MATLAB_ROOT)/rtw/c/src/ext_mode/common
+	
+TOPPERS_OSEK_ROOT_SG = $(WIN_BASE)$(ECROBOT_PATH)/toppers_osek
+	
+TOPPERS_OSEK_OIL_SOURCE = ./$(MODEL).oil
+
+# Don't modify below part
+O_PATH = build
+include $(POSIX_BASE)$(ECROBOT_PATH)/ecrobot/ecrobot.mak

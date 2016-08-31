@@ -1,0 +1,2348 @@
+Library {
+  Name			  "lego_nxt_lib"
+  Version		  7.5
+  MdlSubVersion		  0
+  SavedCharacterEncoding  "Shift_JIS"
+  LibraryType		  "BlockLibrary"
+  SaveDefaultBlockParams  on
+  ScopeRefreshTime	  0.035000
+  OverrideScopeRefreshTime on
+  DisableAllScopes	  off
+  MaxMDLFileLineLength	  120
+  Created		  "Mon Jul 24 12:57:16 2006"
+  Creator		  "cmcart01"
+  UpdateHistory		  "UpdateHistoryNever"
+  ModifiedByFormat	  "%<Auto>"
+  LastModifiedBy	  "jpeytonj"
+  ModifiedDateFormat	  "%<Auto>"
+  LastModifiedDate	  "Tue Nov 01 15:14:55 2011"
+  RTWModifiedTimeStamp	  242061290
+  ModelVersionFormat	  "1.%<AutoIncrement:777>"
+  ConfigurationManager	  "None"
+  SampleTimeColors	  off
+  SampleTimeAnnotations	  off
+  LibraryLinkDisplay	  "none"
+  WideLines		  off
+  ShowLineDimensions	  off
+  ShowPortDataTypes	  off
+  ShowLoopsOnError	  on
+  IgnoreBidirectionalLines off
+  ShowStorageClass	  off
+  ShowTestPointIcons	  on
+  ShowSignalResolutionIcons on
+  ShowViewerIcons	  on
+  SortedOrder		  off
+  ExecutionContextIcon	  off
+  ShowLinearizationAnnotations on
+  BlockNameDataTip	  off
+  BlockParametersDataTip  off
+  BlockDescriptionStringDataTip	off
+  ToolBar		  on
+  StatusBar		  on
+  BrowserShowLibraryLinks off
+  BrowserLookUnderMasks	  off
+  SimulationMode	  "normal"
+  LinearizationMsg	  "none"
+  Profile		  off
+  ParamWorkspaceSource	  "MATLABWorkspace"
+  RecordCoverage	  off
+  CovSaveName		  "covdata"
+  CovMetricSettings	  "dw"
+  CovNameIncrementing	  off
+  CovHtmlReporting	  on
+  CovForceBlockReductionOff on
+  covSaveCumulativeToWorkspaceVar on
+  CovSaveSingleToWorkspaceVar on
+  CovCumulativeReport	  off
+  CovReportOnPause	  on
+  CovModelRefEnable	  "Off"
+  CovExternalEMLEnable	  off
+  ExtModeBatchMode	  off
+  ExtModeEnableFloating	  on
+  ExtModeTrigType	  "manual"
+  ExtModeTrigMode	  "normal"
+  ExtModeTrigPort	  "1"
+  ExtModeTrigElement	  "any"
+  ExtModeTrigDuration	  1000
+  ExtModeTrigDurationFloating "auto"
+  ExtModeTrigHoldOff	  0
+  ExtModeTrigDelay	  0
+  ExtModeTrigDirection	  "rising"
+  ExtModeTrigLevel	  0
+  ExtModeArchiveMode	  "off"
+  ExtModeAutoIncOneShot	  off
+  ExtModeIncDirWhenArm	  off
+  ExtModeAddSuffixToVar	  off
+  ExtModeWriteAllDataToWs off
+  ExtModeArmWhenConnect	  on
+  ExtModeSkipDownloadWhenConnect off
+  ExtModeLogAll		  on
+  ExtModeAutoUpdateStatusClock on
+  ShowModelReferenceBlockVersion off
+  ShowModelReferenceBlockIO off
+  Array {
+    Type		    "Handle"
+    Dimension		    1
+    Simulink.ConfigSet {
+      $ObjectID		      1
+      Version		      "1.10.0"
+      Array {
+	Type			"Handle"
+	Dimension		8
+	Simulink.SolverCC {
+	  $ObjectID		  2
+	  Version		  "1.10.0"
+	  StartTime		  "0.0"
+	  StopTime		  "10.0"
+	  AbsTol		  "auto"
+	  FixedStep		  "auto"
+	  InitialStep		  "auto"
+	  MaxNumMinSteps	  "-1"
+	  MaxOrder		  5
+	  ZcThreshold		  "auto"
+	  ConsecutiveZCsStepRelTol "10*128*eps"
+	  MaxConsecutiveZCs	  "1000"
+	  ExtrapolationOrder	  4
+	  NumberNewtonIterations  1
+	  MaxStep		  "auto"
+	  MinStep		  "auto"
+	  MaxConsecutiveMinStep	  "1"
+	  RelTol		  "1e-3"
+	  SolverMode		  "SingleTasking"
+	  Solver		  "ode45"
+	  SolverName		  "ode45"
+	  SolverJacobianMethodControl "auto"
+	  ShapePreserveControl	  "DisableAll"
+	  ZeroCrossControl	  "UseLocalSettings"
+	  ZeroCrossAlgorithm	  "Nonadaptive"
+	  AlgebraicLoopSolver	  "TrustRegion"
+	  SolverResetMethod	  "Fast"
+	  PositivePriorityOrder	  off
+	  AutoInsertRateTranBlk	  off
+	  SampleTimeConstraint	  "Unconstrained"
+	  InsertRTBMode		  "Whenever possible"
+	}
+	Simulink.DataIOCC {
+	  $ObjectID		  3
+	  Version		  "1.10.0"
+	  Decimation		  "1"
+	  ExternalInput		  "[t, u]"
+	  FinalStateName	  "xFinal"
+	  InitialState		  "xInitial"
+	  LimitDataPoints	  on
+	  MaxDataPoints		  "1000"
+	  LoadExternalInput	  off
+	  LoadInitialState	  off
+	  SaveFinalState	  off
+	  SaveCompleteFinalSimState off
+	  SaveFormat		  "Array"
+	  SaveOutput		  on
+	  SaveState		  off
+	  SignalLogging		  on
+	  DSMLogging		  on
+	  InspectSignalLogs	  off
+	  SaveTime		  on
+	  ReturnWorkspaceOutputs  off
+	  StateSaveName		  "xout"
+	  TimeSaveName		  "tout"
+	  OutputSaveName	  "yout"
+	  SignalLoggingName	  "logsout"
+	  DSMLoggingName	  "dsmout"
+	  OutputOption		  "RefineOutputTimes"
+	  OutputTimes		  "[]"
+	  ReturnWorkspaceOutputsName "out"
+	  Refine		  "1"
+	}
+	Simulink.OptimizationCC {
+	  $ObjectID		  4
+	  Version		  "1.10.0"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    7
+	    Cell		    "BooleansAsBitfields"
+	    Cell		    "PassReuseOutputArgsAs"
+	    Cell		    "PassReuseOutputArgsThreshold"
+	    Cell		    "ZeroExternalMemoryAtStartup"
+	    Cell		    "ZeroInternalMemoryAtStartup"
+	    Cell		    "OptimizeModelRefInitCode"
+	    Cell		    "NoFixptDivByZeroProtection"
+	    PropName		    "DisabledProps"
+	  }
+	  BlockReduction	  off
+	  BooleanDataType	  off
+	  ConditionallyExecuteInputs on
+	  InlineParams		  off
+	  UseIntDivNetSlope	  off
+	  InlineInvariantSignals  off
+	  OptimizeBlockIOStorage  on
+	  BufferReuse		  on
+	  EnhancedBackFolding	  off
+	  StrengthReduction	  off
+	  EnforceIntegerDowncast  on
+	  ExpressionFolding	  on
+	  BooleansAsBitfields	  off
+	  BitfieldContainerType	  "uint_T"
+	  EnableMemcpy		  on
+	  MemcpyThreshold	  64
+	  PassReuseOutputArgsAs	  "Structure reference"
+	  ExpressionDepthLimit	  2147483647
+	  FoldNonRolledExpr	  on
+	  LocalBlockOutputs	  on
+	  RollThreshold		  5
+	  SystemCodeInlineAuto	  off
+	  StateBitsets		  off
+	  DataBitsets		  off
+	  UseTempVars		  off
+	  ZeroExternalMemoryAtStartup on
+	  ZeroInternalMemoryAtStartup on
+	  InitFltsAndDblsToZero	  off
+	  NoFixptDivByZeroProtection off
+	  EfficientFloat2IntCast  off
+	  EfficientMapNaN2IntZero on
+	  OptimizeModelRefInitCode off
+	  LifeSpan		  "inf"
+	  MaxStackSize		  "Inherit from target"
+	  BufferReusableBoundary  on
+	  SimCompilerOptimization "Off"
+	  AccelVerboseBuild	  off
+	}
+	Simulink.DebuggingCC {
+	  $ObjectID		  5
+	  Version		  "1.10.0"
+	  RTPrefix		  "error"
+	  ConsistencyChecking	  "none"
+	  ArrayBoundsChecking	  "none"
+	  SignalInfNanChecking	  "none"
+	  SignalRangeChecking	  "none"
+	  ReadBeforeWriteMsg	  "UseLocalSettings"
+	  WriteAfterWriteMsg	  "UseLocalSettings"
+	  WriteAfterReadMsg	  "UseLocalSettings"
+	  AlgebraicLoopMsg	  "warning"
+	  ArtificialAlgebraicLoopMsg "warning"
+	  SaveWithDisabledLinksMsg "warning"
+	  SaveWithParameterizedLinksMsg	"none"
+	  CheckSSInitialOutputMsg on
+	  UnderspecifiedInitializationDetection	"Classic"
+	  MergeDetectMultiDrivingBlocksExec "none"
+	  CheckExecutionContextPreStartOutputMsg off
+	  CheckExecutionContextRuntimeOutputMsg	off
+	  SignalResolutionControl "TryResolveAllWithWarning"
+	  BlockPriorityViolationMsg "warning"
+	  MinStepSizeMsg	  "warning"
+	  TimeAdjustmentMsg	  "none"
+	  MaxConsecutiveZCsMsg	  "error"
+	  SolverPrmCheckMsg	  "none"
+	  InheritedTsInSrcMsg	  "warning"
+	  DiscreteInheritContinuousMsg "warning"
+	  MultiTaskDSMMsg	  "error"
+	  MultiTaskCondExecSysMsg "error"
+	  MultiTaskRateTransMsg	  "error"
+	  SingleTaskRateTransMsg  "none"
+	  TasksWithSamePriorityMsg "warning"
+	  SigSpecEnsureSampleTimeMsg "warning"
+	  CheckMatrixSingularityMsg "none"
+	  IntegerOverflowMsg	  "warning"
+	  Int32ToFloatConvMsg	  "warning"
+	  ParameterDowncastMsg	  "error"
+	  ParameterOverflowMsg	  "error"
+	  ParameterUnderflowMsg	  "none"
+	  ParameterPrecisionLossMsg "warning"
+	  ParameterTunabilityLossMsg "warning"
+	  FixptConstUnderflowMsg  "none"
+	  FixptConstOverflowMsg	  "none"
+	  FixptConstPrecisionLossMsg "none"
+	  UnderSpecifiedDataTypeMsg "none"
+	  UnnecessaryDatatypeConvMsg "none"
+	  VectorMatrixConversionMsg "none"
+	  InvalidFcnCallConnMsg	  "error"
+	  FcnCallInpInsideContextMsg "Use local settings"
+	  SignalLabelMismatchMsg  "none"
+	  UnconnectedInputMsg	  "warning"
+	  UnconnectedOutputMsg	  "warning"
+	  UnconnectedLineMsg	  "warning"
+	  SFcnCompatibilityMsg	  "none"
+	  UniqueDataStoreMsg	  "none"
+	  BusObjectLabelMismatch  "warning"
+	  RootOutportRequireBusObject "warning"
+	  AssertControl		  "UseLocalSettings"
+	  EnableOverflowDetection off
+	  ModelReferenceIOMsg	  "none"
+	  ModelReferenceVersionMismatchMessage "none"
+	  ModelReferenceIOMismatchMessage "none"
+	  ModelReferenceCSMismatchMessage "none"
+	  UnknownTsInhSupMsg	  "warning"
+	  ModelReferenceDataLoggingMessage "warning"
+	  ModelReferenceSymbolNameMessage "warning"
+	  ModelReferenceExtraNoncontSigs "error"
+	  StateNameClashWarn	  "warning"
+	  SimStateInterfaceChecksumMismatchMsg "warning"
+	  StrictBusMsg		  "Warning"
+	  BusNameAdapt		  "WarnAndRepair"
+	  NonBusSignalsTreatedAsBus "none"
+	  LoggingUnavailableSignals "error"
+	  BlockIODiagnostic	  "none"
+	}
+	Simulink.HardwareCC {
+	  $ObjectID		  6
+	  Version		  "1.10.0"
+	  ProdBitPerChar	  8
+	  ProdBitPerShort	  16
+	  ProdBitPerInt		  32
+	  ProdBitPerLong	  32
+	  ProdIntDivRoundTo	  "Undefined"
+	  ProdEndianess		  "Unspecified"
+	  ProdWordSize		  32
+	  ProdShiftRightIntArith  on
+	  ProdHWDeviceType	  "32-bit Generic"
+	  TargetBitPerChar	  8
+	  TargetBitPerShort	  16
+	  TargetBitPerInt	  32
+	  TargetBitPerLong	  32
+	  TargetShiftRightIntArith on
+	  TargetIntDivRoundTo	  "Undefined"
+	  TargetEndianess	  "Unspecified"
+	  TargetWordSize	  32
+	  TargetTypeEmulationWarnSuppressLevel 0
+	  TargetPreprocMaxBitsSint 32
+	  TargetPreprocMaxBitsUint 32
+	  TargetHWDeviceType	  "Specified"
+	  TargetUnknown		  on
+	  ProdEqTarget		  on
+	}
+	Simulink.ModelReferenceCC {
+	  $ObjectID		  7
+	  Version		  "1.10.0"
+	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
+	  CheckModelReferenceTargetMessage "error"
+	  EnableParallelModelReferenceBuilds off
+	  ParallelModelReferenceMATLABWorkerInit "None"
+	  ModelReferenceNumInstancesAllowed "Multi"
+	  PropagateVarSize	  "Infer from blocks in model"
+	  ModelReferencePassRootInputsByReference on
+	  ModelReferenceMinAlgLoopOccurrences off
+	  PropagateSignalLabelsOutOfModel off
+	  SupportModelReferenceSimTargetCustomCode off
+	}
+	Simulink.SFSimCC {
+	  $ObjectID		  8
+	  Version		  "1.10.0"
+	  SFSimEnableDebug	  on
+	  SFSimOverflowDetection  on
+	  SFSimEcho		  on
+	  SimBlas		  on
+	  SimCtrlC		  on
+	  SimExtrinsic		  on
+	  SimIntegrity		  on
+	  SimUseLocalCustomCode	  off
+	  SimBuildMode		  "sf_incremental_build"
+	}
+	Simulink.RTWCC {
+	  $BackupClass		  "Simulink.RTWCC"
+	  $ObjectID		  9
+	  Version		  "1.10.0"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    6
+	    Cell		    "IncludeHyperlinkInReport"
+	    Cell		    "GenerateTraceInfo"
+	    Cell		    "GenerateTraceReport"
+	    Cell		    "GenerateTraceReportSl"
+	    Cell		    "GenerateTraceReportSf"
+	    Cell		    "GenerateTraceReportEml"
+	    PropName		    "DisabledProps"
+	  }
+	  SystemTargetFile	  "grt.tlc"
+	  GenCodeOnly		  off
+	  MakeCommand		  "make_rtw"
+	  GenerateMakefile	  on
+	  TemplateMakefile	  "grt_default_tmf"
+	  GenerateReport	  off
+	  SaveLog		  off
+	  RTWVerbose		  on
+	  RetainRTWFile		  off
+	  ProfileTLC		  off
+	  TLCDebug		  off
+	  TLCCoverage		  off
+	  TLCAssert		  off
+	  ProcessScriptMode	  "Default"
+	  ConfigurationMode	  "Optimized"
+	  ConfigAtBuild		  off
+	  RTWUseLocalCustomCode	  off
+	  RTWUseSimCustomCode	  off
+	  IncludeHyperlinkInReport off
+	  LaunchReport		  off
+	  TargetLang		  "C"
+	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
+	  IncludeERTFirstTime	  off
+	  GenerateTraceInfo	  off
+	  GenerateTraceReport	  off
+	  GenerateTraceReportSl	  off
+	  GenerateTraceReportSf	  off
+	  GenerateTraceReportEml  off
+	  GenerateCodeInfo	  off
+	  RTWCompilerOptimization "Off"
+	  CheckMdlBeforeBuild	  "Off"
+	  CustomRebuildMode	  "OnUpdate"
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    2
+	    Simulink.CodeAppCC {
+	      $ObjectID		      10
+	      Version		      "1.10.0"
+	      Array {
+		Type			"Cell"
+		Dimension		19
+		Cell			"IgnoreCustomStorageClasses"
+		Cell			"IgnoreTestpoints"
+		Cell			"InsertBlockDesc"
+		Cell			"SFDataObjDesc"
+		Cell			"SimulinkDataObjDesc"
+		Cell			"DefineNamingRule"
+		Cell			"SignalNamingRule"
+		Cell			"ParamNamingRule"
+		Cell			"InlinedPrmAccess"
+		Cell			"CustomSymbolStr"
+		Cell			"CustomSymbolStrGlobalVar"
+		Cell			"CustomSymbolStrType"
+		Cell			"CustomSymbolStrField"
+		Cell			"CustomSymbolStrFcn"
+		Cell			"CustomSymbolStrFcnArg"
+		Cell			"CustomSymbolStrBlkIO"
+		Cell			"CustomSymbolStrTmpVar"
+		Cell			"CustomSymbolStrMacro"
+		Cell			"ReqsInCode"
+		PropName		"DisabledProps"
+	      }
+	      ForceParamTrailComments off
+	      GenerateComments	      on
+	      IgnoreCustomStorageClasses on
+	      IgnoreTestpoints	      off
+	      IncHierarchyInIds	      off
+	      MaxIdLength	      31
+	      PreserveName	      off
+	      PreserveNameWithParent  off
+	      ShowEliminatedStatement off
+	      IncAutoGenComments      off
+	      SimulinkDataObjDesc     off
+	      SFDataObjDesc	      off
+	      IncDataTypeInIds	      off
+	      MangleLength	      1
+	      CustomSymbolStrGlobalVar "$R$N$M"
+	      CustomSymbolStrType     "$N$R$M"
+	      CustomSymbolStrField    "$N$M"
+	      CustomSymbolStrFcn      "$R$N$M$F"
+	      CustomSymbolStrFcnArg   "rt$I$N$M"
+	      CustomSymbolStrBlkIO    "rtb_$N$M"
+	      CustomSymbolStrTmpVar   "$N$M"
+	      CustomSymbolStrMacro    "$R$N$M"
+	      DefineNamingRule	      "None"
+	      ParamNamingRule	      "None"
+	      SignalNamingRule	      "None"
+	      InsertBlockDesc	      off
+	      SimulinkBlockComments   on
+	      EnableCustomComments    off
+	      InlinedPrmAccess	      "Literals"
+	      ReqsInCode	      off
+	      UseSimReservedNames     off
+	    }
+	    Simulink.GRTTargetCC {
+	      $BackupClass	      "Simulink.TargetCC"
+	      $ObjectID		      11
+	      Version		      "1.10.0"
+	      Array {
+		Type			"Cell"
+		Dimension		16
+		Cell			"GeneratePreprocessorConditionals"
+		Cell			"IncludeMdlTerminateFcn"
+		Cell			"CombineOutputUpdateFcns"
+		Cell			"SuppressErrorStatus"
+		Cell			"ERTCustomFileBanners"
+		Cell			"GenerateSampleERTMain"
+		Cell			"GenerateTestInterfaces"
+		Cell			"ModelStepFunctionPrototypeControlCompliant"
+		Cell			"CPPClassGenCompliant"
+		Cell			"MultiInstanceERTCode"
+		Cell			"PurelyIntegerCode"
+		Cell			"PortableWordSizes"
+		Cell			"SupportComplex"
+		Cell			"SupportAbsoluteTime"
+		Cell			"SupportContinuousTime"
+		Cell			"SupportNonInlinedSFcns"
+		PropName		"DisabledProps"
+	      }
+	      TargetFcnLib	      "ansi_tfl_table_tmw.mat"
+	      TargetLibSuffix	      ""
+	      TargetPreCompLibLocation ""
+	      TargetFunctionLibrary   "ANSI_C"
+	      UtilityFuncGeneration   "Auto"
+	      ERTMultiwordTypeDef     "System defined"
+	      ERTCodeCoverageTool     "None"
+	      ERTMultiwordLength      256
+	      MultiwordLength	      2048
+	      GenerateFullHeader      on
+	      GenerateSampleERTMain   off
+	      GenerateTestInterfaces  off
+	      IsPILTarget	      off
+	      ModelReferenceCompliant on
+	      ParMdlRefBuildCompliant on
+	      CompOptLevelCompliant   on
+	      IncludeMdlTerminateFcn  on
+	      GeneratePreprocessorConditionals "Disable all"
+	      CombineOutputUpdateFcns off
+	      SuppressErrorStatus     off
+	      ERTFirstTimeCompliant   off
+	      IncludeFileDelimiter    "Auto"
+	      ERTCustomFileBanners    off
+	      SupportAbsoluteTime     on
+	      LogVarNameModifier      "rt_"
+	      MatFileLogging	      on
+	      MultiInstanceERTCode    off
+	      SupportNonFinite	      on
+	      SupportComplex	      on
+	      PurelyIntegerCode	      off
+	      SupportContinuousTime   on
+	      SupportNonInlinedSFcns  on
+	      SupportVariableSizeSignals off
+	      EnableShiftOperators    on
+	      ParenthesesLevel	      "Nominal"
+	      PortableWordSizes	      off
+	      ModelStepFunctionPrototypeControlCompliant off
+	      CPPClassGenCompliant    off
+	      AutosarCompliant	      off
+	      UseMalloc		      off
+	      ExtMode		      off
+	      ExtModeStaticAlloc      off
+	      ExtModeTesting	      off
+	      ExtModeStaticAllocSize  1000000
+	      ExtModeTransport	      0
+	      ExtModeMexFile	      "ext_comm"
+	      ExtModeIntrfLevel	      "Level1"
+	      RTWCAPISignals	      off
+	      RTWCAPIParams	      off
+	      RTWCAPIStates	      off
+	      GenerateASAP2	      off
+	    }
+	    PropName		    "Components"
+	  }
+	}
+	PropName		"Components"
+      }
+      Name		      "Configuration"
+      CurrentDlgPage	      "Solver"
+      ConfigPrmDlgPosition    " [ 200, 85, 1080, 715 ] "
+    }
+    PropName		    "ConfigurationSets"
+  }
+  BlockDefaults {
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    NamePlacement	    "normal"
+    FontName		    "Arial"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    ShowName		    on
+    BlockRotation	    0
+    BlockMirror		    off
+  }
+  AnnotationDefaults {
+    HorizontalAlignment	    "center"
+    VerticalAlignment	    "middle"
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    FontName		    "MS UI Gothic"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    UseDisplayTextAsClickCallback off
+  }
+  LineDefaults {
+    FontName		    "MS UI Gothic"
+    FontSize		    9
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+  }
+  BlockParameterDefaults {
+    Block {
+      BlockType		      Constant
+      Value		      "1"
+      VectorParams1D	      on
+      SamplingMode	      "Sample based"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeMode	      "Inherit from 'Constant value'"
+      OutDataType	      "fixdt(1,16,0)"
+      ConRadixGroup	      "Use specified scaling"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: Inherit from 'Constant value'"
+      LockScale		      off
+      SampleTime	      "inf"
+      FramePeriod	      "inf"
+      PreserveConstantTs      off
+    }
+    Block {
+      BlockType		      Demux
+      Outputs		      "4"
+      DisplayOption	      "none"
+      BusSelectionMode	      off
+    }
+    Block {
+      BlockType		      Inport
+      Port		      "1"
+      UseBusObject	      off
+      BusObject		      "BusObject"
+      BusOutputAsStruct	      off
+      PortDimensions	      "-1"
+      VarSizeSig	      "Inherit"
+      SampleTime	      "-1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      DataType		      "auto"
+      OutDataType	      "fixdt(1,16,0)"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: auto"
+      LockScale		      off
+      SignalType	      "auto"
+      SamplingMode	      "auto"
+      LatchByDelayingOutsideSignal off
+      LatchInputForFeedbackSignals off
+      Interpolate	      on
+    }
+    Block {
+      BlockType		      Outport
+      Port		      "1"
+      UseBusObject	      off
+      BusObject		      "BusObject"
+      BusOutputAsStruct	      off
+      PortDimensions	      "-1"
+      VarSizeSig	      "Inherit"
+      SampleTime	      "-1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      DataType		      "auto"
+      OutDataType	      "fixdt(1,16,0)"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: auto"
+      LockScale		      off
+      SignalType	      "auto"
+      SamplingMode	      "auto"
+      SourceOfInitialOutputValue "Dialog"
+      OutputWhenDisabled      "held"
+      InitialOutput	      "[]"
+    }
+    Block {
+      BlockType		      "S-Function"
+      FunctionName	      "system"
+      SFunctionModules	      "''"
+      PortCounts	      "[]"
+      SFunctionDeploymentMode off
+    }
+    Block {
+      BlockType		      SubSystem
+      ShowPortLabels	      "FromPortIcon"
+      Permissions	      "ReadWrite"
+      PermitHierarchicalResolution "All"
+      TreatAsAtomicUnit	      off
+      CheckFcnCallInpInsideContextMsg off
+      SystemSampleTime	      "-1"
+      RTWFcnNameOpts	      "Auto"
+      RTWFileNameOpts	      "Auto"
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      SimViewingDevice	      off
+      DataTypeOverride	      "UseLocalSettings"
+      MinMaxOverflowLogging   "UseLocalSettings"
+    }
+    Block {
+      BlockType		      Terminator
+    }
+  }
+  System {
+    Name		    "lego_nxt_lib"
+    Location		    [620, 183, 1069, 808]
+    Open		    on
+    ModelBrowserVisibility  off
+    ModelBrowserWidth	    200
+    ScreenColor		    "white"
+    PaperOrientation	    "landscape"
+    PaperPositionMode	    "auto"
+    PaperType		    "A4"
+    PaperUnits		    "centimeters"
+    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+    TiledPageScale	    1
+    ShowPageBoundaries	    off
+    ZoomFactor		    "100"
+    ReportName		    "simulink-default.rpt"
+    SIDHighWatermark	    91
+    Block {
+      BlockType		      "S-Function"
+      Name		      "Accel Sensor"
+      SID		      1
+      Ports		      [0, 3]
+      Position		      [15, 365, 75, 425]
+      FontSize		      11
+      FunctionName	      "sfun_OSEK_HT_accel"
+      Parameters	      "port, st"
+      EnableBusSupport	      off
+      MaskType		      "HiTechnic Acceleration Sensor"
+      MaskDescription	      "Outputs acceleration data in three axes (x, y and z) [uint16] representing forward, later"
+      "al and vertical directions respectively.  The outputs are given in the range 0 to 1023 with a scale factor of ~2"
+      "00 units per g."
+      MaskHelp		      "The <b>Acceleration Sensor</b> block is an interface for the HiTechnic\nAccelerometer for the L"
+      "ego NXT brick.  This sensor can detect values in\nthree axes: x (or pitch), y (or roll) and z.  Pitch represents"
+      " the angle \nabove or below the horizontal, while roll represents the angle left or\nright of perfectly vertical"
+      ".  The z-axis represents lean forward or\nbackward."
+      MaskPromptString	      "Port: |Sample time (-1 for inherited):"
+      MaskStyleString	      "popup(Port 1|Port 2|Port 3|Port 4),edit"
+      MaskTunableValueString  "on,on"
+      MaskCallbackString      "|"
+      MaskEnableString	      "on,on"
+      MaskVisibilityString    "on,on"
+      MaskToolTipString	      "on,on"
+      MaskVariables	      "port=@1;st=@2;"
+      MaskInitialization      "port_disp(gcb)"
+      MaskDisplay	      "image(imread('ht.jpg'))\nport_label('output', 1, 'x')\nport_label('output', 2, 'y')\nport_lab"
+      "el('output', 3, 'z')\ntext(0.1,0.15,'1')"
+      MaskSelfModifiable      on
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      MaskValueString	      "Port 1|-1"
+    }
+    Block {
+      BlockType		      "S-Function"
+      Name		      "Analog Input"
+      SID		      66
+      Ports		      [0, 1]
+      Position		      [95, 456, 155, 514]
+      FunctionName	      "sfun_OSEK_GAI"
+      Parameters	      "port,gain,intercept,sign,st"
+      EnableBusSupport	      off
+      MaskType		      "Generic Analog Input for Mindstorms"
+      MaskDescription	      "y = ((ADC count)*Gain + Intercept) / 100000.\nThe linear gain and intercept calibration c"
+      "onstants are automatically defined for any specified sensor, but may be entered manually for the 'User Defined' "
+      "measurement option."
+      MaskHelp		      "The <b>Generic Analog Input</b> block is an interface for most of the \nMindstorms sensors for "
+      "the Lego NXT brick. \n\nThe calibrated output, y, uses linear scaling according to: y = ((ADC count)*Gain + Inte"
+      "rcept) / 100000\n\nThe relevant values are set automatically according to Mindstorms' documentation which may be"
+      " found <a href=\"http://lejos-osek.sourceforge.net/ecrobot_c_api_frame.htm\">here</a>\n"
+      MaskPromptString	      "Port:|Units of Measure:|Gain:|Intercept:|Signed output|Sample time (-1 for inherited)"
+      MaskStyleString	      "popup(Port 1|Port 2|Port 3|Port 4),popup(User defined|Raw ADC count [uint16]; range [0 10"
+      "23]|Voltage [int16]; range [0 5]V|Light Intensity [uint16]; range [0 1023]|Sound Intensity [uint16]; range [0 10"
+      "23]),edit,edit,edit,edit"
+      MaskTunableValueString  "on,on,off,off,off,on"
+      MaskCallbackString      "|set_param(gcb,'MaskEnables',{'on','on','off','off','off','on'});\ntemp = get_param(gcb"
+      ", 'MaskValues');\nswitch get_param(gcb,'units')\n%NOTE: These are in no particular order as of now\n    case 'Ra"
+      "w ADC count [uint16]; range [0 1023]'\n        temp{3} = '1';\n        temp{4} = '0';\n        temp{5} = '0';\n "
+      "   case 'Voltage [int16]; range [0 5]V'\n        temp{3} = '.00489';\n        temp{4} = '0';\n        temp{5} = "
+      "'1';\n    case 'Light Intensity [uint16]; range [0 1023]'\n        temp{3} = '-1';\n        temp{4} = '1023';\n "
+      "       temp{5} = '0';\n    case 'Sound Intensity [uint16]; range [0 1023]'\n        temp{3} = '-1';\n        tem"
+      "p{4} = '1023';\n        temp{5} = '0';\n    case 'User Defined'\n        set_param(gcb,'MaskEnables',{'on','on',"
+      "'on','on','off','on'});\n    otherwise\n        temp{3} = '1';\n        temp{4} = '0';\n        temp{5} = '0';\n"
+      "end;\n\nset_param(gcb, 'MaskValues', temp);||||"
+      MaskEnableString	      "on,on,off,off,off,on"
+      MaskVisibilityString    "on,on,on,on,off,on"
+      MaskToolTipString	      "on,on,on,on,on,on"
+      MaskVariables	      "port=@1;units=@2;gain=@3;intercept=@4;sign=@5;st=@6;"
+      MaskInitialization      "port_disp(gcb)\nsens_disp(gcb)"
+      MaskDisplay	      "text(0.1,0.15,'3');\ndisp('Raw ADC Count');"
+      MaskSelfModifiable      on
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      MaskValueString	      "Port 3|Raw ADC count [uint16]; range [0 1023]|1|0|0|-1"
+    }
+    Block {
+      BlockType		      "S-Function"
+      Name		      "BT Rx"
+      SID		      87
+      Ports		      [0, 2]
+      Position		      [255, 100, 315, 160]
+      AncestorBlock	      "lego_nxt_lib/USB Rx"
+      LibraryVersion	      "1.769"
+      FunctionName	      "sfun_OSEK_btinterface_r"
+      Parameters	      "init_y0, st"
+      EnableBusSupport	      off
+      MaskType		      "Bluetooth Rx Interface    "
+      MaskDescription	      "Receives uint8 vector data via Bluetooth connection. The 'size' secondary output returns "
+      "the number of bytes received in the last transmission [uint8].  Do not send more than 32 bytes in one timestep; "
+      "doing so may cause unexpected functionality."
+      MaskHelp		      "The <b>BT Rx Interface</b> block allows the Lego NXT brick to easily recieve\ndata from an outs"
+      "ide machine via Bluetooth. This block should be used only once \nin a model. It can only receive byte vectors (u"
+      "int8 vectors). The size\noutput gives the size of the vector received from the current connection.\nMax vector s"
+      "ize for recieve is 32 bytes"
+      MaskPromptString	      "Initial Output [32x1]uint8:|Master or Slave|Slave Device Address:|Sample Time (-1 for in"
+      "herited):"
+      MaskStyleString	      "edit,popup(Master|Slave),edit,edit"
+      MaskTunableValueString  "on,on,on,on"
+      MaskCallbackString      "|switch (get_param(gcb,'mos')) \n    case 'Slave'\n    set_param(gcb,'MaskEnables',{'on"
+      "','on','off','on'});\n    set_param(gcb,'MaskVisibilities',{'on','on','off','on'});\n    case 'Master'\n    set_"
+      "param(gcb,'MaskEnables',{'on','on','on','on'});\n    set_param(gcb,'MaskVisibilities',{'on','on','on','on'});\ne"
+      "nd\n\n||"
+      MaskEnableString	      "on,on,off,on"
+      MaskVisibilityString    "on,on,off,on"
+      MaskToolTipString	      "on,on,on,on"
+      MaskVariables	      "init_y0=@1;mos=@2;ip=@3;st=@4;"
+      MaskDisplay	      "image(imread('bt.jpg'), [.2,.1,.6,.8])\nport_label('output', 1, 'Rx')\nport_label('output', 2"
+      ", 'size')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      MaskValueString	      "zeros(32,1,'uint8')|Slave|0|-1"
+    }
+    Block {
+      BlockType		      "S-Function"
+      Name		      "BT Tx"
+      SID		      74
+      Ports		      [1]
+      Position		      [175, 99, 235, 161]
+      FunctionName	      "sfun_OSEK_btinterface_t"
+      EnableBusSupport	      off
+      MaskType		      "Bluetooth Tx Interface"
+      MaskDescription	      "Transmits uint8 vector data via Bluetooth connection. Do not send more than 64 bytes in o"
+      "ne timestep; doing so may cause unexpected functionality."
+      MaskHelp		      "The <b>BT Tx Interface</b> block allows the Lego NXT brick to easily transmit\ndata to an outsi"
+      "de machine via Bluetooth. This block should be used only once\nin a model. It can only transmit byte vectors (ui"
+      "nt8 vectors). Max vector \nsize for transmit is 32 bytes."
+      MaskPromptString	      "Master or Slave:|Slave Device Address:"
+      MaskStyleString	      "popup(Master|Slave),edit"
+      MaskTunableValueString  "on,on"
+      MaskCallbackString      "switch (get_param(gcb,'mos')) \n    case 'Slave'\n    set_param(gcb,'MaskEnables',{'on'"
+      ",'off'});\n    set_param(gcb,'MaskVisibilities',{'on','off'});\n    case 'Master'\n    set_param(gcb,'MaskEnable"
+      "s',{'on','on'});\n    set_param(gcb,'MaskVisibilities',{'on','on'});\nend\n|"
+      MaskEnableString	      "on,off"
+      MaskVisibilityString    "on,off"
+      MaskToolTipString	      "on,on"
+      MaskVariables	      "mos=&1;ip=@2;"
+      MaskDisplay	      "image(imread('bt.jpg'), [.2,.1,.6,.8])\nport_label('input', 1, 'Tx')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      MaskValueString	      "Slave|0"
+    }
+    Block {
+      BlockType		      "S-Function"
+      Name		      "Battery Volts"
+      SID		      10
+      Ports		      [0, 1]
+      Position		      [15, 15, 75, 75]
+      FontSize		      11
+      FunctionName	      "sfun_OSEK_getbattvoltage"
+      Parameters	      "st"
+      EnableBusSupport	      off
+      MaskType		      "Battery Voltage"
+      MaskDescription	      "Outputs current source voltage of battery in mV [uint16]."
+      MaskHelp		      "The <b>Battery Voltage</b> block will output the current source voltage at \nthe battery in mV."
+      "  For example, an output of 9000 represents 9.0 V.  \nMaximum value is ideally 9000."
+      MaskPromptString	      "Sample time (-1 for inherited):"
+      MaskStyleString	      "edit"
+      MaskTunableValueString  "on"
+      MaskEnableString	      "on"
+      MaskVisibilityString    "on"
+      MaskToolTipString	      "on"
+      MaskVariables	      "st=@1;"
+      MaskDisplay	      "image(imread('volt.jpg'),[.2,.2,.6,.6],'on')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      MaskValueString	      "-1"
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Color Sensor"
+      SID		      59
+      Ports		      [0, 3]
+      Position		      [95, 365, 155, 425]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "HiTechnic Color Sensor V2"
+      MaskDescription	      "Outputs red, green, and blue color saturation values [int16]. Values of each element rang"
+      "e from 0-255."
+      MaskHelp		      "The <b>Color Sensor </b> block reads raw data from a color sensor and\nextracts the RGB value o"
+      "f a color from that data. The values of each hue are\nranged between 0 and 255, as per normal RGB format. This b"
+      "lock does not\nimplement the \"color number\" format supported by the color sensor."
+      MaskPromptString	      "Port:|Sample time (-1 for inherited)"
+      MaskStyleString	      "popup(Port 1|Port 2|Port 3|Port 4),edit"
+      MaskTunableValueString  "on,on"
+      MaskCallbackString      "|"
+      MaskEnableString	      "on,on"
+      MaskVisibilityString    "on,on"
+      MaskToolTipString	      "on,on"
+      MaskVariables	      "port=@1;st=@2;"
+      MaskInitialization      "port_disp(gcb)"
+      MaskDisplay	      "image(imread('htc.jpg'))\ntext(0.1,0.15,'1')\nport_label('output', 1, 'r')\nport_label('outpu"
+      "t', 2, 'g')\nport_label('output', 3, 'b')"
+      MaskSelfModifiable      on
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      MaskValueString	      "Port 1|-1"
+      System {
+	Name			"Color Sensor"
+	Location		[611, 280, 925, 502]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	SIDHighWatermark	91
+	Block {
+	  BlockType		  "S-Function"
+	  Name			  "i2c_Rx"
+	  SID			  60
+	  Ports			  [0, 1]
+	  Position		  [25, 25, 110, 105]
+	  FunctionName		  "sfun_OSEK_i2c_recieve"
+	  Parameters		  "port,1,66,14,st"
+	  EnableBusSupport	  off
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "unpack"
+	  SID			  61
+	  Ports			  [1, 3]
+	  Position		  [145, 37, 215, 93]
+	  LibraryVersion	  "1.31"
+	  ErrorFcn		  "Stateflow.Translate.translate"
+	  PermitHierarchicalResolution "ExplicitOnly"
+	  TreatAsAtomicUnit	  on
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  MaskType		  "Stateflow"
+	  MaskDescription	  "Embedded MATLAB block"
+	  MaskDisplay		  "disp('unpack');"
+	  MaskSelfModifiable	  on
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  off
+	  MaskIconRotate	  "none"
+	  MaskPortRotate	  "default"
+	  MaskIconUnits		  "normalized"
+	  System {
+	    Name		    "unpack"
+	    Location		    [257, 457, 812, 717]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    SIDHighWatermark	    65
+	    Block {
+	      BlockType		      Inport
+	      Name		      "u"
+	      SID		      61
+	      Position		      [20, 101, 40, 119]
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Demux
+	      Name		      " Demux "
+	      SID		      61
+	      Ports		      [1, 1]
+	      Position		      [270, 210, 320, 250]
+	      Outputs		      "1"
+	    }
+	    Block {
+	      BlockType		      "S-Function"
+	      Name		      " SFunction "
+	      SID		      61
+	      Tag		      "Stateflow S-Function lego_nxt_lib 1"
+	      Ports		      [1, 4]
+	      Position		      [180, 102, 230, 203]
+	      FunctionName	      "sf_sfun"
+	      PortCounts	      "[1 4]"
+	      EnableBusSupport	      off
+	      Port {
+		PortNumber		2
+		Name			"r"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		3
+		Name			"g"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		4
+		Name			"b"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      " Terminator "
+	      SID		      61
+	      Position		      [460, 221, 480, 239]
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "r"
+	      SID		      61
+	      Position		      [460, 101, 480, 119]
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "g"
+	      SID		      61
+	      Position		      [460, 136, 480, 154]
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "b"
+	      SID		      61
+	      Position		      [460, 171, 480, 189]
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      SrcBlock		      "u"
+	      SrcPort		      1
+	      DstBlock		      " SFunction "
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "r"
+	      Labels		      [0, 0]
+	      SrcBlock		      " SFunction "
+	      SrcPort		      2
+	      DstBlock		      "r"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "g"
+	      Labels		      [0, 0]
+	      SrcBlock		      " SFunction "
+	      SrcPort		      3
+	      DstBlock		      "g"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "b"
+	      Labels		      [0, 0]
+	      SrcBlock		      " SFunction "
+	      SrcPort		      4
+	      DstBlock		      "b"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      " Demux "
+	      SrcPort		      1
+	      DstBlock		      " Terminator "
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      " SFunction "
+	      SrcPort		      1
+	      DstBlock		      " Demux "
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  SID			  62
+	  Position		  [260, 38, 290, 52]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out2"
+	  SID			  63
+	  Position		  [260, 58, 290, 72]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out3"
+	  SID			  64
+	  Position		  [260, 78, 290, 92]
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "unpack"
+	  SrcPort		  3
+	  DstBlock		  "Out3"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "unpack"
+	  SrcPort		  2
+	  DstBlock		  "Out2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "unpack"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "i2c_Rx"
+	  SrcPort		  1
+	  DstBlock		  "unpack"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Compass Sensor"
+      SID		      48
+      Ports		      [0, 1]
+      Position		      [175, 365, 235, 425]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "HiTechnic Compass Sensor   "
+      MaskDescription	      "Outputs directional data [S16] relative to the closest magnetic source (or magnetic north"
+      ", by default) in the range of [1,179]."
+      MaskHelp		      "The <b>Compass Sensor</b> block is an interface for HiTechnic's Compass\nfor the Lego NXT brick"
+      ".  This sensor determines the direction your robot is\npointing, which is referred to as the compass heading. Th"
+      "e compass outputs\na range of values from 1-179, which equals the compass heading divided\nby 2. The compass may"
+      " be subject to interference from other magnetic\ndevices, including the brick and motors of the robot itself, so"
+      " it is\nimportant to mount the sensor at least 6 inches away from these objects."
+      MaskPromptString	      "Port:|Sample time (-1 for inherited):"
+      MaskStyleString	      "popup(Port 1|Port 2|Port 3|Port 4),edit"
+      MaskTunableValueString  "on,on"
+      MaskCallbackString      "|"
+      MaskEnableString	      "on,on"
+      MaskVisibilityString    "on,on"
+      MaskToolTipString	      "on,on"
+      MaskVariables	      "port=@1;st=@2;"
+      MaskInitialization      "port_disp(gcb)"
+      MaskDisplay	      "image(imread('ht.jpg'))\ntext(0.1,0.15,'1')"
+      MaskSelfModifiable      on
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      MaskValueString	      "Port 1|-1"
+      System {
+	Name			"Compass Sensor"
+	Location		[696, 254, 1026, 386]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	SIDHighWatermark	91
+	Block {
+	  BlockType		  "S-Function"
+	  Name			  "i2c_Rx"
+	  SID			  49
+	  Ports			  [0, 1]
+	  Position		  [25, 25, 110, 105]
+	  FunctionName		  "sfun_OSEK_i2c_recieve"
+	  Parameters		  "port,1,65,5,st"
+	  EnableBusSupport	  off
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "unpack"
+	  SID			  50
+	  Ports			  [1, 1]
+	  Position		  [180, 42, 250, 88]
+	  LibraryVersion	  "1.31"
+	  ErrorFcn		  "Stateflow.Translate.translate"
+	  PermitHierarchicalResolution "ExplicitOnly"
+	  TreatAsAtomicUnit	  on
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  MaskType		  "Stateflow"
+	  MaskDescription	  "Embedded MATLAB block"
+	  MaskDisplay		  "disp('unpack');"
+	  MaskSelfModifiable	  on
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  off
+	  MaskIconRotate	  "none"
+	  MaskPortRotate	  "default"
+	  MaskIconUnits		  "normalized"
+	  System {
+	    Name		    "unpack"
+	    Location		    [257, 457, 812, 717]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    SIDHighWatermark	    54
+	    Block {
+	      BlockType		      Inport
+	      Name		      "u"
+	      SID		      50
+	      Position		      [20, 101, 40, 119]
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Demux
+	      Name		      " Demux "
+	      SID		      50
+	      Ports		      [1, 1]
+	      Position		      [270, 160, 320, 200]
+	      Outputs		      "1"
+	    }
+	    Block {
+	      BlockType		      "S-Function"
+	      Name		      " SFunction "
+	      SID		      50
+	      Tag		      "Stateflow S-Function lego_nxt_lib 2"
+	      Ports		      [1, 2]
+	      Position		      [180, 100, 230, 160]
+	      FunctionName	      "sf_sfun"
+	      PortCounts	      "[1 2]"
+	      EnableBusSupport	      off
+	      Port {
+		PortNumber		2
+		Name			"h"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      " Terminator "
+	      SID		      50
+	      Position		      [460, 171, 480, 189]
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "h"
+	      SID		      50
+	      Position		      [460, 101, 480, 119]
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      SrcBlock		      "u"
+	      SrcPort		      1
+	      DstBlock		      " SFunction "
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "h"
+	      Labels		      [0, 0]
+	      SrcBlock		      " SFunction "
+	      SrcPort		      2
+	      DstBlock		      "h"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      " Demux "
+	      SrcPort		      1
+	      DstBlock		      " Terminator "
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      " SFunction "
+	      SrcPort		      1
+	      DstBlock		      " Demux "
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  SID			  51
+	  Position		  [275, 58, 305, 72]
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "unpack"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "i2c_Rx"
+	  SrcPort		  1
+	  DstBlock		  "unpack"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      "S-Function"
+      Name		      "DC Motor"
+      SID		      1
+      Ports		      [1]
+      Position		      [255, 275, 315, 335]
+      FontSize		      11
+      FunctionName	      "sfun_OSEK_servosimple"
+      Parameters	      "port,brake"
+      EnableBusSupport	      off
+      MaskType		      "Servo Motor (Simple)"
+      MaskDescription	      "Sets the applied motor voltage [int8] as a percentage (in the range -100..100) of battery"
+      " voltage.  Applying a negative voltage will cause the motor to turn in the reverse direction.  Note that motor s"
+      "peed depends not only on applied voltage, but also on motor load."
+      MaskHelp		      "The <b>DC Motor</b> block is a simplified interface for setting\nServo Motor speed."
+      MaskPromptString	      "Port: |When power=0..."
+      MaskStyleString	      "popup(Port A|Port B|Port C),popup(Coast|Brake)"
+      MaskTunableValueString  "on,on"
+      MaskCallbackString      "|"
+      MaskEnableString	      "on,on"
+      MaskVisibilityString    "on,on"
+      MaskToolTipString	      "on,on"
+      MaskVariables	      "port=@1;brake=@2;"
+      MaskInitialization      "port_disp(gcb)"
+      MaskDisplay	      "image(imread('servo.jpg'))\ntext(0.1,0.15,'A')"
+      MaskSelfModifiable      on
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      MaskValueString	      "Port A|Coast"
+    }
+    Block {
+      BlockType		      "S-Function"
+      Name		      "Encoder"
+      SID		      1
+      Ports		      [0, 1]
+      Position		      [175, 275, 235, 335]
+      FontSize		      11
+      FunctionName	      "sfun_OSEK_servorev"
+      Parameters	      "port, st"
+      EnableBusSupport	      off
+      MaskType		      "Encoder"
+      MaskDescription	      "Counts encoder pulses and outputs the motor rotation angle [int32] in degrees relative to"
+      " the motor's angular position when the model was started."
+      MaskHelp		      "The <b>Encoder</b> block is a simplified interface for getting the\nrevolution count of a Lego "
+      "NXT Servo Motor."
+      MaskPromptString	      "Port: |Sample time (-1 for inherited):"
+      MaskStyleString	      "popup(Port A|Port B|Port C),edit"
+      MaskTunableValueString  "on,on"
+      MaskCallbackString      "|"
+      MaskEnableString	      "on,on"
+      MaskVisibilityString    "on,on"
+      MaskToolTipString	      "on,on"
+      MaskVariables	      "port=@1;st=@2;"
+      MaskInitialization      "port_disp(gcb)"
+      MaskDisplay	      "image(imread('servo.jpg'))\ntext(0.1,0.15,'A')"
+      MaskSelfModifiable      on
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      MaskValueString	      "Port A|-1"
+    }
+    Block {
+      BlockType		      "S-Function"
+      Name		      "Enter Button"
+      SID		      6
+      Ports		      [0, 1]
+      Position		      [255, 15, 315, 75]
+      FontSize		      11
+      FunctionName	      "sfun_OSEK_enterbutton"
+      Parameters	      "st"
+      EnableBusSupport	      off
+      MaskType		      "Enter Button"
+      MaskDescription	      "Outputs 1 if enter button is pressed, else 0 [uint8]."
+      MaskHelp		      "The <b>Enter Button</b> block is an interface for the Lego NXT brick's\n'Enter' button, or oran"
+      "ge button.  This block will output a 1 when the\norange button is pressed, and a 0 when the button is unpressed."
+      MaskPromptString	      "Sample time (-1 for inherited):"
+      MaskStyleString	      "edit"
+      MaskTunableValueString  "on"
+      MaskEnableString	      "on"
+      MaskVisibilityString    "on"
+      MaskToolTipString	      "on"
+      MaskVariables	      "st=@1;"
+      MaskDisplay	      "image(imread('enter.jpg'))"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "-1"
+    }
+    Block {
+      BlockType		      "S-Function"
+      Name		      "Gyro Sensor"
+      SID		      12
+      Ports		      [0, 1]
+      Position		      [255, 365, 315, 425]
+      FontSize		      11
+      FunctionName	      "sfun_OSEK_HT_gyroscope"
+      Parameters	      "port, st"
+      EnableBusSupport	      off
+      MaskType		      "HiTechnic Gyroscopic Sensor"
+      MaskDescription	      "Outputs raw A/D gyroscope data [uint16] in the vertical direction in the range of 0..1023"
+      " (offset of ~615).  Output is equal to offset plus or minus rotation in degrees/second."
+      MaskHelp		      "The <b>Gyroscopic Sensor</b> block is an interface for HiTechnic's Gyroscope\nfor the Lego NXT "
+      "brick.  This sensor detects change in angle at a rate of\nup to plus or minus 360 degrees per second, and can be"
+      " read up to 300 times\nper second.  This sensor operates with an offset of ~615, meaning that the\nsensor will o"
+      "utput a value of 615 when at complete rest.  Its output values\nrange from 0 to 1023."
+      MaskPromptString	      "Port: |Sample time (-1 for inherited):"
+      MaskStyleString	      "popup(Port 1|Port 2|Port 3|Port 4),edit"
+      MaskTunableValueString  "on,on"
+      MaskCallbackString      "|"
+      MaskEnableString	      "on,on"
+      MaskVisibilityString    "on,on"
+      MaskToolTipString	      "on,on"
+      MaskVariables	      "port=@1;st=@2;"
+      MaskInitialization      "port_disp(gcb)"
+      MaskDisplay	      "image(imread('ht.jpg'))\ntext(0.1,0.15,'1')"
+      MaskSelfModifiable      on
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      MaskValueString	      "Port 1|-1"
+    }
+    Block {
+      BlockType		      "S-Function"
+      Name		      "I2C Interface "
+      SID		      65
+      Ports		      [0, 1]
+      Position		      [15, 275, 75, 335]
+      FunctionName	      "sfun_OSEK_i2c_recieve"
+      Parameters	      "port,addr,intreg,buflen,st"
+      EnableBusSupport	      off
+      MaskType		      "I2C Bus Interface (Rx)"
+      MaskDescription	      "Outputs data [uint8] read from a slave device of the I2C. Content and width of the output"
+      " depend on the type of device. This block only supports reading; for writing, use the Tx block."
+      MaskHelp		      "The <b>I2C Bus Interface (Rx) </b> block facilitates the reception of data from\ndevices linked"
+      " to the Lego NXT brick through the I2C. Based on the device\nit is linked to, it creates and outputs a data buff"
+      "er with information read\nfrom the device.  It is recommened that this block be used in tandem with a\nMATLAB Em"
+      "bedded Fucntion or any other block that can process the data buffer"
+      MaskPromptString	      "Port:|Address:|Internal Register (in decimal):|Buffer Length:|Sample Time (-1 for inheri"
+      "ted)"
+      MaskStyleString	      "popup(Port 1|Port 2|Port 3|Port 4),edit,edit,edit,edit"
+      MaskTunableValueString  "on,on,on,on,on"
+      MaskCallbackString      "||||"
+      MaskEnableString	      "on,on,on,on,on"
+      MaskVisibilityString    "on,on,on,on,on"
+      MaskToolTipString	      "on,on,on,on,on"
+      MaskVariables	      "port=@1;addr=@2;intreg=@3;buflen=@4;st=@5;"
+      MaskInitialization      "port_disp(gcb)"
+      MaskDisplay	      "image(imread('iic.jpg'))\ntext(0.1,0.15,'1')\nport_label('output',1,'Rx')"
+      MaskSelfModifiable      on
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      MaskValueString	      "Port 1|1|68|2|-1"
+    }
+    Block {
+      BlockType		      "S-Function"
+      Name		      "Light Sensor"
+      SID		      4
+      Ports		      [0, 1]
+      Position		      [15, 185, 75, 245]
+      FontSize		      11
+      FunctionName	      "sfun_OSEK_lightsensor"
+      Parameters	      "port, st"
+      EnableBusSupport	      off
+      MaskType		      "Light Sensor"
+      MaskDescription	      "Outputs a measure of the sensed light on a scale of 0 (dark) to 1023 (bright) [uint16]."
+      MaskHelp		      "The <b>Light Sensor</b> block is an interface for the Lego NXT brick's\nLight Sensor.  This blo"
+      "ck gives raw A/D output directly from the sensor,\nafter inverting the data.  In this block, 1023 is the value w"
+      "hich\nrepresents the brightest or most reflective surface, while a 0 represents\nthe darkest or dullest surface."
+      MaskPromptString	      "Port: |Sample time (-1 for inherited):"
+      MaskStyleString	      "popup(Port 1|Port 2|Port 3|Port 4),edit"
+      MaskTunableValueString  "on,on"
+      MaskCallbackString      "|"
+      MaskEnableString	      "on,on"
+      MaskVisibilityString    "on,on"
+      MaskToolTipString	      "on,on"
+      MaskVariables	      "port=@1;st=@2;"
+      MaskInitialization      "port_disp(gcb)"
+      MaskDisplay	      "image(imread('light.jpg'))\ntext(0.1,0.15,'1')"
+      MaskSelfModifiable      on
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      MaskValueString	      "Port 1|-1"
+    }
+    Block {
+      BlockType		      "S-Function"
+      Name		      "PWM Output"
+      SID		      47
+      Ports		      [1]
+      Position		      [15, 455, 75, 515]
+      AncestorBlock	      "Copy_of_lego_nxt_lib/PWM"
+      LibraryVersion	      "1.757"
+      FontSize		      11
+      FunctionName	      "sfun_OSEK_PWM"
+      Parameters	      "port,reverse"
+      EnableBusSupport	      off
+      MaskType		      "PWM Output"
+      MaskDescription	      "Sets the applied PWM duty cycle [uint8] in the range [0..100]. The PWM amplitude is defin"
+      "ed by the battery voltage.  The PWM signal appears between pins 1 and 2 of the specified output port.  The volta"
+      "ge polarity is reversed if the 'reverse polarity' checkbox is selected. "
+      MaskHelp		      "The <b>PWM Output</b> block is a masked version of the DC Motor block"
+      MaskPromptString	      "Port: |Reverse Polarity"
+      MaskStyleString	      "popup(Port A|Port B|Port C),checkbox"
+      MaskTunableValueString  "on,on"
+      MaskCallbackString      "|"
+      MaskEnableString	      "on,on"
+      MaskVisibilityString    "on,on"
+      MaskToolTipString	      "on,on"
+      MaskVariables	      "port=@1;reverse=@2;"
+      MaskInitialization      "port_disp(gcb)"
+      MaskDisplay	      "text(0.35,0.5,'PWM')\ntext(0.1,0.15,'A')"
+      MaskSelfModifiable      on
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      MaskValueString	      "Port A|off"
+    }
+    Block {
+      BlockType		      "S-Function"
+      Name		      "Run Button"
+      SID		      7
+      Ports		      [0, 1]
+      Position		      [175, 15, 235, 75]
+      FontSize		      11
+      FunctionName	      "sfun_OSEK_runbutton"
+      Parameters	      "st"
+      EnableBusSupport	      off
+      MaskType		      "Run Button"
+      MaskDescription	      "Outputs 1 if run button is pressed, else 0 [uint8]."
+      MaskHelp		      "The <b>Run Button<b> block is an interface for the Lego NXT brick's 'run'\nbutton, or the gray "
+      "button to the right of the center orange button.  This\nblock will output a 1 if this button is pressed, and a 0"
+      " if this button is\nunpressed."
+      MaskPromptString	      "Sample time (-1 for inherited):"
+      MaskStyleString	      "edit"
+      MaskTunableValueString  "on"
+      MaskEnableString	      "on"
+      MaskVisibilityString    "on"
+      MaskToolTipString	      "on"
+      MaskVariables	      "st=@1;"
+      MaskDisplay	      "image(imread('run.jpg'))"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "-1"
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Sonar Sensor"
+      SID		      40
+      Ports		      [0, 1]
+      Position		      [255, 185, 315, 245]
+      FontSize		      11
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "Sonar Sensor"
+      MaskDescription	      "Outputs the distance (in range 0..255cm) [int16] to the closest object in view. If sensor"
+      " is not ready, the output distance is set to -1 and the optional 'ready' status output port [boolean] is set to "
+      "0."
+      MaskHelp		      "The <b>Sonar Sensor</b> block is an interface for the Lego NXT brick's\nUltrasonic Sensor.  It "
+      "outputs a value between -1 and 255, which represents\nthe distance to the closest sensed object in centimeters ("
+      "or -1 if the\nsensor is not ready to output).  The sensor also has a 'ready flag' output,\nwhich will output 1 i"
+      "f the sensor is ready, and 0 if it is not ready."
+      MaskPromptString	      "Port:|Ready Status Output:|Sample time (-1 for inherited):"
+      MaskStyleString	      "popup(Port 1|Port 2|Port 3|Port 4),popup(Show|Hide),edit"
+      MaskTunableValueString  "on,off,on"
+      MaskCallbackString      "|switch get_param(gcb,'statussrc')\n    case 'Show'\n        set_param(gcb,'MaskDisplay"
+      "',sprintf('image(imread(''sonar.jpg''))\\ntext(0.1,0.15,''1'')\\nport_label(''output'',2,''size'')'));\n    case"
+      " 'Hide'\n        set_param(gcb,'MaskDisplay',sprintf('image(imread(''sonar.jpg''))\\ntext(0.1,0.15,''1'')'));\ne"
+      "nd|"
+      MaskEnableString	      "on,on,on"
+      MaskVisibilityString    "on,on,on"
+      MaskToolTipString	      "on,on,on"
+      MaskVariables	      "port=@1;statussrc=&2;st=@3;"
+      MaskInitialization      "status_cb(gcb,statussrc)\nport_disp(gcb)"
+      MaskDisplay	      "image(imread('sonar.jpg'))\ntext(0.1,0.15,'1')"
+      MaskSelfModifiable      on
+      MaskIconFrame	      on
+      MaskIconOpaque	      off
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      MaskValueString	      "Port 1|Hide|-1"
+      System {
+	Name			"Sonar Sensor"
+	Location		[427, 260, 828, 562]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	SIDHighWatermark	63
+	Block {
+	  BlockType		  Reference
+	  Name			  "Compare\nTo Zero"
+	  SID			  40
+	  Ports			  [1, 1]
+	  Position		  [200, 40, 230, 70]
+	  LibraryVersion	  "1.225"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Compare\nTo Zero"
+	  SourceType		  "Compare To Zero"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData "off"
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  GeneratePreprocessorConditionals "off"
+	  relop			  ">="
+	  LogicOutDataTypeMode	  "boolean"
+	  ZeroCross		  "on"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "Constant"
+	  SID			  40
+	  Position		  [15, 70, 45, 100]
+	  Value			  "port"
+	  SampleTime		  "st"
+	}
+	Block {
+	  BlockType		  "S-Function"
+	  Name			  "Sonar Sensor"
+	  SID			  40
+	  Ports			  [1, 1]
+	  Position		  [70, 45, 150, 125]
+	  FontSize		  11
+	  FunctionName		  "sfun_OSEK_sonarsensor"
+	  Parameters		  "st"
+	  EnableBusSupport	  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "status"
+	  SID			  40
+	  Position		  [255, 48, 285, 62]
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "out"
+	  SID			  40
+	  Position		  [200, 108, 230, 122]
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "Sonar Sensor"
+	  SrcPort		  1
+	  Points		  [15, 0]
+	  Branch {
+	    Points		    [0, -30]
+	    DstBlock		    "Compare\nTo Zero"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 30]
+	    DstBlock		    "out"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Compare\nTo Zero"
+	  SrcPort		  1
+	  DstBlock		  "status"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Constant"
+	  SrcPort		  1
+	  DstBlock		  "Sonar Sensor"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      "S-Function"
+      Name		      "Sound Sensor"
+      SID		      3
+      Ports		      [0, 1]
+      Position		      [95, 185, 155, 245]
+      FontSize		      11
+      FunctionName	      "sfun_OSEK_noisesensor"
+      Parameters	      "port, st"
+      EnableBusSupport	      off
+      MaskType		      "Sound Sensor"
+      MaskDescription	      "Outputs a measure of the sensed sound on a scale of 0 (quiet) to 1023 (loud) [uint16]."
+      MaskHelp		      "The <b>Sound Sensor</b> block is an interface for the Lego NXT brick's\nSound Sensor.  Outputs "
+      "range from 0 to 1023, where 1023 is the loudest\npossible sound and 0 is complete silence."
+      MaskPromptString	      "Port: |Sample time (-1 for inherited):"
+      MaskStyleString	      "popup(Port 1|Port 2|Port 3|Port 4),edit"
+      MaskTunableValueString  "on,on"
+      MaskCallbackString      "|"
+      MaskEnableString	      "on,on"
+      MaskVisibilityString    "on,on"
+      MaskToolTipString	      "on,on"
+      MaskVariables	      "port=@1;st=@2;"
+      MaskInitialization      "port_disp(gcb)"
+      MaskDisplay	      "image(imread('sound.jpg'))\ntext(0.1,0.15,'1')"
+      MaskSelfModifiable      on
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      MaskValueString	      "Port 1|-1"
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Sound Tone"
+      SID		      15
+      Ports		      [1]
+      Position		      [95, 275, 155, 335]
+      FontSize		      11
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "Sound Tone"
+      MaskDescription	      "Sounds a tone from the Lego NXT brick.  The frequency [uint32] and volume [uint8] can be "
+      "defined either internally as fixed parameter values, or externally as time-varying input signals."
+      MaskHelp		      "The <b>Sound Tone</b> block is a flexible interface for the Lego NXT\nbrick's onboard speaker. "
+      "Each argument (frequency and volume) can be\nsent to the block as an input or a parameter. The frequency input s"
+      "hould be\na value between 31 and 2100 (these are audible). The final argument, volume, is a\nvalue between 0 and"
+      " 100."
+      MaskPromptString	      "Frequency Source:|Frequency (in range 31..2100 Hz):|Volume Source: |Volume (in range 0.."
+      "100): "
+      MaskStyleString	      "popup(External|Internal),edit,popup(External|Internal),edit"
+      MaskTunableValueString  "off,on,off,on"
+      MaskCallbackString      "en = get_param(gcb,'MaskEnables');\nvis = get_param(gcb,'MaskVisibilities');\nswitch ge"
+      "t_param(gcb,'freqsrc')\n  case 'External'\n    en{2} = 'off';\n    vis{2} = 'off';\n  case 'Internal'\n    en{2}"
+      " = 'on';\n    vis{2} = 'on';\nend\nset_param(gcb,'MaskEnables',en)\nset_param(gcb,'MaskVisibilities',vis)||en = "
+      "get_param(gcb,'MaskEnables');\nvis = get_param(gcb,'MaskVisibilities');\nswitch get_param(gcb,'volsrc')\n  case "
+      "'External'\n    en{4} = 'off';\n    vis{4} = 'off';\n  case 'Internal'\n    en{4} = 'on';\n    vis{4} = 'on';\ne"
+      "nd\nset_param(gcb,'MaskEnables',en)\nset_param(gcb,'MaskVisibilities',vis)|"
+      MaskEnableString	      "on,off,on,on"
+      MaskVisibilityString    "on,off,on,on"
+      MaskToolTipString	      "on,on,on,on"
+      MaskVariables	      "freqsrc=&1;freq=@2;volsrc=&3;vol=@4;"
+      MaskInitialization      "voltone_cb(gcb,volsrc,vol,freqsrc,freq);"
+      MaskDisplay	      "image(imread('tone.jpg'));\nport_label('input',1,'freq')\n"
+      MaskSelfModifiable      on
+      MaskIconFrame	      on
+      MaskIconOpaque	      off
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      MaskValueString	      "External|0|Internal|70"
+      System {
+	Name			"Sound Tone"
+	Location		[594, 431, 809, 582]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	SIDHighWatermark	68
+	Block {
+	  BlockType		  Inport
+	  Name			  "freq"
+	  SID			  15
+	  Position		  [25, 38, 55, 52]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  "S-Function"
+	  Name			  "Sound Tone"
+	  SID			  15
+	  Ports			  [2]
+	  Position		  [110, 25, 190, 105]
+	  FontSize		  11
+	  FunctionName		  "sfun_OSEK_soundvoltone"
+	  EnableBusSupport	  off
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "vol"
+	  SID			  15
+	  Position		  [25, 78, 55, 92]
+	  Value			  "vol"
+	  OutDataTypeMode	  "uint8"
+	  OutDataTypeStr	  "uint8"
+	}
+	Line {
+	  SrcBlock		  "vol"
+	  SrcPort		  1
+	  DstBlock		  "Sound Tone"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "freq"
+	  SrcPort		  1
+	  DstBlock		  "Sound Tone"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      "S-Function"
+      Name		      "Time"
+      SID		      11
+      Ports		      [0, 1]
+      Position		      [95, 15, 155, 75]
+      FontSize		      11
+      FunctionName	      "sfun_OSEK_getms"
+      Parameters	      "st"
+      EnableBusSupport	      off
+      MaskType		      "System Clock"
+      MaskDescription	      "Outputs time in ms since model was started [uint32]."
+      MaskHelp		      "The <b>System Clock</b> block is an interface for the Lego NXT brick's\nbuilt-in system clock. "
+      " This block outputs the 'systick', or the number of\nmilliseconds that have passed since the operating system wa"
+      "s loaded.  This\nclock can be reset upon entry into the program by setting its initial\ncondition.  By default, "
+      "this clock <u>WILL NOT</u> start at 0 upon entry\ninto the program."
+      MaskPromptString	      "Sample time (-1 for inherited):"
+      MaskStyleString	      "edit"
+      MaskTunableValueString  "on"
+      MaskEnableString	      "on"
+      MaskVisibilityString    "on"
+      MaskToolTipString	      "on"
+      MaskVariables	      "st=@1;"
+      MaskDisplay	      "image(imread('clock.jpg'),[.1,.1,.8,.8],'on')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      MaskValueString	      "-1"
+    }
+    Block {
+      BlockType		      "S-Function"
+      Name		      "Touch Sensor"
+      SID		      2
+      Ports		      [0, 1]
+      Position		      [175, 185, 235, 245]
+      FontSize		      11
+      FunctionName	      "sfun_OSEK_touchsensor"
+      Parameters	      "port, st"
+      EnableBusSupport	      off
+      MaskType		      "Touch Sensor"
+      MaskDescription	      "Outputs 1 if pressed, else 0 [uint8]."
+      MaskHelp		      "The <b>Touch Sensor</b> block is an interface for the Lego NXT brick's\nTouch Sensor button.  W"
+      "hen this button is depressed, this block will output\na 1, otherwise it will output a 0."
+      MaskPromptString	      "Port: |Sample time (-1 for inherited):"
+      MaskStyleString	      "popup(Port 1|Port 2|Port 3|Port 4),edit"
+      MaskTunableValueString  "on,on"
+      MaskCallbackString      "|"
+      MaskEnableString	      "on,on"
+      MaskVisibilityString    "on,on"
+      MaskToolTipString	      "on,on"
+      MaskVariables	      "port=@1;st=@2;"
+      MaskInitialization      "port_disp(gcb)"
+      MaskDisplay	      "image(imread('touch.jpg'))\ntext(0.1,0.15,'1')"
+      MaskSelfModifiable      on
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      MaskValueString	      "Port 1|-1"
+    }
+    Block {
+      BlockType		      "S-Function"
+      Name		      "USB Rx"
+      SID		      78
+      Ports		      [0, 2]
+      Position		      [15, 100, 75, 160]
+      FunctionName	      "sfun_OSEK_usbinterface_r"
+      Parameters	      "init_y0, st"
+      EnableBusSupport	      off
+      MaskType		      "USB Rx Interface    "
+      MaskDescription	      "Receives uint8 vector data via USB connection. The 'size' secondary output returns the nu"
+      "mber of bytes received in the last transmission [uint8].  Do not send more than 64 bytes in one timestep; doing "
+      "so may cause unexpected functionality."
+      MaskHelp		      "The <b>USB Rx Interface</b> block allows the Lego NXT brick to easily recieve\ndata from an out"
+      "side machine via USB. This block should be used only once \nin a model. It can only receive byte vectors (uint8 "
+      "vectors). The size\noutput gives the size of the vector received from the current connection.\nMax vector size f"
+      "or recieve is 64 bytes"
+      MaskPromptString	      "Initial Output [64x1]uint8:|Sample Time (-1 for inherited):"
+      MaskStyleString	      "edit,edit"
+      MaskTunableValueString  "on,on"
+      MaskCallbackString      "|"
+      MaskEnableString	      "on,on"
+      MaskVisibilityString    "on,on"
+      MaskToolTipString	      "on,on"
+      MaskVariables	      "init_y0=@1;st=@2;"
+      MaskDisplay	      "image(imread('usb.jpg'))\nport_label('output', 1, 'Rx')\nport_label('output', 2, 'size')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      MaskValueString	      "zeros(64,1,'uint8')|-1"
+    }
+    Block {
+      BlockType		      "S-Function"
+      Name		      "USB Tx"
+      SID		      75
+      Ports		      [1]
+      Position		      [95, 102, 155, 158]
+      AncestorBlock	      "lego_nxt_lib/USB Tx Interface"
+      LibraryVersion	      "1.760"
+      FunctionName	      "sfun_OSEK_usbinterface_t"
+      EnableBusSupport	      off
+      MaskType		      "USB Tx Interface"
+      MaskDescription	      "Transmits uint8 vector data via USB connection. Do not send more than 64 bytes in one tim"
+      "estep; doing so may cause unexpected functionality."
+      MaskHelp		      "The <b>USB Tx Interface</b> block allows the Lego NXT brick to easily transmit\ndata to an outs"
+      "ide machine via USB. This block should be used only once in a\nmodel. It can only transmit byte vectors (uint8 v"
+      "ectors). Max vector size \nfor transmit is 64 bytes."
+      MaskDisplay	      "image(imread('usb.jpg'))\nport_label('input', 1, 'Tx')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "autoscale"
+    }
+    Block {
+      BlockType		      "S-Function"
+      Name		      "Vernier Sensor"
+      SID		      67
+      Ports		      [0, 1]
+      Position		      [175, 455, 235, 515]
+      FunctionName	      "sfun_OSEK_GAI_vernier"
+      Parameters	      "port,gain,intercept,sign,st"
+      EnableBusSupport	      off
+      MaskType		      "Generic Analog Input for Vernier"
+      MaskDescription	      "y = ((ADC count)*Gain + Intercept) / 100000.\nThe linear gain and intercept calibration c"
+      "onstants are automatically defined for any specified sensor, but may be entered manually for the 'User Defined' "
+      "measurement option.\n"
+      MaskHelp		      "The <b>Generic Analog Input</b> block is an interface for most of the \nVernier sensors for the"
+      " Lego NXT brick. \n\nThe calibrated output, y, uses linear scaling according to: y = ((ADC count)*Gain + Interce"
+      "pt) / 100000, \nwhere the Gain and Intercept values should be entered as 100,000 times their nominal values to a"
+      "void floating point computations and to conform to Vernier's calibration protocol.  \n\nThe relevant values are "
+      "set automatically according to Vernier's documentation which may be found <a href=\"http://www.vernier.com/nxt/v"
+      "ernier_sensor_block_2.0.zip\">here</a>\n"
+      MaskPromptString	      "Port:|Units of Measure:|Gain:|Intercept:|Signed output|Sample time(-1 for inherited):"
+      MaskStyleString	      "popup(Port 1|Port 2|Port 3|Port 4),popup(User defined|Raw ADC count [uint16]; range [0 10"
+      "23]|Voltage [int16]; range [-6 6]V|Current [int16]; range [-.6 .6]A|Acceleration [int16]; range [-50 50] m/s^2|F"
+      "orce [int16]; range [-10 10]N|Light Intensity [uint16]; range [0 600]lx|Temperature [int16]; range [-50 150]C|Pr"
+      "essure [uint16]; range [0 200]kPa|Air Pressure [uint16]; range [80 110]kPa|Wind Speed [unit16]; range [0 30]m/s|"
+      "pH [uint16]; range [0 14]pH),edit,edit,edit,edit"
+      MaskTunableValueString  "on,on,off,off,off,on"
+      MaskCallbackString      "|set_param(gcb,'MaskEnables',{'on','on','off','off','off','on'});\ntemp = get_param(gcb"
+      ", 'MaskValues');\nswitch get_param(gcb,'units')\n%NOTE: These are in no particular order as of now\n    case 'Ra"
+      "w ADC count [uint16]; range [0 1023]'\n        temp{3} = '100000';\n        temp{4} = '0';\n        temp{5} = '0"
+      "';    \n    case 'Voltage [int16]; range [-6 6]V'\n        temp{3} = '-1283';\n        temp{4} = '695200';\n    "
+      "    temp{5} = '1';\n    case 'Force [int16]; range [-10 10]N'\n        temp{3} = '-2730';\n        temp{4} = '15"
+      "7000';\n        temp{5} = '1';\n    case 'Pressure [uint16]; range [0 200]kPa'\n        temp{3} = '23820';\n    "
+      "    temp{4} = '-482800';\n        temp{5} = '0';\n    case 'Current [int16]; range [-.6 .6]A'\n        temp{3} ="
+      " '-123';\n        temp{4} = '67870';\n        temp{5} = '1';\n    case 'Light Intensity [uint16]; range [0 600]l"
+      "x'\n        temp{3} = '74390';\n        temp{4} = '-1525000';\n        temp{5} = '0';\n    case 'Temperature [in"
+      "t16]; range [-50 150]C'\n        temp{3} = '28930';\n        temp{4} = '-7118000';\n        temp{5} = '1';\n    "
+      "case 'Wind Speed [unit16]; range [0 30]m/s'\n        temp{3} = '4000';\n        temp{4} = '-938800';\n        te"
+      "mp{5} = '0';\n    case 'Air Pressure [uint16]; range [80 110]kPa'\n        temp{3} = '3824';\n        temp{4} = "
+      "'8048000';\n        temp{5} = '0';\n    case 'Acceleration [int16]; range [-50 50] m/s^2'\n        temp{3} = '14"
+      "000';\n        temp{4} = '-7500000';\n        temp{5} = '1';\n    case 'pH [uint16]; range [0 14]pH'\n        te"
+      "mp{3} = '-1935';\n        temp{4} = '1423000';\n        temp{5} = '0';\n    case 'User defined'\n        set_par"
+      "am(gcb,'MaskEnables',{'on','on','on','on','off','on'});\n    otherwise\n        temp{3} = '100000';\n        tem"
+      "p{4} = '0';\n        temp{5} = '1';\nend;\n\nset_param(gcb, 'MaskValues', temp);||||"
+      MaskEnableString	      "on,on,off,off,off,on"
+      MaskVisibilityString    "on,on,on,on,off,on"
+      MaskToolTipString	      "on,on,on,on,on,on"
+      MaskVariables	      "port=@1;units=@2;gain=@3;intercept=@4;sign=@5;st=@6;"
+      MaskInitialization      "port_disp(gcb)\nvsens_disp(gcb)\n"
+      MaskDisplay	      "text(0.1,0.15,'1');\ndisp('Raw ADC Count');"
+      MaskSelfModifiable      on
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      MaskValueString	      "Port 1|Raw ADC count [uint16]; range [0 1023]|100000|0|0|-1"
+    }
+  }
+}
+# Finite State Machines
+#
+#    Stateflow Version 7.5 (R2010a) dated Jan 19 2010, 19:48:30
+#
+#
+
+
+Stateflow {
+  machine {
+    id			    1
+    name		    "lego_nxt_lib"
+    created		    "30-Jun-2011 12:12:50"
+    isLibrary		    1
+    firstTarget		    18
+    sfVersion		    75014000
+  }
+  chart {
+    id			    2
+    name		    "Color Sensor/unpack"
+    windowPosition	    [390.747 240 200.25 189.75]
+    viewLimits		    [0 156.75 0 153.75]
+    screen		    [1 1 1366 768 1.333333333333333]
+    treeNode		    [0 3 0 0]
+    firstTransition	    5
+    firstJunction	    4
+    viewObj		    2
+    machine		    1
+    toolbarMode		    LIBRARY_TOOLBAR
+    ssIdHighWaterMark	    13
+    decomposition	    CLUSTER_CHART
+    type		    EML_CHART
+    firstData		    6
+    chartFileNumber	    1
+    disableImplicitCasting  1
+    eml {
+      name		      "unpack"
+    }
+  }
+  state {
+    id			    3
+    labelString		    "eML_blk_kernel()"
+    position		    [18 64.5 118 66]
+    fontSize		    12
+    chart		    2
+    treeNode		    [2 0 0 0]
+    superState		    SUBCHART
+    subviewer		    2
+    ssIdNumber		    1
+    type		    FUNC_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+      isEML		      1
+      script		      "function [r,g,b] = unpack(u)\n%#eml\n\nr = typecast(u(3:4),'int16');\ng = typecast(u(5:6),'int16'"
+      ");\nb = typecast(u(7:8),'int16');"
+      editorLayout	      "100 M4x1[5 5 768 455]"
+    }
+  }
+  junction {
+    id			    4
+    position		    [23.5747 49.5747 7]
+    chart		    2
+    linkNode		    [2 0 0]
+    subviewer		    2
+    ssIdNumber		    3
+    type		    CONNECTIVE_JUNCTION
+  }
+  transition {
+    id			    5
+    labelString		    "{eML_blk_kernel();}"
+    labelPosition	    [32.125 19.875 102.544 14.964]
+    fontSize		    12
+    src {
+      intersection	      [0 0 1 0 23.5747 14.625 0 0]
+    }
+    dst {
+      id		      4
+      intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
+    }
+    midPoint		    [23.5747 24.9468]
+    chart		    2
+    linkNode		    [2 0 0]
+    dataLimits		    [23.575 23.575 14.625 34.575]
+    subviewer		    2
+    drawStyle		    SMART
+    executionOrder	    1
+    ssIdNumber		    2
+  }
+  data {
+    id			    6
+    ssIdNumber		    4
+    name		    "u"
+    linkNode		    [2 0 7]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+      }
+      complexity	      SF_COMPLEX_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    7
+    ssIdNumber		    5
+    name		    "r"
+    linkNode		    [2 6 8]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_INT16_TYPE
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    8
+    ssIdNumber		    12
+    name		    "g"
+    linkNode		    [2 7 9]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    9
+    ssIdNumber		    13
+    name		    "b"
+    linkNode		    [2 8 0]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  instance {
+    id			    10
+    name		    "Color Sensor/unpack"
+    machine		    1
+    chart		    2
+  }
+  chart {
+    id			    11
+    name		    "Compass Sensor/unpack"
+    windowPosition	    [330.747 300 200.25 189.75]
+    viewLimits		    [0 156.75 0 153.75]
+    screen		    [1 1 1366 768 1.333333333333333]
+    treeNode		    [0 12 0 0]
+    firstTransition	    14
+    firstJunction	    13
+    viewObj		    11
+    machine		    1
+    toolbarMode		    LIBRARY_TOOLBAR
+    ssIdHighWaterMark	    5
+    decomposition	    CLUSTER_CHART
+    type		    EML_CHART
+    firstData		    15
+    chartFileNumber	    2
+    disableImplicitCasting  1
+    eml {
+      name		      "unpack"
+    }
+  }
+  state {
+    id			    12
+    labelString		    "eML_blk_kernel()"
+    position		    [18 64.5 118 66]
+    fontSize		    12
+    chart		    11
+    treeNode		    [11 0 0 0]
+    superState		    SUBCHART
+    subviewer		    11
+    ssIdNumber		    1
+    type		    FUNC_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+      isEML		      1
+      script		      "function h = unpack(u)\n%#eml\n\nh = typecast(u(4:5),'int16');"
+      editorLayout	      "100 M4x1[25 25 768 455]"
+    }
+  }
+  junction {
+    id			    13
+    position		    [23.5747 49.5747 7]
+    chart		    11
+    linkNode		    [11 0 0]
+    subviewer		    11
+    ssIdNumber		    3
+    type		    CONNECTIVE_JUNCTION
+  }
+  transition {
+    id			    14
+    labelString		    "{eML_blk_kernel();}"
+    labelPosition	    [32.125 19.875 102.544 14.964]
+    fontSize		    12
+    src {
+      intersection	      [0 0 1 0 23.5747 14.625 0 0]
+    }
+    dst {
+      id		      13
+      intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
+    }
+    midPoint		    [23.5747 24.9468]
+    chart		    11
+    linkNode		    [11 0 0]
+    dataLimits		    [23.575 23.575 14.625 34.575]
+    subviewer		    11
+    drawStyle		    SMART
+    executionOrder	    1
+    ssIdNumber		    2
+  }
+  data {
+    id			    15
+    ssIdNumber		    4
+    name		    "u"
+    linkNode		    [11 0 16]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+      }
+      complexity	      SF_COMPLEX_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    16
+    ssIdNumber		    5
+    name		    "h"
+    linkNode		    [11 15 0]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  instance {
+    id			    17
+    name		    "Compass Sensor/unpack"
+    machine		    1
+    chart		    11
+  }
+  target {
+    id			    18
+    name		    "sfun"
+    description		    "Default Simulink S-Function Target."
+    machine		    1
+    linkNode		    [1 0 0]
+  }
+}

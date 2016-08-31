@@ -1,0 +1,272 @@
+%% ==============================================================================
+%% $RCSfile: bareboard_srmain.tlc,v $
+%% $Revision: 1.1.6.9 $
+%% $Date: 2010/10/15 12:03:56 $
+%%
+%% Abstract:
+%%   Example main for bare board target (single rate model)
+%%
+%% Copyright 1994-2009 The MathWorks, Inc.
+%%
+%selectfile NULL_FILE
+
+%function FcnSingleTaskingMain() void
+  
+  %if GenerateSampleERTMain
+    %assign ::CompiledModel.GenerateSampleERTMain = TLC_FALSE
+    %warning Overriding example ert_main.c!
+  %endif
+
+  %openfile tmpBuf
+  static boolean_T OverrunFlag = 0;\
+  
+  %<SLibDeclareFcnProtoCtlVariables()>\
+  
+  %<LibWriteModelData()>\
+  %closefile tmpBuf
+  
+  %<SLibCacheCodeToFile("mainSrc_data_defn", tmpBuf)>
+  
+  %openfile tmpBuf
+  #include <stdio.h>
+  #include <stdlib.h>
+  #include <stdint.h>
+  #include <pthread.h>
+  #include <string.h>
+  #include <float.h>
+  #include <unistd.h>
+  #include <time.h>
+  #include <sys/time.h>
+  #include <sys/timerfd.h>
+  #include "%<LibGetMdlPubHdrBaseName()>.h"
+  #include "rtwtypes.h" /* MathWorks types */
+  %if ExtMode
+    #include "ext_work.h" /* External mode header file */
+  %endif
+
+  struct rpi_periodic_info
+  {
+    int_T timer_fd;
+    uint_T wakeups_missed;
+  };
+
+  uint_T rpi_cpu_usage = 0;
+  %closefile tmpBuf
+ 
+  %<SLibCacheCodeToFile("mainSrc_incl", tmpBuf)>
+  
+  %openfile tmpBuf
+
+  %assign fcnReturns = "static int_T"
+  %assign fcnName = "rpi_make_periodic"
+  %assign fcnParams = "uint_T period, struct rpi_periodic_info *info"
+  %assign fcnCategory = "main"
+  %createrecord fcnRec {Name fcnName; Returns fcnReturns; Params fcnParams; ...
+    Abstract ""; Category fcnCategory; GeneratedBy "rpi_mrmain.tlc"; ...
+    Type "Utility"}
+  %<SLibDumpFunctionBanner(fcnRec)>
+  %undef fcnRec
+  %<fcnReturns> %<fcnName>(%<fcnParams>)
+  {
+  int_T ret;
+	uint_T ns;
+	uint_T sec;
+	int_T fd;
+	struct itimerspec itval;
+
+	/* Create the timer */
+	fd = timerfd_create (CLOCK_MONOTONIC, 0);
+	info->wakeups_missed = 0;
+	info->timer_fd = fd;
+	if (fd == -1)
+		return fd;
+
+	/* Make the timer periodic */
+	sec = period/1000000;
+	ns = (period - (sec * 1000000)) * 1000;
+	itval.it_interval.tv_sec = sec;
+	itval.it_interval.tv_nsec = ns;
+	itval.it_value.tv_sec = sec;
+	itval.it_value.tv_nsec = ns;
+	ret = timerfd_settime (fd, 0, &itval, NULL);
+	return ret;
+  }   %%end rpi_make_periodic function
+
+  %assign fcnReturns = "static int_T"
+  %assign fcnName = "rpi_wait_period"
+  %assign fcnParams = "struct rpi_periodic_info *info"
+  %assign fcnCategory = "main"
+  %createrecord fcnRec {Name fcnName; Returns fcnReturns; Params fcnParams; ...
+    Abstract ""; Category fcnCategory; GeneratedBy "rpi_mrmain.tlc"; ...
+    Type "Utility"}
+  %<SLibDumpFunctionBanner(fcnRec)>
+  %undef fcnRec
+  %<fcnReturns> %<fcnName>(%<fcnParams>)
+  {
+	unsigned long long missed;
+	int_T ret;
+
+	/* 
+	  Wait for the next timer event. 
+	  If we have missed any the
+	  number is written to "missed"
+	*/
+	
+	ret = read(info->timer_fd, &missed, sizeof (missed));
+	
+	if (ret == -1)
+	{
+	  %<RTMSetErrStat("\"timer read error\"")>;
+	  fprintf(stderr,"** timer read error **\n");
+	  return -1;
+	}
+	
+	if (missed > 1)
+	{
+	  info->wakeups_missed += (int)(missed-1);
+	  fprintf(stderr,"** clock tic missed (total=%d) **\n",info->wakeups_missed); 
+	  return -2;
+	}
+  
+    return 0;
+    
+  }   %%end rpi_wait_period function
+
+  %assign fcnReturns = "void"
+  %assign fcnName = "rt_OneStep"
+  %assign fcnParams = "void"
+  %assign fcnCategory = "main"
+  %createrecord fcnRec {Name fcnName; Returns fcnReturns; Params fcnParams; ...
+    Abstract ""; Category fcnCategory; GeneratedBy "bareboard_srmain.tlc"; ...
+    Type "Utility"}
+  %<SLibDumpFunctionBanner(fcnRec)>
+  %undef fcnRec
+  %<fcnReturns> %<fcnName>(%<fcnParams>)
+  {
+    /* Disable interrupts here */
+    
+    /* Check for overun */
+    if (OverrunFlag++) {
+      %<LibSetRTModelErrorStatus("\"Overrun\"")>;
+      return;
+    }
+    
+    /* Save FPU context here (if necessary) */
+    /* Re-enable timer or interrupt here */
+    %assign varsbuf = LibWriteModelInputs()
+    %if varsbuf != ""
+      /* Remove conditional, and set model inputs here */
+      %<varsbuf>\
+    %endif
+    
+    %<LibCallModelStep(0)>\
+    
+    %assign varsbuf = LibWriteModelOutputs()
+    %if varsbuf != ""
+      /* Remove conditional, and get model outputs here */
+      %<varsbuf>\
+    %endif
+    
+    OverrunFlag--;
+    
+    /* Disable interrupts here */
+    /* Restore FPU context here (if necessary) */
+    /* Enable interrupts here */
+  }
+   
+  %assign fcnReturns = "int_T"
+  %assign fcnName = "main"
+  %assign fcnParams = "int_T argc, const char_T *argv[]"
+  %assign fcnCategory = "main"
+  %createrecord fcnRec {Name fcnName; Returns fcnReturns; Params fcnParams; ...
+    Abstract ""; Category fcnCategory; GeneratedBy "bareboard_srmain.tlc"; ...
+    Type "Main"}
+  %<SLibDumpFunctionBanner(fcnRec)>
+  %undef fcnRec
+  %<fcnReturns> %<fcnName>(%<fcnParams>)
+  {
+    struct rpi_periodic_info  info;
+    struct timespec           tmspc_before, tmspc_after;
+    
+    %if ExtMode == 1
+
+    /* External mode */
+    rtExtModeParseArgs(argc, argv, %<SLibGetNullDefinitionFromTfl()>);
+    %endif
+
+    /* Initialize model */
+    %<LibCallModelInitialize()>\
+    
+    /* Associate rt_OneStep() with a timer that executes at the base rate of the model */
+    
+    %if ExtMode == 1
+    %if !PurelyIntegerCode
+    rtERTExtModeSetTFinal(&%<RTMGet("TFinal")>);
+    %else
+    rtERTExtModeSetTFinal(rteiGetPtrTFinalTicks(%<RTMGet("RTWExtModeInfo")>));
+    %endif
+    rtExtModeCheckInit(%<NumSynchronousSampleTimes>);
+
+    {
+      boolean_T rtmStopReq = FALSE;
+      rtExtModeWaitForStartPkt(%<RTMGet("RTWExtModeInfo")>,%<NumSynchronousSampleTimes>,&rtmStopReq);
+      if (rtmStopReq) {
+        %<RTMSetStopRequested("TRUE")>;
+      }
+    }
+    
+    /* Start timer */
+    %assign period = LibGetClockTickStepSize(0)
+    rpi_make_periodic((uint_T)(%<period>*1000000.0), &info);
+
+    rtERTExtModeStartMsg();
+
+    /* The External Mode option selected; therefore,
+     *  simulating the model step behavior (in non real-time).
+     */
+    while ((rtmGetErrorStatus(%<Name>_M) == (NULL)) &&
+           !rtmGetStopRequested(%<Name>_M)) {
+      /* External mode */
+      {
+        boolean_T rtmStopReq = FALSE;
+        rtExtModePauseIfNeeded(%<RTMGet("RTWExtModeInfo")>,%<NumSynchronousSampleTimes>,&rtmStopReq);
+        if (rtmStopReq) {
+          %<RTMSetStopRequested("TRUE")>;
+        }
+
+        if (rtmGetStopRequested(%<Name>_M) == TRUE) {
+          rtmSetErrorStatus(%<Name>_M, "** simulation finished **");
+          break;
+        }
+      }
+
+      /* External mode */
+      {
+        boolean_T rtmStopReq = FALSE;
+        rtExtModeOneStep(%<RTMGet("RTWExtModeInfo")>,%<NumSynchronousSampleTimes>,&rtmStopReq);
+        if (rtmStopReq) {
+          %<RTMSetStopRequested("TRUE")>;
+        }
+      }
+      
+      rpi_wait_period(&info);
+      clock_gettime( CLOCK_MONOTONIC, &tmspc_before );
+      rt_OneStep();
+      clock_gettime( CLOCK_MONOTONIC, &tmspc_after );
+      rpi_cpu_usage = (uint_T)( (  (real_T)( tmspc_after.tv_sec - tmspc_before.tv_sec ) 
+                                 + (real_T)( tmspc_after.tv_nsec - tmspc_before.tv_nsec ) * 1e-9 )
+                                 / (real_T)%<period> * 100.0 );
+    }
+
+    /* External mode */
+    rtExtModeShutdown(%<NumSynchronousSampleTimes>);
+    %endif
+
+    %<LibCallModelTerminate()>\
+    return 0;
+  }
+  %closefile tmpBuf
+  
+  %<SLibCacheCodeToFile("mainSrc_fcn_defn", tmpBuf)>
+  
+%endfunction

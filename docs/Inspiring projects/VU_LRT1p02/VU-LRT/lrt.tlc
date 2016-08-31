@@ -1,0 +1,73 @@
+%% SYSTLC: VU-Lego Real-Time Target \
+%%    TMF: lrt_ecrobot.tmf MAKE: make_rtw EXTMODE: ext_comm 
+%%
+%% $RCSfile: lrt.tlc,v $
+%% $Revision: 1.31.4.9 $
+%% $Date: 2004/07/01 04:40:51 $
+%%
+%% Copyright 110104-2004 The MathWorks, Inc.
+%% Abstract: Generic real-time system target file.
+%%
+%selectfile NULL_FILE
+
+%assign TargetType = "RT"
+%assign Language   = "C"
+%assign GenRTModel = 1
+%assign _GRT_      = 1
+
+%assign MatFileLogging = 1
+
+%include "codegenentry.tlc"
+
+
+%% The contents between 'BEGIN_RTW_OPTIONS' and 'END_RTW_OPTIONS' in this file
+%% are used to maintain backward compatibility to R13 and preR13 custom target 
+%% file only.  If you want to use this file as a template to develop your
+%% own system target file, you need to remove the 'CONFIGSET_TARGET_COMPONENT'
+%% section at the end of this file.
+%%
+/%
+  BEGIN_RTW_OPTIONS
+
+  % second page of category item
+  rtwoptions(1).prompt         = 'LRT Code Generation Options';
+  rtwoptions(1).type           = 'Category';
+  rtwoptions(1).enable         = 'on';  
+  rtwoptions(1).default        = 11;   % number of items under this category
+                                       % excluding this one.
+  rtwoptions(1).popupstrings   = '';
+  rtwoptions(1).tlcvariable    = '';
+  rtwoptions(1).tooltip        = '';
+  rtwoptions(1).callback       = '';
+  rtwoptions(1).opencallback   = '';
+  rtwoptions(1).closecallback  = '';
+  rtwoptions(1).makevariable   = '';
+    
+  rtwoptions(2).prompt         = 'Code Generation: ';
+  rtwoptions(2).type           = 'Popup';
+  rtwoptions(2).default		   = 'Integer-only';
+  rtwoptions(2).popupstrings   = 'Integer-only|Floating-point';
+  rtwoptions(2).tlcvariable    = 'codeGenType';
+  rtwoptions(2).tooltip        = [ ...
+    'Select integer only to disallow floating point data types.'];
+
+  rtwoptions(3).prompt         = 'Flash to Lego NXT';
+  rtwoptions(3).type           = 'Checkbox';
+  rtwoptions(3).default        = 'off';
+  rtwoptions(3).tlcvariable    = 'flashNXT';
+  
+  rtwoptions(4).prompt         = 'Rebuild All';
+  rtwoptions(4).type           = 'Checkbox';
+  rtwoptions(4).default        = 'off';
+  rtwoptions(4).tlcvariable    = 'cleanMake';
+
+  %----------------------------------------%
+  % Configure RTW code generation settings %
+  %----------------------------------------%
+
+  rtwgensettings.DerivedFrom	= 'grt.tlc';
+  rtwgensettings.Version        = '1';
+  rtwgensettings.BuildDirSuffix = '_lrt_rtw';
+
+  END_RTW_OPTIONS 
+ %/

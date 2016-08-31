@@ -1,0 +1,381 @@
+
+
+PATENT NOTICE
+
+National Instruments Software Related Patents
+
+      With respect to the National Instruments software product(s) being used, the 
+following patents may apply:
+
+LabVIEW
+      The LabVIEW software is covered by one or more of the following Patents: 
+United States Patent No(s).:  5,475,851; 5,481,740; 5,481,741; 5,497,500; 5,504,917; 
+5,583,988; 5,610,828; 5,652,909; 5,732,277; 5,734,863; 5,737,622; 5,764,546; 5,784,275; 
+5,821,934; 5,847,953; 5,905,649; 5,920,479; 5,966,532; 5,974,254; 5,987,246; 5,990,906; 
+6,053,951; 6,064,409; 6,064,812; 6,064,816; 6,102,965; 6,138,270; 6,173,438; 6,282,699; 
+6,370,569; 6,437,805; 6,526,566; 6,690,981; 6,751,653; 6,802,053; 6,874,148; 6,880,130; 
+6,954,904; 6,971,065; 6,976,222; 6,990,652; 7,000,190; 7,017,123; 7,024,631; 7,028,222; 
+7,043,693; 7,043,696; 7,058,899; 7,069,517; 7,076,740; 7,120,874; 7,120,876; 7,120,877; 
+7,134,081; 7,134,085; 7,134,086; 7,152,116; 7,159,183; 7,185,287; 7,200,817; 7,200,838; 
+7,210,117; 7,213,207; 7,216,334; 7,287,230; 7,293,112; 7,302,675; 7,331,037; 7,340,684; 
+7,340,737; 7,356,774; 7,367,028; 7,376,904; 7,444,595; 7,451,436; 7,478,337; 7,478,349; 
+7,480,906; 7,484,200; 7,506,304; 7,512,931; 7,523,441; 7,530,052; 7,533,347; 7,543,281; 
+7,559,032; 7,565,609; 7,568,172; 7,574,690; 7,593,944; 7,603,652; 7,606,950; 7,624,375; 
+7,624,375; 7,631,295; 7,647,578; 7,650,594; 7,669,185; 7,689,917; 7,701,869; 7,703,027; 
+7,703,034; 7,725,877; 7,730,450; 7,743,335; 7,743,362; 7,761,846; 7,761,847; 7,765,278; 
+7,765,493; 7,793,273; 7,802,229; 7,831,680; 7,836,426; 7,840,904; 7,844,908; 7,844,911; 
+7,913,170
+Design Patent No(s).:  D384050; D384051; D384052, D387750
+      European Patent No(s).: 1004072; 1004085
+
+LabVIEW FPGA Software/Hardware (includes CompactRIO)
+    The LabVIEW FPGA software and hardware is covered by one or more of the 
+following Patents:
+    U.S. Patent No(s).:  6,219,628; 6,311,149; 6,584,601; 6,608,638; 6,934,667; 
+6,934,668; 6,954,724; 6,961,686; 6,983,228; 6,993,466; 7,010,470; 7,016,811; 7,024,660; 
+7,028,222; 7,085,670; 7,089,466; 7,152,027; 7,177,786; 7,290,244; 7,316,009; 7,336,631; 
+7,558,711; 7,565,280; 7,594,226; 7,650,264; 7,689,727; RE41,228; 7,707,014; 7,865,349
+
+LabVIEW Real Time
+      The LabVIEW Real Time (LabVIEW-RT) software is covered by one or more of 
+the following Patents:
+    U.S. Patent No(s).:  6,173,438; 6,715,139; 6,961,686; 6,993,466; 7,028,222; 
+7,168,072; 7,565,654; 7,568,198
+
+LabVIEW Signal Processing Toolset
+      The LabVIEW Signal Processing Toolset is covered by one or more of the 
+following Patents:
+    U.S. Patent No(s).:  5,353,233; 6,108,609; 6,434,515; 6,697,766; 6,882,958; 
+6,965,068; 
+    European Patent No(s).:  0632899
+    Japanese Patent No(s).:  2,697,957
+
+LabVIEW Datalogging and Supervisory Control Module
+      The LabVIEW Datalogging and Supervisory Control Module is covered by one or 
+more of the following Patents:
+    U.S. Patent No(s).:  5,966,532; 6,053,951; 6,411,987; 6,505,247; 6,721,677; 
+6,745,175; 7,383,315
+
+NI Sound and Vibration Toolkit
+    The NI Sound and Vibration Toolkit is covered by one or more of the following 
+Patents:
+    U.S. Patent No(s).:  6,721,673; 6,775,629; 7,124,042
+
+LabVIEW Spectral Measurements Toolkit
+    The LabVIEW Spectral Measurements Toolkit is covered by one or more of the 
+following Patents:
+    U.S. Patent No(s).:  6,721,673; 6,775,629
+
+LabVIEW PID Control Toolset
+      The LabVIEW PID Control Toolset is covered by one or more of the following 
+Patents:
+      U.S. Patent No(s).:  6,081,751; 6,317,637
+      
+LabVIEW VI Analyzer Toolkit
+      The LabVIEW VI Analyzer Toolkit is covered by one or more of the following 
+Patents:
+    U.S. Patent No(s).:  7,650,574; 7,650,594
+      
+LabVIEW Statechart Module
+      The LabVIEW Statechart Module is covered by one or more of the following 
+Patents:
+    U.S. Patent No(s).:  7,694,273; 7,818,716; 7,882,445;
+
+LabVIEW State Machine Toolkit
+      The LabVIEW State Machine Toolkit is covered by one or more of the following 
+Patents:
+    U.S. Patent No(s).:  7,882,490; 7,882,491
+
+NI Sound and Vibration Measurement Suite
+    The NI Sound and Vibration Measurement Suite is covered by one or more of the 
+following Patents:
+    U.S. Patent No(s).: 6,332,116; 6,324,487; 6,366,862; 6,453,273; 6,477,472; 
+6,721,673; 6,775,629; 7,124,042
+
+LabVIEW Mobile Module for Handheld Devices
+      The LabVIEW Mobile Module for Handheld Devices is covered by one or more 
+of the following Patents:
+    U.S. Patent No(s).:  6,876,368; 7,647,562
+
+Lookout
+    The Lookout software is covered by one or more of the following Patents:
+    U.S. Patent No(s).:  6,411,987; 6,505,247
+
+IVI Driver Toolset
+      The IVI Driver Toolset is covered by one or more of the following Patents:
+    U.S. Patent No(s).:  5,963,726; 6,085,156; 6,223,134; 6,405,145; 6,418,392
+
+Measurement Studio
+      The Measurement Studio software is covered by one or more of the following 
+Patents:
+    U.S. Patent No(s).:  5,870,088; 5,974,257; 6,259,428; 6,370,569; 6,486,893; 
+6,515,682; 6,542,166; 7,134,081; 7,703,032
+
+LabWindows/CVI
+    The LabWindows/CVI software is covered by one or more of the following 
+Patents:
+      U.S. Patent No(s).:  5,583,988; 6,370,569; 7,134,081; 7,761,859
+      
+TestStand
+    The TestStand software is covered by one or more of the following Patents:
+    U.S. Patent No(s).:  6,401,220; 6,397,378; 6,473,707; 6,507,842; 6,577,981; 
+6,754,850; 6,829,733; 6,868,508; 6,907,557; 6,971,084; 7,076,411; 7,093,249; 7,143,361; 
+7,146,572; 7,191,361; 7,451,358; 7,480,826; 7,519,867; 7,613,954; 7,849,444
+
+Signal Express
+    The Signal Express software is covered by one or more of the following Patents:
+    U.S. Patent No(s).:  7,200,529; 7,366,993; 7,496,480; 7,650,589
+
+NI-VISA
+      The NI-VISA software is covered by one or more of the following Patents:
+      U.S. Patent No(s).:  5,627,998; 5,640,572; 5,710,727; 5,717,614; 5,724,272; 
+5,771,388; 5,847,955
+
+NI-DAQ
+      The NI-DAQ software is covered by one or more of the following Patents:
+      U.S. Patent No(s).:  5,619,702; 5,781,137; 5,781,138; 5,925,109; 5,926,775; 
+5,974,257; 5,987,530; 6,016,112; 6,020,838; 6,049,298; 6,052,743; 6,067,584; 6,073,205; 
+6,096,094; 6,148,438; 6,243,738; 6,349,274; 6,572,403; 6,839,777; 6,873,928; 6,879,926; 
+6,944,606; 6,965,800; 7,089,141; 7,130,760; 
+
+NI-DAQmx
+      The NI-DAQ software is covered by one or more of the following Patents:
+      U.S. Patent No(s).:  7,162,387; 7,290,069; 7,293,058; 7,499,824; 7,647,578; 
+7,849,210
+
+NI-488
+      The NI-488 or NI-488.2 (NI-GPIB) software is covered by one or more of the 
+following Patents:
+      U.S. Patent No(s).:  5,958,028; 5,964,892; 5,974,541; 5,987,530; 6,073,205; 
+6,393,493; 6,412,028; 6,633,937; 6,681,057 
+
+NI Fieldbus
+      The NI Fieldbus software, including one or more of the NI-FBUS Configurator 
+software or the NI-FBUS Monitor software, is covered by one or more of the following 
+Patents:
+      U.S. Patent No(s).:  5,796,721; 5,850,523; 5,854,890; 5,971,581; 5,978,850; 
+6,076,952; 6,141,596
+
+NI-IMAQ
+      The NI-IMAQ software is covered by one or more of the following Patents:
+      U.S. Patent No(s).:  6,012,109; 6,161,154; 7,293,112
+      
+NI-CAN
+    The NI-CAN software is covered by one or more of the following Patents:
+    U.S. Patent No(s).:  6,122,713; 6,845,416
+
+NI-DNET
+    The NI-DNET software is covered by one or more of the following Patents:
+    U.S. Patent No(s),:  6,122,713
+
+NI-SoftMotion
+    The NI-SoftMotion software is covered by one or more of the following Patents:
+    U.S. Patent No(s),:  6,865,441; 7,076,322; 7,103,424; 7,863,851; 7,865,439
+
+NI-Motion 
+    The NI-Motion software is covered by one or more of the following Patents:
+    U.S. Patent No(s),:  6,823,221; 6,820,032; 6,980,869; 7,369,917; 7,379,777; 
+7,542,810; 
+
+Motion Assistant
+    The Motion Assistant software is covered by one or more of the following 
+Patents:
+    7,076,322; 7,076,332; 7,702,416; 7,702,417; 7,849,416
+
+Serial Bus Related Software
+    NI software which involves communication over a serial bus may be covered by 
+one or more of the following patents:
+    U.S. Patent No(s),:  5,987,530; 5,875,313; 5,937,175; 5,953,511; 6,073,205; 
+6,839,777; 6,968,464; 7,043,565
+
+Vision Processing Related Software
+      The Vision processing related software (including IMAQ Vision) is covered by 
+one or more of the following Patents:
+      U.S. Patent No(s).:  6,219,452; 6,222,940; 6,229,921; 6,256,625; 6,370,270; 
+6,366,686; 6,493,079; 6,535,640; 6,615,158; 6,665,066; 6,665,335; 6,681,284; 6,757,428; 
+6,931,633; 6,909,801; 6,917,710; 6,944,331; 6,950,552; 6,959,104; 6,963,425; 6,963,667; 
+6,985,977; 7,013,047; 7,034,831; 7,039,229; 7,046,842; 7,079,141; 7,120,301; 7,127,100; 
+7,133,538; 7,136,505; 7,139,432; 7,139,979; 7,158,677; 7,171,048; 7,212,673; 7,233,699; 
+7,269,286; 7,293,112; 7,327,887; 7,340,089; 7,397,956; 7,450,765; 7,559,060; 7,668,376
+      
+Vision Builder Software
+    The Vision Builder software is covered by one or more of the following Patents:
+    U.S. Patent No(s).:  6,763,515; 7,051,317; 7,139,979; 7,146,347; 7,864,178
+      
+MatrixX
+    The MatrixX software is covered by one or more of the following Patents:
+    U.S. Patent No(s).:  5,612,866;
+
+IEEE 1394 Related Software
+    The IEEE 1394 related software is covered by one or more of the following 
+Patents:
+    U.S. Patent No(s).:  6,640,312
+
+Measurement and Automation Explorer (MAX)
+    The MAX software is covered by one or more of the following Patents:
+    U.S. Patent No(s).:  6,690,390; 7,130,760; 7,134,109; 7,152,116
+
+Electronic Commerce / Web Site Software (including the PXI Configurator)
+    Electronic Commerce / Web Site Software (including the PXI Configurator) is 
+covered by one or more of the following Patents:
+      U.S. Patent No(s).:  6,985,876; 7,430,524; 7,558,694
+      
+Switch Executive Software
+      The Switch Executive software is covered by one or more of the following 
+Patents:
+      U.S. Patent No(s).:  7,017,138; 7,062,716; 7,764,619
+
+Data Socket Technology
+      NI products which incorporate Data Socket technology are covered by one or 
+more of the following Patents:
+      U.S. Patent No(s).:  6,370,569; 6,526,566; 6,643,691; 6,751,653;6,763,395; 
+6,971,065; 7,134,085; 7,152,116; 7,237,013;
+
+LABVIEW Simulation Interface Toolkit
+    The LABVIEW Simulation Interface Toolkit has numerous patents pending
+
+Diadem
+    The Diadem software is covered by one or more of the following Patents:
+    U.S. Patent No(s).:  6,886,165; 6,934,783; 7,383,315; 7,647,600
+
+SoftWire
+    The SoftWire software is covered by one or more of the following Patents:
+    U.S. Patent No(s).:  6,425,120; 6,425,121; 6,684,385; 6,701,513; 7,340,721
+
+Electronics Workbench
+     The Electronics Workbench software is covered by one or more of the following 
+Patents:
+    U.S. Patent No(s).:  6,560,572
+
+Installation and Deployment Software
+    The NI installation and deployment software, which is used for installation and/or 
+deployment of most, if not all, NI software products, is covered by one or more of the 
+following Patents:
+    U.S. Patent No(s).:  7,228,541 (LabVIEW, CVI, and TestStand only); 7,478,385
+
+
+National Instruments Hardware Related Patents
+
+      With respect to the National Instruments hardware product(s) being used, the 
+following patents may apply:
+
+PCI, CompactPCI, PXI, VXI, SCXI, IEEE 1394, and USB Hardware Products
+      National Instruments hardware products that interface to one or more of PCI, 
+CompactPCI, PXI, VXI, IEEE 1394, and USB are covered by one or more of the 
+following Patents:
+      U.S. Patent No(s).:  5,659,749; 5,664,092; 5,678,063; 5,686,917; 5,694,333; 
+6,098,124; 6,608,755; 7,137,855; 7,146,283; 7,149,093; 7,254,025; 7,268,642; 7,240,231; 
+7,355,850; 7,535,315; 7,626,474; 7,631,097; 7,644,207; 7,649,726; 7,849,210
+
+Modular Instruments
+      National Instruments modular instruments are covered by one or more of the 
+following Patents:
+      U.S. Patent No(s).:  6,957,239; 7,340,357; 7,315,172; 7,315,791; 7,383,140; 
+7,434,124; 7,451,049; 7,478,256; 7,624,294; 7,644,207; 7,649,726
+
+IEEE 1394 Hardware Products
+      National Instruments hardware products implementing IEEE 1394, including 
+DAQ, GPIB and VXI hardware products implementing IEEE 1394, are covered by one 
+or more of the following Patents:
+      U.S. Patent No(s).:  5,875,313; 5,937,175; 5,953,511; 6,418,504; 6,425,033
+
+Flex Hardware Products
+      National Instruments "flexible resolution" ("Flex") products are covered by one or 
+more of the following Patents:
+      U.S. Patent No(s).:  5,734,261; 5,781,137; 5,781,138; 5,955,979; 6,016,112; 
+6,020,838; 6,049,298; 6,232,897; 6,359,575
+
+Measurement Hardware Products
+      National Instruments measurement hardware products (including data acquisition 
+(DAQ), computer-based instruments, and signal sources) are covered by one or more of 
+the following Patents:
+      U.S. Patent No(s).:  5,313,622; 5,533,037; 5,646,620; 5,648,918; 5,654,654; 
+5,734,261; 5,751,536; 5,765,949; 5,781,137; 5,781,138; 5,841,383; 5,842,006; 5,886,660; 
+5,909,660; 5,935,466; 5,955,979; 5,980,298; 6,016,112; 6,020,838; 6,049,298; 6,098,124; 
+6,140,859; 6,166,673; 6,188,347; 6,232,831; 6,232,897; 6,243,034; 6,249,125; 6,285,095; 
+6,323,792; 6,311,149; 6,359,946; 6,373,423; 6,380,874; 6,459,707; 6,513,086; 6,529,355; 
+6,542,838; 6,583,741; 6,594,612; 6,608,516; 6,970,118; 6,989,663; 7,016,796; 7,042,376; 
+7,079,611; 7,095,280; 7,140,907; 7,183,854; 7,215,197; 7,239,184; 7,268,642; 7,324,356; 
+7,325,171; 7,327,189; 7,339,418; 7,340,541; 7,367,712; 7,369,078; 7,378,835; 7,423,480; 
+7,423,480; 7,443,332; 7,480,126; 7,535,315; 7,644,207; 7,649,726; 7,849,210
+
+GPIB Hardware Products
+      National Instruments GPIB hardware products are covered by one or more of the 
+following Patents:
+      U.S. Patent No(s).:  5,287,528; 5,315,706; 5,572,525; 5,572,684; 5,649,123; 
+5,649,129; 5,734,876; 5,815,690; 5,896,552; 6,038,617 
+      European Patent No(s).: 0465221
+
+Vision / IMAQ Hardware Products
+      National Instruments Vision or IMAQ hardware products are covered by one or 
+more of the following Patents:
+      U.S. Patent No(s).:  5,313,622; 5,842,006; 6,012,109; 6,161,154; 6,720,968; 
+6,970,182; 6,971,066; 
+
+VXI Hardware Products
+      National Instruments VXI hardware products are covered by one or more of the 
+following Patents:
+      U.S. Patent No(s).:  5,748,916; 5,796,963; 5,822,554; 5,995,376; 6,075,690; 
+5,850,571
+      
+FieldPoint Products
+      National Instruments FieldPoint products are covered by one or more of the 
+following Patents:
+      U.S. Patent No(s).:  6,065,068; 6,098,117; 6,175,932; 6,182,179; 6,226,762; 
+7,725,627
+      Design Patent No(s).:  D417198
+
+Fieldbus Hardware Products
+      National Instruments Fieldbus hardware products (including Foundation Fieldbus, 
+CAN and DeviceNet) are covered by one or more of the following Patents:
+      U.S. Patent No(s).:  5,938,754
+
+MXI-3 and MXI-4 Module Products
+    National Instruments MXI-3 and MXI-4 Module products are covered by one or 
+more of the following Patents:
+    U.S. Patent No(s).:  6,425,033; 6,418,504; 6,950,440; 6,968,464; 7,607,070;
+
+Radio Frequency (RF) Products
+    National Instruments RF products are covered by one or more of the following 
+Patents:
+    U.S. Patent No(s).:  7,268,642; 7,535,315
+
+CompactRIO Products
+      National Instruments CompactRIO products are covered by one or more of the 
+following Patents:
+      U.S. Patent No(s).:  6,823,283; 7,254,512; 7,478,006; 7,509,445; 7,512,512; 
+7,512,725; 7,542,867; 7,836,426; 7,865,326; 7,881,899
+      
+PXI Express
+    National Instruments PXI Express products are covered by one or more of the 
+following Patents:
+    U.S. Patent No(s).:  6,981,086; 6,941,390
+
+PC Cards
+      PC Cards manufactured and/or sold by National Instruments are licensed under 
+one or more of the following Patents:
+      U.S. Patent No(s).:  4,603,320; 4,972,470
+      
+NI-ELVIS
+      The NI-ELVIS product is covered by one or more of the following Patents:
+      U.S. Patent No(s).:  6,895,563; 7,849,210
+
+Smart Camera
+      National Instruments Smart Camera products are covered by one or more of the 
+following Patents:
+    U.S. Patent No(s).:  7,327,396; 7,532,249; 7,760,238; 7,791,671; 7,915,570
+
+Power Supplies and Source Measure Units
+      National Instruments DC Power Supply products are covered by one or more of 
+the following Patents:
+    U.S. Patent No(s).:  7,684,878; 7,903,008
+
+
+Other U.S. and International Patents Pending
+
+"For the most updated listing of patents which may cover the National Instruments 
+product(s) being used, please see www.ni.com/patents".
+
+
+
+

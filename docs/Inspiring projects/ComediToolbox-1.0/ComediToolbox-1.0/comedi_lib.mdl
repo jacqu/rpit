@@ -1,0 +1,241 @@
+Library {
+  Name			  "comedi_lib"
+  Version		  6.6
+  MdlSubVersion		  0
+  SavedCharacterEncoding  "UTF-8"
+  LibraryType		  "BlockLibrary"
+  SaveDefaultBlockParams  on
+  SampleTimeColors	  off
+  LibraryLinkDisplay	  "none"
+  WideLines		  off
+  ShowLineDimensions	  off
+  ShowPortDataTypes	  off
+  ShowLoopsOnError	  on
+  IgnoreBidirectionalLines off
+  ShowStorageClass	  off
+  ShowTestPointIcons	  on
+  ShowViewerIcons	  on
+  SortedOrder		  off
+  ExecutionContextIcon	  off
+  ShowLinearizationAnnotations on
+  ScopeRefreshTime	  0.035000
+  OverrideScopeRefreshTime on
+  DisableAllScopes	  off
+  BlockNameDataTip	  off
+  BlockParametersDataTip  off
+  BlockDescriptionStringDataTip	off
+  ToolBar		  on
+  StatusBar		  on
+  BrowserShowLibraryLinks off
+  BrowserLookUnderMasks	  off
+  Created		  "Tue May 17 19:39:22 2005"
+  Creator		  "thorbjorn"
+  UpdateHistory		  "UpdateHistoryNever"
+  ModifiedByFormat	  "%<Auto>"
+  LastModifiedBy	  "lab"
+  ModifiedDateFormat	  "%<Auto>"
+  LastModifiedDate	  "Thu Aug  2 11:04:33 2007"
+  ModelVersionFormat	  "1.%<AutoIncrement:30>"
+  ConfigurationManager	  "none"
+  SimulationMode	  "normal"
+  LinearizationMsg	  "none"
+  Profile		  off
+  ParamWorkspaceSource	  "MATLABWorkspace"
+  AccelVerboseBuild	  off
+  CovSaveName		  "covdata"
+  CovMetricSettings	  "dw"
+  CovNameIncrementing	  off
+  CovHtmlReporting	  on
+  covSaveCumulativeToWorkspaceVar on
+  CovSaveSingleToWorkspaceVar on
+  CovCumulativeReport	  off
+  CovReportOnPause	  on
+  ExtModeBatchMode	  off
+  ExtModeEnableFloating	  on
+  ExtModeTrigType	  "manual"
+  ExtModeTrigMode	  "normal"
+  ExtModeTrigPort	  "1"
+  ExtModeTrigElement	  "any"
+  ExtModeTrigDuration	  1000
+  ExtModeTrigDurationFloating "auto"
+  ExtModeTrigHoldOff	  0
+  ExtModeTrigDelay	  0
+  ExtModeTrigDirection	  "rising"
+  ExtModeTrigLevel	  0
+  ExtModeArchiveMode	  "off"
+  ExtModeAutoIncOneShot	  off
+  ExtModeIncDirWhenArm	  off
+  ExtModeAddSuffixToVar	  off
+  ExtModeWriteAllDataToWs off
+  ExtModeArmWhenConnect	  on
+  ExtModeSkipDownloadWhenConnect off
+  ExtModeLogAll		  on
+  ExtModeAutoUpdateStatusClock off
+  ProdHWDeviceType	  "32-bit Generic"
+  ShowModelReferenceBlockVersion off
+  ShowModelReferenceBlockIO off
+  BlockDefaults {
+    Orientation		    "right"
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    NamePlacement	    "normal"
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    ShowName		    on
+  }
+  BlockParameterDefaults {
+    Block {
+      BlockType		      "S-Function"
+      FunctionName	      "system"
+      SFunctionModules	      "''"
+      PortCounts	      "[]"
+    }
+  }
+  AnnotationDefaults {
+    HorizontalAlignment	    "center"
+    VerticalAlignment	    "middle"
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    UseDisplayTextAsClickCallback off
+  }
+  LineDefaults {
+    FontName		    "Helvetica"
+    FontSize		    9
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+  }
+  System {
+    Name		    "comedi_lib"
+    Location		    [13, 613, 419, 831]
+    Open		    on
+    ModelBrowserVisibility  off
+    ModelBrowserWidth	    200
+    ScreenColor		    "white"
+    PaperOrientation	    "landscape"
+    PaperPositionMode	    "auto"
+    PaperType		    "usletter"
+    PaperUnits		    "inches"
+    TiledPaperMargins	    [0.196850, 0.196850, 0.196850, 0.196850]
+    TiledPageScale	    1
+    ShowPageBoundaries	    off
+    ZoomFactor		    "100"
+    ReportName		    "simulink-default.rpt"
+    Block {
+      BlockType		      "S-Function"
+      Name		      "Comedi ADC"
+      Ports		      [0, 1]
+      Position		      [55, 32, 170, 78]
+      BackgroundColor	      "yellow"
+      FunctionName	      "sfun_comedi_ai"
+      Parameters	      "dev,chan,range,aref,dt"
+      MaskType		      "COMEDI_DATA_READ"
+      MaskDescription	      "See Comedi documentation."
+      MaskPromptString	      "Device|Channel|Range|Analog reference|Sampling "
+"time"
+      MaskStyleString	      "popup(comedi0|comedi1|comedi2|comedi3),edit,edi"
+"t,popup(ground|common|differential|other),edit"
+      MaskTunableValueString  "off,off,off,off,off"
+      MaskCallbackString      "||||"
+      MaskEnableString	      "on,on,on,on,on"
+      MaskVisibilityString    "on,on,on,on,on"
+      MaskToolTipString	      "on,on,on,on,on"
+      MaskVarAliasString      ",,,,"
+      MaskVariables	      "dev=@1;chan=@2;range=@3;aref=@4;dt=@5;"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "comedi0|0|0|ground|-1"
+      MaskTabNameString	      ",,,,"
+    }
+    Block {
+      BlockType		      "S-Function"
+      Name		      "Comedi DAC"
+      Ports		      [1]
+      Position		      [220, 30, 340, 80]
+      BackgroundColor	      "darkGreen"
+      FunctionName	      "sfun_comedi_ao"
+      Parameters	      "dev,chan,range,aref"
+      MaskType		      "COMEDI_DATA_WRITE"
+      MaskDescription	      "See Comedi documentation."
+      MaskPromptString	      "Device|Channel|Range|Analog reference"
+      MaskStyleString	      "popup(comedi0|comedi1|comedi2|comedi3),edit,edi"
+"t,popup(ground|common|differential|other)"
+      MaskTunableValueString  "off,off,off,off"
+      MaskCallbackString      "|||"
+      MaskEnableString	      "on,on,on,on"
+      MaskVisibilityString    "on,on,on,on"
+      MaskToolTipString	      "on,on,on,on"
+      MaskVarAliasString      ",,,"
+      MaskVariables	      "dev=@1;chan=@2;range=@3;aref=@4;"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "comedi0|0|0|ground"
+      MaskTabNameString	      ",,,"
+    }
+    Block {
+      BlockType		      "S-Function"
+      Name		      "Comedi DI"
+      Ports		      [0, 1]
+      Position		      [55, 107, 170, 153]
+      BackgroundColor	      "yellow"
+      FunctionName	      "sfun_comedi_di"
+      Parameters	      "dev,chan,dt"
+      MaskType		      "COMEDI_DIO_READ"
+      MaskDescription	      "See Comedi documentation."
+      MaskPromptString	      "Device|Channel|Sampling time"
+      MaskStyleString	      "popup(comedi0|comedi1|comedi2|comedi3),edit,edi"
+"t"
+      MaskTunableValueString  "off,off,off"
+      MaskCallbackString      "||"
+      MaskEnableString	      "on,on,on"
+      MaskVisibilityString    "on,on,on"
+      MaskToolTipString	      "on,on,on"
+      MaskVarAliasString      ",,"
+      MaskVariables	      "dev=@1;chan=@2;dt=@3;"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "comedi0|0|-1"
+      MaskTabNameString	      ",,"
+    }
+    Block {
+      BlockType		      "S-Function"
+      Name		      "Comedi DO"
+      Ports		      [1]
+      Position		      [220, 107, 340, 153]
+      BackgroundColor	      "darkGreen"
+      FunctionName	      "sfun_comedi_do"
+      Parameters	      "dev,chan,threshold"
+      MaskType		      "COMEDI_DIO_WRITE"
+      MaskDescription	      "See Comedi documentation."
+      MaskPromptString	      "Device|Channel|Threshold"
+      MaskStyleString	      "popup(comedi0|comedi1|comedi2|comedi3),edit,edi"
+"t"
+      MaskTunableValueString  "off,off,off"
+      MaskCallbackString      "||"
+      MaskEnableString	      "on,on,on"
+      MaskVisibilityString    "on,on,on"
+      MaskToolTipString	      "on,on,on"
+      MaskVarAliasString      ",,"
+      MaskVariables	      "dev=@1;chan=@2;threshold=@3;"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "comedi0|0|0"
+      MaskTabNameString	      ",,"
+    }
+  }
+}

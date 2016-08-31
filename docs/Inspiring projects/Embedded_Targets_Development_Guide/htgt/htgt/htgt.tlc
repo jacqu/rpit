@@ -1,0 +1,18 @@
+%% SYSTLC: Workshop Host Target TMF: htgt.tmf MAKE: make_rtw EXTMODE: ext_comm
+
+%selectfile NULL_FILE
+%assign CodeFormat = "Embedded-C"
+%assign TargetType = "RT"
+%assign Language   = "C"
+%assign AutoBuildProcedure = !GenerateSampleERTMain
+%include "codegenentry.tlc"
+
+/%
+  BEGIN_RTW_OPTIONS
+  rtwgensettings.BuildDirSuffix = '_htgt_rtw';
+  rtwgensettings.DerivedFrom = 'ert.tlc';
+  rtwgensettings.Version = '1';
+  rtwgensettings.SelectCallback = ['htgt_callback_handler(hDlg, hSrc)'];
+  END_RTW_OPTIONS 
+ %/
+

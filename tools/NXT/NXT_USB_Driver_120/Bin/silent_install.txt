@@ -1,0 +1,59 @@
+; --------------------------  How to use this file  ---------------------------------
+;
+; To run this installer in quiet mode:
+; 1. Edit the information below to match your company information and install location.
+; 2. Run : setup.exe <path to this file> /q /AcceptLicenses yes. Passing the value "yes"
+;    to the /AcceptLicenses parameter indicates that you agree with the license agreements.
+; 3. The installer will automatically restart your system after the installation is done. 
+;    To prevent the restart use the command line : setup.exe <path to this file> /r:n /q /AcceptLicenses yes
+; 
+; For more information on installation automation visit www.ni.com/info and enter the infocode exdir3.
+
+
+
+; --------------------------  Set user information  ---------------------------------
+
+[UserInfo]
+Name=Your Name Here
+Company=Company Name, Inc.
+SerialNo=*****
+
+
+; --------------------------  Set feature states  ---------------------------------
+
+;    The valid feature states are Local, Absent, NoChange and Default.  
+
+
+
+;    Local  - Install it (on the local hard drive). If already installed leave it installed.
+;    Absent - Do not install it. If already installed uninstall it.
+;    NoChange - Do not install it. If already installed, leave it installed.
+
+
+
+;    Default is equivalent to not listing the feature in this file. The feature follows its default behavior. 
+
+
+[Features]
+
+
+;Feature - LEGO MINDSTORMS NXT Driver
+LegoDriver.VSALG32.1.2=Default
+
+
+;Feature - LEGO MINDSTORMS NXT x64 Driver
+LegoDriver.VSALG64.1.2=Default
+
+
+;Feature - LEGO MINDSTORMS NXT x64 Driver Support
+LegoDriverSupp.VSALG64SUPP.1.2=Default
+
+
+
+; --------------------------  Set install directories  ---------------------------------
+
+; *** To use the default paths, remove the following section ***
+
+
+[Directories]
+

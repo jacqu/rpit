@@ -1,0 +1,40 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% $RCSfile: example_file_process.tlc,v $
+%% $Revision: 1.1.6.3 $
+%% $Date: 2006/10/10 02:35:49 $
+%%
+%% Abstract:
+%%   Example Real-Time Workshop Embedded Coder custom file processing template.
+%%
+%%   Note: This file can contain any valid TLC code, which Real-Time Workshop
+%%   executes just prior to writing the generated source files to disk.
+%%   Using this template "hook" file, you are able to augment the generated
+%%   source code and create additional files.
+%%
+%% Copyright 1994-2006 The MathWorks, Inc.
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%selectfile NULL_FILE
+
+%%  Uncomment this TLC line to execute the example
+%%   ||   ||
+%%   ||   ||
+%%   \/   \/
+%assign ERTCustomFileTest = TLC_TRUE
+
+%if EXISTS("ERTCustomFileTest") && ERTCustomFileTest == TLC_TRUE
+  
+  %% Need to set the template compliance flag before you can use the API
+  %<LibSetCodeTemplateComplianceLevel(2)>
+  
+  %% Create a simple main.  Files are located in MATLAB/rtw/c/tlc/mw.
+  
+  %if LibIsSingleRateModel() || LibIsSingleTasking()
+    %include "rpi_srmain.tlc"
+    %<FcnSingleTaskingMain()>
+  %else
+    %include "rpi_mrmain.tlc"
+    %<FcnMultiTaskingMain()>
+  %endif
+  
+%endif
