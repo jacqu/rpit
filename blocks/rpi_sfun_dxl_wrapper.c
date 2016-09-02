@@ -57,20 +57,20 @@
 #define DXL_SIMULINK_PRORTNAME_MAXSIZE        32
 
 /* Convert port number into serial device name */
-char  dxl_simulink_portname[DXL_SIMULINK_PRORTNAME_MAXSIZE] = DXL_SIMULINK_DEFAULT_PORTNAME;
-char* dxl_portnb2portname( uin8_t portname )  {
+char  dxl_simulink_portname[DXL_SIMULINK_PRORTNAME_MAXSIZE];
+char* dxl_portnb2portname( uint8_t portname )  {
   char buf[DXL_SIMULINK_PRORTNAME_MAXSIZE];
   
-  strncpy( dxl_portnb2portname, DXL_SIMULINK_DEFAULT_PORTNAME, DXL_SIMULINK_PRORTNAME_MAXSIZE );
+  strncpy( dxl_simulink_portname, DXL_SIMULINK_DEFAULT_PORTNAME, DXL_SIMULINK_PRORTNAME_MAXSIZE );
   
   if ( portname < 10 )  {
     snprintf( buf, DXL_SIMULINK_PRORTNAME_MAXSIZE, "/dev/ttyUSB%d", portname );
-    strncpy( dxl_portnb2portname, buf, DXL_SIMULINK_PRORTNAME_MAXSIZE );
+    strncpy( dxl_simulink_portname, buf, DXL_SIMULINK_PRORTNAME_MAXSIZE );
   }
   
   if ( ( portname >= 10 ) && ( portname < 20 ) )  {
     snprintf( buf, DXL_SIMULINK_PRORTNAME_MAXSIZE, "/dev/ttyS%d", portname - 10 );
-    strncpy( dxl_portnb2portname, buf, DXL_SIMULINK_PRORTNAME_MAXSIZE );
+    strncpy( dxl_simulink_portname, buf, DXL_SIMULINK_PRORTNAME_MAXSIZE );
   }
 
   return dxl_simulink_portname;
@@ -135,9 +135,11 @@ void rpi_sfun_dxl_Outputs_wrapper(
   #else
 
   int           i, err;
-  double        data[DXL_SIMULINK_MAX_ID], 
+  double        data[DXL_SIMULINK_MAX_ID];
   static double old_y[DXL_SIMULINK_MAX_DEV][DXL_SIMULINK_MAX_ID] = {{ 0.0 }};
-
+	
+	(void)rpi_baudrate;
+	
   /* Consistency check */
 
   if ( *rpi_nbid > DXL_SIMULINK_MAX_ID )	{
@@ -258,7 +260,7 @@ void rpi_sfun_dxl_Outputs_wrapper(
                     *rpi_write_length,
                     data );
   if ( err )
-    fprintf( stderr, "** dxl_write: error %d while writing device %d. **\n", err, , dxl_portnb2portname( *rpi_portname ) );
+    fprintf( stderr, "** dxl_write: error %d while writing device %s. **\n", err, dxl_portnb2portname( *rpi_portname ) );
 
   /* Read outputs */
   
@@ -283,7 +285,7 @@ void rpi_sfun_dxl_Outputs_wrapper(
                   data );
   
   if ( err )  {
-    fprintf( stderr, "** dxl_read: error %d while reading device %s. **\n", err, , dxl_portnb2portname( *rpi_portname ) );
+    fprintf( stderr, "** dxl_read: error %d while reading device %s. **\n", err, dxl_portnb2portname( *rpi_portname ) );
     return;
   }
   
@@ -405,6 +407,33 @@ void rpi_sfun_dxl_Start_wrapper(
   
   int     i, err;
   double  data[DXL_SIMULINK_MAX_ID];
+  
+  (void)u1;
+  (void)u2;
+  (void)u3;
+  (void)u4;
+  (void)u5;
+  (void)u6;
+  (void)u7;
+  (void)u8;
+  (void)u9;
+  (void)u10;
+  (void)y1;
+  (void)y2;
+  (void)y3;
+  (void)y4;
+  (void)y5;
+  (void)y6;
+  (void)y7;
+  (void)y8;
+  (void)y9;
+  (void)y10;
+  (void)rpi_Ts;
+  (void)rpi_write_addr;
+  (void)rpi_write_length;
+  (void)rpi_read_addr;
+  (void)rpi_read_length;
+  (void)rpi_read_sign;
   
   /* Consistency check */
   
@@ -591,6 +620,14 @@ void rpi_sfun_dxl_Terminate_wrapper(
   
   int     i, err;
   double  data[DXL_SIMULINK_MAX_ID];
+  
+  (void)rpi_Ts;
+  (void)rpi_baudrate;
+  (void)rpi_write_addr;
+  (void)rpi_write_length;
+  (void)rpi_read_addr;
+  (void)rpi_read_length;
+  (void)rpi_read_sign;
   
   /* Consistency check */
   

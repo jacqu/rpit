@@ -80,7 +80,7 @@ uint8_t setupPortLinux          	(int port_num, const int cflag_baud);
 uint8_t setCustomBaudrateLinux  	(int port_num, int speed);
 int     getCFlagBaud            	(const int baudrate);
 
-double  getCurrentTimeLinux     	();
+double  getCurrentTimeLinux     	( void );
 double  getTimeSinceStartLinux  	(int port_num);
 
 uint8_t openPortLinux           	(int port_num);

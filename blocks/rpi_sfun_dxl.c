@@ -1355,7 +1355,7 @@ static void mdlInitializeSampleTimes(SimStruct *S)
     const uint8_T  *rpi_init8_length  = (const uint8_T *)mxGetData(PARAM_DEF33(S));
     const real_T  *rpi_init8_data  = (const real_T *)mxGetData(PARAM_DEF34(S));
 
-    rpi_sfun_dxl_Start_wrapper(u1, u2, u3, u4, u5, u6, u7, u8, u9, u10, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, rpi_Ts, rpi_portname, rpi_baudrate, rpi_startid,, rpi_nbid,, rpi_proto,, rpi_write_addr, rpi_write_length, rpi_read_addr,, rpi_read_length, rpi_read_sign, rpi_init1_addr, rpi_init1_length, rpi_init1_data, rpi_init2_addr, rpi_init2_length, rpi_init2_data, rpi_init3_addr, rpi_init3_length, rpi_init3_data, rpi_init4_addr, rpi_init4_length, rpi_init4_data, rpi_init5_addr, rpi_init5_length, rpi_init5_data, rpi_init6_addr, rpi_init6_length, rpi_init6_data, rpi_init7_addr, rpi_init7_length, rpi_init7_data, rpi_init8_addr, rpi_init8_length, rpi_init8_data);
+    rpi_sfun_dxl_Start_wrapper(u1, u2, u3, u4, u5, u6, u7, u8, u9, u10, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, rpi_Ts, rpi_portname, rpi_baudrate, rpi_startid, rpi_nbid, rpi_proto, rpi_write_addr, rpi_write_length, rpi_read_addr, rpi_read_length, rpi_read_sign, rpi_init1_addr, rpi_init1_length, rpi_init1_data, rpi_init2_addr, rpi_init2_length, rpi_init2_data, rpi_init3_addr, rpi_init3_length, rpi_init3_data, rpi_init4_addr, rpi_init4_length, rpi_init4_data, rpi_init5_addr, rpi_init5_length, rpi_init5_data, rpi_init6_addr, rpi_init6_length, rpi_init6_data, rpi_init7_addr, rpi_init7_length, rpi_init7_data, rpi_init8_addr, rpi_init8_length, rpi_init8_data);
   }
 #endif /*  MDL_START */
 
@@ -1413,7 +1413,7 @@ static void mdlOutputs(SimStruct *S, int_T tid)
     const uint8_T  *rpi_read_length  = (const uint8_T *)mxGetData(PARAM_DEF9(S));
     const uint8_T  *rpi_read_sign  = (const uint8_T *)mxGetData(PARAM_DEF10(S));
 
-    rpi_sfun_dxl_Outputs_wrapper(u1, u2, u3, u4, u5, u6, u7, u8, u9, u10, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, rpi_Ts, rpi_portname, rpi_baudrate, rpi_startid,, rpi_nbid,, rpi_proto,, rpi_write_addr, rpi_write_length, rpi_read_addr,, rpi_read_length, rpi_read_sign);
+    rpi_sfun_dxl_Outputs_wrapper(u1, u2, u3, u4, u5, u6, u7, u8, u9, u10, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, rpi_Ts, rpi_portname, rpi_baudrate, rpi_startid, rpi_nbid, rpi_proto, rpi_write_addr, rpi_write_length, rpi_read_addr, rpi_read_length, rpi_read_sign);
 }
 
 
@@ -1444,7 +1444,7 @@ static void mdlTerminate(SimStruct *S)
     const uint8_T  *rpi_halt2_length  = (const uint8_T *)mxGetData(PARAM_DEF39(S));
     const real_T  *rpi_halt2_data  = (const real_T *)mxGetData(PARAM_DEF40(S));
 
-    rpi_sfun_dxl_Terminate_wrapper(rpi_Ts, rpi_portname, rpi_baudrate, rpi_startid,, rpi_nbid,, rpi_proto,, rpi_write_addr, rpi_write_length, rpi_read_addr,, rpi_read_length, rpi_read_sign, rpi_halt1_addr, rpi_halt1_length, rpi_halt1_data, rpi_halt2_addr, rpi_halt2_length, rpi_halt2_data);
+    rpi_sfun_dxl_Terminate_wrapper(rpi_Ts, rpi_portname, rpi_baudrate, rpi_startid, rpi_nbid, rpi_proto, rpi_write_addr, rpi_write_length, rpi_read_addr, rpi_read_length, rpi_read_sign, rpi_halt1_addr, rpi_halt1_length, rpi_halt1_data, rpi_halt2_addr, rpi_halt2_length, rpi_halt2_data);
 }
 #ifdef  MATLAB_MEX_FILE    /* Is this file being compiled as a MEX-file? */
 #include "simulink.c"      /* MEX-file interface mechanism */
