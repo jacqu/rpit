@@ -606,7 +606,8 @@
 #define IS_PARAM_UINT16(pVal) (mxIsNumeric(pVal) && !mxIsLogical(pVal) &&\
 !mxIsEmpty(pVal) && !mxIsSparse(pVal) && !mxIsComplex(pVal) && mxIsUint16(pVal))
 
-extern void rpi_sfun_dxl_Outputs_wrapper(const real_T *u1,
+extern void rpi_sfun_dxl_Outputs_wrapper(
+                          const real_T *u1,
                           const real_T *u2,
                           const real_T *u3,
                           const real_T *u4,
@@ -625,48 +626,94 @@ extern void rpi_sfun_dxl_Outputs_wrapper(const real_T *u1,
                           real_T *y7,
                           real_T *y8,
                           real_T *y9,
-                          real_T *y10  , 
-                          const real_T  *rpi_Ts, const int_T  p_width0, 
-                          const uint8_T  *rpi_portname, const int_T  p_width1, 
-                          const uint32_T  *rpi_baudrate, const int_T  p_width2, 
-                          const uint8_T  *rpi_startid, const int_T  p_width3, 
-                          const uint8_T  *rpi_nbid, const int_T  p_width4, 
-                          const uint8_T  *rpi_proto, const int_T  p_width5, 
-                          const uint16_T  *rpi_write_addr, const int_T  p_width6, 
-                          const uint8_T  *rpi_write_length, const int_T  p_width7, 
-                          const uint16_T  *rpi_read_addr, const int_T  p_width8, 
-                          const uint8_T  *rpi_read_length, const int_T  p_width9, 
-                          const uint8_T  *rpi_read_sign, const int_T  p_width10, 
-                          const uint16_T  *rpi_init1_addr, const int_T  p_width11, 
-                          const uint8_T  *rpi_init1_length, const int_T  p_width12, 
-                          const real_T  *rpi_init1_data, const int_T  p_width13, 
-                          const uint16_T  *rpi_init2_addr, const int_T  p_width14, 
-                          const uint8_T  *rpi_init2_length, const int_T  p_width15, 
-                          const real_T  *rpi_init2_data, const int_T  p_width16, 
-                          const uint16_T  *rpi_init3_addr, const int_T  p_width17, 
-                          const uint8_T  *rpi_init3_length, const int_T  p_width18, 
-                          const real_T  *rpi_init3_data, const int_T  p_width19, 
-                          const uint16_T  *rpi_init4_addr, const int_T  p_width20, 
-                          const uint8_T  *rpi_init4_length, const int_T  p_width21, 
-                          const real_T  *rpi_init4_data, const int_T  p_width22, 
-                          const uint16_T  *rpi_init5_addr, const int_T  p_width23, 
-                          const uint8_T  *rpi_init5_length, const int_T  p_width24, 
-                          const real_T  *rpi_init5_data, const int_T  p_width25, 
-                          const uint16_T  *rpi_init6_addr, const int_T  p_width26, 
-                          const uint8_T  *rpi_init6_length, const int_T  p_width27, 
-                          const real_T  *rpi_init6_data, const int_T  p_width28, 
-                          const uint16_T  *rpi_init7_addr, const int_T  p_width29, 
-                          const uint8_T  *rpi_init7_length, const int_T  p_width30, 
-                          const real_T  *rpi_init7_data, const int_T  p_width31, 
-                          const uint16_T  *rpi_init8_addr, const int_T  p_width32, 
-                          const uint8_T  *rpi_init8_length, const int_T  p_width33, 
-                          const real_T  *rpi_init8_data, const int_T  p_width34, 
-                          const uint16_T  *rpi_halt1_addr, const int_T  p_width35, 
-                          const uint8_T  *rpi_halt1_length, const int_T  p_width36, 
-                          const real_T  *rpi_halt1_data, const int_T  p_width37, 
-                          const uint16_T  *rpi_halt2_addr, const int_T  p_width38, 
-                          const uint8_T  *rpi_halt2_length, const int_T  p_width39, 
-                          const real_T  *rpi_halt2_data,  const int_T p_width40);
+                          real_T *y10, 
+                          const real_T  *rpi_Ts,
+                          const uint8_T  *rpi_portname,
+                          const uint32_T  *rpi_baudrate,
+                          const uint8_T  *rpi_startid,
+                          const uint8_T  *rpi_nbid,
+                          const uint8_T  *rpi_proto,
+                          const uint16_T  *rpi_write_addr,
+                          const uint8_T  *rpi_write_length, 
+                          const uint16_T  *rpi_read_addr,
+                          const uint8_T  *rpi_read_length,
+                          const uint8_T  *rpi_read_sign);
+
+extern void rpi_sfun_dxl_Start_wrapper(
+                          const real_T *u1,
+                          const real_T *u2,
+                          const real_T *u3,
+                          const real_T *u4,
+                          const real_T *u5,
+                          const real_T *u6,
+                          const real_T *u7,
+                          const real_T *u8,
+                          const real_T *u9,
+                          const real_T *u10,
+                          real_T *y1,
+                          real_T *y2,
+                          real_T *y3,
+                          real_T *y4,
+                          real_T *y5,
+                          real_T *y6,
+                          real_T *y7,
+                          real_T *y8,
+                          real_T *y9,
+                          real_T *y10, 
+                          const real_T  *rpi_Ts,
+                          const uint8_T  *rpi_portname,
+                          const uint32_T  *rpi_baudrate,
+                          const uint8_T  *rpi_startid,
+                          const uint8_T  *rpi_nbid,
+                          const uint8_T  *rpi_proto,
+                          const uint16_T  *rpi_write_addr,
+                          const uint8_T  *rpi_write_length, 
+                          const uint16_T  *rpi_read_addr,
+                          const uint8_T  *rpi_read_length,
+                          const uint8_T  *rpi_read_sign,
+                          const uint16_T  *rpi_init1_addr,
+                          const uint8_T  *rpi_init1_length,
+                          const real_T  *rpi_init1_data,
+                          const uint16_T  *rpi_init2_addr,
+                          const uint8_T  *rpi_init2_length,
+                          const real_T  *rpi_init2_data,
+                          const uint16_T  *rpi_init3_addr,
+                          const uint8_T  *rpi_init3_length,
+                          const real_T  *rpi_init3_data,
+                          const uint16_T  *rpi_init4_addr,
+                          const uint8_T  *rpi_init4_length,
+                          const real_T  *rpi_init4_data,
+                          const uint16_T  *rpi_init5_addr,
+                          const uint8_T  *rpi_init5_length,
+                          const real_T  *rpi_init5_data,
+                          const uint16_T  *rpi_init6_addr,
+                          const uint8_T  *rpi_init6_length,
+                          const real_T  *rpi_init6_data,
+                          const uint16_T  *rpi_init7_addr,
+                          const uint8_T  *rpi_init7_length,
+                          const real_T  *rpi_init7_data,
+                          const uint16_T  *rpi_init8_addr,
+                          const uint8_T  *rpi_init8_length,
+                          const real_T  *rpi_init8_data);
+
+extern void rpi_sfun_dxl_Terminate_wrapper(
+                          const real_T  *rpi_Ts,
+                          const uint8_T  *rpi_portname,
+                          const uint32_T  *rpi_baudrate,
+                          const uint8_T  *rpi_startid,
+                          const uint8_T  *rpi_nbid,
+                          const uint8_T  *rpi_proto,
+                          const uint16_T  *rpi_write_addr,
+                          const uint8_T  *rpi_write_length, 
+                          const uint16_T  *rpi_read_addr,
+                          const uint8_T  *rpi_read_length,
+                          const uint8_T  *rpi_read_sign,
+                          const uint16_T  *rpi_halt1_addr,
+                          const uint8_T  *rpi_halt1_length,
+                          const real_T  *rpi_halt1_data,
+                          const uint16_T  *rpi_halt2_addr,
+                          const uint8_T  *rpi_halt2_length,
+                          const real_T  *rpi_halt2_data);
 
 /*====================*
  * S-function methods *
@@ -1252,6 +1299,63 @@ static void mdlInitializeSampleTimes(SimStruct *S)
    */
   static void mdlStart(SimStruct *S)
   {
+    const real_T   *u1  = (const real_T*) ssGetInputPortSignal(S,0);
+    const real_T   *u2  = (const real_T*) ssGetInputPortSignal(S,1);
+    const real_T   *u3  = (const real_T*) ssGetInputPortSignal(S,2);
+    const real_T   *u4  = (const real_T*) ssGetInputPortSignal(S,3);
+    const real_T   *u5  = (const real_T*) ssGetInputPortSignal(S,4);
+    const real_T   *u6  = (const real_T*) ssGetInputPortSignal(S,5);
+    const real_T   *u7  = (const real_T*) ssGetInputPortSignal(S,6);
+    const real_T   *u8  = (const real_T*) ssGetInputPortSignal(S,7);
+    const real_T   *u9  = (const real_T*) ssGetInputPortSignal(S,8);
+    const real_T   *u10  = (const real_T*) ssGetInputPortSignal(S,9);
+    real_T        *y1  = (real_T *)ssGetOutputPortRealSignal(S,0);
+    real_T        *y2  = (real_T *)ssGetOutputPortRealSignal(S,1);
+    real_T        *y3  = (real_T *)ssGetOutputPortRealSignal(S,2);
+    real_T        *y4  = (real_T *)ssGetOutputPortRealSignal(S,3);
+    real_T        *y5  = (real_T *)ssGetOutputPortRealSignal(S,4);
+    real_T        *y6  = (real_T *)ssGetOutputPortRealSignal(S,5);
+    real_T        *y7  = (real_T *)ssGetOutputPortRealSignal(S,6);
+    real_T        *y8  = (real_T *)ssGetOutputPortRealSignal(S,7);
+    real_T        *y9  = (real_T *)ssGetOutputPortRealSignal(S,8);
+    real_T        *y10  = (real_T *)ssGetOutputPortRealSignal(S,9);
+    const real_T  *rpi_Ts  = (const real_T *)mxGetData(PARAM_DEF0(S));
+    const uint8_T  *rpi_portname  = (const uint8_T *)mxGetData(PARAM_DEF1(S));
+    const uint32_T  *rpi_baudrate  = (const uint32_T *)mxGetData(PARAM_DEF2(S));
+    const uint8_T  *rpi_startid  = (const uint8_T *)mxGetData(PARAM_DEF3(S));
+    const uint8_T  *rpi_nbid  = (const uint8_T *)mxGetData(PARAM_DEF4(S));
+    const uint8_T  *rpi_proto  = (const uint8_T *)mxGetData(PARAM_DEF5(S));
+    const uint16_T  *rpi_write_addr  = (const uint16_T *)mxGetData(PARAM_DEF6(S));
+    const uint8_T  *rpi_write_length  = (const uint8_T *)mxGetData(PARAM_DEF7(S));
+    const uint16_T  *rpi_read_addr  = (const uint16_T *)mxGetData(PARAM_DEF8(S));
+    const uint8_T  *rpi_read_length  = (const uint8_T *)mxGetData(PARAM_DEF9(S));
+    const uint8_T  *rpi_read_sign  = (const uint8_T *)mxGetData(PARAM_DEF10(S));
+    const uint16_T  *rpi_init1_addr  = (const uint16_T *)mxGetData(PARAM_DEF11(S));
+    const uint8_T  *rpi_init1_length  = (const uint8_T *)mxGetData(PARAM_DEF12(S));
+    const real_T  *rpi_init1_data  = (const real_T *)mxGetData(PARAM_DEF13(S));
+    const uint16_T  *rpi_init2_addr  = (const uint16_T *)mxGetData(PARAM_DEF14(S));
+    const uint8_T  *rpi_init2_length  = (const uint8_T *)mxGetData(PARAM_DEF15(S));
+    const real_T  *rpi_init2_data  = (const real_T *)mxGetData(PARAM_DEF16(S));
+    const uint16_T  *rpi_init3_addr  = (const uint16_T *)mxGetData(PARAM_DEF17(S));
+    const uint8_T  *rpi_init3_length  = (const uint8_T *)mxGetData(PARAM_DEF18(S));
+    const real_T  *rpi_init3_data  = (const real_T *)mxGetData(PARAM_DEF19(S));
+    const uint16_T  *rpi_init4_addr  = (const uint16_T *)mxGetData(PARAM_DEF20(S));
+    const uint8_T  *rpi_init4_length  = (const uint8_T *)mxGetData(PARAM_DEF21(S));
+    const real_T  *rpi_init4_data  = (const real_T *)mxGetData(PARAM_DEF22(S));
+    const uint16_T  *rpi_init5_addr  = (const uint16_T *)mxGetData(PARAM_DEF23(S));
+    const uint8_T  *rpi_init5_length  = (const uint8_T *)mxGetData(PARAM_DEF24(S));
+    const real_T  *rpi_init5_data  = (const real_T *)mxGetData(PARAM_DEF25(S));
+    const uint16_T  *rpi_init6_addr  = (const uint16_T *)mxGetData(PARAM_DEF26(S));
+    const uint8_T  *rpi_init6_length  = (const uint8_T *)mxGetData(PARAM_DEF27(S));
+    const real_T  *rpi_init6_data  = (const real_T *)mxGetData(PARAM_DEF28(S));
+    const uint16_T  *rpi_init7_addr  = (const uint16_T *)mxGetData(PARAM_DEF29(S));
+    const uint8_T  *rpi_init7_length  = (const uint8_T *)mxGetData(PARAM_DEF30(S));
+    const real_T  *rpi_init7_data  = (const real_T *)mxGetData(PARAM_DEF31(S));
+    const uint16_T  *rpi_init8_addr  = (const uint16_T *)mxGetData(PARAM_DEF32(S));
+    const uint8_T  *rpi_init8_length  = (const uint8_T *)mxGetData(PARAM_DEF33(S));
+    const real_T  *rpi_init8_data  = (const real_T *)mxGetData(PARAM_DEF34(S));
+
+    rpi_sfun_dxl_Start_wrapper(u1, u2, u3, u4, u5, u6, u7, u8, u9, u10, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, rpi_Ts, rpi_portname, rpi_baudrate, rpi_startid,, rpi_nbid,, rpi_proto,, rpi_write_addr, rpi_write_length, rpi_read_addr,, rpi_read_length, rpi_read_sign, rpi_init1_addr, rpi_init1_length, rpi_init1_data, rpi_init2_addr, rpi_init2_length, rpi_init2_data, rpi_init3_addr, rpi_init3_length, rpi_init3_data, rpi_init4_addr, rpi_init4_length, rpi_init4_data, rpi_init5_addr, rpi_init5_length, rpi_init5_data, rpi_init6_addr, rpi_init6_length, rpi_init6_data, rpi_init7_addr, rpi_init7_length, rpi_init7_data, rpi_init8_addr, rpi_init8_length, rpi_init8_data);
   }
 #endif /*  MDL_START */
 
@@ -1297,47 +1401,6 @@ static void mdlOutputs(SimStruct *S, int_T tid)
     real_T        *y8  = (real_T *)ssGetOutputPortRealSignal(S,7);
     real_T        *y9  = (real_T *)ssGetOutputPortRealSignal(S,8);
     real_T        *y10  = (real_T *)ssGetOutputPortRealSignal(S,9);
-    const int_T   p_width0  = mxGetNumberOfElements(PARAM_DEF0(S));
-    const int_T   p_width1  = mxGetNumberOfElements(PARAM_DEF1(S));
-    const int_T   p_width2  = mxGetNumberOfElements(PARAM_DEF2(S));
-    const int_T   p_width3  = mxGetNumberOfElements(PARAM_DEF3(S));
-    const int_T   p_width4  = mxGetNumberOfElements(PARAM_DEF4(S));
-    const int_T   p_width5  = mxGetNumberOfElements(PARAM_DEF5(S));
-    const int_T   p_width6  = mxGetNumberOfElements(PARAM_DEF6(S));
-    const int_T   p_width7  = mxGetNumberOfElements(PARAM_DEF7(S));
-    const int_T   p_width8  = mxGetNumberOfElements(PARAM_DEF8(S));
-    const int_T   p_width9  = mxGetNumberOfElements(PARAM_DEF9(S));
-    const int_T   p_width10  = mxGetNumberOfElements(PARAM_DEF10(S));
-    const int_T   p_width11  = mxGetNumberOfElements(PARAM_DEF11(S));
-    const int_T   p_width12  = mxGetNumberOfElements(PARAM_DEF12(S));
-    const int_T   p_width13  = mxGetNumberOfElements(PARAM_DEF13(S));
-    const int_T   p_width14  = mxGetNumberOfElements(PARAM_DEF14(S));
-    const int_T   p_width15  = mxGetNumberOfElements(PARAM_DEF15(S));
-    const int_T   p_width16  = mxGetNumberOfElements(PARAM_DEF16(S));
-    const int_T   p_width17  = mxGetNumberOfElements(PARAM_DEF17(S));
-    const int_T   p_width18  = mxGetNumberOfElements(PARAM_DEF18(S));
-    const int_T   p_width19  = mxGetNumberOfElements(PARAM_DEF19(S));
-    const int_T   p_width20  = mxGetNumberOfElements(PARAM_DEF20(S));
-    const int_T   p_width21  = mxGetNumberOfElements(PARAM_DEF21(S));
-    const int_T   p_width22  = mxGetNumberOfElements(PARAM_DEF22(S));
-    const int_T   p_width23  = mxGetNumberOfElements(PARAM_DEF23(S));
-    const int_T   p_width24  = mxGetNumberOfElements(PARAM_DEF24(S));
-    const int_T   p_width25  = mxGetNumberOfElements(PARAM_DEF25(S));
-    const int_T   p_width26  = mxGetNumberOfElements(PARAM_DEF26(S));
-    const int_T   p_width27  = mxGetNumberOfElements(PARAM_DEF27(S));
-    const int_T   p_width28  = mxGetNumberOfElements(PARAM_DEF28(S));
-    const int_T   p_width29  = mxGetNumberOfElements(PARAM_DEF29(S));
-    const int_T   p_width30  = mxGetNumberOfElements(PARAM_DEF30(S));
-    const int_T   p_width31  = mxGetNumberOfElements(PARAM_DEF31(S));
-    const int_T   p_width32  = mxGetNumberOfElements(PARAM_DEF32(S));
-    const int_T   p_width33  = mxGetNumberOfElements(PARAM_DEF33(S));
-    const int_T   p_width34  = mxGetNumberOfElements(PARAM_DEF34(S));
-    const int_T   p_width35  = mxGetNumberOfElements(PARAM_DEF35(S));
-    const int_T   p_width36  = mxGetNumberOfElements(PARAM_DEF36(S));
-    const int_T   p_width37  = mxGetNumberOfElements(PARAM_DEF37(S));
-    const int_T   p_width38  = mxGetNumberOfElements(PARAM_DEF38(S));
-    const int_T   p_width39  = mxGetNumberOfElements(PARAM_DEF39(S));
-    const int_T   p_width40  = mxGetNumberOfElements(PARAM_DEF40(S));
     const real_T  *rpi_Ts  = (const real_T *)mxGetData(PARAM_DEF0(S));
     const uint8_T  *rpi_portname  = (const uint8_T *)mxGetData(PARAM_DEF1(S));
     const uint32_T  *rpi_baudrate  = (const uint32_T *)mxGetData(PARAM_DEF2(S));
@@ -1349,38 +1412,8 @@ static void mdlOutputs(SimStruct *S, int_T tid)
     const uint16_T  *rpi_read_addr  = (const uint16_T *)mxGetData(PARAM_DEF8(S));
     const uint8_T  *rpi_read_length  = (const uint8_T *)mxGetData(PARAM_DEF9(S));
     const uint8_T  *rpi_read_sign  = (const uint8_T *)mxGetData(PARAM_DEF10(S));
-    const uint16_T  *rpi_init1_addr  = (const uint16_T *)mxGetData(PARAM_DEF11(S));
-    const uint8_T  *rpi_init1_length  = (const uint8_T *)mxGetData(PARAM_DEF12(S));
-    const real_T  *rpi_init1_data  = (const real_T *)mxGetData(PARAM_DEF13(S));
-    const uint16_T  *rpi_init2_addr  = (const uint16_T *)mxGetData(PARAM_DEF14(S));
-    const uint8_T  *rpi_init2_length  = (const uint8_T *)mxGetData(PARAM_DEF15(S));
-    const real_T  *rpi_init2_data  = (const real_T *)mxGetData(PARAM_DEF16(S));
-    const uint16_T  *rpi_init3_addr  = (const uint16_T *)mxGetData(PARAM_DEF17(S));
-    const uint8_T  *rpi_init3_length  = (const uint8_T *)mxGetData(PARAM_DEF18(S));
-    const real_T  *rpi_init3_data  = (const real_T *)mxGetData(PARAM_DEF19(S));
-    const uint16_T  *rpi_init4_addr  = (const uint16_T *)mxGetData(PARAM_DEF20(S));
-    const uint8_T  *rpi_init4_length  = (const uint8_T *)mxGetData(PARAM_DEF21(S));
-    const real_T  *rpi_init4_data  = (const real_T *)mxGetData(PARAM_DEF22(S));
-    const uint16_T  *rpi_init5_addr  = (const uint16_T *)mxGetData(PARAM_DEF23(S));
-    const uint8_T  *rpi_init5_length  = (const uint8_T *)mxGetData(PARAM_DEF24(S));
-    const real_T  *rpi_init5_data  = (const real_T *)mxGetData(PARAM_DEF25(S));
-    const uint16_T  *rpi_init6_addr  = (const uint16_T *)mxGetData(PARAM_DEF26(S));
-    const uint8_T  *rpi_init6_length  = (const uint8_T *)mxGetData(PARAM_DEF27(S));
-    const real_T  *rpi_init6_data  = (const real_T *)mxGetData(PARAM_DEF28(S));
-    const uint16_T  *rpi_init7_addr  = (const uint16_T *)mxGetData(PARAM_DEF29(S));
-    const uint8_T  *rpi_init7_length  = (const uint8_T *)mxGetData(PARAM_DEF30(S));
-    const real_T  *rpi_init7_data  = (const real_T *)mxGetData(PARAM_DEF31(S));
-    const uint16_T  *rpi_init8_addr  = (const uint16_T *)mxGetData(PARAM_DEF32(S));
-    const uint8_T  *rpi_init8_length  = (const uint8_T *)mxGetData(PARAM_DEF33(S));
-    const real_T  *rpi_init8_data  = (const real_T *)mxGetData(PARAM_DEF34(S));
-    const uint16_T  *rpi_halt1_addr  = (const uint16_T *)mxGetData(PARAM_DEF35(S));
-    const uint8_T  *rpi_halt1_length  = (const uint8_T *)mxGetData(PARAM_DEF36(S));
-    const real_T  *rpi_halt1_data  = (const real_T *)mxGetData(PARAM_DEF37(S));
-    const uint16_T  *rpi_halt2_addr  = (const uint16_T *)mxGetData(PARAM_DEF38(S));
-    const uint8_T  *rpi_halt2_length  = (const uint8_T *)mxGetData(PARAM_DEF39(S));
-    const real_T  *rpi_halt2_data  = (const real_T *)mxGetData(PARAM_DEF40(S));
 
-    rpi_sfun_dxl_Outputs_wrapper(u1, u2, u3, u4, u5, u6, u7, u8, u9, u10, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, rpi_Ts, p_width0, rpi_portname, p_width1, rpi_baudrate, p_width2, rpi_startid, p_width3, rpi_nbid, p_width4, rpi_proto, p_width5, rpi_write_addr, p_width6, rpi_write_length, p_width7, rpi_read_addr, p_width8, rpi_read_length, p_width9, rpi_read_sign, p_width10, rpi_init1_addr, p_width11, rpi_init1_length, p_width12, rpi_init1_data, p_width13, rpi_init2_addr, p_width14, rpi_init2_length, p_width15, rpi_init2_data, p_width16, rpi_init3_addr, p_width17, rpi_init3_length, p_width18, rpi_init3_data, p_width19, rpi_init4_addr, p_width20, rpi_init4_length, p_width21, rpi_init4_data, p_width22, rpi_init5_addr, p_width23, rpi_init5_length, p_width24, rpi_init5_data, p_width25, rpi_init6_addr, p_width26, rpi_init6_length, p_width27, rpi_init6_data, p_width28, rpi_init7_addr, p_width29, rpi_init7_length, p_width30, rpi_init7_data, p_width31, rpi_init8_addr, p_width32, rpi_init8_length, p_width33, rpi_init8_data, p_width34, rpi_halt1_addr, p_width35, rpi_halt1_length, p_width36, rpi_halt1_data, p_width37, rpi_halt2_addr, p_width38, rpi_halt2_length, p_width39, rpi_halt2_data, p_width40);
+    rpi_sfun_dxl_Outputs_wrapper(u1, u2, u3, u4, u5, u6, u7, u8, u9, u10, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, rpi_Ts, rpi_portname, rpi_baudrate, rpi_startid,, rpi_nbid,, rpi_proto,, rpi_write_addr, rpi_write_length, rpi_read_addr,, rpi_read_length, rpi_read_sign);
 }
 
 
@@ -1393,6 +1426,25 @@ static void mdlOutputs(SimStruct *S, int_T tid)
  */
 static void mdlTerminate(SimStruct *S)
 {
+    const real_T  *rpi_Ts  = (const real_T *)mxGetData(PARAM_DEF0(S));
+    const uint8_T  *rpi_portname  = (const uint8_T *)mxGetData(PARAM_DEF1(S));
+    const uint32_T  *rpi_baudrate  = (const uint32_T *)mxGetData(PARAM_DEF2(S));
+    const uint8_T  *rpi_startid  = (const uint8_T *)mxGetData(PARAM_DEF3(S));
+    const uint8_T  *rpi_nbid  = (const uint8_T *)mxGetData(PARAM_DEF4(S));
+    const uint8_T  *rpi_proto  = (const uint8_T *)mxGetData(PARAM_DEF5(S));
+    const uint16_T  *rpi_write_addr  = (const uint16_T *)mxGetData(PARAM_DEF6(S));
+    const uint8_T  *rpi_write_length  = (const uint8_T *)mxGetData(PARAM_DEF7(S));
+    const uint16_T  *rpi_read_addr  = (const uint16_T *)mxGetData(PARAM_DEF8(S));
+    const uint8_T  *rpi_read_length  = (const uint8_T *)mxGetData(PARAM_DEF9(S));
+    const uint8_T  *rpi_read_sign  = (const uint8_T *)mxGetData(PARAM_DEF10(S));
+    const uint16_T  *rpi_halt1_addr  = (const uint16_T *)mxGetData(PARAM_DEF35(S));
+    const uint8_T  *rpi_halt1_length  = (const uint8_T *)mxGetData(PARAM_DEF36(S));
+    const real_T  *rpi_halt1_data  = (const real_T *)mxGetData(PARAM_DEF37(S));
+    const uint16_T  *rpi_halt2_addr  = (const uint16_T *)mxGetData(PARAM_DEF38(S));
+    const uint8_T  *rpi_halt2_length  = (const uint8_T *)mxGetData(PARAM_DEF39(S));
+    const real_T  *rpi_halt2_data  = (const real_T *)mxGetData(PARAM_DEF40(S));
+
+    rpi_sfun_dxl_Terminate_wrapper(rpi_Ts, rpi_portname, rpi_baudrate, rpi_startid,, rpi_nbid,, rpi_proto,, rpi_write_addr, rpi_write_length, rpi_read_addr,, rpi_read_length, rpi_read_sign, rpi_halt1_addr, rpi_halt1_length, rpi_halt1_data, rpi_halt2_addr, rpi_halt2_length, rpi_halt2_data);
 }
 #ifdef  MATLAB_MEX_FILE    /* Is this file being compiled as a MEX-file? */
 #include "simulink.c"      /* MEX-file interface mechanism */
