@@ -261,7 +261,18 @@ void rpi_sfun_dxl_Outputs_wrapper(
     fprintf( stderr, "** dxl_write: error %d while writing device %d. **\n", err, , dxl_portnb2portname( *rpi_portname ) );
 
   /* Read outputs */
-
+  
+  y1[0] = old_y[*rpi_portname][0];
+  y2[0] = old_y[*rpi_portname][1];
+  y3[0] = old_y[*rpi_portname][2];
+  y4[0] = old_y[*rpi_portname][3];
+  y5[0] = old_y[*rpi_portname][4];
+  y6[0] = old_y[*rpi_portname][5];
+  y7[0] = old_y[*rpi_portname][6];
+  y8[0] = old_y[*rpi_portname][7];
+  y9[0] = old_y[*rpi_portname][8];
+  y10[0] = old_y[*rpi_portname][9];
+    
   err = dxl_read( dxl_portnb2portname( *rpi_portname ),
                   *rpi_proto,
                   *rpi_startid,
@@ -273,16 +284,6 @@ void rpi_sfun_dxl_Outputs_wrapper(
   
   if ( err )  {
     fprintf( stderr, "** dxl_read: error %d while reading device %s. **\n", err, , dxl_portnb2portname( *rpi_portname ) );
-    y1[0] = old_y[*rpi_portname][0];
-    y2[0] = old_y[*rpi_portname][1];
-    y3[0] = old_y[*rpi_portname][2];
-    y4[0] = old_y[*rpi_portname][3];
-    y5[0] = old_y[*rpi_portname][4];
-    y6[0] = old_y[*rpi_portname][5];
-    y7[0] = old_y[*rpi_portname][6];
-    y8[0] = old_y[*rpi_portname][7];
-    y9[0] = old_y[*rpi_portname][8];
-    y10[0] = old_y[*rpi_portname][9];
     return;
   }
   
