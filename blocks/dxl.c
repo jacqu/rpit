@@ -615,27 +615,27 @@ int getCFlagBaud(int baudrate)
  * 
  */
 
-int     portName2portNum    (const char *port_name) { return portName2portNumLinux(port_name); };
-int     portHandler         (const char *port_name) { return portHandlerLinux(port_name); };
+int     portName2portNum    (const char *port_name) { return portName2portNumLinux(port_name); }
+int     portHandler         (const char *port_name) { return portHandlerLinux(port_name); }
 
-uint8_t openPort            (int port_num) { return openPortLinux(port_num); };
-void    closePort           (int port_num) { closePortLinux(port_num); };
-void    clearPort           (int port_num) { clearPortLinux(port_num); };
+uint8_t openPort            (int port_num) { return openPortLinux(port_num); }
+void    closePort           (int port_num) { closePortLinux(port_num); }
+void    clearPort           (int port_num) { clearPortLinux(port_num); }
 
-void    setPortName         (int port_num, const char *port_name) { setPortNameLinux(port_num, port_name); };
-char   *getPortName         (int port_num) { return getPortNameLinux(port_num); };
+void    setPortName         (int port_num, const char *port_name) { setPortNameLinux(port_num, port_name); }
+char   *getPortName         (int port_num) { return getPortNameLinux(port_num); }
 
-uint8_t setBaudRate         (int port_num, const int baudrate) { return setBaudRateLinux(port_num, baudrate); };
+uint8_t setBaudRate         (int port_num, const int baudrate) { return setBaudRateLinux(port_num, baudrate); }
 int     getBaudRate         (int port_num) { return getBaudRateLinux(port_num); }
 
 int     getBytesAvailable   (int port_num) { return getBytesAvailableLinux(port_num); }
 
-int     readPort            (int port_num, uint8_t *packet, int length) { return readPortLinux(port_num, packet, length); };
-int     writePort           (int port_num, uint8_t *packet, int length) { return writePortLinux(port_num, packet, length); };
+int     readPort            (int port_num, uint8_t *packet, int length) { return readPortLinux(port_num, packet, length); }
+int     writePort           (int port_num, uint8_t *packet, int length) { return writePortLinux(port_num, packet, length); }
 
-void    setPacketTimeout    (int port_num, uint16_t packet_length) { setPacketTimeoutLinux(port_num, packet_length); };
-void    setPacketTimeoutMSec(int port_num, double msec) { setPacketTimeoutMSecLinux(port_num, msec); };
-uint8_t isPacketTimeout     (int port_num) { return isPacketTimeoutLinux(port_num); };
+void    setPacketTimeout    (int port_num, uint16_t packet_length) { setPacketTimeoutLinux(port_num, packet_length); }
+void    setPacketTimeoutMSec(int port_num, double msec) { setPacketTimeoutMSecLinux(port_num, msec); }
+uint8_t isPacketTimeout     (int port_num) { return isPacketTimeoutLinux(port_num); }
 
 /*
  * 
@@ -675,7 +675,7 @@ void printTxRxResult(int protocol_version, int result)
   {
     printTxRxResult2(result);
   }
-};
+}
 
 void printRxPacketError(int protocol_version, uint8_t error)
 {
@@ -687,7 +687,7 @@ void printRxPacketError(int protocol_version, uint8_t error)
   {
     printRxPacketError2(error);
   }
-};
+}
 
 int getLastTxRxResult(int port_num, int protocol_version)
 {
@@ -747,7 +747,7 @@ void txPacket(int port_num, int protocol_version)
   {
     txPacket2(port_num);
   }
-};
+}
 
 void rxPacket(int port_num, int protocol_version)
 {
@@ -759,7 +759,7 @@ void rxPacket(int port_num, int protocol_version)
   {
     rxPacket2(port_num);
   }
-};
+}
 
 void txRxPacket(int port_num, int protocol_version)
 {
@@ -771,7 +771,7 @@ void txRxPacket(int port_num, int protocol_version)
   {
     txRxPacket2(port_num);
   }
-};
+}
 
 void ping(int port_num, int protocol_version, uint8_t id)
 {
@@ -783,7 +783,7 @@ void ping(int port_num, int protocol_version, uint8_t id)
   {
     ping2(port_num, id);
   }
-};
+}
 
 uint16_t pingGetModelNum(int port_num, int protocol_version, uint8_t id)
 {
@@ -795,7 +795,7 @@ uint16_t pingGetModelNum(int port_num, int protocol_version, uint8_t id)
   {
     return pingGetModelNum2(port_num, id);
   }
-};
+}
 
 // broadcastPing
 void broadcastPing(int port_num, int protocol_version)
@@ -808,7 +808,7 @@ void broadcastPing(int port_num, int protocol_version)
   {
     broadcastPing2(port_num);
   }
-};
+}
 
 uint8_t getBroadcastPingResult(int port_num, int protocol_version, int id)
 {
@@ -832,7 +832,7 @@ void reboot(int port_num, int protocol_version, uint8_t id)
   {
     reboot2(port_num, id);
   }
-};
+}
 
 void factoryReset(int port_num, int protocol_version, uint8_t id, uint8_t option)
 {
@@ -844,7 +844,7 @@ void factoryReset(int port_num, int protocol_version, uint8_t id, uint8_t option
   {
     factoryReset2(port_num, id, option);
   }
-};
+}
 
 void readTx(int port_num, int protocol_version, uint8_t id, uint16_t address, uint16_t length)
 {
@@ -856,7 +856,7 @@ void readTx(int port_num, int protocol_version, uint8_t id, uint16_t address, ui
   {
     readTx2(port_num, id, address, length);
   }
-};
+}
 
 void readRx(int port_num, int protocol_version, uint16_t length)
 {
@@ -868,7 +868,7 @@ void readRx(int port_num, int protocol_version, uint16_t length)
   {
     readRx2(port_num, length);
   }
-};
+}
 
 void readTxRx(int port_num, int protocol_version, uint8_t id, uint16_t address, uint16_t length)
 {
@@ -880,7 +880,7 @@ void readTxRx(int port_num, int protocol_version, uint8_t id, uint16_t address, 
   {
     readTxRx2(port_num, id, address, length);
   }
-};
+}
 
 void read1ByteTx(int port_num, int protocol_version, uint8_t id, uint16_t address)
 {
@@ -892,7 +892,7 @@ void read1ByteTx(int port_num, int protocol_version, uint8_t id, uint16_t addres
   {
     read1ByteTx2(port_num, id, address);
   }
-};
+}
 
 uint8_t read1ByteRx(int port_num, int protocol_version)
 {
@@ -904,7 +904,7 @@ uint8_t read1ByteRx(int port_num, int protocol_version)
   {
     return read1ByteRx2(port_num);
   }
-};
+}
 
 uint8_t read1ByteTxRx(int port_num, int protocol_version, uint8_t id, uint16_t address)
 {
@@ -916,7 +916,7 @@ uint8_t read1ByteTxRx(int port_num, int protocol_version, uint8_t id, uint16_t a
   {
     return read1ByteTxRx2(port_num, id, address);
   }
-};
+}
 
 void read2ByteTx(int port_num, int protocol_version, uint8_t id, uint16_t address)
 {
@@ -928,7 +928,7 @@ void read2ByteTx(int port_num, int protocol_version, uint8_t id, uint16_t addres
   {
     read2ByteTx2(port_num, id, address);
   }
-};
+}
 
 uint16_t read2ByteRx(int port_num, int protocol_version)
 {
@@ -940,7 +940,7 @@ uint16_t read2ByteRx(int port_num, int protocol_version)
   {
     return read2ByteRx2(port_num);
   }
-};
+}
 uint16_t read2ByteTxRx(int port_num, int protocol_version, uint8_t id, uint16_t address)
 {
   if (protocol_version == 1)
@@ -951,7 +951,7 @@ uint16_t read2ByteTxRx(int port_num, int protocol_version, uint8_t id, uint16_t 
   {
     return read2ByteTxRx2(port_num, id, address);
   }
-};
+}
 
 void read4ByteTx(int port_num, int protocol_version, uint8_t id, uint16_t address)
 {
@@ -963,7 +963,7 @@ void read4ByteTx(int port_num, int protocol_version, uint8_t id, uint16_t addres
   {
     read4ByteTx2(port_num, id, address);
   }
-};
+}
 
 uint32_t read4ByteRx(int port_num, int protocol_version)
 {
@@ -975,7 +975,7 @@ uint32_t read4ByteRx(int port_num, int protocol_version)
   {
     return read4ByteRx2(port_num);
   }
-};
+}
 
 uint32_t read4ByteTxRx(int port_num, int protocol_version, uint8_t id, uint16_t address)
 {
@@ -987,7 +987,7 @@ uint32_t read4ByteTxRx(int port_num, int protocol_version, uint8_t id, uint16_t 
   {
     return read4ByteTxRx2(port_num, id, address);
   }
-};
+}
 
 uint8_t* readNByteTxRx(int port_num, int protocol_version, uint8_t id, uint16_t address, uint8_t length)
 {
@@ -999,7 +999,7 @@ uint8_t* readNByteTxRx(int port_num, int protocol_version, uint8_t id, uint16_t 
   {
     return readNByteTxRx2(port_num, id, address, length);
   }
-};
+}
 
 void writeTxOnly(int port_num, int protocol_version, uint8_t id, uint16_t address, uint16_t length)
 {
@@ -1011,7 +1011,7 @@ void writeTxOnly(int port_num, int protocol_version, uint8_t id, uint16_t addres
   {
     writeTxOnly2(port_num, id, address, length);
   }
-};
+}
 
 void writeTxRx(int port_num, int protocol_version, uint8_t id, uint16_t address, uint16_t length)
 {
@@ -1023,7 +1023,7 @@ void writeTxRx(int port_num, int protocol_version, uint8_t id, uint16_t address,
   {
     writeTxRx2(port_num, id, address, length);
   }
-};
+}
 
 void write1ByteTxOnly(int port_num, int protocol_version, uint8_t id, uint16_t address, uint8_t data)
 {
@@ -1035,7 +1035,7 @@ void write1ByteTxOnly(int port_num, int protocol_version, uint8_t id, uint16_t a
   {
     write1ByteTxOnly2(port_num, id, address, data);
   }
-};
+}
 
 void write1ByteTxRx(int port_num, int protocol_version, uint8_t id, uint16_t address, uint8_t data)
 {
@@ -1047,7 +1047,7 @@ void write1ByteTxRx(int port_num, int protocol_version, uint8_t id, uint16_t add
   {
     write1ByteTxRx2(port_num, id, address, data);
   }
-};
+}
 
 void write2ByteTxOnly(int port_num, int protocol_version, uint8_t id, uint16_t address, uint16_t data)
 {
@@ -1059,7 +1059,7 @@ void write2ByteTxOnly(int port_num, int protocol_version, uint8_t id, uint16_t a
   {
     write2ByteTxOnly2(port_num, id, address, data);
   }
-};
+}
 
 void write2ByteTxRx(int port_num, int protocol_version, uint8_t id, uint16_t address, uint16_t data)
 {
@@ -1071,7 +1071,7 @@ void write2ByteTxRx(int port_num, int protocol_version, uint8_t id, uint16_t add
   {
     write2ByteTxRx2(port_num, id, address, data);
   }
-};
+}
 
 void write4ByteTxOnly(int port_num, int protocol_version, uint8_t id, uint16_t address, uint32_t data)
 {
@@ -1083,7 +1083,7 @@ void write4ByteTxOnly(int port_num, int protocol_version, uint8_t id, uint16_t a
   {
     write4ByteTxOnly2(port_num, id, address, data);
   }
-};
+}
 
 void write4ByteTxRx(int port_num, int protocol_version, uint8_t id, uint16_t address, uint32_t data)
 {
@@ -1095,7 +1095,7 @@ void write4ByteTxRx(int port_num, int protocol_version, uint8_t id, uint16_t add
   {
     write4ByteTxRx2(port_num, id, address, data);
   }
-};
+}
 
 void regWriteTxOnly(int port_num, int protocol_version, uint8_t id, uint16_t address, uint16_t length)
 {
@@ -1107,7 +1107,7 @@ void regWriteTxOnly(int port_num, int protocol_version, uint8_t id, uint16_t add
   {
     regWriteTxOnly2(port_num, id, address, length);
   }
-};
+}
 
 void regWriteTxRx(int port_num, int protocol_version, uint8_t id, uint16_t address, uint16_t length)
 {
@@ -1119,7 +1119,7 @@ void regWriteTxRx(int port_num, int protocol_version, uint8_t id, uint16_t addre
   {
     regWriteTxRx2(port_num, id, address, length);
   }
-};
+}
 
 void syncReadTx(int port_num, int protocol_version, uint16_t start_address, uint16_t data_length, uint16_t param_length)
 {
@@ -1131,7 +1131,7 @@ void syncReadTx(int port_num, int protocol_version, uint16_t start_address, uint
   {
     syncReadTx2(port_num, start_address, data_length, param_length);
   }
-};
+}
 // syncReadRx   -> GroupSyncRead
 // syncReadTxRx -> GroupSyncRead
 
@@ -1145,7 +1145,7 @@ void syncWriteTxOnly(int port_num, int protocol_version, uint16_t start_address,
   {
     syncWriteTxOnly2(port_num, start_address, data_length, param_length);
   }
-};
+}
 
 void bulkReadTx(int port_num, int protocol_version, uint16_t param_length)
 {
@@ -1157,7 +1157,7 @@ void bulkReadTx(int port_num, int protocol_version, uint16_t param_length)
   {
     bulkReadTx2(port_num, param_length);
   }
-};
+}
 // bulkReadRx   -> GroupBulkRead
 // bulkReadTxRx -> GroupBulkRead
 
@@ -1171,7 +1171,7 @@ void bulkWriteTxOnly(int port_num, int protocol_version, uint16_t param_length)
   {
     bulkWriteTxOnly2(port_num, param_length);
   }
-};
+}
 
 /*
  * 
@@ -1536,6 +1536,9 @@ void broadcastPing1(int port_num)
 
 uint8_t getBroadcastPingResult1(int port_num, int id)
 {
+	(void)port_num;
+	(void)id;
+	
   return False;
 }
 
@@ -1552,11 +1555,16 @@ void action1(int port_num, uint8_t id)
 
 void reboot1(int port_num, uint8_t id)
 {
+	(void)port_num;
+	(void)id;
+	
   packetData[port_num].communication_result = COMM_NOT_AVAILABLE;
 }
 
 void factoryReset1(int port_num, uint8_t id, uint8_t option)
 {
+	(void)option;
+	
   packetData[port_num].tx_packet = (uint8_t *)realloc(packetData[port_num].tx_packet, 6);
   packetData[port_num].rx_packet = (uint8_t *)realloc(packetData[port_num].rx_packet, 6);
 
@@ -1683,6 +1691,9 @@ uint16_t read2ByteRx1(int port_num)
 }
 uint16_t read2ByteTxRx1(int port_num, uint8_t id, uint16_t address)
 {
+	(void)id;
+	(void)address;
+	
   packetData[port_num].data_read = (uint8_t *)realloc(packetData[port_num].data_read, 2 * sizeof(uint8_t));
 	packetData[port_num].data_read[0] = 0;
   packetData[port_num].data_read[1] = 0;
@@ -1696,6 +1707,9 @@ uint16_t read2ByteTxRx1(int port_num, uint8_t id, uint16_t address)
 
 void read4ByteTx1(int port_num, uint8_t id, uint16_t address)
 {
+	(void)id;
+	(void)address;
+	
   packetData[port_num].communication_result = COMM_NOT_AVAILABLE;
 }
 uint32_t read4ByteRx1(int port_num)
@@ -1705,6 +1719,9 @@ uint32_t read4ByteRx1(int port_num)
 }
 uint32_t read4ByteTxRx1(int port_num, uint8_t id, uint16_t address)
 {
+	(void)id;
+	(void)address;
+	
   packetData[port_num].communication_result = COMM_NOT_AVAILABLE;
   return 0;
 }
@@ -1796,10 +1813,18 @@ void write2ByteTxRx1(int port_num, uint8_t id, uint16_t address, uint16_t data)
 
 void write4ByteTxOnly1(int port_num, uint8_t id, uint16_t address, uint32_t data)
 {
+	(void)id;
+	(void)address;
+	(void)data;
+	
   packetData[port_num].communication_result = COMM_NOT_AVAILABLE;
 }
 void write4ByteTxRx1(int port_num, uint8_t id, uint16_t address, uint32_t data)
 {
+	(void)id;
+	(void)address;
+	(void)data;
+	
   packetData[port_num].communication_result = COMM_NOT_AVAILABLE;
 }
 
@@ -1851,6 +1876,10 @@ void regWriteTxRx1(int port_num, uint8_t id, uint16_t address, uint16_t length)
 
 void syncReadTx1(int port_num, uint16_t start_address, uint16_t data_length, uint16_t param_length)
 {
+	(void)start_address;
+	(void)data_length;
+	(void)param_length;
+	
   packetData[port_num].communication_result = COMM_NOT_AVAILABLE;
 }
 
@@ -1910,6 +1939,8 @@ void bulkReadTx1(int port_num, uint16_t param_length)
 
 void bulkWriteTxOnly1(int port_num, uint16_t param_length)
 {
+	(void)param_length;
+	
   packetData[port_num].communication_result = COMM_NOT_AVAILABLE;
 }
 
@@ -3564,7 +3595,7 @@ static int sizeSR(int group_num)
       real_size++;
   }
   return real_size;
-};
+}
 
 static int findSR(int group_num, int id)
 {
@@ -4069,7 +4100,7 @@ void groupSyncWriteTxPacket(int group_num)
  * 
  */
  
-int getch()
+int getch(void)
 {
   struct termios oldt, newt;
   int ch;
@@ -4438,12 +4469,15 @@ int dxl_write(	char*			port_name,
  * 
  */
 char* dxl_model_nb_2_name( uint16_t	dxl_model_number )	{
-	char* dxl_model_name = "unknown model";
+	
+	const char* dxl_model_name_unknown = "unknown model";
+	char* dxl_model_name;
 	int		i;
-
-	for ( i = 0; i < NELEMS( dxl_reg_list ); i++ )
+	
+	dxl_model_name = (char*)dxl_model_name_unknown;
+	for ( i = 0; i < (int)NELEMS( dxl_reg_list ); i++ )
 		if ( dxl_reg_list[i][0].initial == dxl_model_number )
-			dxl_model_name = dxl_reg_list[i][0].short_description;
+			dxl_model_name = (char*)dxl_reg_list[i][0].short_description;
 	
 	return dxl_model_name;
 }
@@ -4491,7 +4525,7 @@ int dxl_scan( char *port_name )	{
 	fprintf( stderr, "000%% > " );
 		
 	// Scan through the baudrates
-	for ( i = 0; i < NELEMS(dxl_scan_baudrates); i++ )	{
+	for ( i = 0; i < (int)NELEMS(dxl_scan_baudrates); i++ )	{
 		
 		// Set port baudrate
 		if ( !setBaudRate( port_num, dxl_scan_baudrates[i] ) )	{
@@ -4610,7 +4644,7 @@ int dxl_status( char *port_name,
 	}
 	
 	// Find the register structure corresponding to the device
-	for ( i = 0; i < NELEMS( dxl_reg_list ); i++ )
+	for ( i = 0; i < (int)NELEMS( dxl_reg_list ); i++ )
 		if ( dxl_reg_list[i][0].initial == dxl_model_number )	{
 			dxl_reg = dxl_reg_list[i];
 			break;
@@ -4660,7 +4694,7 @@ int dxl_status( char *port_name,
 	
 	// Display results
 	
-	printf( TERM_BRIGHT "??? %s as ID%d using protocol %d at %d bps ???\n" TERM_RESET,
+	printf( TERM_BRIGHT "*** %s as ID%d using protocol %d at %d bps ***\n" TERM_RESET,
 					dxl_reg[0].short_description,
 					devid,
 					proto,
@@ -4976,7 +5010,7 @@ int main( int argc, char *argv[] )
 	// Default action
 		
 	display_help:
-	printf( "??? dxl: a " TERM_UNDER "simple" TERM_RESET " command line interface to Dynamixel actuators ???\n" );
+	printf( "*** dxl: a " TERM_UNDER "simple" TERM_RESET " command line interface to Dynamixel actuators ***\n" );
 	printf( "Version %d.%d (jacques.gangloff@unistra.fr)\n", DXL_VERSION_MAJOR, DXL_VERSION_MINOR );
 	printf( "Usage:  dxl " TERM_BRIGHT "command" TERM_RESET TERM_DIM " [parameters]\n" TERM_RESET );
 	printf( "List of " TERM_BRIGHT "commands" TERM_RESET " and " TERM_DIM "parameters" TERM_RESET ":\n" );

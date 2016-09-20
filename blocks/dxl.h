@@ -140,7 +140,7 @@ uint8_t isPacketTimeout         	(int port_num);
  * 
  */
 
-void        packetHandler       	();
+void        packetHandler       	( void );
 
 void        printTxRxResult     	(int protocol_version, int result);
 void        printRxPacketError  	(int protocol_version, uint8_t error);
@@ -474,18 +474,18 @@ int 	dxl_ping						( char *port_name, int baudrate, uint8_t devid, int proto );
 // Register definition structure
 typedef struct
 {
-	uint8_t		mem_type;
-	uint16_t	address;
-	uint8_t		size;
-	char*			short_description;
-	char*			description;
-	uint8_t		access;
-	int32_t		initial;
-	uint8_t		data_type;
-	int32_t		range_min;
-	int32_t		range_max;
-	double		unit_quantum;
-	char*			unit_name;	
+	uint8_t					mem_type;
+	uint16_t				address;
+	uint8_t					size;
+	const char*			short_description;
+	const char*			description;
+	uint8_t					access;
+	int32_t					initial;
+	uint8_t					data_type;
+	int32_t					range_min;
+	int32_t					range_max;
+	double					unit_quantum;
+	const char*			unit_name;	
 }	dxl_registers_struct_type;
 
 #define DXL_REG_MEM_EEPROM															0
@@ -704,7 +704,9 @@ dxl_registers_struct_type dxl_reg_XM430_W210[] =	{
 	{	DXL_REG_MEM_RAM, 		146,	1,	"Present Temperature", "Current Internal Temperature", 
 		DXL_REG_ACCESS_R, DXL_REG_UNDEFINED_INITIAL_VALUE,
 		DXL_REG_TYPE_UINT8, 0, 100, 1.0, "°C" },
-	{	DXL_REG_MEM_END, 		147 }
+		
+	{	DXL_REG_MEM_END, 		147, 0, "", "", 0, 0, 0, 0, 0, 0.0, "" }
+	
 };
 
 // XM430-W350 actuator registers
@@ -905,7 +907,7 @@ dxl_registers_struct_type dxl_reg_XM430_W350[] =	{
 		DXL_REG_ACCESS_R, DXL_REG_UNDEFINED_INITIAL_VALUE,
 		DXL_REG_TYPE_UINT8, 0, 100, 1.0, "°C" },
 		
-	{	DXL_REG_MEM_END, 		147 }
+	{	DXL_REG_MEM_END, 		147, 0, "", "", 0, 0, 0, 0, 0, 0.0, "" }
 };
 
 // MX 12W actuator
@@ -1046,7 +1048,7 @@ dxl_registers_struct_type dxl_reg_MX12W[] =	{
 		DXL_REG_ACCESS_RW,	0,
 		DXL_REG_TYPE_UINT8, 0, 254, 8.583, "deg/s/s" },
 		
-	{	DXL_REG_MEM_END, 		74 }
+	{	DXL_REG_MEM_END, 		74, 0, "", "", 0, 0, 0, 0, 0, 0.0, "" }
 };
 
 // MX 28 actuator
@@ -1187,7 +1189,7 @@ dxl_registers_struct_type dxl_reg_MX28[] =	{
 		DXL_REG_ACCESS_RW,	0,
 		DXL_REG_TYPE_UINT8, 0, 254, 8.583, "deg/s/s" },
 		
-	{	DXL_REG_MEM_END, 		74 }
+	{	DXL_REG_MEM_END, 		74, 0, "", "", 0, 0, 0, 0, 0, 0.0, "" }
 };
 
 // MX 64 actuator
@@ -1340,7 +1342,7 @@ dxl_registers_struct_type dxl_reg_MX64[] =	{
 		DXL_REG_ACCESS_RW,	0,
 		DXL_REG_TYPE_UINT8, 0, 254, 8.583, "deg/s/s" },
 		
-	{	DXL_REG_MEM_END, 		74 }
+	{	DXL_REG_MEM_END, 		74, 0, "", "", 0, 0, 0, 0, 0, 0.0, "" }
 };
 
 // List of actuators register definitions

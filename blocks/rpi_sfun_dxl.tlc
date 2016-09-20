@@ -24,7 +24,8 @@
 %function BlockTypeSetup(block, system) Output
   %openfile externs
     
-  extern void rpi_sfun_dxl_Outputs_wrapper(const real_T *u1,
+  extern void rpi_sfun_dxl_Outputs_wrapper(
+                          const real_T *u1,
                           const real_T *u2,
                           const real_T *u3,
                           const real_T *u4,
@@ -43,48 +44,96 @@
                           real_T *y7,
                           real_T *y8,
                           real_T *y9,
-                          real_T *y10  , 
-                          const real_T  *rpi_Ts, const int_T  p_width0, 
-                          const uint8_T  *rpi_portname, const int_T  p_width1, 
-                          const uint32_T  *rpi_baudrate, const int_T  p_width2, 
-                          const uint8_T  *rpi_startid, const int_T  p_width3, 
-                          const uint8_T  *rpi_nbid, const int_T  p_width4, 
-                          const uint8_T  *rpi_proto, const int_T  p_width5, 
-                          const uint16_T  *rpi_write_addr, const int_T  p_width6, 
-                          const uint8_T  *rpi_write_length, const int_T  p_width7, 
-                          const uint16_T  *rpi_read_addr, const int_T  p_width8, 
-                          const uint8_T  *rpi_read_length, const int_T  p_width9, 
-                          const uint8_T  *rpi_read_sign, const int_T  p_width10, 
-                          const uint16_T  *rpi_init1_addr, const int_T  p_width11, 
-                          const uint8_T  *rpi_init1_length, const int_T  p_width12, 
-                          const real_T  *rpi_init1_data, const int_T  p_width13, 
-                          const uint16_T  *rpi_init2_addr, const int_T  p_width14, 
-                          const uint8_T  *rpi_init2_length, const int_T  p_width15, 
-                          const real_T  *rpi_init2_data, const int_T  p_width16, 
-                          const uint16_T  *rpi_init3_addr, const int_T  p_width17, 
-                          const uint8_T  *rpi_init3_length, const int_T  p_width18, 
-                          const real_T  *rpi_init3_data, const int_T  p_width19, 
-                          const uint16_T  *rpi_init4_addr, const int_T  p_width20, 
-                          const uint8_T  *rpi_init4_length, const int_T  p_width21, 
-                          const real_T  *rpi_init4_data, const int_T  p_width22, 
-                          const uint16_T  *rpi_init5_addr, const int_T  p_width23, 
-                          const uint8_T  *rpi_init5_length, const int_T  p_width24, 
-                          const real_T  *rpi_init5_data, const int_T  p_width25, 
-                          const uint16_T  *rpi_init6_addr, const int_T  p_width26, 
-                          const uint8_T  *rpi_init6_length, const int_T  p_width27, 
-                          const real_T  *rpi_init6_data, const int_T  p_width28, 
-                          const uint16_T  *rpi_init7_addr, const int_T  p_width29, 
-                          const uint8_T  *rpi_init7_length, const int_T  p_width30, 
-                          const real_T  *rpi_init7_data, const int_T  p_width31, 
-                          const uint16_T  *rpi_init8_addr, const int_T  p_width32, 
-                          const uint8_T  *rpi_init8_length, const int_T  p_width33, 
-                          const real_T  *rpi_init8_data, const int_T  p_width34, 
-                          const uint16_T  *rpi_halt1_addr, const int_T  p_width35, 
-                          const uint8_T  *rpi_halt1_length, const int_T  p_width36, 
-                          const real_T  *rpi_halt1_data, const int_T  p_width37, 
-                          const uint16_T  *rpi_halt2_addr, const int_T  p_width38, 
-                          const uint8_T  *rpi_halt2_length, const int_T  p_width39, 
-                          const real_T  *rpi_halt2_data,  const int_T p_width40);
+                          real_T *y10, 
+                          const real_T  *rpi_Ts,
+                          const uint8_T  *rpi_portname,
+                          const uint32_T  *rpi_baudrate,
+                          const uint8_T  *rpi_startid,
+                          const uint8_T  *rpi_nbid,
+                          const uint8_T  *rpi_proto,
+                          const uint16_T  *rpi_write_addr,
+                          const uint8_T  *rpi_write_length, 
+                          const uint16_T  *rpi_read_addr,
+                          const uint8_T  *rpi_read_length,
+                          const uint8_T  *rpi_read_sign);
+  
+  extern void rpi_sfun_dxl_Start_wrapper(
+                          const real_T *u1,
+                          const real_T *u2,
+                          const real_T *u3,
+                          const real_T *u4,
+                          const real_T *u5,
+                          const real_T *u6,
+                          const real_T *u7,
+                          const real_T *u8,
+                          const real_T *u9,
+                          const real_T *u10,
+                          real_T *y1,
+                          real_T *y2,
+                          real_T *y3,
+                          real_T *y4,
+                          real_T *y5,
+                          real_T *y6,
+                          real_T *y7,
+                          real_T *y8,
+                          real_T *y9,
+                          real_T *y10, 
+                          const real_T  *rpi_Ts,
+                          const uint8_T  *rpi_portname,
+                          const uint32_T  *rpi_baudrate,
+                          const uint8_T  *rpi_startid,
+                          const uint8_T  *rpi_nbid,
+                          const uint8_T  *rpi_proto,
+                          const uint16_T  *rpi_write_addr,
+                          const uint8_T  *rpi_write_length, 
+                          const uint16_T  *rpi_read_addr,
+                          const uint8_T  *rpi_read_length,
+                          const uint8_T  *rpi_read_sign,
+                          const uint16_T  *rpi_init1_addr,
+                          const uint8_T  *rpi_init1_length,
+                          const real_T  *rpi_init1_data,
+                          const uint16_T  *rpi_init2_addr,
+                          const uint8_T  *rpi_init2_length,
+                          const real_T  *rpi_init2_data,
+                          const uint16_T  *rpi_init3_addr,
+                          const uint8_T  *rpi_init3_length,
+                          const real_T  *rpi_init3_data,
+                          const uint16_T  *rpi_init4_addr,
+                          const uint8_T  *rpi_init4_length,
+                          const real_T  *rpi_init4_data,
+                          const uint16_T  *rpi_init5_addr,
+                          const uint8_T  *rpi_init5_length,
+                          const real_T  *rpi_init5_data,
+                          const uint16_T  *rpi_init6_addr,
+                          const uint8_T  *rpi_init6_length,
+                          const real_T  *rpi_init6_data,
+                          const uint16_T  *rpi_init7_addr,
+                          const uint8_T  *rpi_init7_length,
+                          const real_T  *rpi_init7_data,
+                          const uint16_T  *rpi_init8_addr,
+                          const uint8_T  *rpi_init8_length,
+                          const real_T  *rpi_init8_data);
+
+  extern void rpi_sfun_dxl_Terminate_wrapper(
+                          const real_T  *rpi_Ts,
+                          const uint8_T  *rpi_portname,
+                          const uint32_T  *rpi_baudrate,
+                          const uint8_T  *rpi_startid,
+                          const uint8_T  *rpi_nbid,
+                          const uint8_T  *rpi_proto,
+                          const uint16_T  *rpi_write_addr,
+                          const uint8_T  *rpi_write_length, 
+                          const uint16_T  *rpi_read_addr,
+                          const uint8_T  *rpi_read_length,
+                          const uint8_T  *rpi_read_sign,
+                          const uint16_T  *rpi_halt1_addr,
+                          const uint8_T  *rpi_halt1_length,
+                          const real_T  *rpi_halt1_data,
+                          const uint16_T  *rpi_halt2_addr,
+                          const uint8_T  *rpi_halt2_length,
+                          const real_T  *rpi_halt2_data);
+  
+  
   %closefile externs
   %<LibCacheExtern(externs)>
   %%
@@ -404,7 +453,11 @@
   %else  
    %assign pp41 = LibBlockParameterAddr(P41, "", "", 0)
   %endif
+  
+  %% rpi_sfun_dxl_Outputs_wrapper(%<pu0>, %<pu1>, %<pu2>, %<pu3>, %<pu4>, %<pu5>, %<pu6>, %<pu7>, %<pu8>, %<pu9>, %<py0>, %<py1>, %<py2>, %<py3>, %<py4>, %<py5>, %<py6>, %<py7>, %<py8>, %<py9>,  %<pp1>, %<param_width1>,  %<pp2>,       %<param_width2>,  %<pp3>,       %<param_width3>,  %<pp4>,      %<param_width4>,  %<pp5>,   %<param_width5>,  %<pp6>,    %<param_width6>,  %<pp7>,         %<param_width7>,  %<pp8>,           %<param_width8>,  %<pp9>,        %<param_width9>,  %<pp10>, %<param_width10>,  %<pp11>,       %<param_width11>,  %<pp12>,        %<param_width12>,  %<pp13>,          %<param_width13>,  %<pp14>,        %<param_width14>,  %<pp15>, %<param_width15>,  %<pp16>, %<param_width16>,  %<pp17>,        %<param_width17>,  %<pp18>,        %<param_width18>,  %<pp19>,          %<param_width19>,  %<pp20>,        %<param_width20>,  %<pp21>,        %<param_width21>,  %<pp22>,          %<param_width22>,  %<pp23>,        %<param_width23>,  %<pp24>,        %<param_width24>,  %<pp25>,          %<param_width25>,  %<pp26>,        %<param_width26>,  %<pp27>,        %<param_width27>,  %<pp28>,          %<param_width28>,  %<pp29>,        %<param_width29>,  %<pp30>,        %<param_width30>,  %<pp31>,          %<param_width31>,  %<pp32>,        %<param_width32>,  %<pp33>,        %<param_width33>,  %<pp34>,          %<param_width34>,  %<pp35>,        %<param_width35>,  %<pp36>,        %<param_width36>,  %<pp37>,         %<param_width37>,  %<pp38>,        %<param_width38>,  %<pp39>,        %<param_width39>,  %<pp40>,         %<param_width40>, %<pp41>,        %<param_width41>);
+  %% rpi_sfun_dxl_Outputs_wrapper(u1,     u2,     u3,     u4,     u5,     u6,     u7,     u8,     u9,     u10,    y1,     y2,     y3,     y4,     y5,     y6,     y7,     y8,     y9,     y10,     rpi_Ts, p_width0,         rpi_portname, p_width1,         rpi_baudrate, p_width2,         rpi_startid, p_width3,         rpi_nbid, p_width4,         rpi_proto, p_width5,         rpi_write_addr, p_width6,         rpi_write_length, p_width7,         rpi_read_addr, p_width8, rpi_read_length, p_width9,          rpi_read_sign, p_width10,         rpi_init1_addr, p_width11,         rpi_init1_length, p_width12,         rpi_init1_data, p_width13, rpi_init2_addr, p_width14, rpi_init2_length, p_width15,         rpi_init2_data, p_width16,         rpi_init3_addr, p_width17,         rpi_init3_length, p_width18,         rpi_init3_data, p_width19,         rpi_init4_addr, p_width20,         rpi_init4_length, p_width21,         rpi_init4_data, p_width22,         rpi_init5_addr, p_width23,         rpi_init5_length, p_width24,         rpi_init5_data, p_width25,         rpi_init6_addr, p_width26,         rpi_init6_length, p_width27,         rpi_init6_data, p_width28,         rpi_init7_addr, p_width29,         rpi_init7_length, p_width30,         rpi_init7_data, p_width31,         rpi_init8_addr, p_width32,         rpi_init8_length, p_width33,         rpi_init8_data, p_width34,         rpi_halt1_addr, p_width35,         rpi_halt1_length, p_width36,        rpi_halt1_data, p_width37,         rpi_halt2_addr, p_width38,         rpi_halt2_length, p_width39,       rpi_halt2_data, p_width40);
 
+  rpi_sfun_dxl_Start_wrapper(%<pu0>, %<pu1>, %<pu2>, %<pu3>, %<pu4>, %<pu5>, %<pu6>, %<pu7>, %<pu8>, %<pu9>, %<py0>, %<py1>, %<py2>, %<py3>, %<py4>, %<py5>, %<py6>, %<py7>, %<py8>, %<py9>, %<pp1>, %<pp2>, %<pp3>, %<pp4>, %<pp5>, %<pp6>, %<pp7>, %<pp8>, %<pp9>, %<pp10>, %<pp11>,  %<pp12>,  %<pp13>,  %<pp14>,  %<pp15>,  %<pp16>,  %<pp17>,  %<pp18>,  %<pp19>,  %<pp20>, %<pp21>, %<pp22>, %<pp23>, %<pp24>, %<pp25>, %<pp26>, %<pp27>, %<pp28>, %<pp29>, %<pp30>, %<pp31>, %<pp32>, %<pp33>, %<pp34>, %<pp35>);
 %endfunction
 
 %% Function: Outputs ==========================================================
@@ -723,8 +776,10 @@
    %endif
   %assign py_width = LibBlockOutputSignalWidth(0)
   %assign pu_width = LibBlockInputSignalWidth(0)
-  rpi_sfun_dxl_Outputs_wrapper(%<pu0>, %<pu1>, %<pu2>, %<pu3>, %<pu4>, %<pu5>, %<pu6>, %<pu7>, %<pu8>, %<pu9>, %<py0>, %<py1>, %<py2>, %<py3>, %<py4>, %<py5>, %<py6>, %<py7>, %<py8>, %<py9>,  %<pp1>, %<param_width1>,  %<pp2>, %<param_width2>,  %<pp3>, %<param_width3>,  %<pp4>, %<param_width4>,  %<pp5>, %<param_width5>,  %<pp6>, %<param_width6>,  %<pp7>, %<param_width7>,  %<pp8>, %<param_width8>,  %<pp9>, %<param_width9>,  %<pp10>, %<param_width10>,  %<pp11>, %<param_width11>,  %<pp12>, %<param_width12>,  %<pp13>, %<param_width13>,  %<pp14>, %<param_width14>,  %<pp15>, %<param_width15>,  %<pp16>, %<param_width16>,  %<pp17>, %<param_width17>,  %<pp18>, %<param_width18>,  %<pp19>, %<param_width19>,  %<pp20>, %<param_width20>,  %<pp21>, %<param_width21>,  %<pp22>, %<param_width22>,  %<pp23>, %<param_width23>,  %<pp24>, %<param_width24>,  %<pp25>, %<param_width25>,  %<pp26>, %<param_width26>,  %<pp27>, %<param_width27>,  %<pp28>, %<param_width28>,  %<pp29>, %<param_width29>,  %<pp30>, %<param_width30>,  %<pp31>, %<param_width31>,  %<pp32>, %<param_width32>,  %<pp33>, %<param_width33>,  %<pp34>, %<param_width34>,  %<pp35>, %<param_width35>,  %<pp36>, %<param_width36>,  %<pp37>, %<param_width37>,  %<pp38>, %<param_width38>,  %<pp39>, %<param_width39>,  %<pp40>, %<param_width40>, %<pp41>, %<param_width41>);
-
+  %% rpi_sfun_dxl_Outputs_wrapper(%<pu0>, %<pu1>, %<pu2>, %<pu3>, %<pu4>, %<pu5>, %<pu6>, %<pu7>, %<pu8>, %<pu9>, %<py0>, %<py1>, %<py2>, %<py3>, %<py4>, %<py5>, %<py6>, %<py7>, %<py8>, %<py9>,  %<pp1>, %<param_width1>,  %<pp2>,       %<param_width2>,  %<pp3>,       %<param_width3>,  %<pp4>,      %<param_width4>,  %<pp5>,   %<param_width5>,  %<pp6>,    %<param_width6>,  %<pp7>,         %<param_width7>,  %<pp8>,           %<param_width8>,  %<pp9>,        %<param_width9>,  %<pp10>, %<param_width10>,  %<pp11>,       %<param_width11>,  %<pp12>,        %<param_width12>,  %<pp13>,          %<param_width13>,  %<pp14>,        %<param_width14>,  %<pp15>, %<param_width15>,  %<pp16>, %<param_width16>,  %<pp17>,        %<param_width17>,  %<pp18>,        %<param_width18>,  %<pp19>,          %<param_width19>,  %<pp20>,        %<param_width20>,  %<pp21>,        %<param_width21>,  %<pp22>,          %<param_width22>,  %<pp23>,        %<param_width23>,  %<pp24>,        %<param_width24>,  %<pp25>,          %<param_width25>,  %<pp26>,        %<param_width26>,  %<pp27>,        %<param_width27>,  %<pp28>,          %<param_width28>,  %<pp29>,        %<param_width29>,  %<pp30>,        %<param_width30>,  %<pp31>,          %<param_width31>,  %<pp32>,        %<param_width32>,  %<pp33>,        %<param_width33>,  %<pp34>,          %<param_width34>,  %<pp35>,        %<param_width35>,  %<pp36>,        %<param_width36>,  %<pp37>,         %<param_width37>,  %<pp38>,        %<param_width38>,  %<pp39>,        %<param_width39>,  %<pp40>,         %<param_width40>, %<pp41>,        %<param_width41>);
+  %% rpi_sfun_dxl_Outputs_wrapper(u1,     u2,     u3,     u4,     u5,     u6,     u7,     u8,     u9,     u10,    y1,     y2,     y3,     y4,     y5,     y6,     y7,     y8,     y9,     y10,     rpi_Ts, p_width0,         rpi_portname, p_width1,         rpi_baudrate, p_width2,         rpi_startid, p_width3,         rpi_nbid, p_width4,         rpi_proto, p_width5,         rpi_write_addr, p_width6,         rpi_write_length, p_width7,         rpi_read_addr, p_width8, rpi_read_length, p_width9,          rpi_read_sign, p_width10,         rpi_init1_addr, p_width11,         rpi_init1_length, p_width12,         rpi_init1_data, p_width13, rpi_init2_addr, p_width14, rpi_init2_length, p_width15,         rpi_init2_data, p_width16,         rpi_init3_addr, p_width17,         rpi_init3_length, p_width18,         rpi_init3_data, p_width19,         rpi_init4_addr, p_width20,         rpi_init4_length, p_width21,         rpi_init4_data, p_width22,         rpi_init5_addr, p_width23,         rpi_init5_length, p_width24,         rpi_init5_data, p_width25,         rpi_init6_addr, p_width26,         rpi_init6_length, p_width27,         rpi_init6_data, p_width28,         rpi_init7_addr, p_width29,         rpi_init7_length, p_width30,         rpi_init7_data, p_width31,         rpi_init8_addr, p_width32,         rpi_init8_length, p_width33,         rpi_init8_data, p_width34,         rpi_halt1_addr, p_width35,         rpi_halt1_length, p_width36,        rpi_halt1_data, p_width37,         rpi_halt2_addr, p_width38,         rpi_halt2_length, p_width39,       rpi_halt2_data, p_width40);
+  rpi_sfun_dxl_Outputs_wrapper(%<pu0>, %<pu1>, %<pu2>, %<pu3>, %<pu4>, %<pu5>, %<pu6>, %<pu7>, %<pu8>, %<pu9>, %<py0>, %<py1>, %<py2>, %<py3>, %<py4>, %<py5>, %<py6>, %<py7>, %<py8>, %<py9>, %<pp1>, %<pp2>, %<pp3>, %<pp4>, %<pp5>, %<pp6>, %<pp7>, %<pp8>,  %<pp9>,  %<pp10>, %<pp11>);
+  
   %%
 %endfunction
 
@@ -733,6 +788,319 @@
 %%
 %function Terminate(block, system) Output
    /* %<Type> Block: %<Name> */
+  %%
+  %assign pu0 = LibBlockInputSignalAddr(0, "", "", 0)
+  %assign pu1 = LibBlockInputSignalAddr(1, "", "", 0)
+  %assign pu2 = LibBlockInputSignalAddr(2, "", "", 0)
+  %assign pu3 = LibBlockInputSignalAddr(3, "", "", 0)
+  %assign pu4 = LibBlockInputSignalAddr(4, "", "", 0)
+  %assign pu5 = LibBlockInputSignalAddr(5, "", "", 0)
+  %assign pu6 = LibBlockInputSignalAddr(6, "", "", 0)
+  %assign pu7 = LibBlockInputSignalAddr(7, "", "", 0)
+  %assign pu8 = LibBlockInputSignalAddr(8, "", "", 0)
+  %assign pu9 = LibBlockInputSignalAddr(9, "", "", 0) 
+  %assign py0 = LibBlockOutputSignalAddr(0, "", "", 0)
+  %assign py1 = LibBlockOutputSignalAddr(1, "", "", 0)
+  %assign py2 = LibBlockOutputSignalAddr(2, "", "", 0)
+  %assign py3 = LibBlockOutputSignalAddr(3, "", "", 0)
+  %assign py4 = LibBlockOutputSignalAddr(4, "", "", 0)
+  %assign py5 = LibBlockOutputSignalAddr(5, "", "", 0)
+  %assign py6 = LibBlockOutputSignalAddr(6, "", "", 0)
+  %assign py7 = LibBlockOutputSignalAddr(7, "", "", 0)
+  %assign py8 = LibBlockOutputSignalAddr(8, "", "", 0)
+  %assign py9 = LibBlockOutputSignalAddr(9, "", "", 0)
+    
+  %assign nelements1 = LibBlockParameterSize(P1)
+  %assign param_width1 = nelements1[0] * nelements1[1]  
+  %if (param_width1) > 1  
+   %assign pp1 = LibBlockMatrixParameterBaseAddr(P1)
+  %else  
+   %assign pp1 = LibBlockParameterAddr(P1, "", "", 0)
+  %endif 
+  %assign nelements2 = LibBlockParameterSize(P2)
+  %assign param_width2 = nelements2[0] * nelements2[1]  
+  %if (param_width2) > 1  
+   %assign pp2 = LibBlockMatrixParameterBaseAddr(P2)
+  %else  
+   %assign pp2 = LibBlockParameterAddr(P2, "", "", 0)
+  %endif 
+  %assign nelements3 = LibBlockParameterSize(P3)
+  %assign param_width3 = nelements3[0] * nelements3[1]  
+  %if (param_width3) > 1  
+   %assign pp3 = LibBlockMatrixParameterBaseAddr(P3)
+  %else  
+   %assign pp3 = LibBlockParameterAddr(P3, "", "", 0)
+  %endif 
+  %assign nelements4 = LibBlockParameterSize(P4)
+  %assign param_width4 = nelements4[0] * nelements4[1]  
+  %if (param_width4) > 1  
+   %assign pp4 = LibBlockMatrixParameterBaseAddr(P4)
+  %else  
+   %assign pp4 = LibBlockParameterAddr(P4, "", "", 0)
+  %endif 
+  %assign nelements5 = LibBlockParameterSize(P5)
+  %assign param_width5 = nelements5[0] * nelements5[1]  
+  %if (param_width5) > 1  
+   %assign pp5 = LibBlockMatrixParameterBaseAddr(P5)
+  %else  
+   %assign pp5 = LibBlockParameterAddr(P5, "", "", 0)
+  %endif 
+  %assign nelements6 = LibBlockParameterSize(P6)
+  %assign param_width6 = nelements6[0] * nelements6[1]  
+  %if (param_width6) > 1  
+   %assign pp6 = LibBlockMatrixParameterBaseAddr(P6)
+  %else  
+   %assign pp6 = LibBlockParameterAddr(P6, "", "", 0)
+  %endif 
+  %assign nelements7 = LibBlockParameterSize(P7)
+  %assign param_width7 = nelements7[0] * nelements7[1]  
+  %if (param_width7) > 1  
+   %assign pp7 = LibBlockMatrixParameterBaseAddr(P7)
+  %else  
+   %assign pp7 = LibBlockParameterAddr(P7, "", "", 0)
+  %endif 
+  %assign nelements8 = LibBlockParameterSize(P8)
+  %assign param_width8 = nelements8[0] * nelements8[1]  
+  %if (param_width8) > 1  
+   %assign pp8 = LibBlockMatrixParameterBaseAddr(P8)
+  %else  
+   %assign pp8 = LibBlockParameterAddr(P8, "", "", 0)
+  %endif 
+  %assign nelements9 = LibBlockParameterSize(P9)
+  %assign param_width9 = nelements9[0] * nelements9[1]  
+  %if (param_width9) > 1  
+   %assign pp9 = LibBlockMatrixParameterBaseAddr(P9)
+  %else  
+   %assign pp9 = LibBlockParameterAddr(P9, "", "", 0)
+  %endif 
+  %assign nelements10 = LibBlockParameterSize(P10)
+  %assign param_width10 = nelements10[0] * nelements10[1]  
+  %if (param_width10) > 1  
+   %assign pp10 = LibBlockMatrixParameterBaseAddr(P10)
+  %else  
+   %assign pp10 = LibBlockParameterAddr(P10, "", "", 0)
+  %endif 
+  %assign nelements11 = LibBlockParameterSize(P11)
+  %assign param_width11 = nelements11[0] * nelements11[1]  
+  %if (param_width11) > 1  
+   %assign pp11 = LibBlockMatrixParameterBaseAddr(P11)
+  %else  
+   %assign pp11 = LibBlockParameterAddr(P11, "", "", 0)
+  %endif 
+  %assign nelements12 = LibBlockParameterSize(P12)
+  %assign param_width12 = nelements12[0] * nelements12[1]  
+  %if (param_width12) > 1  
+   %assign pp12 = LibBlockMatrixParameterBaseAddr(P12)
+  %else  
+   %assign pp12 = LibBlockParameterAddr(P12, "", "", 0)
+  %endif 
+  %assign nelements13 = LibBlockParameterSize(P13)
+  %assign param_width13 = nelements13[0] * nelements13[1]  
+  %if (param_width13) > 1  
+   %assign pp13 = LibBlockMatrixParameterBaseAddr(P13)
+  %else  
+   %assign pp13 = LibBlockParameterAddr(P13, "", "", 0)
+  %endif 
+  %assign nelements14 = LibBlockParameterSize(P14)
+  %assign param_width14 = nelements14[0] * nelements14[1]  
+  %if (param_width14) > 1  
+   %assign pp14 = LibBlockMatrixParameterBaseAddr(P14)
+  %else  
+   %assign pp14 = LibBlockParameterAddr(P14, "", "", 0)
+  %endif 
+  %assign nelements15 = LibBlockParameterSize(P15)
+  %assign param_width15 = nelements15[0] * nelements15[1]  
+  %if (param_width15) > 1  
+   %assign pp15 = LibBlockMatrixParameterBaseAddr(P15)
+  %else  
+   %assign pp15 = LibBlockParameterAddr(P15, "", "", 0)
+  %endif 
+  %assign nelements16 = LibBlockParameterSize(P16)
+  %assign param_width16 = nelements16[0] * nelements16[1]  
+  %if (param_width16) > 1  
+   %assign pp16 = LibBlockMatrixParameterBaseAddr(P16)
+  %else  
+   %assign pp16 = LibBlockParameterAddr(P16, "", "", 0)
+  %endif 
+  %assign nelements17 = LibBlockParameterSize(P17)
+  %assign param_width17 = nelements17[0] * nelements17[1]  
+  %if (param_width17) > 1  
+   %assign pp17 = LibBlockMatrixParameterBaseAddr(P17)
+  %else  
+   %assign pp17 = LibBlockParameterAddr(P17, "", "", 0)
+  %endif 
+  %assign nelements18 = LibBlockParameterSize(P18)
+  %assign param_width18 = nelements18[0] * nelements18[1]  
+  %if (param_width18) > 1  
+   %assign pp18 = LibBlockMatrixParameterBaseAddr(P18)
+  %else  
+   %assign pp18 = LibBlockParameterAddr(P18, "", "", 0)
+  %endif 
+  %assign nelements19 = LibBlockParameterSize(P19)
+  %assign param_width19 = nelements19[0] * nelements19[1]  
+  %if (param_width19) > 1  
+   %assign pp19 = LibBlockMatrixParameterBaseAddr(P19)
+  %else  
+   %assign pp19 = LibBlockParameterAddr(P19, "", "", 0)
+  %endif 
+  %assign nelements20 = LibBlockParameterSize(P20)
+  %assign param_width20 = nelements20[0] * nelements20[1]  
+  %if (param_width20) > 1  
+   %assign pp20 = LibBlockMatrixParameterBaseAddr(P20)
+  %else  
+   %assign pp20 = LibBlockParameterAddr(P20, "", "", 0)
+  %endif 
+  %assign nelements21 = LibBlockParameterSize(P21)
+  %assign param_width21 = nelements21[0] * nelements21[1]  
+  %if (param_width21) > 1  
+   %assign pp21 = LibBlockMatrixParameterBaseAddr(P21)
+  %else  
+   %assign pp21 = LibBlockParameterAddr(P21, "", "", 0)
+  %endif 
+  %assign nelements22 = LibBlockParameterSize(P22)
+  %assign param_width22 = nelements22[0] * nelements22[1]  
+  %if (param_width22) > 1  
+   %assign pp22 = LibBlockMatrixParameterBaseAddr(P22)
+  %else  
+   %assign pp22 = LibBlockParameterAddr(P22, "", "", 0)
+  %endif 
+  %assign nelements23 = LibBlockParameterSize(P23)
+  %assign param_width23 = nelements23[0] * nelements23[1]  
+  %if (param_width23) > 1  
+   %assign pp23 = LibBlockMatrixParameterBaseAddr(P23)
+  %else  
+   %assign pp23 = LibBlockParameterAddr(P23, "", "", 0)
+  %endif 
+  %assign nelements24 = LibBlockParameterSize(P24)
+  %assign param_width24 = nelements24[0] * nelements24[1]  
+  %if (param_width24) > 1  
+   %assign pp24 = LibBlockMatrixParameterBaseAddr(P24)
+  %else  
+   %assign pp24 = LibBlockParameterAddr(P24, "", "", 0)
+  %endif 
+  %assign nelements25 = LibBlockParameterSize(P25)
+  %assign param_width25 = nelements25[0] * nelements25[1]  
+  %if (param_width25) > 1  
+   %assign pp25 = LibBlockMatrixParameterBaseAddr(P25)
+  %else  
+   %assign pp25 = LibBlockParameterAddr(P25, "", "", 0)
+  %endif 
+  %assign nelements26 = LibBlockParameterSize(P26)
+  %assign param_width26 = nelements26[0] * nelements26[1]  
+  %if (param_width26) > 1  
+   %assign pp26 = LibBlockMatrixParameterBaseAddr(P26)
+  %else  
+   %assign pp26 = LibBlockParameterAddr(P26, "", "", 0)
+  %endif 
+  %assign nelements27 = LibBlockParameterSize(P27)
+  %assign param_width27 = nelements27[0] * nelements27[1]  
+  %if (param_width27) > 1  
+   %assign pp27 = LibBlockMatrixParameterBaseAddr(P27)
+  %else  
+   %assign pp27 = LibBlockParameterAddr(P27, "", "", 0)
+  %endif 
+  %assign nelements28 = LibBlockParameterSize(P28)
+  %assign param_width28 = nelements28[0] * nelements28[1]  
+  %if (param_width28) > 1  
+   %assign pp28 = LibBlockMatrixParameterBaseAddr(P28)
+  %else  
+   %assign pp28 = LibBlockParameterAddr(P28, "", "", 0)
+  %endif 
+  %assign nelements29 = LibBlockParameterSize(P29)
+  %assign param_width29 = nelements29[0] * nelements29[1]  
+  %if (param_width29) > 1  
+   %assign pp29 = LibBlockMatrixParameterBaseAddr(P29)
+  %else  
+   %assign pp29 = LibBlockParameterAddr(P29, "", "", 0)
+  %endif 
+  %assign nelements30 = LibBlockParameterSize(P30)
+  %assign param_width30 = nelements30[0] * nelements30[1]  
+  %if (param_width30) > 1  
+   %assign pp30 = LibBlockMatrixParameterBaseAddr(P30)
+  %else  
+   %assign pp30 = LibBlockParameterAddr(P30, "", "", 0)
+  %endif 
+  %assign nelements31 = LibBlockParameterSize(P31)
+  %assign param_width31 = nelements31[0] * nelements31[1]  
+  %if (param_width31) > 1  
+   %assign pp31 = LibBlockMatrixParameterBaseAddr(P31)
+  %else  
+   %assign pp31 = LibBlockParameterAddr(P31, "", "", 0)
+  %endif 
+  %assign nelements32 = LibBlockParameterSize(P32)
+  %assign param_width32 = nelements32[0] * nelements32[1]  
+  %if (param_width32) > 1  
+   %assign pp32 = LibBlockMatrixParameterBaseAddr(P32)
+  %else  
+   %assign pp32 = LibBlockParameterAddr(P32, "", "", 0)
+  %endif 
+  %assign nelements33 = LibBlockParameterSize(P33)
+  %assign param_width33 = nelements33[0] * nelements33[1]  
+  %if (param_width33) > 1  
+   %assign pp33 = LibBlockMatrixParameterBaseAddr(P33)
+  %else  
+   %assign pp33 = LibBlockParameterAddr(P33, "", "", 0)
+  %endif 
+  %assign nelements34 = LibBlockParameterSize(P34)
+  %assign param_width34 = nelements34[0] * nelements34[1]  
+  %if (param_width34) > 1  
+   %assign pp34 = LibBlockMatrixParameterBaseAddr(P34)
+  %else  
+   %assign pp34 = LibBlockParameterAddr(P34, "", "", 0)
+  %endif 
+  %assign nelements35 = LibBlockParameterSize(P35)
+  %assign param_width35 = nelements35[0] * nelements35[1]  
+  %if (param_width35) > 1  
+   %assign pp35 = LibBlockMatrixParameterBaseAddr(P35)
+  %else  
+   %assign pp35 = LibBlockParameterAddr(P35, "", "", 0)
+  %endif 
+  %assign nelements36 = LibBlockParameterSize(P36)
+  %assign param_width36 = nelements36[0] * nelements36[1]  
+  %if (param_width36) > 1  
+   %assign pp36 = LibBlockMatrixParameterBaseAddr(P36)
+  %else  
+   %assign pp36 = LibBlockParameterAddr(P36, "", "", 0)
+  %endif 
+  %assign nelements37 = LibBlockParameterSize(P37)
+  %assign param_width37 = nelements37[0] * nelements37[1]  
+  %if (param_width37) > 1  
+   %assign pp37 = LibBlockMatrixParameterBaseAddr(P37)
+  %else  
+   %assign pp37 = LibBlockParameterAddr(P37, "", "", 0)
+  %endif 
+  %assign nelements38 = LibBlockParameterSize(P38)
+  %assign param_width38 = nelements38[0] * nelements38[1]  
+  %if (param_width38) > 1  
+   %assign pp38 = LibBlockMatrixParameterBaseAddr(P38)
+  %else  
+   %assign pp38 = LibBlockParameterAddr(P38, "", "", 0)
+  %endif 
+  %assign nelements39 = LibBlockParameterSize(P39)
+  %assign param_width39 = nelements39[0] * nelements39[1]  
+  %if (param_width39) > 1  
+   %assign pp39 = LibBlockMatrixParameterBaseAddr(P39)
+  %else  
+   %assign pp39 = LibBlockParameterAddr(P39, "", "", 0)
+  %endif 
+  %assign nelements40 = LibBlockParameterSize(P40)
+  %assign param_width40 = nelements40[0] * nelements40[1]  
+  %if (param_width40) > 1  
+   %assign pp40 = LibBlockMatrixParameterBaseAddr(P40)
+  %else  
+   %assign pp40 = LibBlockParameterAddr(P40, "", "", 0)
+  %endif 
+  %assign nelements41 = LibBlockParameterSize(P41)
+  %assign param_width41 = nelements41[0] * nelements41[1]  
+  %if (param_width41) > 1  
+   %assign pp41 = LibBlockMatrixParameterBaseAddr(P41)
+  %else  
+   %assign pp41 = LibBlockParameterAddr(P41, "", "", 0)
+  %endif
+  
+  %% rpi_sfun_dxl_Outputs_wrapper(%<pu0>, %<pu1>, %<pu2>, %<pu3>, %<pu4>, %<pu5>, %<pu6>, %<pu7>, %<pu8>, %<pu9>, %<py0>, %<py1>, %<py2>, %<py3>, %<py4>, %<py5>, %<py6>, %<py7>, %<py8>, %<py9>,  %<pp1>, %<param_width1>,  %<pp2>,       %<param_width2>,  %<pp3>,       %<param_width3>,  %<pp4>,      %<param_width4>,  %<pp5>,   %<param_width5>,  %<pp6>,    %<param_width6>,  %<pp7>,         %<param_width7>,  %<pp8>,           %<param_width8>,  %<pp9>,        %<param_width9>,  %<pp10>, %<param_width10>,  %<pp11>,       %<param_width11>,  %<pp12>,        %<param_width12>,  %<pp13>,          %<param_width13>,  %<pp14>,        %<param_width14>,  %<pp15>, %<param_width15>,  %<pp16>, %<param_width16>,  %<pp17>,        %<param_width17>,  %<pp18>,        %<param_width18>,  %<pp19>,          %<param_width19>,  %<pp20>,        %<param_width20>,  %<pp21>,        %<param_width21>,  %<pp22>,          %<param_width22>,  %<pp23>,        %<param_width23>,  %<pp24>,        %<param_width24>,  %<pp25>,          %<param_width25>,  %<pp26>,        %<param_width26>,  %<pp27>,        %<param_width27>,  %<pp28>,          %<param_width28>,  %<pp29>,        %<param_width29>,  %<pp30>,        %<param_width30>,  %<pp31>,          %<param_width31>,  %<pp32>,        %<param_width32>,  %<pp33>,        %<param_width33>,  %<pp34>,          %<param_width34>,  %<pp35>,        %<param_width35>,  %<pp36>,        %<param_width36>,  %<pp37>,         %<param_width37>,  %<pp38>,        %<param_width38>,  %<pp39>,        %<param_width39>,  %<pp40>,         %<param_width40>, %<pp41>,        %<param_width41>);
+  %% rpi_sfun_dxl_Outputs_wrapper(u1,     u2,     u3,     u4,     u5,     u6,     u7,     u8,     u9,     u10,    y1,     y2,     y3,     y4,     y5,     y6,     y7,     y8,     y9,     y10,     rpi_Ts, p_width0,         rpi_portname, p_width1,         rpi_baudrate, p_width2,         rpi_startid, p_width3,         rpi_nbid, p_width4,         rpi_proto, p_width5,         rpi_write_addr, p_width6,         rpi_write_length, p_width7,         rpi_read_addr, p_width8, rpi_read_length, p_width9,          rpi_read_sign, p_width10,         rpi_init1_addr, p_width11,         rpi_init1_length, p_width12,         rpi_init1_data, p_width13, rpi_init2_addr, p_width14, rpi_init2_length, p_width15,         rpi_init2_data, p_width16,         rpi_init3_addr, p_width17,         rpi_init3_length, p_width18,         rpi_init3_data, p_width19,         rpi_init4_addr, p_width20,         rpi_init4_length, p_width21,         rpi_init4_data, p_width22,         rpi_init5_addr, p_width23,         rpi_init5_length, p_width24,         rpi_init5_data, p_width25,         rpi_init6_addr, p_width26,         rpi_init6_length, p_width27,         rpi_init6_data, p_width28,         rpi_init7_addr, p_width29,         rpi_init7_length, p_width30,         rpi_init7_data, p_width31,         rpi_init8_addr, p_width32,         rpi_init8_length, p_width33,         rpi_init8_data, p_width34,         rpi_halt1_addr, p_width35,         rpi_halt1_length, p_width36,        rpi_halt1_data, p_width37,         rpi_halt2_addr, p_width38,         rpi_halt2_length, p_width39,       rpi_halt2_data, p_width40);
+  rpi_sfun_dxl_Terminate_wrapper(%<pp1>, %<pp2>, %<pp3>, %<pp4>, %<pp5>, %<pp6>, %<pp7>, %<pp8>, %<pp9>, %<pp10>, %<pp11>, %<pp36>, %<pp37>, %<pp38>, %<pp39>, %<pp40>, %<pp41>);
 
 %endfunction
 

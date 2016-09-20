@@ -456,6 +456,9 @@ void rpi_sfun_dxl_Start_wrapper(
   
   /* Instruction 1 */
   
+  if ( !*rpi_init1_addr )
+    goto skip_remaining;
+  
   for ( i = 0; i < *rpi_nbid; i++ )
     data[i] = *rpi_init1_data;
   err = dxl_write(
@@ -471,7 +474,10 @@ void rpi_sfun_dxl_Start_wrapper(
     return;
   }
  
- /* Instruction 2 */
+  /* Instruction 2 */
+  
+  if ( !*rpi_init2_addr )
+    goto skip_remaining;
   
   for ( i = 0; i < *rpi_nbid; i++ )
     data[i] = *rpi_init2_data;
@@ -490,6 +496,9 @@ void rpi_sfun_dxl_Start_wrapper(
   
   /* Instruction 3 */
   
+  if ( !*rpi_init3_addr )
+    goto skip_remaining;
+  
   for ( i = 0; i < *rpi_nbid; i++ )
     data[i] = *rpi_init3_data;
   err = dxl_write(
@@ -506,6 +515,9 @@ void rpi_sfun_dxl_Start_wrapper(
   }
   
   /* Instruction 4 */
+  
+  if ( !*rpi_init4_addr )
+    goto skip_remaining;
   
   for ( i = 0; i < *rpi_nbid; i++ )
     data[i] = *rpi_init4_data;
@@ -524,6 +536,9 @@ void rpi_sfun_dxl_Start_wrapper(
   
   /* Instruction 5 */
   
+  if ( !*rpi_init5_addr )
+    goto skip_remaining;
+  
   for ( i = 0; i < *rpi_nbid; i++ )
     data[i] = *rpi_init5_data;
   err = dxl_write(
@@ -540,6 +555,9 @@ void rpi_sfun_dxl_Start_wrapper(
   }
   
   /* Instruction 6 */
+  
+  if ( !*rpi_ini6_addr )
+    goto skip_remaining;
   
   for ( i = 0; i < *rpi_nbid; i++ )
     data[i] = *rpi_init6_data;
@@ -558,6 +576,9 @@ void rpi_sfun_dxl_Start_wrapper(
   
   /* Instruction 7 */
   
+  if ( !*rpi_init7_addr )
+    goto skip_remaining;
+  
   for ( i = 0; i < *rpi_nbid; i++ )
     data[i] = *rpi_init7_data;
   err = dxl_write(
@@ -575,6 +596,9 @@ void rpi_sfun_dxl_Start_wrapper(
   
   /* Instruction 8 */
   
+  if ( !*rpi_init8_addr )
+    goto skip_remaining;
+  
   for ( i = 0; i < *rpi_nbid; i++ )
     data[i] = *rpi_init8_data;
   err = dxl_write(
@@ -590,6 +614,7 @@ void rpi_sfun_dxl_Start_wrapper(
     return;
   }
   
+  skip_remaining:
   fprintf( stderr, "** Device %s successfully initialized **\n", dxl_portnb2portname( *rpi_portname ) );
   
   #endif
@@ -641,6 +666,9 @@ void rpi_sfun_dxl_Terminate_wrapper(
   
   /* Instruction 1 */
   
+  if ( !*rpi_halt1_addr )
+    goto skip_remaining;
+  
   for ( i = 0; i < *rpi_nbid; i++ )
     data[i] = *rpi_halt1_data;
   err = dxl_write(
@@ -656,7 +684,10 @@ void rpi_sfun_dxl_Terminate_wrapper(
     return;
   }
  
- /* Instruction 2 */
+  /* Instruction 2 */
+  
+  if ( !*rpi_halt2_addr )
+    goto skip_remaining;
   
   for ( i = 0; i < *rpi_nbid; i++ )
     data[i] = *rpi_halt2_data;
@@ -675,6 +706,8 @@ void rpi_sfun_dxl_Terminate_wrapper(
   
   /* Close serial link */
   
+  skip_remaining:
+    
   dxl_close( dxl_portnb2portname( *rpi_portname ) );
   
   fprintf( stderr, "** Device %s successfully halted **\n", dxl_portnb2portname( *rpi_portname ) );
