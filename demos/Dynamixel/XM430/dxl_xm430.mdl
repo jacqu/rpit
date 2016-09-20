@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.4"
+    ComputedModelVersion    "1.5"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -37,9 +37,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jacques"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Sep 02 16:52:33 2016"
+  LastModifiedDate	  "Tue Sep 20 16:27:57 2016"
   RTWModifiedTimeStamp	  0
-  ModelVersionFormat	  "1.%<AutoIncrement:4>"
+  ModelVersionFormat	  "1.%<AutoIncrement:5>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -63,7 +63,7 @@ Model {
   StatusBar		  on
   BrowserShowLibraryLinks off
   BrowserLookUnderMasks	  off
-  SimulationMode	  "normal"
+  SimulationMode	  "external"
   LinearizationMsg	  "none"
   Profile		  off
   ParamWorkspaceSource	  "MATLABWorkspace"
@@ -658,6 +658,7 @@ Model {
 	PropName		"Components"
       }
       Name		      "Configuration"
+      ExtraOptions	      "-aGenerateTraceInfo=0 -aIgnoreTestpoints=0 "
       CurrentDlgPage	      "Real-Time Workshop/Interface"
       ConfigPrmDlgPosition    " [ 400, 210, 1280, 840 ] "
     }
@@ -744,7 +745,7 @@ Model {
   }
   System {
     Name		    "dxl_xm430"
-    Location		    [96, 94, 1020, 607]
+    Location		    [785, 171, 1709, 684]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -907,13 +908,15 @@ Model {
       Ports		      [1]
       Position		      [730, 84, 760, 116]
       Floating		      off
-      Location		      [188, 390, 512, 629]
+      Location		      [1, 49, 1681, 947]
       Open		      off
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
+      YMin		      "-500"
+      YMax		      "500"
       DataFormat	      "StructureWithTime"
       SampleTime	      "0"
     }

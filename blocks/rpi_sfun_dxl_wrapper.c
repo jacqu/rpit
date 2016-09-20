@@ -556,7 +556,7 @@ void rpi_sfun_dxl_Start_wrapper(
   
   /* Instruction 6 */
   
-  if ( !*rpi_ini6_addr )
+  if ( !*rpi_init6_addr )
     goto skip_remaining;
   
   for ( i = 0; i < *rpi_nbid; i++ )
