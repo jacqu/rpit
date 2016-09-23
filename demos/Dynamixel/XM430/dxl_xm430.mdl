@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.5"
+    ComputedModelVersion    "1.22"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -31,15 +31,17 @@ Model {
   MinMaxOverflowLogging	  "UseLocalSettings"
   MinMaxOverflowArchiveMode "Overwrite"
   MaxMDLFileLineLength	  120
+  InitFcn		  "init_fun;"
+  StopFcn		  "save last_positions;"
   Created		  "Fri Sep 02 16:40:48 2016"
   Creator		  "jacques"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jacques"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Sep 20 16:27:57 2016"
-  RTWModifiedTimeStamp	  0
-  ModelVersionFormat	  "1.%<AutoIncrement:5>"
+  LastModifiedDate	  "Fri Sep 23 15:06:05 2016"
+  RTWModifiedTimeStamp	  396529331
+  ModelVersionFormat	  "1.%<AutoIncrement:22>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -714,6 +716,38 @@ Model {
       PreserveConstantTs      off
     }
     Block {
+      BlockType		      DiscreteIntegrator
+      IntegratorMethod	      "Integration: Forward Euler"
+      gainval		      "1.0"
+      ExternalReset	      "none"
+      InitialConditionSource  "internal"
+      InitialCondition	      "0"
+      InitialConditionMode    "State and output"
+      SampleTime	      "1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	off
+      LimitOutput	      off
+      UpperSaturationLimit    "inf"
+      LowerSaturationLimit    "-inf"
+      ShowSaturationPort      off
+      ShowStatePort	      off
+      IgnoreLimit	      off
+      StateMustResolveToSignalObject off
+      RTWStateStorageClass    "Auto"
+    }
+    Block {
+      BlockType		      Mux
+      Inputs		      "4"
+      DisplayOption	      "none"
+      UseBusObject	      off
+      BusObject		      "BusObject"
+      NonVirtualBus	      off
+    }
+    Block {
       BlockType		      Scope
       ModelBased	      off
       TickLabels	      "OneTimeTick"
@@ -740,12 +774,36 @@ Model {
       VectorParams1D	      on
     }
     Block {
+      BlockType		      Sum
+      IconShape		      "rectangular"
+      Inputs		      "++"
+      CollapseMode	      "All dimensions"
+      CollapseDim	      "1"
+      InputSameDT	      on
+      AccumDataTypeStr	      "Inherit: Inherit via internal rule"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Same as first input"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
       BlockType		      Terminator
+    }
+    Block {
+      BlockType		      ToWorkspace
+      VariableName	      "simulink_output"
+      MaxDataPoints	      "1000"
+      Decimation	      "1"
+      SampleTime	      "0"
+      FixptAsFi		      off
     }
   }
   System {
     Name		    "dxl_xm430"
-    Location		    [785, 171, 1709, 684]
+    Location		    [443, 153, 1306, 666]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -759,12 +817,12 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "21"
+    SIDHighWatermark	    "37"
     Block {
       BlockType		      Constant
       Name		      "Constant"
       SID		      "11"
-      Position		      [275, 120, 305, 150]
+      Position		      [275, 165, 305, 195]
       ShowName		      off
       Value		      "0"
       SampleTime	      "0.01"
@@ -773,7 +831,7 @@ Model {
       BlockType		      Constant
       Name		      "Constant1"
       SID		      "12"
-      Position		      [275, 155, 305, 185]
+      Position		      [275, 200, 305, 230]
       ShowName		      off
       Value		      "0"
       SampleTime	      "0.01"
@@ -782,7 +840,7 @@ Model {
       BlockType		      Constant
       Name		      "Constant2"
       SID		      "13"
-      Position		      [275, 225, 305, 255]
+      Position		      [275, 270, 305, 300]
       ShowName		      off
       Value		      "0"
       SampleTime	      "0.01"
@@ -791,7 +849,7 @@ Model {
       BlockType		      Constant
       Name		      "Constant3"
       SID		      "14"
-      Position		      [275, 190, 305, 220]
+      Position		      [275, 235, 305, 265]
       ShowName		      off
       Value		      "0"
       SampleTime	      "0.01"
@@ -800,7 +858,7 @@ Model {
       BlockType		      Constant
       Name		      "Constant4"
       SID		      "15"
-      Position		      [275, 260, 305, 290]
+      Position		      [275, 305, 305, 335]
       ShowName		      off
       Value		      "0"
       SampleTime	      "0.01"
@@ -809,7 +867,7 @@ Model {
       BlockType		      Constant
       Name		      "Constant5"
       SID		      "16"
-      Position		      [275, 295, 305, 325]
+      Position		      [275, 340, 305, 370]
       ShowName		      off
       Value		      "0"
       SampleTime	      "0.01"
@@ -818,7 +876,7 @@ Model {
       BlockType		      Constant
       Name		      "Constant6"
       SID		      "17"
-      Position		      [275, 330, 305, 360]
+      Position		      [275, 375, 305, 405]
       ShowName		      off
       Value		      "0"
       SampleTime	      "0.01"
@@ -827,7 +885,7 @@ Model {
       BlockType		      Constant
       Name		      "Constant7"
       SID		      "18"
-      Position		      [275, 365, 305, 395]
+      Position		      [275, 410, 305, 440]
       ShowName		      off
       Value		      "0"
       SampleTime	      "0.01"
@@ -836,17 +894,30 @@ Model {
       BlockType		      Constant
       Name		      "Constant8"
       SID		      "19"
-      Position		      [275, 400, 305, 430]
+      Position		      [275, 445, 305, 475]
       ShowName		      off
       Value		      "0"
       SampleTime	      "0.01"
+    }
+    Block {
+      BlockType		      DiscreteIntegrator
+      Name		      "Discrete-Time\nIntegrator"
+      SID		      "33"
+      Ports		      [2, 1]
+      Position		      [150, 126, 205, 159]
+      IntegratorMethod	      "Integration: Trapezoidal"
+      ExternalReset	      "none"
+      InitialConditionSource  "external"
+      SampleTime	      "0.01"
+      ICPrevOutput	      "DiscIntNeverNeededParam"
+      ICPrevScaledInput	      "DiscIntNeverNeededParam"
     }
     Block {
       BlockType		      Reference
       Name		      "Dynamixel XM 430"
       SID		      "1"
       Ports		      [10, 10]
-      Position		      [360, 79, 555, 436]
+      Position		      [360, 124, 555, 481]
       LibraryVersion	      "1.27"
       SourceBlock	      "rpi_blkst/Dynamixel"
       SourceType	      "Dynamixel actuator"
@@ -870,21 +941,21 @@ Model {
       rpi_mask_read_addr      "132"
       rpi_mask_read_length    "4"
       rpi_mask_read_sign      "1"
-      rpi_mask_init1_addr     "1"
+      rpi_mask_init1_addr     "11"
       rpi_mask_init1_length   "1"
       rpi_mask_init1_data     "4"
       rpi_mask_init2_addr     "80"
       rpi_mask_init2_length   "2"
-      rpi_mask_init2_data     "0"
+      rpi_mask_init2_data     "150"
       rpi_mask_init3_addr     "82"
       rpi_mask_init3_length   "2"
-      rpi_mask_init3_data     "0"
+      rpi_mask_init3_data     "2000"
       rpi_mask_init4_addr     "84"
       rpi_mask_init4_length   "2"
-      rpi_mask_init4_data     "800"
-      rpi_mask_init5_addr     "88"
+      rpi_mask_init4_data     "1500"
+      rpi_mask_init5_addr     "90"
       rpi_mask_init5_length   "2"
-      rpi_mask_init5_data     "0"
+      rpi_mask_init5_data     "200"
       rpi_mask_init6_addr     "90"
       rpi_mask_init6_length   "2"
       rpi_mask_init6_data     "0"
@@ -902,95 +973,145 @@ Model {
       rpi_mask_halt2_data     "0"
     }
     Block {
+      BlockType		      Constant
+      Name		      "Initial value"
+      SID		      "32"
+      Position		      [15, 200, 100, 230]
+      Value		      "init_positions"
+      SampleTime	      "0.01"
+    }
+    Block {
+      BlockType		      Mux
+      Name		      "Mux"
+      SID		      "34"
+      Ports		      [2, 1]
+      Position		      [735, 116, 740, 154]
+      ShowName		      off
+      Inputs		      "2"
+      DisplayOption	      "bar"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Offset"
+      SID		      "23"
+      Position		      [135, 255, 165, 285]
+      Value		      "0"
+      SampleTime	      "0.01"
+    }
+    Block {
       BlockType		      Scope
       Name		      "Position"
       SID		      "20"
       Ports		      [1]
-      Position		      [730, 84, 760, 116]
+      Position		      [805, 119, 835, 151]
       Floating		      off
-      Location		      [1, 49, 1681, 947]
-      Open		      off
+      Location		      [524, 470, 1679, 982]
+      Open		      on
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      YMin		      "-500"
-      YMax		      "500"
+      YMin		      "2276"
+      YMax		      "2276"
       DataFormat	      "StructureWithTime"
       SampleTime	      "0"
     }
     Block {
       BlockType		      SignalGenerator
       Name		      "Signal\nGenerator"
-      SID		      "21"
+      SID		      "37"
       Ports		      [0, 1]
-      Position		      [110, 85, 140, 115]
+      Position		      [15, 120, 45, 150]
       WaveForm		      "square"
-      Amplitude		      "500"
+      Amplitude		      "5000"
+    }
+    Block {
+      BlockType		      Sum
+      Name		      "Sum"
+      SID		      "22"
+      Ports		      [2, 1]
+      Position		      [235, 135, 255, 155]
+      ShowName		      off
+      IconShape		      "round"
+      Inputs		      "|++"
+      InputSameDT	      off
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator"
       SID		      "2"
-      Position		      [585, 125, 605, 145]
+      Position		      [585, 170, 605, 190]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator1"
       SID		      "3"
-      Position		      [585, 160, 605, 180]
+      Position		      [585, 205, 605, 225]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator2"
       SID		      "4"
-      Position		      [585, 195, 605, 215]
+      Position		      [585, 240, 605, 260]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator3"
       SID		      "5"
-      Position		      [585, 230, 605, 250]
+      Position		      [585, 275, 605, 295]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator4"
       SID		      "6"
-      Position		      [585, 265, 605, 285]
+      Position		      [585, 310, 605, 330]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator5"
       SID		      "7"
-      Position		      [585, 300, 605, 320]
+      Position		      [585, 345, 605, 365]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator6"
       SID		      "8"
-      Position		      [585, 335, 605, 355]
+      Position		      [585, 380, 605, 400]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator7"
       SID		      "9"
-      Position		      [585, 370, 605, 390]
+      Position		      [585, 415, 605, 435]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator8"
       SID		      "10"
-      Position		      [585, 405, 605, 425]
+      Position		      [585, 450, 605, 470]
       ShowName		      off
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace"
+      SID		      "30"
+      Ports		      [1]
+      Position		      [705, 209, 795, 241]
+      VariableName	      "last_positions"
+      MaxDataPoints	      "1"
+      SampleTime	      "-1"
+      SaveFormat	      "Array"
     }
     Line {
       SrcBlock		      "Dynamixel XM 430"
@@ -1103,14 +1224,65 @@ Model {
     Line {
       SrcBlock		      "Dynamixel XM 430"
       SrcPort		      1
+      Points		      [115, 0]
+      Branch {
+	Points			[0, 80]
+	DstBlock		"To Workspace"
+	DstPort			1
+      }
+      Branch {
+	DstBlock		"Mux"
+	DstPort			2
+      }
+    }
+    Line {
+      SrcBlock		      "Sum"
+      SrcPort		      1
+      Points		      [60, 0]
+      Branch {
+	DstBlock		"Dynamixel XM 430"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, -65; 330, 0; 0, 45]
+	DstBlock		"Mux"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "Discrete-Time\nIntegrator"
+      SrcPort		      1
+      DstBlock		      "Sum"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Offset"
+      SrcPort		      1
+      Points		      [75, 0]
+      DstBlock		      "Sum"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Initial value"
+      SrcPort		      1
+      Points		      [5, 0; 0, -65]
+      DstBlock		      "Discrete-Time\nIntegrator"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Mux"
+      SrcPort		      1
       DstBlock		      "Position"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Signal\nGenerator"
       SrcPort		      1
-      DstBlock		      "Dynamixel XM 430"
+      DstBlock		      "Discrete-Time\nIntegrator"
       DstPort		      1
+    }
+    Annotation {
+      Position		      [708, 499]
     }
   }
 }
