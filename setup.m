@@ -39,8 +39,8 @@ end
 
 % Check for compatible matlab version
 mvernum = version( '-release' );
-if strcmp( mvernum, '2014a' ) || strcmp( mvernum, '2015a' ) || strcmp( mvernum, '2015b' )
-  disp( '  > Configuring TLC files for release 2014a, 2015a or 2015b.' );
+if strcmp( mvernum, '2014a' ) || strcmp( mvernum, '2015a' ) || strcmp( mvernum, '2015b' ) || strcmp( mvernum, '2016a' ) || strcmp( mvernum, '2016b' )
+  disp( '  > Configuring TLC files for release 2014a, 2015a, 2015b, 2016a and 2016b.' );
   copyfile('res/rpi_mrmain_2014a.tlc','rpit/rpi_mrmain.tlc');
   copyfile('res/rpi_srmain_2014a.tlc','rpit/rpi_srmain.tlc');
   copyfile('res/slblocks_2014a.m','blocks/slblocks.m');
@@ -64,7 +64,7 @@ else
         copyfile('res/slblocks_2010b.m','blocks/slblocks.m');
       else
         disp( '  > This release of Matlab is currently not supported.' );
-        disp( '  > Supported releases: 2010b, 2010b SP1, 2010b SP2, 2011a, 2012a, 2014a, 2015a, 2015b.' );
+        disp( '  > Supported releases: 2010b, 2010b SP1, 2010b SP2, 2011a, 2012a, 2014a, 2015a, 2015b, 2016a, 2016b.' );
         return;
       end
     end
@@ -283,7 +283,7 @@ else
       if isempty( strfind( out, 'x86' ) )
         disp( '  > Warning: unrecognized platform. Defaulting to ARM setup.' );
         copyfile('../res/rpi_callback_handler_arm.m','../rpit/rpi_callback_handler.m');
-        if strcmp( mvernum, '2014a' ) || strcmp( mvernum, '2015a' ) || strcmp( mvernum, '2015b' )
+        if strcmp( mvernum, '2014a' ) || strcmp( mvernum, '2015a' ) || strcmp( mvernum, '2015b' ) || strcmp( mvernum, '2016a' ) || strcmp( mvernum, '2016b' )
           copyfile('../res/ert_rpi_2014a_arm.tmf','../rpit/ert_rpi.tmf');
         else
           copyfile('../res/ert_rpi_2010b_arm.tmf','../rpit/ert_rpi.tmf');
@@ -291,7 +291,7 @@ else
       else
         disp( '  > Updating the TMF for x86 gcc optimizations.' );
         copyfile('../res/rpi_callback_handler_x86.m','../rpit/rpi_callback_handler.m');
-        if strcmp( mvernum, '2014a' ) || strcmp( mvernum, '2015a' ) || strcmp( mvernum, '2015b' )
+        if strcmp( mvernum, '2014a' ) || strcmp( mvernum, '2015a' ) || strcmp( mvernum, '2015b' ) || strcmp( mvernum, '2016a' ) || strcmp( mvernum, '2016b' )
           copyfile('../res/ert_rpi_2014a_x86.tmf','../rpit/ert_rpi.tmf');
         else
           copyfile('../res/ert_rpi_2010b_x86.tmf','../rpit/ert_rpi.tmf');
@@ -300,7 +300,7 @@ else
     else
       disp( '  > Updating the TMF for ARM gcc optimizations.' );
       copyfile('../res/rpi_callback_handler_arm.m','../rpit/rpi_callback_handler.m');
-      if strcmp( mvernum, '2014a' ) || strcmp( mvernum, '2015a' ) || strcmp( mvernum, '2015b' )
+      if strcmp( mvernum, '2014a' ) || strcmp( mvernum, '2015a' ) || strcmp( mvernum, '2015b' ) || strcmp( mvernum, '2016a' ) || strcmp( mvernum, '2016b' )
         copyfile('../res/ert_rpi_2014a_arm.tmf','../rpit/ert_rpi.tmf');
       else
         copyfile('../res/ert_rpi_2010b_arm.tmf','../rpit/ert_rpi.tmf');
@@ -310,7 +310,7 @@ else
   else
     disp( '  > Distant target is a RPI.' );
     copyfile('../res/rpi_callback_handler_arm.m','../rpit/rpi_callback_handler.m');
-    if strcmp( mvernum, '2014a' ) || strcmp( mvernum, '2015a' ) || strcmp( mvernum, '2015b' )
+    if strcmp( mvernum, '2014a' ) || strcmp( mvernum, '2015a' ) || strcmp( mvernum, '2015b' ) || strcmp( mvernum, '2016a' ) || strcmp( mvernum, '2016b' )
       copyfile('../res/ert_rpi_2014a_arm.tmf','../rpit/ert_rpi.tmf');
     else
       copyfile('../res/ert_rpi_2010b_arm.tmf','../rpit/ert_rpi.tmf');
@@ -332,7 +332,7 @@ command = sprintf( '%s -r %s pi@%s:./MATLAB/simulink', scp_command, [ '"' matlab
 [ status, out ] = system( command );
 command = sprintf( '%s -r %s pi@%s:./MATLAB/simulink', scp_command, [ '"' matlabroot '/simulink/src' '"' ], piip );
 [ status, out ] = system( command );
-if strcmp( mvernum, '2014a' ) || strcmp( mvernum, '2015a' ) || strcmp( mvernum, '2015b' )
+if strcmp( mvernum, '2014a' ) || strcmp( mvernum, '2015a' ) || strcmp( mvernum, '2015b' ) || strcmp( mvernum, '2016a' ) || strcmp( mvernum, '2016b' )
   command = sprintf( '%s -r %s pi@%s:./MATLAB/toolbox/coder/rtiostream/src', scp_command, [ '"' matlabroot '/toolbox/coder/rtiostream/src/utils' '"' ], piip );
   [ status, out ] = system( command );
 end

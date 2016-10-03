@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.22"
+    ComputedModelVersion    "1.23"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -39,9 +39,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jacques"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Sep 23 15:06:05 2016"
+  LastModifiedDate	  "Thu Sep 29 11:27:20 2016"
   RTWModifiedTimeStamp	  396529331
-  ModelVersionFormat	  "1.%<AutoIncrement:22>"
+  ModelVersionFormat	  "1.%<AutoIncrement:23>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -803,7 +803,7 @@ Model {
   }
   System {
     Name		    "dxl_xm430"
-    Location		    [443, 153, 1306, 666]
+    Location		    [382, 144, 1245, 657]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1005,15 +1005,15 @@ Model {
       Ports		      [1]
       Position		      [805, 119, 835, 151]
       Floating		      off
-      Location		      [524, 470, 1679, 982]
+      Location		      [285, 346, 1440, 858]
       Open		      on
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      YMin		      "2276"
-      YMax		      "2276"
+      YMin		      "-250"
+      YMax		      "2500"
       DataFormat	      "StructureWithTime"
       SampleTime	      "0"
     }
