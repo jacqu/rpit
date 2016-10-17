@@ -44,13 +44,13 @@
  */
 /* %%%-SFUNWIZ_wrapper_externs_Changes_BEGIN --- EDIT HERE TO _END */
 
+#define RPITJS_NB_AXES    8
+#define RPITJS_NB_BUTTONS 11
+
 #ifndef MATLAB_MEX_FILE
 
 #define RPITJS_API
 #include "rpit_js.c"
-
-#define RPITJS_NB_AXES    8
-#define RPITJS_NB_BUTTONS 11
 
 #endif
 
@@ -68,6 +68,8 @@ void rpi_sfun_js_Outputs_wrapper(real_T *Axes,
 /* %%%-SFUNWIZ_wrapper_Outputs_Changes_BEGIN --- EDIT HERE TO _END */
   
   int i;
+  (void)p_width0;
+  (void)p_width1;
 
   #ifdef MATLAB_MEX_FILE
 
@@ -104,7 +106,7 @@ void rpi_sfun_js_Outputs_wrapper(real_T *Axes,
         Axes[i] = 0.0;
     for ( i = 0; i < RPITJS_NB_BUTTONS; i++ )
       if ( i < rpitjs_struct[(int)*rpi_ID].nb_buttons )
-        Buttons[i] = rpitjs_struct[(int)*rpi_ID].buttons_values[i];
+        Buttons[i] = rpitjs_struct[(int)*rpi_ID].button_values[i];
       else
         Buttons[i] = 0.0;
   }
