@@ -94,7 +94,6 @@ up = regexprep(up,';','');          % Remove semicolon at end of userpath
 status = savepath( [ up filesep 'pathdef.m' ] );
 if status ~= 0,
   disp( '  > Could not save the Matlab search path for future sessions.' );
-  disp( '  > As a workaround, you mput ''path(pathdef);'' in ''startup.m'' in your userpath.' );
   cd( rpitdir );
   clear;
   return;
