@@ -89,20 +89,20 @@ mex rpi_sfun_js.c rpi_sfun_js_wrapper.c
 % Add target paths to matlab paths
 addpath( [ rpitdir '/blocks' ] );		% Path to the blockset
 addpath( [ rpitdir '/rpit' ] );			% Path to target files
-status = savepath;
+up = userpath;                      % Get userpath
+up = regexprep(up,';','');          % Remove semicolon at end of userpath
+status = savepath( [ up filesep 'pathdef.m' ] );
 if status ~= 0,
   disp( '  > Could not save the Matlab search path for future sessions.' );
-  disp( '  > To fix this, try to manually save the path using the ''Set Path'' UI button.' );
-  disp( '  > You will be asked to move the pathdef.m file to another location.' );
-  disp( [ '  > Simply move it to your userpath: ' userpath ] );
-  disp( '  > To automatically define the path on startup, put ''path(pathdef);'' in ''startup.m'' in your userpath.' );
-  disp( '  > Note that under Windows, you can also try to run Matlab as Administrator.' );
-  disp( '  > If nothing works, you may follow the instructions on this <a href = "http://www.mathworks.com/matlabcentral/answers/102037-how-can-i-move-the-pathdef-m-file-from-its-default-location-to-another-location-in-matlab-8-1-r20">link</a>.' );
-  disp( '  > When the problem is fixed, simply restart the setup.' );
+  disp( '  > As a workaround, you mput ''path(pathdef);'' in ''startup.m'' in your userpath.' );
   cd( rpitdir );
   clear;
   return;
+else
+  disp( '  > Saving Matlab search path in user path for future sessions.' );
+  disp( '  > Note: some releases (2015) may need to add ''path(pathdef);'' in ''startup.m'' in your userpath.' );
 end;
+path(pathdef);
 
 %
 % PC platform specific configuration
