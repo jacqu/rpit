@@ -1,27 +1,16 @@
 Model {
-  Name			  "EV3_test_RST"
+  Name			  "jitter"
   Version		  7.6
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.7"
+    ComputedModelVersion    "1.13"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
   SavedCharacterEncoding  "windows-1252"
-  slprops.hdlmdlprops {
-    $PropName		    "HDLParams"
-    $ObjectID		    1
-    Array {
-      Type		      "Cell"
-      Dimension		      2
-      Cell		      "HDLSubsystem"
-      Cell		      "EV3_test_RST"
-      PropName		      "mdlProps"
-    }
-  }
   SaveDefaultBlockParams  on
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
@@ -31,15 +20,15 @@ Model {
   MinMaxOverflowLogging	  "UseLocalSettings"
   MinMaxOverflowArchiveMode "Overwrite"
   MaxMDLFileLineLength	  120
-  Created		  "Tue Oct 29 14:42:02 2013"
-  Creator		  "jacques"
+  Created		  "Wed Aug 07 16:21:21 2013"
+  Creator		  "Jacques GANGLOFF"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jacques"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Oct 29 15:15:03 2013"
-  RTWModifiedTimeStamp	  304959423
-  ModelVersionFormat	  "1.%<AutoIncrement:7>"
+  LastModifiedDate	  "Mon Oct 31 14:10:26 2016"
+  RTWModifiedTimeStamp	  399823819
+  ModelVersionFormat	  "1.%<AutoIncrement:13>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -113,13 +102,13 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      2
+      $ObjectID		      1
       Version		      "1.10.0"
       Array {
 	Type			"Handle"
-	Dimension		9
+	Dimension		8
 	Simulink.SolverCC {
-	  $ObjectID		  3
+	  $ObjectID		  2
 	  Version		  "1.10.0"
 	  StartTime		  "0.0"
 	  StopTime		  "Inf"
@@ -153,7 +142,7 @@ Model {
 	  InsertRTBMode		  "Whenever possible"
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  4
+	  $ObjectID		  3
 	  Version		  "1.10.0"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
@@ -184,7 +173,7 @@ Model {
 	  Refine		  "1"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  5
+	  $ObjectID		  4
 	  Version		  "1.10.0"
 	  Array {
 	    Type		    "Cell"
@@ -231,7 +220,7 @@ Model {
 	  AccelVerboseBuild	  off
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  6
+	  $ObjectID		  5
 	  Version		  "1.10.0"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
@@ -316,7 +305,7 @@ Model {
 	  SFTransitionOutsideNaturalParentDiag "warning"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  7
+	  $ObjectID		  6
 	  Version		  "1.10.0"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
@@ -325,13 +314,13 @@ Model {
 	  ProdBitPerFloat	  32
 	  ProdBitPerDouble	  64
 	  ProdBitPerPointer	  32
-	  ProdLargestAtomicInteger "Long"
-	  ProdLargestAtomicFloat  "Double"
-	  ProdIntDivRoundTo	  "Undefined"
+	  ProdLargestAtomicInteger "Char"
+	  ProdLargestAtomicFloat  "None"
+	  ProdIntDivRoundTo	  "Zero"
 	  ProdEndianess		  "LittleEndian"
 	  ProdWordSize		  32
 	  ProdShiftRightIntArith  on
-	  ProdHWDeviceType	  "ARM Compatible->ARM 11"
+	  ProdHWDeviceType	  "Intel->x86/Pentium"
 	  TargetBitPerChar	  8
 	  TargetBitPerShort	  16
 	  TargetBitPerInt	  32
@@ -353,7 +342,7 @@ Model {
 	  ProdEqTarget		  on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  8
+	  $ObjectID		  7
 	  Version		  "1.10.0"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
@@ -368,7 +357,7 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  9
+	  $ObjectID		  8
 	  Version		  "1.10.0"
 	  SFSimEnableDebug	  on
 	  SFSimOverflowDetection  on
@@ -383,7 +372,7 @@ Model {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  10
+	  $ObjectID		  9
 	  Version		  "1.10.0"
 	  SystemTargetFile	  "ert_rpi.tlc"
 	  GenCodeOnly		  off
@@ -425,7 +414,7 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      11
+	      $ObjectID		      10
 	      Version		      "1.10.0"
 	      ForceParamTrailComments off
 	      GenerateComments	      on
@@ -464,7 +453,7 @@ Model {
 	    }
 	    Simulink.STFCustomTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      12
+	      $ObjectID		      11
 	      Version		      "1.10.0"
 	      Array {
 		Type			"Cell"
@@ -519,7 +508,7 @@ Model {
 		Dimension		1
 		Simulink.ERTTargetCC {
 		  $BackupClass		  "Simulink.TargetCC"
-		  $ObjectID		  13
+		  $ObjectID		  12
 		  Version		  "1.10.0"
 		  Array {
 		    Type		    "Cell"
@@ -642,31 +631,18 @@ Model {
 	    PropName		    "Components"
 	  }
 	}
-	hdlcoderui.hdlcc {
-	  $ObjectID		  14
-	  Version		  "1.10.0"
-	  Description		  "HDL Coder custom configuration component"
-	  Name			  "HDL Coder"
-	  Array {
-	    Type		    "Cell"
-	    Dimension		    1
-	    Cell		    ""
-	    PropName		    "HDLConfigFile"
-	  }
-	  HDLCActiveTab		  "0"
-	}
 	PropName		"Components"
       }
       Name		      "Configuration"
       ExtraOptions	      "-aGenerateTraceInfo=0 -aIgnoreTestpoints=0 "
       CurrentDlgPage	      "Real-Time Workshop/Interface"
-      ConfigPrmDlgPosition    " [ 168, 174, 1048, 804 ] "
+      ConfigPrmDlgPosition    " [ 280, 64, 1160, 694 ] "
     }
     PropName		    "ConfigurationSets"
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
-    $ObjectID		    2
+    $ObjectID		    1
   }
   BlockDefaults {
     ForegroundColor	    "black"
@@ -701,139 +677,8 @@ Model {
   }
   BlockParameterDefaults {
     Block {
-      BlockType		      Constant
-      Value		      "1"
-      VectorParams1D	      on
-      SamplingMode	      "Sample based"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: Inherit from 'Constant value'"
-      LockScale		      off
-      SampleTime	      "inf"
-      FramePeriod	      "inf"
-      PreserveConstantTs      off
-    }
-    Block {
-      BlockType		      DiscreteFilter
-      Numerator		      "[1]"
-      Denominator	      "[1 0.5]"
-      InitialStates	      "0"
-      SampleTime	      "-1"
-      a0EqualsOne	      off
-      NumCoefMin	      "[]"
-      NumCoefMax	      "[]"
-      DenCoefMin	      "[]"
-      DenCoefMax	      "[]"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      StateDataTypeStr	      "Inherit: Same as input"
-      NumCoefDataTypeStr      "Inherit: Inherit via internal rule"
-      DenCoefDataTypeStr      "Inherit: Inherit via internal rule"
-      NumProductDataTypeStr   "Inherit: Inherit via internal rule"
-      DenProductDataTypeStr   "Inherit: Inherit via internal rule"
-      NumAccumDataTypeStr     "Inherit: Inherit via internal rule"
-      DenAccumDataTypeStr     "Inherit: Inherit via internal rule"
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      LockScale		      off
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	off
-      StateMustResolveToSignalObject off
-      RTWStateStorageClass    "Auto"
-    }
-    Block {
-      BlockType		      DiscreteFir
-      CoefSource	      "Dialog parameters"
-      enableDSPFilters	      off
-      FirFiltStruct	      "Direct form"
-      SlFirFiltStruct	      "Direct form"
-      NumCoeffs		      "[0.5 0.5]"
-      IC		      "0"
-      SampleTime	      "-1"
-      CoefMin		      "[]"
-      CoefMax		      "[]"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      TapSumDataTypeStr	      "Inherit: Same as input"
-      CoefDataTypeStr	      "Inherit: Same word length as input"
-      ProductDataTypeStr      "Inherit: Inherit via internal rule"
-      AccumDataTypeStr	      "Inherit: Same as product output"
-      StateDataTypeStr	      "Inherit: Same as accumulator"
-      OutDataTypeStr	      "Inherit: Same as accumulator"
-      LockScale		      off
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	off
-    }
-    Block {
-      BlockType		      Gain
-      Gain		      "1"
-      Multiplication	      "Element-wise(K.*u)"
-      ParamMin		      "[]"
-      ParamMax		      "[]"
-      ParamDataTypeStr	      "Inherit: Same as input"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: Same as input"
-      LockScale		      off
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	on
-      SampleTime	      "-1"
-    }
-    Block {
-      BlockType		      Inport
-      Port		      "1"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: auto"
-      LockScale		      off
-      BusOutputAsStruct	      off
-      PortDimensions	      "-1"
-      VarSizeSig	      "Inherit"
-      SampleTime	      "-1"
-      SignalType	      "auto"
-      SamplingMode	      "auto"
-      LatchByDelayingOutsideSignal off
-      LatchInputForFeedbackSignals off
-      Interpolate	      on
-    }
-    Block {
-      BlockType		      Mux
-      Inputs		      "4"
-      DisplayOption	      "none"
-      UseBusObject	      off
-      BusObject		      "BusObject"
-      NonVirtualBus	      off
-    }
-    Block {
-      BlockType		      Outport
-      Port		      "1"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: auto"
-      LockScale		      off
-      BusOutputAsStruct	      off
-      PortDimensions	      "-1"
-      VarSizeSig	      "Inherit"
-      SampleTime	      "-1"
-      SignalType	      "auto"
-      SamplingMode	      "auto"
-      SourceOfInitialOutputValue "Dialog"
-      OutputWhenDisabled      "held"
-      InitialOutput	      "[]"
-    }
-    Block {
-      BlockType		      Saturate
-      UpperLimitSource	      "Dialog"
-      UpperLimit	      "0.5"
-      LowerLimitSource	      "Dialog"
-      LowerLimit	      "-0.5"
-      LinearizeAsGain	      on
-      ZeroCross		      on
-      SampleTime	      "-1"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: Same as input"
-      LockScale		      off
-      RndMeth		      "Floor"
+      BlockType		      DigitalClock
+      SampleTime	      "1"
     }
     Block {
       BlockType		      Scope
@@ -853,37 +698,6 @@ Model {
       SampleTime	      "-1"
     }
     Block {
-      BlockType		      SignalGenerator
-      WaveForm		      "sine"
-      TimeSource	      "Use simulation time"
-      Amplitude		      "1"
-      Frequency		      "1"
-      Units		      "Hertz"
-      VectorParams1D	      on
-    }
-    Block {
-      BlockType		      SubSystem
-      ShowPortLabels	      "FromPortIcon"
-      Permissions	      "ReadWrite"
-      PermitHierarchicalResolution "All"
-      TreatAsAtomicUnit	      off
-      CheckFcnCallInpInsideContextMsg off
-      SystemSampleTime	      "-1"
-      RTWFcnNameOpts	      "Auto"
-      RTWFileNameOpts	      "Auto"
-      RTWMemSecFuncInitTerm   "Inherit from model"
-      RTWMemSecFuncExecute    "Inherit from model"
-      RTWMemSecDataConstants  "Inherit from model"
-      RTWMemSecDataInternal   "Inherit from model"
-      RTWMemSecDataParameters "Inherit from model"
-      SimViewingDevice	      off
-      DataTypeOverride	      "UseLocalSettings"
-      DataTypeOverrideAppliesTo	"AllNumericTypes"
-      MinMaxOverflowLogging   "UseLocalSettings"
-      Variant		      off
-      GeneratePreprocessorConditionals off
-    }
-    Block {
       BlockType		      Sum
       IconShape		      "rectangular"
       Inputs		      "++"
@@ -899,21 +713,10 @@ Model {
       SaturateOnIntegerOverflow	on
       SampleTime	      "-1"
     }
-    Block {
-      BlockType		      Terminator
-    }
-    Block {
-      BlockType		      UnitDelay
-      X0		      "0"
-      InputProcessing	      "Inherited"
-      SampleTime	      "1"
-      StateMustResolveToSignalObject off
-      RTWStateStorageClass    "Auto"
-    }
   }
   System {
-    Name		    "EV3_test_RST"
-    Location		    [232, 260, 942, 605]
+    Name		    "jitter"
+    Location		    [374, 164, 910, 457]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -927,63 +730,55 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "32"
+    SIDHighWatermark	    "5"
     Block {
-      BlockType		      Constant
-      Name		      "Constant"
-      SID		      "26"
-      Position		      [295, 115, 325, 145]
-      ShowName		      off
-      Value		      "0"
-      SampleTime	      "0.01"
-    }
-    Block {
-      BlockType		      Constant
-      Name		      "Constant1"
-      SID		      "27"
-      Position		      [295, 170, 325, 200]
-      ShowName		      off
-      Value		      "0"
-      SampleTime	      "0.01"
-    }
-    Block {
-      BlockType		      Constant
-      Name		      "Constant2"
-      SID		      "28"
-      Position		      [295, 225, 325, 255]
-      ShowName		      off
-      Value		      "0"
+      BlockType		      DigitalClock
+      Name		      "Digital Clock"
+      SID		      "1"
+      Position		      [45, 138, 110, 162]
       SampleTime	      "0.01"
     }
     Block {
       BlockType		      Scope
-      Name		      "Control"
-      SID		      "32"
+      Name		      "Scope"
+      SID		      "4"
       Ports		      [1]
-      Position		      [340, 24, 370, 56]
+      Position		      [335, 69, 365, 101]
       Floating		      off
-      Location		      [188, 390, 512, 629]
-      Open		      on
+      Location		      [1, 49, 1441, 797]
+      Open		      off
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      YMin		      "-12.5"
-      YMax		      "15"
-      SaveName		      "ScopeData1"
+      YMin		      "-1.6e-005"
+      YMax		      "8e-006"
       DataFormat	      "StructureWithTime"
       SampleTime	      "0"
     }
     Block {
+      BlockType		      Sum
+      Name		      "Sum"
+      SID		      "2"
+      Ports		      [2, 1]
+      Position		      [235, 75, 255, 95]
+      ShowName		      off
+      IconShape		      "round"
+      Inputs		      "|+-"
+      InputSameDT	      off
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
       BlockType		      Reference
-      Name		      "EV3"
-      SID		      "18"
-      Ports		      [4, 8]
-      Position		      [395, 42, 470, 268]
-      LibraryVersion	      "1.10"
-      SourceBlock	      "rpi_blkst/EV3"
-      SourceType	      "LEGO EV3"
+      Name		      "Target time"
+      SID		      "5"
+      Ports		      [0, 1]
+      Position		      [50, 55, 105, 115]
+      LibraryVersion	      "1.33"
+      SourceBlock	      "rpi_blkst/Target time"
+      SourceType	      "RPI time"
       ShowPortLabels	      "FromPortIcon"
       SystemSampleTime	      "-1"
       FunctionWithSeparateData off
@@ -995,406 +790,31 @@ Model {
       GeneratePreprocessorConditionals off
       rpi_mask_Ts	      "0.01"
     }
-    Block {
-      BlockType		      SubSystem
-      Name		      "EV3 RST"
-      SID		      "12"
-      Ports		      [2, 1]
-      Position		      [210, 45, 290, 105]
-      MinAlgLoopOccurrences   off
-      PropExecContextOutsideSubsystem off
-      RTWSystemCode	      "Auto"
-      FunctionWithSeparateData off
-      Opaque		      off
-      RequestExecContextInheritance off
-      MaskHideContents	      off
-      MaskType		      "EV3 RST"
-      MaskDescription	      "RST position controller for EV3 motors"
-      MaskHelp		      "This RST controller is tuned to follow accurately class 2 references.\nIts sampling period is f"
-      "ixed and equal to 0.01s.\nIt is suited for the big motors: NXT motors and EV3 big motors."
-      MaskDisplay	      "disp('RST')\nport_label('input',1,'Ref')\nport_label('input',2,'Mes')\nport_label('output',1,"
-      "'U')"
-      MaskIconFrame	      on
-      MaskIconOpaque	      on
-      MaskIconRotate	      "none"
-      MaskPortRotate	      "default"
-      MaskIconUnits	      "autoscale"
-      System {
-	Name			"EV3 RST"
-	Location		[123, 432, 970, 715]
-	Open			off
-	ModelBrowserVisibility	off
-	ModelBrowserWidth	200
-	ScreenColor		"white"
-	PaperOrientation	"landscape"
-	PaperPositionMode	"auto"
-	PaperType		"A4"
-	PaperUnits		"centimeters"
-	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
-	TiledPageScale		1
-	ShowPageBoundaries	off
-	ZoomFactor		"100"
-	Block {
-	  BlockType		  Inport
-	  Name			  "In1"
-	  SID			  "14"
-	  Position		  [55, 78, 85, 92]
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Inport
-	  Name			  "In2"
-	  SID			  "15"
-	  Position		  [55, 168, 85, 182]
-	  Port			  "2"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  DiscreteFilter
-	  Name			  "1/S"
-	  SID			  "6"
-	  Ports			  [1, 1]
-	  Position		  [400, 62, 545, 108]
-	  Denominator		  "[ 1.000000000000000e+000 -1.397430293642954e+000 4.681814861160841e-001 -7.075119247313014e-002]"
-	  SampleTime		  "0.01"
-	  a0EqualsOne		  on
-	}
-	Block {
-	  BlockType		  DiscreteFir
-	  Name			  "R"
-	  SID			  "11"
-	  Ports			  [1, 1]
-	  Position		  [180, 153, 295, 197]
-	  NumCoeffs		  "[6.915174485840503e+002 -1.259172933566519e+003 5.714958970624333e+002]"
-	  SampleTime		  "0.01"
-	}
-	Block {
-	  BlockType		  Saturate
-	  Name			  "Saturation"
-	  SID			  "7"
-	  Ports			  [1, 1]
-	  Position		  [630, 70, 660, 100]
-	  InputPortMap		  "u0"
-	  UpperLimit		  "100"
-	  LowerLimit		  "-100"
-	  SampleTime		  "0.01"
-	}
-	Block {
-	  BlockType		  Sum
-	  Name			  "Sum"
-	  SID			  "8"
-	  Ports			  [2, 1]
-	  Position		  [340, 75, 360, 95]
-	  ShowName		  off
-	  IconShape		  "round"
-	  Inputs		  "|+-"
-	  InputSameDT		  off
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  DiscreteFir
-	  Name			  "T"
-	  SID			  "9"
-	  Ports			  [1, 1]
-	  Position		  [180, 63, 295, 107]
-	  NumCoeffs		  "[1.181478528937075e+004 -4.112324830972540e+004 5.385298179536037e+004 -3.146381703126604e+004 6.9231"
-	  "38668340286e+003]"
-	  SampleTime		  "0.01"
-	}
-	Block {
-	  BlockType		  UnitDelay
-	  Name			  "Unit Delay"
-	  SID			  "10"
-	  Position		  [570, 68, 605, 102]
-	  InputProcessing	  "Elements as channels (sample based)"
-	  SampleTime		  "0.01"
-	}
-	Block {
-	  BlockType		  Gain
-	  Name			  "deg->rad"
-	  SID			  "16"
-	  Position		  [110, 160, 140, 190]
-	  Gain			  "pi/180"
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	  SampleTime		  "0.01"
-	}
-	Block {
-	  BlockType		  Gain
-	  Name			  "deg->rad1"
-	  SID			  "17"
-	  Position		  [110, 70, 140, 100]
-	  Gain			  "pi/180"
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	  SampleTime		  "0.01"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "Out1"
-	  SID			  "13"
-	  Position		  [685, 78, 715, 92]
-	  IconDisplay		  "Port number"
-	}
-	Line {
-	  SrcBlock		  "T"
-	  SrcPort		  1
-	  DstBlock		  "Sum"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Sum"
-	  SrcPort		  1
-	  DstBlock		  "1/S"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "1/S"
-	  SrcPort		  1
-	  DstBlock		  "Unit Delay"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Unit Delay"
-	  SrcPort		  1
-	  DstBlock		  "Saturation"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "R"
-	  SrcPort		  1
-	  Points		  [50, 0]
-	  DstBlock		  "Sum"
-	  DstPort		  2
-	}
-	Line {
-	  SrcBlock		  "Saturation"
-	  SrcPort		  1
-	  DstBlock		  "Out1"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "In1"
-	  SrcPort		  1
-	  DstBlock		  "deg->rad1"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "In2"
-	  SrcPort		  1
-	  DstBlock		  "deg->rad"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "deg->rad"
-	  SrcPort		  1
-	  DstBlock		  "R"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "deg->rad1"
-	  SrcPort		  1
-	  DstBlock		  "T"
-	  DstPort		  1
-	}
-      }
-    }
-    Block {
-      BlockType		      Mux
-      Name		      "Mux"
-      SID		      "30"
-      Ports		      [2, 1]
-      Position		      [195, 181, 200, 219]
-      ShowName		      off
-      Inputs		      "2"
-      DisplayOption	      "bar"
-    }
-    Block {
-      BlockType		      Scope
-      Name		      "Ref & Mes"
-      SID		      "31"
-      Ports		      [1]
-      Position		      [235, 184, 265, 216]
-      Floating		      off
-      Location		      [5, 48, 1220, 947]
-      Open		      on
-      NumInputPorts	      "1"
-      List {
-	ListType		AxesTitles
-	axes1			"%<SignalLabel>"
-      }
-      YMin		      "-45"
-      YMax		      "45"
-      DataFormat	      "StructureWithTime"
-      SampleTime	      "0"
-    }
-    Block {
-      BlockType		      SignalGenerator
-      Name		      "Signal\nGenerator"
-      SID		      "29"
-      Ports		      [0, 1]
-      Position		      [110, 45, 140, 75]
-      Amplitude		      "0"
-      Frequency		      "0.5"
-    }
-    Block {
-      BlockType		      Terminator
-      Name		      "Terminator"
-      SID		      "19"
-      Position		      [585, 70, 605, 90]
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Terminator
-      Name		      "Terminator1"
-      SID		      "20"
-      Position		      [585, 100, 605, 120]
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Terminator
-      Name		      "Terminator2"
-      SID		      "21"
-      Position		      [585, 130, 605, 150]
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Terminator
-      Name		      "Terminator3"
-      SID		      "22"
-      Position		      [585, 160, 605, 180]
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Terminator
-      Name		      "Terminator4"
-      SID		      "23"
-      Position		      [585, 190, 605, 210]
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Terminator
-      Name		      "Terminator5"
-      SID		      "24"
-      Position		      [585, 220, 605, 240]
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Terminator
-      Name		      "Terminator6"
-      SID		      "25"
-      Position		      [585, 250, 605, 270]
-      ShowName		      off
-    }
     Line {
-      SrcBlock		      "EV3 RST"
+      SrcBlock		      "Digital Clock"
       SrcPort		      1
-      Points		      [20, 0]
-      Branch {
-	DstBlock		"EV3"
-	DstPort			1
-      }
-      Branch {
-	Points			[0, -35]
-	DstBlock		"Control"
-	DstPort			1
-      }
-    }
-    Line {
-      SrcBlock		      "EV3"
-      SrcPort		      1
-      Points		      [60, 0; 0, 255; -365, 0; 0, -95]
-      Branch {
-	Points			[0, -120]
-	DstBlock		"EV3 RST"
-	DstPort			2
-      }
-      Branch {
-	DstBlock		"Mux"
-	DstPort			2
-      }
-    }
-    Line {
-      SrcBlock		      "EV3"
-      SrcPort		      2
-      DstBlock		      "Terminator"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "EV3"
-      SrcPort		      3
-      DstBlock		      "Terminator1"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "EV3"
-      SrcPort		      4
-      DstBlock		      "Terminator2"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "EV3"
-      SrcPort		      5
-      DstBlock		      "Terminator3"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "EV3"
-      SrcPort		      6
-      DstBlock		      "Terminator4"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "EV3"
-      SrcPort		      7
-      DstBlock		      "Terminator5"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "EV3"
-      SrcPort		      8
-      DstBlock		      "Terminator6"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Constant"
-      SrcPort		      1
-      DstBlock		      "EV3"
+      Points		      [130, 0]
+      DstBlock		      "Sum"
       DstPort		      2
     }
     Line {
-      SrcBlock		      "Constant1"
+      SrcBlock		      "Target time"
       SrcPort		      1
-      DstBlock		      "EV3"
-      DstPort		      3
-    }
-    Line {
-      SrcBlock		      "Constant2"
-      SrcPort		      1
-      DstBlock		      "EV3"
-      DstPort		      4
-    }
-    Line {
-      SrcBlock		      "Signal\nGenerator"
-      SrcPort		      1
-      Points		      [35, 0]
-      Branch {
-	DstBlock		"EV3 RST"
-	DstPort			1
-      }
-      Branch {
-	DstBlock		"Mux"
-	DstPort			1
-      }
-    }
-    Line {
-      SrcBlock		      "Mux"
-      SrcPort		      1
-      DstBlock		      "Ref & Mes"
+      DstBlock		      "Sum"
       DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Sum"
+      SrcPort		      1
+      DstBlock		      "Scope"
+      DstPort		      1
+    }
+    Annotation {
+      Name		      "In \"Model Configurations Parameters->Code Generation->Interface\", define the IP\naddress of your "
+      "target in \"MEX-file arguments:\". Then press [CRTL-B] or the \"Build Model\" button. \nTip: if the build proces"
+      "s is hanging, you can hit [CRTL-C] in Matlab's Command Window."
+      Position		      [29, 218]
+      HorizontalAlignment     "left"
     }
   }
 }

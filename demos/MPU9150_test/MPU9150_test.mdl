@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.13"
+    ComputedModelVersion    "1.14"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -35,11 +35,11 @@ Model {
   Creator		  "jacques"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "Jacques GANGLOFF"
+  LastModifiedBy	  "jacques"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Apr 07 15:23:00 2014"
-  RTWModifiedTimeStamp	  318784571
-  ModelVersionFormat	  "1.%<AutoIncrement:13>"
+  LastModifiedDate	  "Mon Oct 31 14:10:59 2016"
+  RTWModifiedTimeStamp	  399823855
+  ModelVersionFormat	  "1.%<AutoIncrement:14>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -325,13 +325,13 @@ Model {
 	  ProdBitPerFloat	  32
 	  ProdBitPerDouble	  64
 	  ProdBitPerPointer	  32
-	  ProdLargestAtomicInteger "Long"
-	  ProdLargestAtomicFloat  "Double"
-	  ProdIntDivRoundTo	  "Undefined"
+	  ProdLargestAtomicInteger "Char"
+	  ProdLargestAtomicFloat  "None"
+	  ProdIntDivRoundTo	  "Zero"
 	  ProdEndianess		  "LittleEndian"
 	  ProdWordSize		  32
 	  ProdShiftRightIntArith  on
-	  ProdHWDeviceType	  "ARM Compatible->ARM 11"
+	  ProdHWDeviceType	  "Intel->x86/Pentium"
 	  TargetBitPerChar	  8
 	  TargetBitPerShort	  16
 	  TargetBitPerInt	  32
@@ -787,8 +787,8 @@ Model {
       Name		      "MPU9150"
       SID		      "15"
       Ports		      [0, 9]
-      Position		      [235, 54, 375, 346]
-      LibraryVersion	      "1.16"
+      Position		      [130, 53, 375, 347]
+      LibraryVersion	      "1.33"
       SourceBlock	      "rpi_blkst/MPU9150"
       SourceType	      "MPU9150 IMU"
       ShowPortLabels	      "FromPortIcon"

@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.10"
+    ComputedModelVersion    "1.11"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -37,9 +37,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jacques"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Jan 03 19:28:50 2014"
-  RTWModifiedTimeStamp	  310678127
-  ModelVersionFormat	  "1.%<AutoIncrement:10>"
+  LastModifiedDate	  "Mon Oct 31 14:09:48 2016"
+  RTWModifiedTimeStamp	  399823784
+  ModelVersionFormat	  "1.%<AutoIncrement:11>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -325,13 +325,13 @@ Model {
 	  ProdBitPerFloat	  32
 	  ProdBitPerDouble	  64
 	  ProdBitPerPointer	  32
-	  ProdLargestAtomicInteger "Long"
-	  ProdLargestAtomicFloat  "Double"
-	  ProdIntDivRoundTo	  "Undefined"
+	  ProdLargestAtomicInteger "Char"
+	  ProdLargestAtomicFloat  "None"
+	  ProdIntDivRoundTo	  "Zero"
 	  ProdEndianess		  "LittleEndian"
 	  ProdWordSize		  32
 	  ProdShiftRightIntArith  on
-	  ProdHWDeviceType	  "ARM Compatible->ARM 11"
+	  ProdHWDeviceType	  "Intel->x86/Pentium"
 	  TargetBitPerChar	  8
 	  TargetBitPerShort	  16
 	  TargetBitPerInt	  32
@@ -647,6 +647,13 @@ Model {
 	  Version		  "1.10.0"
 	  Description		  "HDL Coder custom configuration component"
 	  Name			  "HDL Coder"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    1
+	    Cell		    ""
+	    PropName		    "HDLConfigFile"
+	  }
+	  HDLCActiveTab		  "0"
 	}
 	PropName		"Components"
       }
@@ -830,8 +837,8 @@ Model {
       Name		      "Pololu MinIMU-9 v2"
       SID		      "14"
       Ports		      [0, 9]
-      Position		      [235, 54, 375, 346]
-      LibraryVersion	      "1.14"
+      Position		      [90, 55, 375, 345]
+      LibraryVersion	      "1.33"
       SourceBlock	      "rpi_blkst/Pololu MinIMU-9 v2"
       SourceType	      "IMU"
       ShowPortLabels	      "FromPortIcon"

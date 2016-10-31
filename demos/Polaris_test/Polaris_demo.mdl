@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.9"
+    ComputedModelVersion    "1.10"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -37,9 +37,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jacques"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Feb 02 16:02:32 2015"
-  RTWModifiedTimeStamp	  344528598
-  ModelVersionFormat	  "1.%<AutoIncrement:9>"
+  LastModifiedDate	  "Mon Oct 31 14:12:22 2016"
+  RTWModifiedTimeStamp	  399823938
+  ModelVersionFormat	  "1.%<AutoIncrement:10>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -325,13 +325,13 @@ Model {
 	  ProdBitPerFloat	  32
 	  ProdBitPerDouble	  64
 	  ProdBitPerPointer	  32
-	  ProdLargestAtomicInteger "Long"
-	  ProdLargestAtomicFloat  "Double"
-	  ProdIntDivRoundTo	  "Undefined"
+	  ProdLargestAtomicInteger "Char"
+	  ProdLargestAtomicFloat  "None"
+	  ProdIntDivRoundTo	  "Zero"
 	  ProdEndianess		  "LittleEndian"
 	  ProdWordSize		  32
 	  ProdShiftRightIntArith  on
-	  ProdHWDeviceType	  "ARM Compatible->ARM 11"
+	  ProdHWDeviceType	  "Intel->x86/Pentium"
 	  TargetBitPerChar	  8
 	  TargetBitPerShort	  16
 	  TargetBitPerInt	  32
@@ -755,8 +755,8 @@ Model {
       Name		      "CPU usage"
       SID		      "8"
       Ports		      [0, 1]
-      Position		      [465, 130, 505, 190]
-      LibraryVersion	      "1.23"
+      Position		      [435, 129, 505, 191]
+      LibraryVersion	      "1.33"
       SourceBlock	      "rpi_blkst/CPU usage"
       SourceType	      "Target CPU usage"
       ShowPortLabels	      "FromPortIcon"
@@ -823,8 +823,8 @@ Model {
       Name		      "Polaris"
       SID		      "1"
       Ports		      [0, 9]
-      Position		      [160, 39, 235, 191]
-      LibraryVersion	      "1.23"
+      Position		      [75, 40, 235, 190]
+      LibraryVersion	      "1.33"
       SourceBlock	      "rpi_blkst/Polaris"
       SourceType	      "NDI Polaris"
       ShowPortLabels	      "FromPortIcon"

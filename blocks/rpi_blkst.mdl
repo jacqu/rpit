@@ -15,9 +15,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jacques"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Oct 17 17:13:36 2016"
-  RTWModifiedTimeStamp	  398625113
-  ModelVersionFormat	  "1.%<AutoIncrement:29>"
+  LastModifiedDate	  "Mon Oct 31 13:56:46 2016"
+  RTWModifiedTimeStamp	  399823004
+  ModelVersionFormat	  "1.%<AutoIncrement:33>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -610,77 +610,6 @@ Library {
   }
   BlockParameterDefaults {
     Block {
-      BlockType		      Demux
-      Outputs		      "4"
-      DisplayOption	      "none"
-      BusSelectionMode	      off
-    }
-    Block {
-      BlockType		      DiscreteFilter
-      Numerator		      "[1]"
-      Denominator	      "[1 0.5]"
-      InitialStates	      "0"
-      SampleTime	      "-1"
-      a0EqualsOne	      off
-      NumCoefMin	      "[]"
-      NumCoefMax	      "[]"
-      DenCoefMin	      "[]"
-      DenCoefMax	      "[]"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      StateDataTypeStr	      "Inherit: Same as input"
-      NumCoefDataTypeStr      "Inherit: Inherit via internal rule"
-      DenCoefDataTypeStr      "Inherit: Inherit via internal rule"
-      NumProductDataTypeStr   "Inherit: Inherit via internal rule"
-      DenProductDataTypeStr   "Inherit: Inherit via internal rule"
-      NumAccumDataTypeStr     "Inherit: Inherit via internal rule"
-      DenAccumDataTypeStr     "Inherit: Inherit via internal rule"
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      LockScale		      off
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	off
-      StateMustResolveToSignalObject off
-      RTWStateStorageClass    "Auto"
-    }
-    Block {
-      BlockType		      DiscreteFir
-      CoefSource	      "Dialog parameters"
-      enableDSPFilters	      off
-      FirFiltStruct	      "Direct form"
-      SlFirFiltStruct	      "Direct form"
-      NumCoeffs		      "[0.5 0.5]"
-      IC		      "0"
-      SampleTime	      "-1"
-      CoefMin		      "[]"
-      CoefMax		      "[]"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      TapSumDataTypeStr	      "Inherit: Same as input"
-      CoefDataTypeStr	      "Inherit: Same word length as input"
-      ProductDataTypeStr      "Inherit: Inherit via internal rule"
-      AccumDataTypeStr	      "Inherit: Same as product output"
-      StateDataTypeStr	      "Inherit: Same as accumulator"
-      OutDataTypeStr	      "Inherit: Same as accumulator"
-      LockScale		      off
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	off
-    }
-    Block {
-      BlockType		      Gain
-      Gain		      "1"
-      Multiplication	      "Element-wise(K.*u)"
-      ParamMin		      "[]"
-      ParamMax		      "[]"
-      ParamDataTypeStr	      "Inherit: Same as input"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: Same as input"
-      LockScale		      off
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	on
-      SampleTime	      "-1"
-    }
-    Block {
       BlockType		      Inport
       Port		      "1"
       OutMin		      "[]"
@@ -696,14 +625,6 @@ Library {
       LatchByDelayingOutsideSignal off
       LatchInputForFeedbackSignals off
       Interpolate	      on
-    }
-    Block {
-      BlockType		      Mux
-      Inputs		      "4"
-      DisplayOption	      "none"
-      UseBusObject	      off
-      BusObject		      "BusObject"
-      NonVirtualBus	      off
     }
     Block {
       BlockType		      Outport
@@ -723,32 +644,11 @@ Library {
       InitialOutput	      "[]"
     }
     Block {
-      BlockType		      Quantizer
-      QuantizationInterval    "0.5"
-      LinearizeAsGain	      on
-      SampleTime	      "-1"
-    }
-    Block {
       BlockType		      "S-Function"
       FunctionName	      "system"
       SFunctionModules	      "''"
       PortCounts	      "[]"
       SFunctionDeploymentMode off
-    }
-    Block {
-      BlockType		      Saturate
-      UpperLimitSource	      "Dialog"
-      UpperLimit	      "0.5"
-      LowerLimitSource	      "Dialog"
-      LowerLimit	      "-0.5"
-      LinearizeAsGain	      on
-      ZeroCross		      on
-      SampleTime	      "-1"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: Same as input"
-      LockScale		      off
-      RndMeth		      "Floor"
     }
     Block {
       BlockType		      SubSystem
@@ -772,37 +672,10 @@ Library {
       Variant		      off
       GeneratePreprocessorConditionals off
     }
-    Block {
-      BlockType		      Sum
-      IconShape		      "rectangular"
-      Inputs		      "++"
-      CollapseMode	      "All dimensions"
-      CollapseDim	      "1"
-      InputSameDT	      on
-      AccumDataTypeStr	      "Inherit: Inherit via internal rule"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: Same as first input"
-      LockScale		      off
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	on
-      SampleTime	      "-1"
-    }
-    Block {
-      BlockType		      Terminator
-    }
-    Block {
-      BlockType		      UnitDelay
-      X0		      "0"
-      InputProcessing	      "Inherited"
-      SampleTime	      "1"
-      StateMustResolveToSignalObject off
-      RTWStateStorageClass    "Auto"
-    }
   }
   System {
     Name		    "rpi_blkst"
-    Location		    [75, 83, 1418, 838]
+    Location		    [75, 83, 1667, 838]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -822,7 +695,7 @@ Library {
       Name		      "CPU usage"
       SID		      "84"
       Ports		      [0, 1]
-      Position		      [190, 430, 230, 490]
+      Position		      [35, 44, 150, 146]
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -840,7 +713,7 @@ Library {
       MaskEnableString	      "on"
       MaskVisibilityString    "on"
       MaskToolTipString	      "on"
-      MaskDisplay	      "port_label( 'output', 1, 'CPU%' )"
+      MaskDisplay	      "image(imread('cpu_usage.jpg'))"
       MaskIconFrame	      on
       MaskIconOpaque	      on
       MaskIconRotate	      "none"
@@ -916,7 +789,7 @@ Library {
       Name		      "Dynamixel"
       SID		      "117"
       Ports		      [10, 10]
-      Position		      [715, 59, 910, 416]
+      Position		      [975, 48, 1315, 407]
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -967,12 +840,12 @@ Library {
       "on,on,on,on,on,on,on,on,on,on,on,on"
       MaskToolTipString	      "on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,"
       "on,on,on,on,on,on,on,on,on,on,on,on"
-      MaskDisplay	      "disp('Dynamixel actuator')\nport_label('input',1,'u1')\nport_label('input',2,'u2')\nport_labe"
-      "l('input',3,'u3')\nport_label('input',4,'u4')\nport_label('input',5,'u5')\nport_label('input',6,'u6')\nport_labe"
-      "l('input',7,'u7')\nport_label('input',8,'u8')\nport_label('input',9,'u9')\nport_label('input',10,'u10')\nport_la"
-      "bel('output',1,'y1')\nport_label('output',2,'y2')\nport_label('output',3,'y3')\nport_label('output',4,'y4')\npor"
-      "t_label('output',5,'y5')\nport_label('output',6,'y6')\nport_label('output',7,'y7')\nport_label('output',8,'y8')\n"
-      "port_label('output',9,'y9')\nport_label('output',10,'y10')"
+      MaskDisplay	      "image(imread('dynamixel.jpg'))\nport_label('input',1,'u1')\nport_label('input',2,'u2')\nport_"
+      "label('input',3,'u3')\nport_label('input',4,'u4')\nport_label('input',5,'u5')\nport_label('input',6,'u6')\nport_"
+      "label('input',7,'u7')\nport_label('input',8,'u8')\nport_label('input',9,'u9')\nport_label('input',10,'u10')\npor"
+      "t_label('output',1,'y1')\nport_label('output',2,'y2')\nport_label('output',3,'y3')\nport_label('output',4,'y4')\n"
+      "port_label('output',5,'y5')\nport_label('output',6,'y6')\nport_label('output',7,'y7')\nport_label('output',8,'y8"
+      "')\nport_label('output',9,'y9')\nport_label('output',10,'y10')"
       MaskIconFrame	      on
       MaskIconOpaque	      on
       MaskIconRotate	      "none"
@@ -1332,7 +1205,7 @@ Library {
       Name		      "EV3"
       SID		      "8"
       Ports		      [4, 8]
-      Position		      [35, 157, 110, 383]
+      Position		      [245, 351, 465, 574]
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -1350,10 +1223,10 @@ Library {
       MaskEnableString	      "on"
       MaskVisibilityString    "on"
       MaskToolTipString	      "on"
-      MaskDisplay	      "disp('EV3')\nport_label('input',1,'A')\nport_label('input',2,'B')\nport_label('input',3,'C')\n"
-      "port_label('input',4,'D')\nport_label('output',1,'A')\nport_label('output',2,'B')\nport_label('output',3,'C')\np"
-      "ort_label('output',4,'D')\nport_label('output',5,'1')\nport_label('output',6,'2')\nport_label('output',7,'3')\np"
-      "ort_label('output',8,'4')"
+      MaskDisplay	      "image(imread('ev3_45.jpg'))\nport_label('input',1,'A')\nport_label('input',2,'B')\nport_label"
+      "('input',3,'C')\nport_label('input',4,'D')\nport_label('output',1,'A')\nport_label('output',2,'B')\nport_label('"
+      "output',3,'C')\nport_label('output',4,'D')\nport_label('output',5,'1')\nport_label('output',6,'2')\nport_label('"
+      "output',7,'3')\nport_label('output',8,'4')"
       MaskIconFrame	      on
       MaskIconOpaque	      on
       MaskIconRotate	      "none"
@@ -1593,217 +1466,10 @@ Library {
     }
     Block {
       BlockType		      SubSystem
-      Name		      "EV3 RST"
-      SID		      "37"
-      Ports		      [2, 1]
-      Position		      [175, 60, 255, 120]
-      MinAlgLoopOccurrences   off
-      PropExecContextOutsideSubsystem off
-      RTWSystemCode	      "Auto"
-      FunctionWithSeparateData off
-      Opaque		      off
-      RequestExecContextInheritance off
-      MaskHideContents	      off
-      MaskType		      "EV3 RST"
-      MaskDescription	      "RST position controller for EV3 motors"
-      MaskHelp		      "This RST controller is tuned to follow accurately class 2 references.\nIts sampling period is f"
-      "ixed and equal to 0.01s.\nIt is suited for the big motors: NXT motors and EV3 big motors."
-      MaskDisplay	      "disp('RST')\nport_label('input',1,'Ref')\nport_label('input',2,'Mes')\nport_label('output',1,"
-      "'U')"
-      MaskIconFrame	      on
-      MaskIconOpaque	      on
-      MaskIconRotate	      "none"
-      MaskPortRotate	      "default"
-      MaskIconUnits	      "autoscale"
-      System {
-	Name			"EV3 RST"
-	Location		[123, 432, 970, 715]
-	Open			off
-	ModelBrowserVisibility	off
-	ModelBrowserWidth	200
-	ScreenColor		"white"
-	PaperOrientation	"landscape"
-	PaperPositionMode	"auto"
-	PaperType		"A4"
-	PaperUnits		"centimeters"
-	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
-	TiledPageScale		1
-	ShowPageBoundaries	off
-	ZoomFactor		"100"
-	Block {
-	  BlockType		  Inport
-	  Name			  "In1"
-	  SID			  "38"
-	  Position		  [55, 78, 85, 92]
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Inport
-	  Name			  "In2"
-	  SID			  "39"
-	  Position		  [55, 168, 85, 182]
-	  Port			  "2"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  DiscreteFilter
-	  Name			  "1/S"
-	  SID			  "40"
-	  Ports			  [1, 1]
-	  Position		  [400, 62, 545, 108]
-	  Denominator		  "[ 1.000000000000000e+000 -1.397430293642954e+000 4.681814861160841e-001 -7.075119247313014e-002]"
-	  SampleTime		  "0.01"
-	  a0EqualsOne		  on
-	}
-	Block {
-	  BlockType		  DiscreteFir
-	  Name			  "R"
-	  SID			  "41"
-	  Ports			  [1, 1]
-	  Position		  [180, 153, 295, 197]
-	  NumCoeffs		  "[6.915174485840503e+002 -1.259172933566519e+003 5.714958970624333e+002]"
-	  SampleTime		  "0.01"
-	}
-	Block {
-	  BlockType		  Saturate
-	  Name			  "Saturation"
-	  SID			  "42"
-	  Ports			  [1, 1]
-	  Position		  [630, 70, 660, 100]
-	  InputPortMap		  "u0"
-	  UpperLimit		  "100"
-	  LowerLimit		  "-100"
-	  SampleTime		  "0.01"
-	}
-	Block {
-	  BlockType		  Sum
-	  Name			  "Sum"
-	  SID			  "43"
-	  Ports			  [2, 1]
-	  Position		  [340, 75, 360, 95]
-	  ShowName		  off
-	  IconShape		  "round"
-	  Inputs		  "|+-"
-	  InputSameDT		  off
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  DiscreteFir
-	  Name			  "T"
-	  SID			  "44"
-	  Ports			  [1, 1]
-	  Position		  [180, 63, 295, 107]
-	  NumCoeffs		  "[1.181478528937075e+004 -4.112324830972540e+004 5.385298179536037e+004 -3.146381703126604e+004 6.9231"
-	  "38668340286e+003]"
-	  SampleTime		  "0.01"
-	}
-	Block {
-	  BlockType		  UnitDelay
-	  Name			  "Unit Delay"
-	  SID			  "45"
-	  Position		  [570, 68, 605, 102]
-	  InputProcessing	  "Elements as channels (sample based)"
-	  SampleTime		  "0.01"
-	}
-	Block {
-	  BlockType		  Gain
-	  Name			  "deg->rad"
-	  SID			  "46"
-	  Position		  [110, 160, 140, 190]
-	  Gain			  "pi/180"
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	  SampleTime		  "0.01"
-	}
-	Block {
-	  BlockType		  Gain
-	  Name			  "deg->rad1"
-	  SID			  "47"
-	  Position		  [110, 70, 140, 100]
-	  Gain			  "pi/180"
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	  SampleTime		  "0.01"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "Out1"
-	  SID			  "48"
-	  Position		  [685, 78, 715, 92]
-	  IconDisplay		  "Port number"
-	}
-	Line {
-	  SrcBlock		  "deg->rad1"
-	  SrcPort		  1
-	  DstBlock		  "T"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "deg->rad"
-	  SrcPort		  1
-	  DstBlock		  "R"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "In2"
-	  SrcPort		  1
-	  DstBlock		  "deg->rad"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "In1"
-	  SrcPort		  1
-	  DstBlock		  "deg->rad1"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Saturation"
-	  SrcPort		  1
-	  DstBlock		  "Out1"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "R"
-	  SrcPort		  1
-	  Points		  [50, 0]
-	  DstBlock		  "Sum"
-	  DstPort		  2
-	}
-	Line {
-	  SrcBlock		  "Unit Delay"
-	  SrcPort		  1
-	  DstBlock		  "Saturation"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "1/S"
-	  SrcPort		  1
-	  DstBlock		  "Unit Delay"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Sum"
-	  SrcPort		  1
-	  DstBlock		  "1/S"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "T"
-	  SrcPort		  1
-	  DstBlock		  "Sum"
-	  DstPort		  1
-	}
-      }
-    }
-    Block {
-      BlockType		      SubSystem
       Name		      "EV314"
       SID		      "87"
       Ports		      [4, 10]
-      Position		      [290, 432, 390, 648]
+      Position		      [495, 354, 665, 576]
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -1828,10 +1494,11 @@ Library {
       MaskEnableString	      "on,on"
       MaskVisibilityString    "on,on"
       MaskToolTipString	      "on,on"
-      MaskDisplay	      "port_label('input',1,'UA')\nport_label('input',2,'UB')\nport_label('input',3,'UC')\nport_labe"
-      "l('input',4,'UD')\nport_label('output',1,'EA')\nport_label('output',2,'EB')\nport_label('output',3,'EC')\nport_l"
-      "abel('output',4,'ED')\nport_label('output',5,'S1')\nport_label('output',6,'S2')\nport_label('output',7,'S3')\npo"
-      "rt_label('output',8,'S4')\nport_label('output',9,'IBAT')\nport_label('output',10,'VBAT')"
+      MaskDisplay	      "image(imread('ev3.jpg'))\nport_label('input',1,'UA')\nport_label('input',2,'UB')\nport_label("
+      "'input',3,'UC')\nport_label('input',4,'UD')\nport_label('output',1,'EA')\nport_label('output',2,'EB')\nport_labe"
+      "l('output',3,'EC')\nport_label('output',4,'ED')\nport_label('output',5,'S1')\nport_label('output',6,'S2')\nport_"
+      "label('output',7,'S3')\nport_label('output',8,'S4')\nport_label('output',9,'IBAT')\nport_label('output',10,'VBAT"
+      "')"
       MaskIconFrame	      on
       MaskIconOpaque	      on
       MaskIconRotate	      "none"
@@ -2104,7 +1771,7 @@ Library {
       Name		      "MPU9150"
       SID		      "49"
       Ports		      [0, 9]
-      Position		      [490, 59, 630, 351]
+      Position		      [730, 48, 940, 272]
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -2125,9 +1792,9 @@ Library {
       MaskEnableString	      "on"
       MaskVisibilityString    "on"
       MaskToolTipString	      "on"
-      MaskDisplay	      "disp('MPU9250')\nport_label('output',1,'ax')\nport_label('output',2,'ay')\nport_label('output"
-      "',3,'az')\nport_label('output',4,'gx')\nport_label('output',5,'gy')\nport_label('output',6,'gz')\nport_label('ou"
-      "tput',7,'mx')\nport_label('output',8,'my')\nport_label('output',9,'mz')"
+      MaskDisplay	      "image(imread('9250.jpg'))\nport_label('output',1,'ax')\nport_label('output',2,'ay')\nport_lab"
+      "el('output',3,'az')\nport_label('output',4,'gx')\nport_label('output',5,'gy')\nport_label('output',6,'gz')\nport"
+      "_label('output',7,'mx')\nport_label('output',8,'my')\nport_label('output',9,'mz')"
       MaskIconFrame	      on
       MaskIconOpaque	      on
       MaskIconRotate	      "none"
@@ -2325,7 +1992,7 @@ Library {
       Name		      "NXT"
       SID		      "60"
       Ports		      [3, 8]
-      Position		      [175, 156, 250, 384]
+      Position		      [295, 46, 465, 269]
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -2347,9 +2014,10 @@ Library {
       MaskEnableString	      "on,on"
       MaskVisibilityString    "on,on"
       MaskToolTipString	      "on,on"
-      MaskDisplay	      "disp('NXT')\nport_label('input',1,'A')\nport_label('input',2,'B')\nport_label('input',3,'C')\n"
-      "port_label('output',1,'A')\nport_label('output',2,'B')\nport_label('output',3,'C')\nport_label('output',4,'1')\n"
-      "port_label('output',5,'2')\nport_label('output',6,'3')\nport_label('output',7,'4')\nport_label('output',8,'BAT')"
+      MaskDisplay	      "image(imread('nxt.jpg'))\nport_label('input',1,'A')\nport_label('input',2,'B')\nport_label('i"
+      "nput',3,'C')\nport_label('output',1,'A')\nport_label('output',2,'B')\nport_label('output',3,'C')\nport_label('ou"
+      "tput',4,'1')\nport_label('output',5,'2')\nport_label('output',6,'3')\nport_label('output',7,'4')\nport_label('ou"
+      "tput',8,'BAT')"
       MaskIconFrame	      on
       MaskIconOpaque	      on
       MaskIconRotate	      "none"
@@ -2574,303 +2242,10 @@ Library {
     }
     Block {
       BlockType		      SubSystem
-      Name		      "NXT RST"
-      SID		      "73"
-      Ports		      [2, 1]
-      Position		      [35, 430, 115, 490]
-      MinAlgLoopOccurrences   off
-      PropExecContextOutsideSubsystem off
-      RTWSystemCode	      "Auto"
-      FunctionWithSeparateData off
-      Opaque		      off
-      RequestExecContextInheritance off
-      MaskHideContents	      off
-      MaskType		      "NXT RST"
-      MaskDescription	      "RST position controller for NXT motors"
-      MaskHelp		      "This RST controller is tuned to follow accurately class 2 references.\nIts sampling period is f"
-      "ixed and equal to 0.005s.\nIt is suited for the big motors: NXT motors and EV3 big motors.\nThis controller can "
-      "only run on the NXT."
-      MaskDisplay	      "disp('RST')\nport_label('input',1,'Ref')\nport_label('input',2,'Mes')\nport_label('output',1,"
-      "'U')"
-      MaskIconFrame	      on
-      MaskIconOpaque	      on
-      MaskIconRotate	      "none"
-      MaskPortRotate	      "default"
-      MaskIconUnits	      "autoscale"
-      System {
-	Name			"NXT RST"
-	Location		[265, 121, 1144, 398]
-	Open			off
-	ModelBrowserVisibility	off
-	ModelBrowserWidth	200
-	ScreenColor		"white"
-	PaperOrientation	"landscape"
-	PaperPositionMode	"auto"
-	PaperType		"A4"
-	PaperUnits		"centimeters"
-	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
-	TiledPageScale		1
-	ShowPageBoundaries	off
-	ZoomFactor		"100"
-	Block {
-	  BlockType		  Inport
-	  Name			  "In1"
-	  SID			  "74"
-	  Position		  [30, 93, 60, 107]
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Inport
-	  Name			  "In2"
-	  SID			  "75"
-	  Position		  [30, 183, 60, 197]
-	  Port			  "2"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Mux
-	  Name			  "Mux"
-	  SID			  "76"
-	  Ports			  [2, 1]
-	  Position		  [305, 126, 310, 164]
-	  ShowName		  off
-	  Inputs		  "2"
-	  DisplayOption		  "bar"
-	}
-	Block {
-	  BlockType		  Quantizer
-	  Name			  "Quantizer"
-	  SID			  "77"
-	  Position		  [90, 85, 115, 115]
-	  QuantizationInterval	  "1"
-	  SampleTime		  "0.005"
-	}
-	Block {
-	  BlockType		  SubSystem
-	  Name			  "RST code"
-	  SID			  "78"
-	  Ports			  [1, 1]
-	  Position		  [405, 122, 475, 168]
-	  LibraryVersion	  "1.31"
-	  PermitHierarchicalResolution "ExplicitOnly"
-	  TreatAsAtomicUnit	  on
-	  MinAlgLoopOccurrences	  off
-	  PropExecContextOutsideSubsystem off
-	  RTWSystemCode		  "Auto"
-	  FunctionWithSeparateData off
-	  Opaque		  off
-	  RequestExecContextInheritance	off
-	  MaskHideContents	  off
-	  MaskType		  "Stateflow"
-	  MaskDescription	  "Embedded MATLAB block"
-	  MaskSelfModifiable	  on
-	  MaskDisplay		  "disp('fcn');"
-	  MaskIconFrame		  on
-	  MaskIconOpaque	  off
-	  MaskIconRotate	  "none"
-	  MaskPortRotate	  "default"
-	  MaskIconUnits		  "autoscale"
-	  System {
-	    Name		    "RST code"
-	    Location		    [257, 457, 812, 717]
-	    Open		    off
-	    ModelBrowserVisibility  off
-	    ModelBrowserWidth	    200
-	    ScreenColor		    "white"
-	    PaperOrientation	    "landscape"
-	    PaperPositionMode	    "auto"
-	    PaperType		    "A4"
-	    PaperUnits		    "centimeters"
-	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
-	    TiledPageScale	    1
-	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
-	    SIDHighWatermark	    "17"
-	    Block {
-	      BlockType		      Inport
-	      Name		      "u"
-	      SID		      "78::1"
-	      Position		      [20, 101, 40, 119]
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Demux
-	      Name		      " Demux "
-	      SID		      "78::15"
-	      Ports		      [1, 1]
-	      Position		      [270, 160, 320, 200]
-	      Outputs		      "1"
-	    }
-	    Block {
-	      BlockType		      "S-Function"
-	      Name		      " SFunction "
-	      SID		      "78::14"
-	      Tag		      "Stateflow S-Function rpi_blkst 2"
-	      Ports		      [1, 2]
-	      Position		      [180, 100, 230, 160]
-	      FunctionName	      "sf_sfun"
-	      PortCounts	      "[1 2]"
-	      EnableBusSupport	      on
-	      Port {
-		PortNumber		2
-		Name			"y"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	    }
-	    Block {
-	      BlockType		      Terminator
-	      Name		      " Terminator "
-	      SID		      "78::17"
-	      Position		      [460, 171, 480, 189]
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "y"
-	      SID		      "78::5"
-	      Position		      [460, 101, 480, 119]
-	      IconDisplay	      "Port number"
-	    }
-	    Line {
-	      SrcBlock		      " SFunction "
-	      SrcPort		      1
-	      DstBlock		      " Demux "
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "u"
-	      SrcPort		      1
-	      DstBlock		      " SFunction "
-	      DstPort		      1
-	    }
-	    Line {
-	      Name		      "y"
-	      Labels		      [0, 0]
-	      SrcBlock		      " SFunction "
-	      SrcPort		      2
-	      DstBlock		      "y"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      " Demux "
-	      SrcPort		      1
-	      DstBlock		      " Terminator "
-	      DstPort		      1
-	    }
-	  }
-	}
-	Block {
-	  BlockType		  Saturate
-	  Name			  "Saturation"
-	  SID			  "79"
-	  Ports			  [1, 1]
-	  Position		  [650, 130, 680, 160]
-	  InputPortMap		  "u0"
-	  UpperLimit		  "100"
-	  LowerLimit		  "-100"
-	  SampleTime		  "0.005"
-	}
-	Block {
-	  BlockType		  UnitDelay
-	  Name			  "Unit Delay"
-	  SID			  "80"
-	  Position		  [575, 128, 610, 162]
-	  InputProcessing	  "Elements as channels (sample based)"
-	  SampleTime		  "0.005"
-	}
-	Block {
-	  BlockType		  Gain
-	  Name			  "deg->rad"
-	  SID			  "81"
-	  Position		  [150, 175, 180, 205]
-	  Gain			  "pi/180"
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	  SampleTime		  "0.005"
-	}
-	Block {
-	  BlockType		  Gain
-	  Name			  "deg->rad1"
-	  SID			  "82"
-	  Position		  [150, 85, 180, 115]
-	  Gain			  "pi/180"
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	  SampleTime		  "0.005"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "Out1"
-	  SID			  "83"
-	  Position		  [705, 138, 735, 152]
-	  IconDisplay		  "Port number"
-	}
-	Line {
-	  SrcBlock		  "Unit Delay"
-	  SrcPort		  1
-	  DstBlock		  "Saturation"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Saturation"
-	  SrcPort		  1
-	  DstBlock		  "Out1"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "In1"
-	  SrcPort		  1
-	  DstBlock		  "Quantizer"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "In2"
-	  SrcPort		  1
-	  DstBlock		  "deg->rad"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Quantizer"
-	  SrcPort		  1
-	  DstBlock		  "deg->rad1"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Mux"
-	  SrcPort		  1
-	  DstBlock		  "RST code"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "deg->rad1"
-	  SrcPort		  1
-	  Points		  [50, 0; 0, 35]
-	  DstBlock		  "Mux"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "deg->rad"
-	  SrcPort		  1
-	  Points		  [50, 0; 0, -35]
-	  DstBlock		  "Mux"
-	  DstPort		  2
-	}
-	Line {
-	  SrcBlock		  "RST code"
-	  SrcPort		  1
-	  DstBlock		  "Unit Delay"
-	  DstPort		  1
-	}
-      }
-    }
-    Block {
-      BlockType		      SubSystem
       Name		      "Polaris"
       SID		      "103"
       Ports		      [0, 9]
-      Position		      [445, 429, 520, 581]
+      Position		      [730, 415, 940, 575]
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -2893,9 +2268,10 @@ Library {
       MaskEnableString	      "on"
       MaskVisibilityString    "on"
       MaskToolTipString	      "on"
-      MaskDisplay	      "port_label( 'output', 1, 'x' )\nport_label( 'output', 2, 'y' )\nport_label( 'output', 3, 'z' "
-      ")\nport_label( 'output', 4, 'q0' )\nport_label( 'output', 5, 'qx' )\nport_label( 'output', 6, 'qy' )\nport_label"
-      "( 'output', 7, 'qz' )\nport_label( 'output', 8, 'state' )\nport_label( 'output', 9, 'frame' )"
+      MaskDisplay	      "image(imread('polaris.jpg'))\nport_label( 'output', 1, 'x' )\nport_label( 'output', 2, 'y' )\n"
+      "port_label( 'output', 3, 'z' )\nport_label( 'output', 4, 'q0' )\nport_label( 'output', 5, 'qx' )\nport_label( 'o"
+      "utput', 6, 'qy' )\nport_label( 'output', 7, 'qz' )\nport_label( 'output', 8, 'state' )\nport_label( 'output', 9,"
+      " 'frame' )"
       MaskIconFrame	      on
       MaskIconOpaque	      on
       MaskIconRotate	      "none"
@@ -3093,7 +2469,7 @@ Library {
       Name		      "Pololu MinIMU-9 v2"
       SID		      "26"
       Ports		      [0, 9]
-      Position		      [290, 59, 430, 351]
+      Position		      [495, 49, 705, 271]
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -3114,9 +2490,9 @@ Library {
       MaskEnableString	      "on"
       MaskVisibilityString    "on"
       MaskToolTipString	      "on"
-      MaskDisplay	      "disp('MinIMU-9 v2')\nport_label('output',1,'ax')\nport_label('output',2,'ay')\nport_label('ou"
-      "tput',3,'az')\nport_label('output',4,'gx')\nport_label('output',5,'gy')\nport_label('output',6,'gz')\nport_label"
-      "('output',7,'mx')\nport_label('output',8,'my')\nport_label('output',9,'mz')"
+      MaskDisplay	      "image(imread('pololu_imu.jpg'))\nport_label('output',1,'ax')\nport_label('output',2,'ay')\npo"
+      "rt_label('output',3,'az')\nport_label('output',4,'gx')\nport_label('output',5,'gy')\nport_label('output',6,'gz')"
+      "\nport_label('output',7,'mx')\nport_label('output',8,'my')\nport_label('output',9,'mz')"
       MaskIconFrame	      on
       MaskIconOpaque	      on
       MaskIconRotate	      "none"
@@ -3314,7 +2690,7 @@ Library {
       Name		      "Socket"
       SID		      "114"
       Ports		      [0, 1]
-      Position		      [590, 460, 630, 520]
+      Position		      [35, 284, 150, 386]
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -3337,6 +2713,7 @@ Library {
       MaskEnableString	      "on,on,on,on,on"
       MaskVisibilityString    "on,on,on,on,on"
       MaskToolTipString	      "on,on,on,on,on"
+      MaskDisplay	      "image(imread('socket1.jpg'))"
       MaskIconFrame	      on
       MaskIconOpaque	      on
       MaskIconRotate	      "none"
@@ -3411,7 +2788,7 @@ Library {
       Name		      "Target time"
       SID		      "1"
       Ports		      [0, 1]
-      Position		      [35, 60, 75, 120]
+      Position		      [35, 165, 150, 265]
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -3429,7 +2806,7 @@ Library {
       MaskEnableString	      "on"
       MaskVisibilityString    "on"
       MaskToolTipString	      "on"
-      MaskDisplay	      "port_label('output',1,'Time')"
+      MaskDisplay	      "image(imread('rtc.jpg'))"
       MaskIconFrame	      on
       MaskIconOpaque	      on
       MaskIconRotate	      "none"
@@ -3504,7 +2881,7 @@ Library {
       Name		      "Xbox controller"
       SID		      "139"
       Ports		      [0, 2]
-      Position		      [715, 460, 915, 580]
+      Position		      [975, 455, 1175, 575]
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -5773,151 +5150,5 @@ MatData {
     "     .    ,     8    (    !          %    \"     $    #     0         0  , ;V9F  X    P    !@    @    $          4"
     "    (     0    ,    !         !   P!O9F8 #@   #     &    \"     0         !0    @    !     0    $         $  ! \" "
     "    .    ,     8    (    !          %    \"     $    !     0         0  $ ,0    "
-  }
-}
-# Finite State Machines
-#
-#    Stateflow Version 7.5 (R2010a) dated Feb  7 2012, 02:38:55
-#
-#
-
-
-Stateflow {
-  machine {
-    id			    1
-    name		    "rpi_blkst"
-    created		    "17-Feb-2014 17:47:06"
-    isLibrary		    1
-    firstTarget		    9
-    sfVersion		    75014000.000003
-  }
-  chart {
-    id			    2
-    name		    "NXT RST/RST code"
-    windowPosition	    [274.356 341.773 200.25 189.75]
-    viewLimits		    [0 156.75 0 153.75]
-    screen		    [1 77 1178 850 1.333333333333333]
-    treeNode		    [0 3 0 0]
-    firstTransition	    5
-    firstJunction	    4
-    viewObj		    2
-    machine		    1
-    ssIdHighWaterMark	    5
-    decomposition	    CLUSTER_CHART
-    type		    EML_CHART
-    firstData		    6
-    chartFileNumber	    2
-    disableImplicitCasting  1
-    eml {
-      name		      "fcn"
-    }
-  }
-  state {
-    id			    3
-    labelString		    "eML_blk_kernel()"
-    position		    [18 64.5 118 66]
-    fontSize		    12
-    chart		    2
-    treeNode		    [2 0 0 0]
-    superState		    SUBCHART
-    subviewer		    2
-    ssIdNumber		    1
-    type		    FUNC_STATE
-    decomposition	    CLUSTER_STATE
-    eml {
-      isEML		      1
-      script		      "function y = fcn(u)\n%#eml\n\n% Variable initialization\npersistent R S T;\nif isempty( R )\n  R "
-      "= [ 2.124840169000000e+002   -4.063351583000000e+002    1.940885277000000e+002 0 ];\n  S = [ 1.000000000000000e+"
-      "000   -1.844923111000000e+000    8.449231108999999e-001 0 ];\n  T = [ 2.571273218000000e+003   -7.31234690900000"
-      "0e+003    6.929744424000000e+003   -2.188433347000000e+003 ];\nend\n\npersistent cons mes com\nif isempty( cons "
-      ")\n  cons = [0 0 0 0];\n  mes = [0 0 0 0];\n  com = [0 0 0 0];\nend\n\n% History management\nfor i = 4:-1:2\n  c"
-      "ons(i) = cons(i-1);\n  mes(i) = mes(i-1);\n  com(i) = com(i-1);\nend\ncons(1) = u(1);\nmes(1) = u(2);\ncom(1) = "
-      "0;\n\n% Control signal computation\nfor i = 1:4\n  com(1) = com(1) + T(i) * cons(i) - R(i) * mes(i);\nend\n\nfor"
-      " i = 2:4\n  com(1) = com(1) - S(i) * com(i);\nend\n\n% Saturation\nif com(1) > 100\n  com(1) = 100;\nend\nif com"
-      "(1) < -100\n  com(1) = -100;\nend\n\ny = com(1);"
-      editorLayout	      "100 M4x1[111 52 1032 578]"
-    }
-  }
-  junction {
-    id			    4
-    position		    [23.5747 49.5747 7]
-    chart		    2
-    linkNode		    [2 0 0]
-    subviewer		    2
-    ssIdNumber		    3
-    type		    CONNECTIVE_JUNCTION
-  }
-  transition {
-    id			    5
-    labelString		    "{eML_blk_kernel();}"
-    labelPosition	    [32.125 19.875 102.544 14.964]
-    fontSize		    12
-    src {
-      intersection	      [0 0 1 0 23.5747 14.625 0 0]
-    }
-    dst {
-      id		      4
-      intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
-    }
-    midPoint		    [23.5747 24.9468]
-    chart		    2
-    linkNode		    [2 0 0]
-    dataLimits		    [23.575 23.575 14.625 34.575]
-    subviewer		    2
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    2
-  }
-  data {
-    id			    6
-    ssIdNumber		    4
-    name		    "u"
-    linkNode		    [2 0 7]
-    scope		    INPUT_DATA
-    machine		    1
-    props {
-      array {
-	size			"-1"
-      }
-      type {
-	method			SF_INHERITED_TYPE
-	primitive		SF_DOUBLE_TYPE
-      }
-      complexity	      SF_COMPLEX_INHERITED
-    }
-    dataType		    "Inherit: Same as Simulink"
-  }
-  data {
-    id			    7
-    ssIdNumber		    5
-    name		    "y"
-    linkNode		    [2 6 0]
-    scope		    OUTPUT_DATA
-    machine		    1
-    props {
-      array {
-	size			"-1"
-      }
-      type {
-	method			SF_INHERITED_TYPE
-	primitive		SF_DOUBLE_TYPE
-      }
-      complexity	      SF_COMPLEX_INHERITED
-      frame		      SF_FRAME_NO
-    }
-    dataType		    "Inherit: Same as Simulink"
-  }
-  instance {
-    id			    8
-    name		    "NXT RST/RST code"
-    machine		    1
-    chart		    2
-  }
-  target {
-    id			    9
-    name		    "sfun"
-    description		    "Default Simulink S-Function Target."
-    machine		    1
-    linkNode		    [1 0 0]
   }
 }

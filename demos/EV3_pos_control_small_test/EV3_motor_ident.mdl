@@ -1,12 +1,12 @@
 Model {
-  Name			  "EV3_pos_control"
+  Name			  "EV3_motor_ident"
   Version		  7.6
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.16"
+    ComputedModelVersion    "1.5"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -18,7 +18,7 @@ Model {
       Type		      "Cell"
       Dimension		      2
       Cell		      "HDLSubsystem"
-      Cell		      "EV3_pos_control"
+      Cell		      "EV3_motor_ident"
       PropName		      "mdlProps"
     }
   }
@@ -31,16 +31,16 @@ Model {
   MinMaxOverflowLogging	  "UseLocalSettings"
   MinMaxOverflowArchiveMode "Overwrite"
   MaxMDLFileLineLength	  120
-  InitFcn		  "nxt_rst"
-  Created		  "Mon Oct 28 14:32:45 2013"
+  InitFcn		  "init_ident"
+  Created		  "Tue Oct 29 10:24:15 2013"
   Creator		  "jacques"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jacques"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Oct 29 14:16:07 2013"
-  RTWModifiedTimeStamp	  304871568
-  ModelVersionFormat	  "1.%<AutoIncrement:16>"
+  LastModifiedDate	  "Mon Oct 31 14:04:25 2016"
+  RTWModifiedTimeStamp	  399823460
+  ModelVersionFormat	  "1.%<AutoIncrement:5>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -326,13 +326,13 @@ Model {
 	  ProdBitPerFloat	  32
 	  ProdBitPerDouble	  64
 	  ProdBitPerPointer	  32
-	  ProdLargestAtomicInteger "Long"
-	  ProdLargestAtomicFloat  "Double"
-	  ProdIntDivRoundTo	  "Undefined"
+	  ProdLargestAtomicInteger "Char"
+	  ProdLargestAtomicFloat  "None"
+	  ProdIntDivRoundTo	  "Zero"
 	  ProdEndianess		  "LittleEndian"
 	  ProdWordSize		  32
 	  ProdShiftRightIntArith  on
-	  ProdHWDeviceType	  "ARM Compatible->ARM 11"
+	  ProdHWDeviceType	  "Intel->x86/Pentium"
 	  TargetBitPerChar	  8
 	  TargetBitPerShort	  16
 	  TargetBitPerInt	  32
@@ -715,56 +715,6 @@ Model {
       PreserveConstantTs      off
     }
     Block {
-      BlockType		      DiscreteFilter
-      Numerator		      "[1]"
-      Denominator	      "[1 0.5]"
-      InitialStates	      "0"
-      SampleTime	      "-1"
-      a0EqualsOne	      off
-      NumCoefMin	      "[]"
-      NumCoefMax	      "[]"
-      DenCoefMin	      "[]"
-      DenCoefMax	      "[]"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      StateDataTypeStr	      "Inherit: Same as input"
-      NumCoefDataTypeStr      "Inherit: Inherit via internal rule"
-      DenCoefDataTypeStr      "Inherit: Inherit via internal rule"
-      NumProductDataTypeStr   "Inherit: Inherit via internal rule"
-      DenProductDataTypeStr   "Inherit: Inherit via internal rule"
-      NumAccumDataTypeStr     "Inherit: Inherit via internal rule"
-      DenAccumDataTypeStr     "Inherit: Inherit via internal rule"
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      LockScale		      off
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	off
-      StateMustResolveToSignalObject off
-      RTWStateStorageClass    "Auto"
-    }
-    Block {
-      BlockType		      DiscreteFir
-      CoefSource	      "Dialog parameters"
-      enableDSPFilters	      off
-      FirFiltStruct	      "Direct form"
-      SlFirFiltStruct	      "Direct form"
-      NumCoeffs		      "[0.5 0.5]"
-      IC		      "0"
-      SampleTime	      "-1"
-      CoefMin		      "[]"
-      CoefMax		      "[]"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      TapSumDataTypeStr	      "Inherit: Same as input"
-      CoefDataTypeStr	      "Inherit: Same word length as input"
-      ProductDataTypeStr      "Inherit: Inherit via internal rule"
-      AccumDataTypeStr	      "Inherit: Same as product output"
-      StateDataTypeStr	      "Inherit: Same as accumulator"
-      OutDataTypeStr	      "Inherit: Same as accumulator"
-      LockScale		      off
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	off
-    }
-    Block {
       BlockType		      Gain
       Gain		      "1"
       Multiplication	      "Element-wise(K.*u)"
@@ -786,21 +736,6 @@ Model {
       UseBusObject	      off
       BusObject		      "BusObject"
       NonVirtualBus	      off
-    }
-    Block {
-      BlockType		      Saturate
-      UpperLimitSource	      "Dialog"
-      UpperLimit	      "0.5"
-      LowerLimitSource	      "Dialog"
-      LowerLimit	      "-0.5"
-      LinearizeAsGain	      on
-      ZeroCross		      on
-      SampleTime	      "-1"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: Same as input"
-      LockScale		      off
-      RndMeth		      "Floor"
     }
     Block {
       BlockType		      Scope
@@ -829,36 +764,12 @@ Model {
       VectorParams1D	      on
     }
     Block {
-      BlockType		      Sum
-      IconShape		      "rectangular"
-      Inputs		      "++"
-      CollapseMode	      "All dimensions"
-      CollapseDim	      "1"
-      InputSameDT	      on
-      AccumDataTypeStr	      "Inherit: Inherit via internal rule"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: Same as first input"
-      LockScale		      off
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	on
-      SampleTime	      "-1"
-    }
-    Block {
       BlockType		      Terminator
-    }
-    Block {
-      BlockType		      UnitDelay
-      X0		      "0"
-      InputProcessing	      "Inherited"
-      SampleTime	      "1"
-      StateMustResolveToSignalObject off
-      RTWStateStorageClass    "Auto"
     }
   }
   System {
-    Name		    "EV3_pos_control"
-    Location		    [7, 87, 1202, 648]
+    Name		    "EV3_motor_ident"
+    Location		    [56, 374, 1048, 869]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -872,21 +783,12 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "27"
-    Block {
-      BlockType		      DiscreteFilter
-      Name		      "1/S"
-      SID		      "1"
-      Ports		      [1, 1]
-      Position		      [495, 92, 640, 138]
-      Denominator	      "S"
-      SampleTime	      "Te"
-    }
+    SIDHighWatermark	    "16"
     Block {
       BlockType		      Constant
       Name		      "Constant"
-      SID		      "18"
-      Position		      [780, 155, 810, 185]
+      SID		      "1"
+      Position		      [340, 185, 370, 215]
       ShowName		      off
       Value		      "0"
       SampleTime	      "0.01"
@@ -894,8 +796,8 @@ Model {
     Block {
       BlockType		      Constant
       Name		      "Constant1"
-      SID		      "19"
-      Position		      [780, 210, 810, 240]
+      SID		      "2"
+      Position		      [340, 245, 370, 275]
       ShowName		      off
       Value		      "0"
       SampleTime	      "0.01"
@@ -903,39 +805,49 @@ Model {
     Block {
       BlockType		      Constant
       Name		      "Constant2"
-      SID		      "20"
-      Position		      [780, 265, 810, 295]
+      SID		      "3"
+      Position		      [340, 305, 370, 335]
       ShowName		      off
       Value		      "0"
       SampleTime	      "0.01"
     }
     Block {
-      BlockType		      Scope
-      Name		      "Control"
-      SID		      "25"
-      Ports		      [1]
-      Position		      [830, 24, 860, 56]
-      Floating		      off
-      Location		      [188, 390, 512, 629]
-      Open		      on
-      NumInputPorts	      "1"
-      List {
-	ListType		AxesTitles
-	axes1			"%<SignalLabel>"
-      }
-      YMin		      "-100"
-      YMax		      "100"
-      SaveName		      "ScopeData1"
-      DataFormat	      "StructureWithTime"
-      SampleTime	      "0"
+      BlockType		      Reference
+      Name		      "Discrete Derivative"
+      SID		      "16"
+      Ports		      [1, 1]
+      Position		      [685, 107, 745, 143]
+      LibraryVersion	      "1.225"
+      SourceBlock	      "simulink/Discrete/Discrete Derivative"
+      SourceType	      "Discrete Derivative"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
+      gainval		      "1.0"
+      ICPrevScaledInput	      "0.0"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      OutputDataTypeScalingMode	"Inherit via internal rule"
+      OutDataType	      "fixdt(1, 16)"
+      OutScaling	      "2^-10"
+      LockScale		      off
+      RndMeth		      "Floor"
+      DoSatur		      off
     }
     Block {
       BlockType		      Reference
       Name		      "EV3"
-      SID		      "27"
+      SID		      "5"
       Ports		      [4, 8]
-      Position		      [880, 82, 955, 308]
-      LibraryVersion	      "1.10"
+      Position		      [390, 111, 540, 349]
+      LibraryVersion	      "1.33"
       SourceBlock	      "rpi_blkst/EV3"
       SourceType	      "LEGO EV3"
       ShowPortLabels	      "FromPortIcon"
@@ -952,147 +864,98 @@ Model {
     Block {
       BlockType		      Mux
       Name		      "Mux"
-      SID		      "22"
+      SID		      "15"
       Ports		      [2, 1]
-      Position		      [855, 496, 860, 534]
+      Position		      [780, 87, 785, 138]
       ShowName		      off
       Inputs		      "2"
       DisplayOption	      "bar"
     }
     Block {
-      BlockType		      DiscreteFir
-      Name		      "R"
-      SID		      "2"
-      Ports		      [1, 1]
-      Position		      [475, 344, 655, 386]
-      BlockMirror	      on
-      NumCoeffs		      "R"
-      SampleTime	      "Te"
+      BlockType		      SignalGenerator
+      Name		      "Signal\nGenerator"
+      SID		      "14"
+      Ports		      [0, 1]
+      Position		      [250, 125, 280, 155]
+      WaveForm		      "square"
+      Amplitude		      "50"
+      Frequency		      "0.5"
+    }
+    Block {
+      BlockType		      Terminator
+      Name		      "Terminator"
+      SID		      "6"
+      Position		      [560, 145, 580, 165]
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Terminator
+      Name		      "Terminator1"
+      SID		      "7"
+      Position		      [560, 175, 580, 195]
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Terminator
+      Name		      "Terminator2"
+      SID		      "8"
+      Position		      [560, 205, 580, 225]
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Terminator
+      Name		      "Terminator3"
+      SID		      "9"
+      Position		      [560, 235, 580, 255]
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Terminator
+      Name		      "Terminator4"
+      SID		      "10"
+      Position		      [560, 265, 580, 285]
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Terminator
+      Name		      "Terminator5"
+      SID		      "11"
+      Position		      [560, 295, 580, 315]
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Terminator
+      Name		      "Terminator6"
+      SID		      "12"
+      Position		      [560, 325, 580, 345]
+      ShowName		      off
     }
     Block {
       BlockType		      Scope
-      Name		      "Ref & Mes"
-      SID		      "24"
+      Name		      "U & Y"
+      SID		      "4"
       Ports		      [1]
-      Position		      [905, 499, 935, 531]
+      Position		      [840, 94, 870, 126]
       Floating		      off
-      Location		      [5, 48, 1220, 947]
+      Location		      [6, 48, 1221, 947]
       Open		      on
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      YMin		      "-1"
-      YMax		      "1"
-      DataFormat	      "StructureWithTime"
+      YMin		      "-100"
+      YMax		      "100"
+      SaveToWorkspace	      on
+      SaveName		      "small_motor"
+      DataFormat	      "Array"
       SampleTime	      "0"
-    }
-    Block {
-      BlockType		      Saturate
-      Name		      "Saturation"
-      SID		      "3"
-      Ports		      [1, 1]
-      Position		      [725, 100, 755, 130]
-      InputPortMap	      "u0"
-      UpperLimit	      "100"
-      LowerLimit	      "-100"
-      SampleTime	      "Te"
-    }
-    Block {
-      BlockType		      SignalGenerator
-      Name		      "Signal\nGenerator"
-      SID		      "8"
-      Ports		      [0, 1]
-      Position		      [50, 100, 80, 130]
-      Amplitude		      "0"
-      Frequency		      "0.5"
-    }
-    Block {
-      BlockType		      Sum
-      Name		      "Sum"
-      SID		      "4"
-      Ports		      [2, 1]
-      Position		      [435, 105, 455, 125]
-      ShowName		      off
-      IconShape		      "round"
-      Inputs		      "|+-"
-      InputSameDT	      off
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      SaturateOnIntegerOverflow	off
-    }
-    Block {
-      BlockType		      DiscreteFir
-      Name		      "T"
-      SID		      "5"
-      Ports		      [1, 1]
-      Position		      [275, 93, 390, 137]
-      NumCoeffs		      "T"
-      SampleTime	      "Te"
-    }
-    Block {
-      BlockType		      Terminator
-      Name		      "Terminator"
-      SID		      "10"
-      Position		      [1075, 110, 1095, 130]
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Terminator
-      Name		      "Terminator1"
-      SID		      "11"
-      Position		      [1075, 140, 1095, 160]
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Terminator
-      Name		      "Terminator2"
-      SID		      "13"
-      Position		      [1075, 170, 1095, 190]
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Terminator
-      Name		      "Terminator3"
-      SID		      "14"
-      Position		      [1075, 200, 1095, 220]
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Terminator
-      Name		      "Terminator4"
-      SID		      "15"
-      Position		      [1075, 230, 1095, 250]
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Terminator
-      Name		      "Terminator5"
-      SID		      "16"
-      Position		      [1075, 260, 1095, 280]
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Terminator
-      Name		      "Terminator6"
-      SID		      "17"
-      Position		      [1075, 290, 1095, 310]
-      ShowName		      off
-    }
-    Block {
-      BlockType		      UnitDelay
-      Name		      "Unit Delay"
-      SID		      "26"
-      Position		      [665, 98, 700, 132]
-      InputProcessing	      "Elements as channels (sample based)"
-      SampleTime	      "Te"
     }
     Block {
       BlockType		      Gain
       Name		      "deg->rad"
-      SID		      "6"
-      Position		      [705, 350, 735, 380]
-      BlockMirror	      on
+      SID		      "13"
+      Position		      [610, 110, 640, 140]
       Gain		      "3.1415/180"
       ParamDataTypeStr	      "Inherit: Inherit via internal rule"
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
@@ -1100,77 +963,17 @@ Model {
       SampleTime	      "Te"
     }
     Line {
-      SrcBlock		      "T"
+      SrcBlock		      "Signal\nGenerator"
       SrcPort		      1
-      DstBlock		      "Sum"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "R"
-      SrcPort		      1
-      Points		      [-25, 0]
-      DstBlock		      "Sum"
-      DstPort		      2
-    }
-    Line {
-      SrcBlock		      "deg->rad"
-      SrcPort		      1
-      Points		      [-20, 0]
-      Branch {
-	DstBlock		"R"
-	DstPort			1
-      }
-      Branch {
-	Points			[0, 140]
-	DstBlock		"Mux"
-	DstPort			1
-      }
-    }
-    Line {
-      SrcBlock		      "Sum"
-      SrcPort		      1
-      DstBlock		      "1/S"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "1/S"
-      SrcPort		      1
-      DstBlock		      "Unit Delay"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Saturation"
-      SrcPort		      1
-      Points		      [35, 0]
-      Branch {
-	Points			[0, -75]
-	DstBlock		"Control"
-	DstPort			1
-      }
+      Points		      [85, 0]
       Branch {
 	DstBlock		"EV3"
 	DstPort			1
       }
-    }
-    Line {
-      SrcBlock		      "EV3"
-      SrcPort		      1
-      Points		      [55, 0; 0, 275]
-      DstBlock		      "deg->rad"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Signal\nGenerator"
-      SrcPort		      1
-      Points		      [140, 0]
       Branch {
-	DstBlock		"T"
-	DstPort			1
-      }
-      Branch {
-	Points			[0, 410]
+	Points			[0, -40]
 	DstBlock		"Mux"
-	DstPort			2
+	DstPort			1
       }
     }
     Line {
@@ -1234,16 +1037,28 @@ Model {
       DstPort		      4
     }
     Line {
-      SrcBlock		      "Mux"
+      SrcBlock		      "EV3"
       SrcPort		      1
-      DstBlock		      "Ref & Mes"
+      DstBlock		      "deg->rad"
       DstPort		      1
     }
     Line {
-      SrcBlock		      "Unit Delay"
+      SrcBlock		      "Mux"
       SrcPort		      1
-      DstBlock		      "Saturation"
+      DstBlock		      "U & Y"
       DstPort		      1
+    }
+    Line {
+      SrcBlock		      "deg->rad"
+      SrcPort		      1
+      DstBlock		      "Discrete Derivative"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Discrete Derivative"
+      SrcPort		      1
+      DstBlock		      "Mux"
+      DstPort		      2
     }
   }
 }

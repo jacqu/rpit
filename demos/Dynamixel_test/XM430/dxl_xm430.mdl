@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.23"
+    ComputedModelVersion    "1.24"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -39,9 +39,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jacques"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Sep 29 11:27:20 2016"
-  RTWModifiedTimeStamp	  396529331
-  ModelVersionFormat	  "1.%<AutoIncrement:23>"
+  LastModifiedDate	  "Mon Oct 31 13:58:08 2016"
+  RTWModifiedTimeStamp	  399823079
+  ModelVersionFormat	  "1.%<AutoIncrement:24>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -327,13 +327,13 @@ Model {
 	  ProdBitPerFloat	  32
 	  ProdBitPerDouble	  64
 	  ProdBitPerPointer	  32
-	  ProdLargestAtomicInteger "Long"
-	  ProdLargestAtomicFloat  "Double"
-	  ProdIntDivRoundTo	  "Undefined"
+	  ProdLargestAtomicInteger "Char"
+	  ProdLargestAtomicFloat  "None"
+	  ProdIntDivRoundTo	  "Zero"
 	  ProdEndianess		  "LittleEndian"
 	  ProdWordSize		  32
 	  ProdShiftRightIntArith  on
-	  ProdHWDeviceType	  "ARM Compatible->ARM 11"
+	  ProdHWDeviceType	  "Intel->x86/Pentium"
 	  TargetBitPerChar	  8
 	  TargetBitPerShort	  16
 	  TargetBitPerInt	  32
@@ -917,8 +917,8 @@ Model {
       Name		      "Dynamixel XM 430"
       SID		      "1"
       Ports		      [10, 10]
-      Position		      [360, 124, 555, 481]
-      LibraryVersion	      "1.27"
+      Position		      [345, 122, 600, 483]
+      LibraryVersion	      "1.33"
       SourceBlock	      "rpi_blkst/Dynamixel"
       SourceType	      "Dynamixel actuator"
       ShowPortLabels	      "FromPortIcon"
@@ -1043,63 +1043,63 @@ Model {
       BlockType		      Terminator
       Name		      "Terminator"
       SID		      "2"
-      Position		      [585, 170, 605, 190]
+      Position		      [620, 170, 640, 190]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator1"
       SID		      "3"
-      Position		      [585, 205, 605, 225]
+      Position		      [620, 205, 640, 225]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator2"
       SID		      "4"
-      Position		      [585, 240, 605, 260]
+      Position		      [620, 240, 640, 260]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator3"
       SID		      "5"
-      Position		      [585, 275, 605, 295]
+      Position		      [620, 275, 640, 295]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator4"
       SID		      "6"
-      Position		      [585, 310, 605, 330]
+      Position		      [620, 310, 640, 330]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator5"
       SID		      "7"
-      Position		      [585, 345, 605, 365]
+      Position		      [620, 345, 640, 365]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator6"
       SID		      "8"
-      Position		      [585, 380, 605, 400]
+      Position		      [620, 380, 640, 400]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator7"
       SID		      "9"
-      Position		      [585, 415, 605, 435]
+      Position		      [620, 415, 640, 435]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator8"
       SID		      "10"
-      Position		      [585, 450, 605, 470]
+      Position		      [620, 450, 640, 470]
       ShowName		      off
     }
     Block {
@@ -1224,7 +1224,7 @@ Model {
     Line {
       SrcBlock		      "Dynamixel XM 430"
       SrcPort		      1
-      Points		      [115, 0]
+      Points		      [70, 0]
       Branch {
 	Points			[0, 80]
 	DstBlock		"To Workspace"

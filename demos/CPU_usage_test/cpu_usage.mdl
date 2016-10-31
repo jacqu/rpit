@@ -1,16 +1,27 @@
 Model {
-  Name			  "jitter"
+  Name			  "cpu_usage"
   Version		  7.6
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.12"
+    ComputedModelVersion    "1.20"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
-  SavedCharacterEncoding  "windows-1252"
+  SavedCharacterEncoding  "UTF-8"
+  slprops.hdlmdlprops {
+    $PropName		    "HDLParams"
+    $ObjectID		    1
+    Array {
+      Type		      "Cell"
+      Dimension		      2
+      Cell		      "HDLSubsystem"
+      Cell		      "cpu_usage"
+      PropName		      "mdlProps"
+    }
+  }
   SaveDefaultBlockParams  on
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
@@ -20,15 +31,15 @@ Model {
   MinMaxOverflowLogging	  "UseLocalSettings"
   MinMaxOverflowArchiveMode "Overwrite"
   MaxMDLFileLineLength	  120
-  Created		  "Wed Aug 07 16:21:21 2013"
-  Creator		  "Jacques GANGLOFF"
+  Created		  "Mon Jul  7 17:14:34 2014"
+  Creator		  "jacques"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jacques"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Apr 22 17:21:01 2016"
-  RTWModifiedTimeStamp	  383246310
-  ModelVersionFormat	  "1.%<AutoIncrement:12>"
+  LastModifiedDate	  "Mon Oct 31 13:57:10 2016"
+  RTWModifiedTimeStamp	  399823023
+  ModelVersionFormat	  "1.%<AutoIncrement:20>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -102,13 +113,13 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      1
+      $ObjectID		      2
       Version		      "1.10.0"
       Array {
 	Type			"Handle"
-	Dimension		8
+	Dimension		9
 	Simulink.SolverCC {
-	  $ObjectID		  2
+	  $ObjectID		  3
 	  Version		  "1.10.0"
 	  StartTime		  "0.0"
 	  StopTime		  "Inf"
@@ -142,7 +153,7 @@ Model {
 	  InsertRTBMode		  "Whenever possible"
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  3
+	  $ObjectID		  4
 	  Version		  "1.10.0"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
@@ -173,7 +184,7 @@ Model {
 	  Refine		  "1"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  4
+	  $ObjectID		  5
 	  Version		  "1.10.0"
 	  Array {
 	    Type		    "Cell"
@@ -220,7 +231,7 @@ Model {
 	  AccelVerboseBuild	  off
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  5
+	  $ObjectID		  6
 	  Version		  "1.10.0"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
@@ -305,7 +316,7 @@ Model {
 	  SFTransitionOutsideNaturalParentDiag "warning"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  6
+	  $ObjectID		  7
 	  Version		  "1.10.0"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
@@ -314,13 +325,13 @@ Model {
 	  ProdBitPerFloat	  32
 	  ProdBitPerDouble	  64
 	  ProdBitPerPointer	  32
-	  ProdLargestAtomicInteger "Long"
-	  ProdLargestAtomicFloat  "Double"
-	  ProdIntDivRoundTo	  "Undefined"
+	  ProdLargestAtomicInteger "Char"
+	  ProdLargestAtomicFloat  "None"
+	  ProdIntDivRoundTo	  "Zero"
 	  ProdEndianess		  "LittleEndian"
 	  ProdWordSize		  32
 	  ProdShiftRightIntArith  on
-	  ProdHWDeviceType	  "ARM Compatible->ARM 11"
+	  ProdHWDeviceType	  "Intel->x86/Pentium"
 	  TargetBitPerChar	  8
 	  TargetBitPerShort	  16
 	  TargetBitPerInt	  32
@@ -342,7 +353,7 @@ Model {
 	  ProdEqTarget		  on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  7
+	  $ObjectID		  8
 	  Version		  "1.10.0"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
@@ -357,7 +368,7 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  8
+	  $ObjectID		  9
 	  Version		  "1.10.0"
 	  SFSimEnableDebug	  on
 	  SFSimOverflowDetection  on
@@ -372,7 +383,7 @@ Model {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  9
+	  $ObjectID		  10
 	  Version		  "1.10.0"
 	  SystemTargetFile	  "ert_rpi.tlc"
 	  GenCodeOnly		  off
@@ -414,7 +425,7 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      10
+	      $ObjectID		      11
 	      Version		      "1.10.0"
 	      ForceParamTrailComments off
 	      GenerateComments	      on
@@ -453,7 +464,7 @@ Model {
 	    }
 	    Simulink.STFCustomTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      11
+	      $ObjectID		      12
 	      Version		      "1.10.0"
 	      Array {
 		Type			"Cell"
@@ -508,7 +519,7 @@ Model {
 		Dimension		1
 		Simulink.ERTTargetCC {
 		  $BackupClass		  "Simulink.TargetCC"
-		  $ObjectID		  12
+		  $ObjectID		  13
 		  Version		  "1.10.0"
 		  Array {
 		    Type		    "Cell"
@@ -631,18 +642,31 @@ Model {
 	    PropName		    "Components"
 	  }
 	}
+	hdlcoderui.hdlcc {
+	  $ObjectID		  14
+	  Version		  "1.10.0"
+	  Description		  "HDL Coder custom configuration component"
+	  Name			  "HDL Coder"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    1
+	    Cell		    ""
+	    PropName		    "HDLConfigFile"
+	  }
+	  HDLCActiveTab		  "0"
+	}
 	PropName		"Components"
       }
       Name		      "Configuration"
       ExtraOptions	      "-aGenerateTraceInfo=0 -aIgnoreTestpoints=0 "
       CurrentDlgPage	      "Real-Time Workshop/Interface"
-      ConfigPrmDlgPosition    " [ 280, 64, 1160, 694 ] "
+      ConfigPrmDlgPosition    " [ 267, 89, 1173, 686 ] "
     }
     PropName		    "ConfigurationSets"
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
-    $ObjectID		    1
+    $ObjectID		    2
   }
   BlockDefaults {
     ForegroundColor	    "black"
@@ -677,10 +701,6 @@ Model {
   }
   BlockParameterDefaults {
     Block {
-      BlockType		      DigitalClock
-      SampleTime	      "1"
-    }
-    Block {
       BlockType		      Scope
       ModelBased	      off
       TickLabels	      "OneTimeTick"
@@ -697,26 +717,10 @@ Model {
       SampleInput	      off
       SampleTime	      "-1"
     }
-    Block {
-      BlockType		      Sum
-      IconShape		      "rectangular"
-      Inputs		      "++"
-      CollapseMode	      "All dimensions"
-      CollapseDim	      "1"
-      InputSameDT	      on
-      AccumDataTypeStr	      "Inherit: Inherit via internal rule"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: Same as first input"
-      LockScale		      off
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	on
-      SampleTime	      "-1"
-    }
   }
   System {
-    Name		    "jitter"
-    Location		    [374, 164, 910, 457]
+    Name		    "cpu_usage"
+    Location		    [225, 368, 641, 583]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -732,53 +736,14 @@ Model {
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    "5"
     Block {
-      BlockType		      DigitalClock
-      Name		      "Digital Clock"
-      SID		      "1"
-      Position		      [45, 138, 110, 162]
-      SampleTime	      "0.01"
-    }
-    Block {
-      BlockType		      Scope
-      Name		      "Scope"
-      SID		      "4"
-      Ports		      [1]
-      Position		      [335, 69, 365, 101]
-      Floating		      off
-      Location		      [1, 49, 1441, 797]
-      Open		      off
-      NumInputPorts	      "1"
-      List {
-	ListType		AxesTitles
-	axes1			"%<SignalLabel>"
-      }
-      YMin		      "-1.6e-005"
-      YMax		      "8e-006"
-      DataFormat	      "StructureWithTime"
-      SampleTime	      "0"
-    }
-    Block {
-      BlockType		      Sum
-      Name		      "Sum"
-      SID		      "2"
-      Ports		      [2, 1]
-      Position		      [235, 75, 255, 95]
-      ShowName		      off
-      IconShape		      "round"
-      Inputs		      "|+-"
-      InputSameDT	      off
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      SaturateOnIntegerOverflow	off
-    }
-    Block {
       BlockType		      Reference
-      Name		      "Target time"
+      Name		      "CPU usage"
       SID		      "5"
       Ports		      [0, 1]
-      Position		      [55, 55, 95, 115]
-      LibraryVersion	      "1.23"
-      SourceBlock	      "rpi_blkst/Target time"
-      SourceType	      "RPI time"
+      Position		      [75, 49, 135, 111]
+      LibraryVersion	      "1.33"
+      SourceBlock	      "rpi_blkst/CPU usage"
+      SourceType	      "Target CPU usage"
       ShowPortLabels	      "FromPortIcon"
       SystemSampleTime	      "-1"
       FunctionWithSeparateData off
@@ -788,33 +753,36 @@ Model {
       RTWMemSecDataInternal   "Inherit from model"
       RTWMemSecDataParameters "Inherit from model"
       GeneratePreprocessorConditionals off
-      rpi_mask_Ts	      "0.01"
+      rpi_mask_Ts	      "0.005"
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "Scope"
+      SID		      "2"
+      Ports		      [1]
+      Position		      [210, 64, 240, 96]
+      Floating		      off
+      Location		      [571, 478, 895, 717]
+      Open		      off
+      NumInputPorts	      "1"
+      List {
+	ListType		AxesTitles
+	axes1			"%<SignalLabel>"
+      }
+      YMin		      "1"
+      YMax		      "14"
+      DataFormat	      "StructureWithTime"
+      SampleTime	      "0"
     }
     Line {
-      SrcBlock		      "Digital Clock"
-      SrcPort		      1
-      Points		      [130, 0]
-      DstBlock		      "Sum"
-      DstPort		      2
-    }
-    Line {
-      SrcBlock		      "Target time"
-      SrcPort		      1
-      DstBlock		      "Sum"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Sum"
+      SrcBlock		      "CPU usage"
       SrcPort		      1
       DstBlock		      "Scope"
       DstPort		      1
     }
     Annotation {
-      Name		      "In \"Model Configurations Parameters->Code Generation->Interface\", define the IP\naddress of your "
-      "target in \"MEX-file arguments:\". Then press [CRTL-B] or the \"Build Model\" button. \nTip: if the build proces"
-      "s is hanging, you can hit [CRTL-C] in Matlab's Command Window."
-      Position		      [29, 218]
-      HorizontalAlignment     "left"
+      Name		      "CPU usage should be near 0% in this example"
+      Position		      [160, 160]
     }
   }
 }

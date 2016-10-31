@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.16"
+    ComputedModelVersion    "1.17"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -37,9 +37,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jacques"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Nov 28 16:04:54 2014"
-  RTWModifiedTimeStamp	  339085522
-  ModelVersionFormat	  "1.%<AutoIncrement:16>"
+  LastModifiedDate	  "Mon Oct 31 14:08:03 2016"
+  RTWModifiedTimeStamp	  399823671
+  ModelVersionFormat	  "1.%<AutoIncrement:17>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -803,8 +803,8 @@ Model {
       Name		      "EV314"
       SID		      "13"
       Ports		      [4, 10]
-      Position		      [360, 157, 460, 373]
-      LibraryVersion	      "1.22"
+      Position		      [355, 156, 475, 374]
+      LibraryVersion	      "1.33"
       SourceBlock	      "rpi_blkst/EV314"
       SourceType	      "EV3.14 interface"
       ShowPortLabels	      "FromPortIcon"
@@ -826,7 +826,7 @@ Model {
       Ports		      [1]
       Position		      [595, 159, 625, 191]
       Floating		      off
-      Location		      [188, 390, 512, 629]
+      Location		      [224, 716, 548, 955]
       Open		      on
       NumInputPorts	      "1"
       List {
@@ -1050,41 +1050,41 @@ Model {
       BlockType		      Terminator
       Name		      "Terminator3"
       SID		      "8"
-      Position		      [480, 245, 500, 265]
+      Position		      [490, 245, 510, 265]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator4"
       SID		      "9"
-      Position		      [480, 265, 500, 285]
+      Position		      [490, 265, 510, 285]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator5"
       SID		      "10"
-      Position		      [480, 285, 500, 305]
+      Position		      [490, 285, 510, 305]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator6"
       SID		      "15"
-      Position		      [480, 305, 500, 325]
+      Position		      [490, 305, 510, 325]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator7"
       SID		      "16"
-      Position		      [480, 345, 500, 365]
+      Position		      [490, 345, 510, 365]
       ShowName		      off
     }
     Line {
       SrcBlock		      "EV314"
       SrcPort		      1
-      Points		      [70, 0]
+      Points		      [55, 0]
       Branch {
 	DstBlock		"Encoder A"
 	DstPort			1
@@ -1098,21 +1098,21 @@ Model {
     Line {
       SrcBlock		      "EV314"
       SrcPort		      2
-      Points		      [65, 0; 0, 225; -335, 0]
+      Points		      [50, 0; 0, 225; -335, 0]
       DstBlock		      "Sum1"
       DstPort		      2
     }
     Line {
       SrcBlock		      "EV314"
       SrcPort		      3
-      Points		      [60, 0; 0, 200; -310, 0]
+      Points		      [45, 0; 0, 200; -310, 0]
       DstBlock		      "Sum2"
       DstPort		      2
     }
     Line {
       SrcBlock		      "EV314"
       SrcPort		      4
-      Points		      [55, 0; 0, 175; -280, 0]
+      Points		      [40, 0; 0, 175; -280, 0]
       DstBlock		      "Sum3"
       DstPort		      2
     }

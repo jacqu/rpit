@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.29"
+    ComputedModelVersion    "1.30"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -37,9 +37,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jacques"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Oct 29 15:21:22 2013"
-  RTWModifiedTimeStamp	  303737873
-  ModelVersionFormat	  "1.%<AutoIncrement:29>"
+  LastModifiedDate	  "Mon Oct 31 14:05:51 2016"
+  RTWModifiedTimeStamp	  399823541
+  ModelVersionFormat	  "1.%<AutoIncrement:30>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -325,13 +325,13 @@ Model {
 	  ProdBitPerFloat	  32
 	  ProdBitPerDouble	  64
 	  ProdBitPerPointer	  32
-	  ProdLargestAtomicInteger "Long"
-	  ProdLargestAtomicFloat  "Double"
-	  ProdIntDivRoundTo	  "Undefined"
+	  ProdLargestAtomicInteger "Char"
+	  ProdLargestAtomicFloat  "None"
+	  ProdIntDivRoundTo	  "Zero"
 	  ProdEndianess		  "LittleEndian"
 	  ProdWordSize		  32
 	  ProdShiftRightIntArith  on
-	  ProdHWDeviceType	  "ARM Compatible->ARM 11"
+	  ProdHWDeviceType	  "Intel->x86/Pentium"
 	  TargetBitPerChar	  8
 	  TargetBitPerShort	  16
 	  TargetBitPerInt	  32
@@ -784,7 +784,7 @@ Model {
   }
   System {
     Name		    "EV3_test"
-    Location		    [96, 162, 1206, 575]
+    Location		    [96, 162, 857, 575]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -803,7 +803,7 @@ Model {
       BlockType		      Constant
       Name		      "Constant1"
       SID		      "3"
-      Position		      [240, 130, 270, 160]
+      Position		      [290, 130, 320, 160]
       ShowName		      off
       Value		      "0"
     }
@@ -811,7 +811,7 @@ Model {
       BlockType		      Constant
       Name		      "Constant2"
       SID		      "4"
-      Position		      [240, 185, 270, 215]
+      Position		      [290, 185, 320, 215]
       ShowName		      off
       Value		      "0"
     }
@@ -819,7 +819,7 @@ Model {
       BlockType		      Constant
       Name		      "Constant3"
       SID		      "5"
-      Position		      [240, 240, 270, 270]
+      Position		      [290, 240, 320, 270]
       ShowName		      off
       Value		      "0"
     }
@@ -848,8 +848,8 @@ Model {
       Name		      "EV3"
       SID		      "1"
       Ports		      [4, 8]
-      Position		      [350, 57, 425, 283]
-      LibraryVersion	      "1.11"
+      Position		      [350, 61, 505, 289]
+      LibraryVersion	      "1.33"
       SourceBlock	      "rpi_blkst/EV3"
       SourceType	      "LEGO EV3"
       ShowPortLabels	      "FromPortIcon"
@@ -878,7 +878,7 @@ Model {
       Name		      "Measurement"
       SID		      "10"
       Ports		      [1]
-      Position		      [565, 49, 595, 81]
+      Position		      [615, 54, 645, 86]
       Floating		      off
       Location		      [130, 368, 831, 787]
       Open		      on
@@ -898,7 +898,7 @@ Model {
       Name		      "Sensor 1"
       SID		      "30"
       Ports		      [1]
-      Position		      [565, 169, 595, 201]
+      Position		      [615, 174, 645, 206]
       Floating		      off
       Location		      [384, 531, 1085, 950]
       Open		      on
@@ -919,7 +919,7 @@ Model {
       Name		      "Signal\nGenerator"
       SID		      "29"
       Ports		      [0, 1]
-      Position		      [55, 75, 85, 105]
+      Position		      [85, 75, 115, 105]
       WaveForm		      "square"
       Amplitude		      "40"
       Frequency		      "0.5"
@@ -929,7 +929,7 @@ Model {
       Name		      "Sum"
       SID		      "28"
       Ports		      [2, 1]
-      Position		      [140, 80, 160, 100]
+      Position		      [170, 80, 190, 100]
       ShowName		      off
       IconShape		      "round"
       Inputs		      "|+-"
@@ -941,42 +941,42 @@ Model {
       BlockType		      Terminator
       Name		      "Terminator"
       SID		      "6"
-      Position		      [490, 265, 510, 285]
+      Position		      [540, 270, 560, 290]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator1"
       SID		      "7"
-      Position		      [490, 235, 510, 255]
+      Position		      [540, 240, 560, 260]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator2"
       SID		      "8"
-      Position		      [490, 205, 510, 225]
+      Position		      [540, 210, 560, 230]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator4"
       SID		      "11"
-      Position		      [490, 145, 510, 165]
+      Position		      [540, 150, 560, 170]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator5"
       SID		      "12"
-      Position		      [490, 115, 510, 135]
+      Position		      [540, 120, 560, 140]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator6"
       SID		      "13"
-      Position		      [490, 85, 510, 105]
+      Position		      [540, 90, 560, 110]
       ShowName		      off
     }
     Block {
@@ -1033,13 +1033,13 @@ Model {
     Line {
       SrcBlock		      "EV3"
       SrcPort		      1
-      Points		      [105, 0]
+      Points		      [75, 0]
       Branch {
 	DstBlock		"Measurement"
 	DstPort			1
       }
       Branch {
-	Points			[0, 290; -385, 0]
+	Points			[0, 285; -405, 0]
 	DstBlock		"Sum"
 	DstPort			2
       }
