@@ -6,7 +6,7 @@ clc;
 
 rpitdir = pwd;
 
-disp( '*** Configuration of the RPIt ***' );
+disp( '*** Configuration of RPIt.' );
 disp( '# NOTES:' );
 disp( '# In what follows, ''target'' means the distant Linux system which you want' );
 disp( '# to prepare for using with RPIt. The system type is automatically detected.' );
@@ -99,7 +99,9 @@ if status ~= 0,
   return;
 else
   disp( '  > Saving Matlab search path in user path for future sessions.' );
-  disp( '  > Note: some releases (2015) may need to add ''path(pathdef);'' in ''startup.m'' in your userpath.' );
+  if strcmp( mvernum, '2015a' ) || strcmp( mvernum, '2015b' )
+    disp( '  > WARNING: your Matlab release needs to add ''path(pathdef);'' in ''startup.m'' in your userpath.' );
+  end;
 end;
 path(pathdef);
 
@@ -444,18 +446,19 @@ if ( target_is_rpi )
      command = sprintf( '%s pi@%s "sudo bash -c ''echo i2c-dev >> /etc/modules''"', ssh_command, piip );
      [ status, out ] = system( command );
   end
-  disp( '  > Verifying /etc/modprobe.d/raspi-blacklist.conf.' );
-  command = sprintf( '%s pi@%s "sudo cat /etc/modprobe.d/raspi-blacklist.conf"', ssh_command, piip );
-  [ status, out ] = system( command );
-  if strfind( out, '#blacklist i2c-bcm2708' );
-    disp( '  > /etc/modprobe.d/raspi-blacklist.conf already up to date.' );
-  else
-    disp( '  > Commenting out ''blacklist i2c-bcm2708'' in  /etc/modprobe.d/raspi-blacklist.conf.' );
-    command = sprintf( '%s pi@%s "sudo sed ''s/blacklist i2c-bcm2708/#blacklist i2c-bcm2708/'' < /etc/modprobe.d/raspi-blacklist.conf > ~/raspi-blacklist.conf"', ssh_command, piip );
-    [ status, out ] = system( command );
-    command = sprintf( '%s pi@%s "sudo mv ~/raspi-blacklist.conf /etc/modprobe.d/"', ssh_command, piip );
-    [ status, out ] = system( command );
-  end
+% Not needed anymore on recent systems
+%   disp( '  > Verifying /etc/modprobe.d/raspi-blacklist.conf.' );
+%   command = sprintf( '%s pi@%s "sudo cat /etc/modprobe.d/raspi-blacklist.conf"', ssh_command, piip );
+%   [ status, out ] = system( command );
+%   if strfind( out, '#blacklist i2c-bcm2708' );
+%     disp( '  > /etc/modprobe.d/raspi-blacklist.conf already up to date.' );
+%   else
+%     disp( '  > Commenting out ''blacklist i2c-bcm2708'' in  /etc/modprobe.d/raspi-blacklist.conf.' );
+%     command = sprintf( '%s pi@%s "sudo sed ''s/blacklist i2c-bcm2708/#blacklist i2c-bcm2708/'' < /etc/modprobe.d/raspi-blacklist.conf > ~/raspi-blacklist.conf"', ssh_command, piip );
+%     [ status, out ] = system( command );
+%     command = sprintf( '%s pi@%s "sudo mv ~/raspi-blacklist.conf /etc/modprobe.d/"', ssh_command, piip );
+%     [ status, out ] = system( command );
+%   end
   disp( '  > Configuring i2c at 400kHz.' );
   command = sprintf( '%s pi@%s "sudo bash -c ''echo options i2c_bcm2708 baudrate=400000 > /etc/modprobe.d/i2c.conf''"', ssh_command, piip );
   [ status, out ] = system( command );
@@ -474,11 +477,21 @@ if ( target_is_rpi )
   disp( '  > Adding user pi to the i2c group.' );
   command = sprintf( '%s pi@%s "sudo usermod -a -G i2c pi"', ssh_command, piip );
   [ status, out ] = system( command );
-  disp( '  > *** Manual action required ***' );
-  disp( '    - Reboot and check that the command ''sudo cat /sys/module/i2c_bcm2708/parameters/baudrate'' gives 400000.' );
+  disp( '  > Checking cpu governor configuration.' );
+  command = sprintf( '%s pi@%s "sudo cat /etc/rc.local"', ssh_command, piip );
+  [ status, out ] = system( command );
+  strfind( out, '# Change governor to performance' );
+  if strfind( out, '# Change governor to performance' );
+    disp( '  > rc.local already set cpu governor to performance mode.' );
+  else
+    disp( '  > Force cpu governor to performance mode in rc.local.' );
+    command = sprintf( '%s pi@%s %s', ssh_command, piip, '"sudo sed -i -e ''s/^exit 0/# Change governor to performance\nfor cpucore in \/sys\/devices\/system\/cpu\/cpu?; do echo performance | sudo tee $cpucore\/cpufreq\/scaling_governor > \/dev\/null; done\n\nexit 0/g'' /etc/rc.local"' );
+    [ status, out ] = system( command );
+  end;
 end
 
-disp( '*** Configuration of RPIt successfully completed ***' );
+disp( '# NOTE: please reboot your target for changes to take effect.' );
+disp( '*** Configuration of RPIt successfully completed.' );
 
 % Restore initial path and cleanup variables
 

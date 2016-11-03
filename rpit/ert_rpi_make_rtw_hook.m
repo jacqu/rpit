@@ -200,7 +200,7 @@ function ert_rpi_make_rtw_hook(hookMethod,modelName,rtwroot,templateMakefile,bui
 
       % Compile the model on the target
       disp(['### Compiling ', modelName, ' on the target (may take awhile).']);
-      command = sprintf('%s pi@%s "cd ~/RTW/%s_ert_rtw;make -f %s.mk"', ssh_command, piip, modelName, modelName );
+      command = sprintf('%s pi@%s "cd ~/RTW/%s_ert_rtw;make -j`nproc` -f %s.mk"', ssh_command, piip, modelName, modelName );
       [ status, out ] = system( command );
       disp( out );
       if strfind( out, '### Created executable' );
