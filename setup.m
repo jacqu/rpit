@@ -6,23 +6,23 @@ clc;
 
 rpitdir = pwd;
 
-disp( '*** Configuration of RPIt.' );
-disp( '# NOTES:' );
-disp( '# In what follows, ''target'' means the distant Linux system which you want' );
-disp( '# to prepare for using with RPIt. The system type is automatically detected.' );
-disp( '#  - If the target is a Raspberry Pi, the setup should go without a problem.' );
-disp( '#    In this case, some specific i2c configurations will be done.' );
-disp( '#  - If the target is a Debian-based distribution (Debian, Ubuntu, Mint), ' );
-disp( '#    you should first add a user ''pi'' to the system and add it to the' );
-disp( '#    passwordless sudoers (sudo without password prompt with user ''pi'').' );
-disp( '#    To do so, create an account ''pi'' with ''sudo adduser pi''' );
-disp( '#    and issue the following command as root: ' );
-disp( '#    ''echo "pi ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/00-RPIt;chmod 0440 /etc/sudoers.d/00-RPIt''' );
-disp( '#    You should also install some basic additional packages by running:' );
-disp( '#    ''sudo apt-get install build-essential ssh''' );
-disp( '#    If you have warnings about libcrypto.so.1.0.0, replace simply Matlab''s' );
-disp( '#    version of libcrypto.so.1.0.0 by your system''s version.' );
-disp( '#  - If the target is not Debian-based, you cannot use it with RPIt.' );
+disp( '  > Configuration of RPIt.' );
+disp( '  > NOTES:' );
+disp( '  >  - In what follows, ''target'' means the distant Linux system which you want' );
+disp( '  >    to prepare for using with RPIt. The system type is automatically detected.' );
+disp( '  >  - If the target is a Raspberry Pi, the setup should go without a problem.' );
+disp( '  >    In this case, some specific configurations will be done.' );
+disp( '  >  - If the target is a Debian-based distribution (Debian, Ubuntu, Mint), ' );
+disp( '  >    you should first add a user ''pi'' to the system and add it to the' );
+disp( '  >    passwordless sudoers (sudo without password prompt with user ''pi'').' );
+disp( '  >    To do so, create an account ''pi'' with ''sudo adduser pi''' );
+disp( '  >    and issue the following command as root: ' );
+disp( '  >    ''echo "pi ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/00-RPIt;chmod 0440 /etc/sudoers.d/00-RPIt''' );
+disp( '  >    You should also install some basic additional packages by running:' );
+disp( '  >    ''sudo apt-get install build-essential ssh''' );
+disp( '  >    If you have warnings about libcrypto.so.1.0.0, replace simply Matlab''s' );
+disp( '  >    version of libcrypto.so.1.0.0 by your system''s version.' );
+disp( '  >  - If the target is not Debian-based, you cannot use it with RPIt.' );
 cont_quest = input( '  > Continue with the setup (''y'' to continue or ''n'' to abort) ? ', 's' );
 
 if strcmp( cont_quest, 'y' )
@@ -490,8 +490,8 @@ if ( target_is_rpi )
   end;
 end
 
-disp( '# NOTE: please reboot your target for changes to take effect.' );
-disp( '*** Configuration of RPIt successfully completed.' );
+disp( '  > Configuration of RPIt successfully completed.' );
+disp( '  > NOTE: please reboot your target for changes to take effect.' );
 
 % Restore initial path and cleanup variables
 
