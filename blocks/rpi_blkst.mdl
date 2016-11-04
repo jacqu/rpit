@@ -15,9 +15,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jacques"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Nov 04 09:53:14 2016"
-  RTWModifiedTimeStamp	  400153953
-  ModelVersionFormat	  "1.%<AutoIncrement:35>"
+  LastModifiedDate	  "Fri Nov 04 12:17:12 2016"
+  RTWModifiedTimeStamp	  400162199
+  ModelVersionFormat	  "1.%<AutoIncrement:37>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -743,7 +743,6 @@ Library {
 	  Position		  [25, 28, 140, 102]
 	  ShowName		  off
 	  LibraryVersion	  "1.225"
-	  CopyFcn		  "set_param(gcbh,'LinkStatus','none')"
 	  PreSaveFcn		  "try, set_param(gcb,'FunctionName','rpi_sfun_cpu'), end"
 	  InitFcn		  "try, set_param(gcb,'FunctionName','rpi_sfun_cpu'), end"
 	  OpenFcn		  "sfunctionwizard(gcbh)"
@@ -959,7 +958,6 @@ Library {
 	  Ports			  [10, 10]
 	  Position		  [80, 28, 250, 307]
 	  LibraryVersion	  "1.225"
-	  CopyFcn		  "set_param(gcbh,'LinkStatus','none')"
 	  PreSaveFcn		  "try, set_param(gcb,'FunctionName','rpi_sfun_dxl'), end"
 	  InitFcn		  "try, set_param(gcb,'FunctionName','rpi_sfun_dxl'), end"
 	  OpenFcn		  "sfunctionwizard(gcbh)"
@@ -1290,7 +1288,6 @@ Library {
 	  Ports			  [4, 8]
 	  Position		  [165, 26, 285, 204]
 	  LibraryVersion	  "1.225"
-	  CopyFcn		  "set_param(gcbh,'LinkStatus','none')"
 	  PreSaveFcn		  "try, set_param(gcb,'FunctionName','rpi_sfun_ev3'), end"
 	  InitFcn		  "try, set_param(gcb,'FunctionName','rpi_sfun_ev3'), end"
 	  OpenFcn		  "sfunctionwizard(gcbh)"
@@ -1562,7 +1559,6 @@ Library {
 	  Ports			  [4, 10]
 	  Position		  [90, 30, 225, 275]
 	  LibraryVersion	  "1.225"
-	  CopyFcn		  "set_param(gcbh,'LinkStatus','none')"
 	  PreSaveFcn		  "try, set_param(gcb,'FunctionName','rpi_sfun_ev314'), end"
 	  InitFcn		  "try, set_param(gcb,'FunctionName','rpi_sfun_ev314'), end"
 	  OpenFcn		  "sfunctionwizard(gcbh)"
@@ -1823,7 +1819,6 @@ Library {
 	  Ports			  [0, 9]
 	  Position		  [25, 28, 160, 282]
 	  LibraryVersion	  "1.225"
-	  CopyFcn		  "set_param(gcbh,'LinkStatus','none')"
 	  PreSaveFcn		  "try, set_param(gcb,'FunctionName','rpi_sfun_mpu9150'), end"
 	  InitFcn		  "try, set_param(gcb,'FunctionName','rpi_sfun_mpu9150'), end"
 	  OpenFcn		  "sfunctionwizard(gcbh)"
@@ -2072,7 +2067,6 @@ Library {
 	  Ports			  [3, 8]
 	  Position		  [85, 25, 235, 230]
 	  LibraryVersion	  "1.225"
-	  CopyFcn		  "set_param(gcbh,'LinkStatus','none')"
 	  PreSaveFcn		  "try, set_param(gcb,'FunctionName','rpi_sfun_nxt'), end"
 	  InitFcn		  "try, set_param(gcb,'FunctionName','rpi_sfun_nxt'), end"
 	  OpenFcn		  "sfunctionwizard(gcbh)"
@@ -2300,7 +2294,6 @@ Library {
 	  Ports			  [0, 9]
 	  Position		  [25, 25, 150, 275]
 	  LibraryVersion	  "1.225"
-	  CopyFcn		  "set_param(gcbh,'LinkStatus','none')"
 	  PreSaveFcn		  "try, set_param(gcb,'FunctionName','rpi_sfun_polaris'), end"
 	  InitFcn		  "try, set_param(gcb,'FunctionName','rpi_sfun_polaris'), end"
 	  OpenFcn		  "sfunctionwizard(gcbh)"
@@ -2521,7 +2514,6 @@ Library {
 	  Ports			  [0, 9]
 	  Position		  [25, 28, 160, 282]
 	  LibraryVersion	  "1.225"
-	  CopyFcn		  "set_param(gcbh,'LinkStatus','none')"
 	  PreSaveFcn		  "try, set_param(gcb,'FunctionName','rpi_sfun_imu'), end"
 	  InitFcn		  "try, set_param(gcb,'FunctionName','rpi_sfun_imu'), end"
 	  OpenFcn		  "sfunctionwizard(gcbh)"
@@ -2742,7 +2734,6 @@ Library {
 	  Ports			  [0, 1]
 	  Position		  [25, 28, 135, 92]
 	  LibraryVersion	  "1.225"
-	  CopyFcn		  "set_param(gcbh,'LinkStatus','none')"
 	  PreSaveFcn		  "try, set_param(gcb,'FunctionName','rpi_sfun_socket'), end"
 	  InitFcn		  "try, set_param(gcb,'FunctionName','rpi_sfun_socket'), end"
 	  OpenFcn		  "sfunctionwizard(gcbh)"
@@ -2835,7 +2826,6 @@ Library {
 	  Ports			  [0, 1]
 	  Position		  [25, 28, 140, 92]
 	  LibraryVersion	  "1.225"
-	  CopyFcn		  "set_param(gcbh,'LinkStatus','none')"
 	  PreSaveFcn		  "try, set_param(gcb,'FunctionName','rpi_sfun_time'), end"
 	  InitFcn		  "try, set_param(gcb,'FunctionName','rpi_sfun_time'), end"
 	  OpenFcn		  "sfunctionwizard(gcbh)"
@@ -2932,7 +2922,6 @@ Library {
 	  Ports			  [0, 2]
 	  Position		  [25, 26, 145, 124]
 	  LibraryVersion	  "1.225"
-	  CopyFcn		  "set_param(gcbh,'LinkStatus','none')"
 	  PreSaveFcn		  "try, set_param(gcb,'FunctionName','rpi_sfun_js'), end"
 	  InitFcn		  "try, set_param(gcb,'FunctionName','rpi_sfun_js'), end"
 	  OpenFcn		  "sfunctionwizard(gcbh)"
