@@ -15,9 +15,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jacques"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Oct 31 14:42:02 2016"
-  RTWModifiedTimeStamp	  399825709
-  ModelVersionFormat	  "1.%<AutoIncrement:34>"
+  LastModifiedDate	  "Fri Nov 04 09:53:14 2016"
+  RTWModifiedTimeStamp	  400153953
+  ModelVersionFormat	  "1.%<AutoIncrement:35>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -675,7 +675,7 @@ Library {
   }
   System {
     Name		    "rpi_blkst"
-    Location		    [75, 83, 1667, 838]
+    Location		    [75, 83, 1495, 838]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1205,7 +1205,7 @@ Library {
       Name		      "EV3"
       SID		      "8"
       Ports		      [4, 8]
-      Position		      [245, 351, 465, 574]
+      Position		      [295, 353, 465, 577]
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -1223,10 +1223,10 @@ Library {
       MaskEnableString	      "on"
       MaskVisibilityString    "on"
       MaskToolTipString	      "on"
-      MaskDisplay	      "image(imread('ev3_45.jpg'))\nport_label('input',1,'A')\nport_label('input',2,'B')\nport_label"
-      "('input',3,'C')\nport_label('input',4,'D')\nport_label('output',1,'A')\nport_label('output',2,'B')\nport_label('"
-      "output',3,'C')\nport_label('output',4,'D')\nport_label('output',5,'1')\nport_label('output',6,'2')\nport_label('"
-      "output',7,'3')\nport_label('output',8,'4')"
+      MaskDisplay	      "image(imread('ev3.jpg'))\nport_label('input',1,'A')\nport_label('input',2,'B')\nport_label('i"
+      "nput',3,'C')\nport_label('input',4,'D')\nport_label('output',1,'A')\nport_label('output',2,'B')\nport_label('out"
+      "put',3,'C')\nport_label('output',4,'D')\nport_label('output',5,'1')\nport_label('output',6,'2')\nport_label('out"
+      "put',7,'3')\nport_label('output',8,'4')"
       MaskIconFrame	      on
       MaskIconOpaque	      on
       MaskIconRotate	      "none"
@@ -1494,11 +1494,11 @@ Library {
       MaskEnableString	      "on,on"
       MaskVisibilityString    "on,on"
       MaskToolTipString	      "on,on"
-      MaskDisplay	      "image(imread('ev3.jpg'))\nport_label('input',1,'UA')\nport_label('input',2,'UB')\nport_label("
-      "'input',3,'UC')\nport_label('input',4,'UD')\nport_label('output',1,'EA')\nport_label('output',2,'EB')\nport_labe"
-      "l('output',3,'EC')\nport_label('output',4,'ED')\nport_label('output',5,'S1')\nport_label('output',6,'S2')\nport_"
-      "label('output',7,'S3')\nport_label('output',8,'S4')\nport_label('output',9,'IBAT')\nport_label('output',10,'VBAT"
-      "')"
+      MaskDisplay	      "image(imread('ev3.14.jpg'))\nport_label('input',1,'UA')\nport_label('input',2,'UB')\nport_lab"
+      "el('input',3,'UC')\nport_label('input',4,'UD')\nport_label('output',1,'EA')\nport_label('output',2,'EB')\nport_l"
+      "abel('output',3,'EC')\nport_label('output',4,'ED')\nport_label('output',5,'S1')\nport_label('output',6,'S2')\npo"
+      "rt_label('output',7,'S3')\nport_label('output',8,'S4')\nport_label('output',9,'IBAT')\nport_label('output',10,'V"
+      "BAT')"
       MaskIconFrame	      on
       MaskIconOpaque	      on
       MaskIconRotate	      "none"
