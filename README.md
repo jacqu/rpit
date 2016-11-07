@@ -1,7 +1,11 @@
 # RPIt
 
-To install RPIt, simply run the "setup.m" script from Matlab.
-To prepare a NXT brick for use with RPIt, run the "setup_NXT.m" sript. 
+Quickstart:
+* git clone https://github.com/jacqu/rpit.git
+* Start Matlab.
+* > cd rpit
+* > setup
+* Test some demos in the "demos" directory.
 
 Details are given in the file "RPIt Simulink coder.pdf" in the "docs" directory.
 
