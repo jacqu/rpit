@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.4"
+    ComputedModelVersion    "1.10"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -37,9 +37,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jacques"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Oct 31 14:13:03 2016"
-  RTWModifiedTimeStamp	  399823978
-  ModelVersionFormat	  "1.%<AutoIncrement:4>"
+  LastModifiedDate	  "Mon Nov 07 16:52:16 2016"
+  RTWModifiedTimeStamp	  400433657
+  ModelVersionFormat	  "1.%<AutoIncrement:10>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -325,13 +325,13 @@ Model {
 	  ProdBitPerFloat	  32
 	  ProdBitPerDouble	  64
 	  ProdBitPerPointer	  32
-	  ProdLargestAtomicInteger "Char"
-	  ProdLargestAtomicFloat  "None"
-	  ProdIntDivRoundTo	  "Zero"
+	  ProdLargestAtomicInteger "Long"
+	  ProdLargestAtomicFloat  "Double"
+	  ProdIntDivRoundTo	  "Undefined"
 	  ProdEndianess		  "LittleEndian"
 	  ProdWordSize		  32
 	  ProdShiftRightIntArith  on
-	  ProdHWDeviceType	  "Intel->x86/Pentium"
+	  ProdHWDeviceType	  "ARM Compatible->ARM 11"
 	  TargetBitPerChar	  8
 	  TargetBitPerShort	  16
 	  TargetBitPerInt	  32
@@ -579,7 +579,7 @@ Model {
 		  ExtModeStaticAllocSize  1000000
 		  ExtModeTesting	  off
 		  ExtModeMexFile	  "ext_comm"
-		  ExtModeMexArgs	  "'192.168.2.1'"
+		  ExtModeMexArgs	  "'10.211.55.4'"
 		  ExtModeIntrfLevel	  "Level1"
 		  InlinedParameterPlacement "NonHierarchical"
 		  TargetOS		  "BareBoardExample"
@@ -701,6 +701,19 @@ Model {
   }
   BlockParameterDefaults {
     Block {
+      BlockType		      Constant
+      Value		      "1"
+      VectorParams1D	      on
+      SamplingMode	      "Sample based"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Inherit from 'Constant value'"
+      LockScale		      off
+      SampleTime	      "inf"
+      FramePeriod	      "inf"
+      PreserveConstantTs      off
+    }
+    Block {
       BlockType		      Scope
       ModelBased	      off
       TickLabels	      "OneTimeTick"
@@ -720,7 +733,7 @@ Model {
   }
   System {
     Name		    "socket_test"
-    Location		    [451, 254, 987, 542]
+    Location		    [879, 238, 1365, 633]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -734,35 +747,34 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "2"
+    SIDHighWatermark	    "18"
     Block {
-      BlockType		      Scope
-      Name		      "Scope"
-      SID		      "2"
-      Ports		      [1]
-      Position		      [245, 94, 275, 126]
-      Floating		      off
-      Location		      [188, 390, 512, 629]
-      Open		      on
-      NumInputPorts	      "1"
-      List {
-	ListType		AxesTitles
-	axes1			"%<SignalLabel>"
-      }
-      YMin		      "-1"
-      YMax		      "1"
-      DataFormat	      "StructureWithTime"
-      SampleTime	      "0"
+      BlockType		      Constant
+      Name		      "Constant"
+      SID		      "15"
+      Position		      [50, 60, 80, 90]
+      ShowName		      off
+      Value		      "[ 1 2 3 4 5 6 7 8 9 10 ]"
+      SampleTime	      "0.01"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Constant1"
+      SID		      "16"
+      Position		      [50, 215, 80, 245]
+      ShowName		      off
+      Value		      "[ -1 -2 -3 -4 -5 -6 -7 -8 -9 -10 ]"
+      SampleTime	      "0.01"
     }
     Block {
       BlockType		      Reference
-      Name		      "Socket"
-      SID		      "1"
-      Ports		      [0, 1]
-      Position		      [65, 46, 200, 174]
-      LibraryVersion	      "1.33"
-      SourceBlock	      "rpi_blkst/Socket"
-      SourceType	      "RPIt socket"
+      Name		      "IO socket 1"
+      SID		      "3"
+      Ports		      [1, 1]
+      Position		      [150, 28, 265, 122]
+      LibraryVersion	      "1.39"
+      SourceBlock	      "rpi_blkst/IO socket"
+      SourceType	      "IO socket"
       ShowPortLabels	      "FromPortIcon"
       SystemSampleTime	      "-1"
       FunctionWithSeparateData off
@@ -773,15 +785,96 @@ Model {
       RTWMemSecDataParameters "Inherit from model"
       GeneratePreprocessorConditionals off
       rpi_mask_Ts	      "0.01"
-      rpi_mask_IP1	      "127"
-      rpi_mask_IP2	      "0"
-      rpi_mask_IP3	      "0"
-      rpi_mask_IP4	      "1"
+      rpi_mask_ip1	      "10"
+      rpi_mask_ip2	      "211"
+      rpi_mask_ip3	      "55"
+      rpi_mask_ip4	      "4"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "IO socket 2"
+      SID		      "17"
+      Ports		      [1, 1]
+      Position		      [150, 183, 265, 277]
+      LibraryVersion	      "1.39"
+      SourceBlock	      "rpi_blkst/IO socket"
+      SourceType	      "IO socket"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
+      rpi_mask_Ts	      "0.01"
+      rpi_mask_ip1	      "10"
+      rpi_mask_ip2	      "0"
+      rpi_mask_ip3	      "1"
+      rpi_mask_ip4	      "3"
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "Scope"
+      SID		      "2"
+      Ports		      [1]
+      Position		      [330, 59, 360, 91]
+      Floating		      off
+      Location		      [188, 390, 512, 629]
+      Open		      on
+      NumInputPorts	      "1"
+      List {
+	ListType		AxesTitles
+	axes1			"%<SignalLabel>"
+      }
+      YMin		      "1"
+      YMax		      "10"
+      DataFormat	      "StructureWithTime"
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "Scope1"
+      SID		      "18"
+      Ports		      [1]
+      Position		      [330, 214, 360, 246]
+      Floating		      off
+      Location		      [514, 394, 838, 635]
+      Open		      on
+      NumInputPorts	      "1"
+      List {
+	ListType		AxesTitles
+	axes1			"%<SignalLabel>"
+      }
+      YMin		      "-10"
+      YMax		      "-1"
+      SaveName		      "ScopeData1"
+      DataFormat	      "StructureWithTime"
+      SampleTime	      "0"
     }
     Line {
-      SrcBlock		      "Socket"
+      SrcBlock		      "IO socket 1"
       SrcPort		      1
       DstBlock		      "Scope"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Constant"
+      SrcPort		      1
+      DstBlock		      "IO socket 1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "IO socket 2"
+      SrcPort		      1
+      DstBlock		      "Scope1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Constant1"
+      SrcPort		      1
+      DstBlock		      "IO socket 2"
       DstPort		      1
     }
   }

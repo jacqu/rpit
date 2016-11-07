@@ -1,5 +1,5 @@
 /*
- * File: rpi_sfun_socket.c
+ * File: rpi_sfun_iosocket.c
  *
  *
   *
@@ -26,20 +26,37 @@
   *  -------------------------------------------------------------------------
   * | See matlabroot/simulink/src/sfuntmpl_doc.c for a more detailed template |
   *  ------------------------------------------------------------------------- 
- * Created: Tue May 10 16:47:07 2016
+ * Created: Mon Nov  7 14:13:00 2016
  * 
  *
  */
 
 #define S_FUNCTION_LEVEL 2
-#define S_FUNCTION_NAME rpi_sfun_socket
+#define S_FUNCTION_NAME rpi_sfun_iosocket
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* %%%-SFUNWIZ_defines_Changes_BEGIN --- EDIT HERE TO _END */
-#define NUM_INPUTS           0
+#define NUM_INPUTS          1
+/* Input Port  0 */
+#define IN_PORT_0_NAME      u0
+#define INPUT_0_WIDTH       10
+#define INPUT_DIMS_0_COL    1
+#define INPUT_0_DTYPE       real_T
+#define INPUT_0_COMPLEX     COMPLEX_NO
+#define IN_0_FRAME_BASED    FRAME_NO
+#define IN_0_BUS_BASED      0
+#define IN_0_BUS_NAME       
+#define IN_0_DIMS           1-D
+#define INPUT_0_FEEDTHROUGH 1
+#define IN_0_ISSIGNED        0
+#define IN_0_WORDLENGTH      8
+#define IN_0_FIXPOINTSCALING 1
+#define IN_0_FRACTIONLENGTH  9
+#define IN_0_BIAS            0
+#define IN_0_SLOPE           0.125
 
 #define NUM_OUTPUTS          1
 /* Output Port  0 */
-#define OUT_PORT_0_NAME      y
+#define OUT_PORT_0_NAME      y0
 #define OUTPUT_0_WIDTH       10
 #define OUTPUT_DIMS_0_COL    1
 #define OUTPUT_0_DTYPE       real_T
@@ -61,19 +78,19 @@
 #define PARAMETER_0_DTYPE     real_T
 #define PARAMETER_0_COMPLEX   COMPLEX_NO
 /* Parameter  2 */
-#define PARAMETER_1_NAME      rpi_IP1
+#define PARAMETER_1_NAME      rpi_ip1
 #define PARAMETER_1_DTYPE     uint8_T
 #define PARAMETER_1_COMPLEX   COMPLEX_NO
 /* Parameter  3 */
-#define PARAMETER_2_NAME      rpi_IP2
+#define PARAMETER_2_NAME      rpi_ip2
 #define PARAMETER_2_DTYPE     uint8_T
 #define PARAMETER_2_COMPLEX   COMPLEX_NO
 /* Parameter  4 */
-#define PARAMETER_3_NAME      rpi_IP3
+#define PARAMETER_3_NAME      rpi_ip3
 #define PARAMETER_3_DTYPE     uint8_T
 #define PARAMETER_3_COMPLEX   COMPLEX_NO
 /* Parameter  5 */
-#define PARAMETER_4_NAME      rpi_IP4
+#define PARAMETER_4_NAME      rpi_ip4
 #define PARAMETER_4_DTYPE     uint8_T
 #define PARAMETER_4_COMPLEX   COMPLEX_NO
 
@@ -106,12 +123,13 @@
 #define IS_PARAM_UINT8(pVal) (mxIsNumeric(pVal) && !mxIsLogical(pVal) &&\
 !mxIsEmpty(pVal) && !mxIsSparse(pVal) && !mxIsComplex(pVal) && mxIsUint8(pVal))
 
-extern void rpi_sfun_socket_Outputs_wrapper(real_T *y  , 
+extern void rpi_sfun_iosocket_Outputs_wrapper(const real_T *u0,
+                          real_T *y0  , 
                           const real_T  *rpi_Ts, const int_T  p_width0, 
-                          const uint8_T  *rpi_IP1, const int_T  p_width1, 
-                          const uint8_T  *rpi_IP2, const int_T  p_width2, 
-                          const uint8_T  *rpi_IP3, const int_T  p_width3, 
-                          const uint8_T  *rpi_IP4,  const int_T p_width4);
+                          const uint8_T  *rpi_ip1, const int_T  p_width1, 
+                          const uint8_T  *rpi_ip2, const int_T  p_width2, 
+                          const uint8_T  *rpi_ip3, const int_T  p_width3, 
+                          const uint8_T  *rpi_ip4,  const int_T p_width4);
 
 /*====================*
  * S-function methods *
@@ -201,6 +219,7 @@ extern void rpi_sfun_socket_Outputs_wrapper(real_T *y  ,
 static void mdlInitializeSizes(SimStruct *S)
 {
 
+    DECL_AND_INIT_DIMSINFO(inputDimsInfo);
     DECL_AND_INIT_DIMSINFO(outputDimsInfo);
     ssSetNumSFcnParams(S, NPARAMS);  /* Number of expected parameters */
       #if defined(MATLAB_MEX_FILE)
@@ -218,10 +237,20 @@ static void mdlInitializeSizes(SimStruct *S)
     ssSetNumDiscStates(S, NUM_DISC_STATES);
 
     if (!ssSetNumInputPorts(S, NUM_INPUTS)) return;
+    inputDimsInfo.width = INPUT_0_WIDTH;
+    ssSetInputPortDimensionInfo(S, 0, &inputDimsInfo);
+    ssSetInputPortFrameData(S, 0, IN_0_FRAME_BASED);
+    ssSetInputPortDataType(S, 0, SS_DOUBLE);
+    ssSetInputPortComplexSignal(S, 0, INPUT_0_COMPLEX);
+    ssSetInputPortDirectFeedThrough(S, 0, INPUT_0_FEEDTHROUGH);
+    ssSetInputPortRequiredContiguous(S, 0, 1); /*direct input signal access*/
 
     if (!ssSetNumOutputPorts(S, NUM_OUTPUTS)) return;
-    ssSetOutputPortWidth(S, 0, OUTPUT_0_WIDTH);
+    outputDimsInfo.width = OUTPUT_0_WIDTH;
+    ssSetOutputPortDimensionInfo(S, 0, &outputDimsInfo);
+    ssSetOutputPortFrameData(S, 0, OUT_0_FRAME_BASED);
     ssSetOutputPortDataType(S, 0, SS_DOUBLE);
+    ssSetOutputPortComplexSignal(S, 0, OUTPUT_0_COMPLEX);
     ssSetOutputPortComplexSignal(S, 0, OUTPUT_0_COMPLEX);
     ssSetNumSampleTimes(S, 1);
     ssSetNumRWork(S, 0);
@@ -236,6 +265,32 @@ static void mdlInitializeSizes(SimStruct *S)
 		     SS_OPTION_WORKS_WITH_CODE_REUSE));
 }
 
+#if defined(MATLAB_MEX_FILE)
+#define MDL_SET_INPUT_PORT_DIMENSION_INFO
+static void mdlSetInputPortDimensionInfo(SimStruct        *S, 
+                                         int_T            port,
+                                         const DimsInfo_T *dimsInfo)
+{
+    if(!ssSetInputPortDimensionInfo(S, port, dimsInfo)) return;
+}
+#endif
+
+#define MDL_SET_OUTPUT_PORT_DIMENSION_INFO
+#if defined(MDL_SET_OUTPUT_PORT_DIMENSION_INFO)
+static void mdlSetOutputPortDimensionInfo(SimStruct        *S, 
+                                          int_T            port, 
+                                          const DimsInfo_T *dimsInfo)
+{
+ if (!ssSetOutputPortDimensionInfo(S, port, dimsInfo)) return;
+}
+#endif
+# define MDL_SET_INPUT_PORT_FRAME_DATA
+static void mdlSetInputPortFrameData(SimStruct  *S, 
+                                     int_T      port,
+                                     Frame_T    frameData)
+{
+    ssSetInputPortFrameData(S, port, frameData);
+}
 /* Function: mdlInitializeSampleTimes =========================================
  * Abstract:
  *    Specifiy  the sample time.
@@ -260,6 +315,11 @@ static void mdlInitializeSampleTimes(SimStruct *S)
   }
 #endif /*  MDL_START */
 
+#define MDL_SET_INPUT_PORT_DATA_TYPE
+static void mdlSetInputPortDataType(SimStruct *S, int port, DTypeId dType)
+{
+    ssSetInputPortDataType( S, 0, dType);
+}
 #define MDL_SET_OUTPUT_PORT_DATA_TYPE
 static void mdlSetOutputPortDataType(SimStruct *S, int port, DTypeId dType)
 {
@@ -269,26 +329,28 @@ static void mdlSetOutputPortDataType(SimStruct *S, int port, DTypeId dType)
 #define MDL_SET_DEFAULT_PORT_DATA_TYPES
 static void mdlSetDefaultPortDataTypes(SimStruct *S)
 {
-   ssSetOutputPortDataType(S, 0, SS_DOUBLE);
+  ssSetInputPortDataType( S, 0, SS_DOUBLE);
+ ssSetOutputPortDataType(S, 0, SS_DOUBLE);
 }
 /* Function: mdlOutputs =======================================================
  *
 */
 static void mdlOutputs(SimStruct *S, int_T tid)
 {
-    real_T        *y  = (real_T *)ssGetOutputPortRealSignal(S,0);
+    const real_T   *u0  = (const real_T*) ssGetInputPortSignal(S,0);
+    real_T        *y0  = (real_T *)ssGetOutputPortRealSignal(S,0);
     const int_T   p_width0  = mxGetNumberOfElements(PARAM_DEF0(S));
     const int_T   p_width1  = mxGetNumberOfElements(PARAM_DEF1(S));
     const int_T   p_width2  = mxGetNumberOfElements(PARAM_DEF2(S));
     const int_T   p_width3  = mxGetNumberOfElements(PARAM_DEF3(S));
     const int_T   p_width4  = mxGetNumberOfElements(PARAM_DEF4(S));
     const real_T  *rpi_Ts  = (const real_T *)mxGetData(PARAM_DEF0(S));
-    const uint8_T  *rpi_IP1  = (const uint8_T *)mxGetData(PARAM_DEF1(S));
-    const uint8_T  *rpi_IP2  = (const uint8_T *)mxGetData(PARAM_DEF2(S));
-    const uint8_T  *rpi_IP3  = (const uint8_T *)mxGetData(PARAM_DEF3(S));
-    const uint8_T  *rpi_IP4  = (const uint8_T *)mxGetData(PARAM_DEF4(S));
+    const uint8_T  *rpi_ip1  = (const uint8_T *)mxGetData(PARAM_DEF1(S));
+    const uint8_T  *rpi_ip2  = (const uint8_T *)mxGetData(PARAM_DEF2(S));
+    const uint8_T  *rpi_ip3  = (const uint8_T *)mxGetData(PARAM_DEF3(S));
+    const uint8_T  *rpi_ip4  = (const uint8_T *)mxGetData(PARAM_DEF4(S));
 
-    rpi_sfun_socket_Outputs_wrapper(y, rpi_Ts, p_width0, rpi_IP1, p_width1, rpi_IP2, p_width2, rpi_IP3, p_width3, rpi_IP4, p_width4);
+    rpi_sfun_iosocket_Outputs_wrapper(u0, y0, rpi_Ts, p_width0, rpi_ip1, p_width1, rpi_ip2, p_width2, rpi_ip3, p_width3, rpi_ip4, p_width4);
 }
 
 

@@ -82,7 +82,7 @@ mex rpi_sfun_nxt.c rpi_sfun_nxt_wrapper.c
 mex rpi_sfun_cpu.c rpi_sfun_cpu_wrapper.c 
 mex rpi_sfun_ev314.c rpi_sfun_ev314_wrapper.c
 mex rpi_sfun_polaris.c rpi_sfun_polaris_wrapper.c
-mex rpi_sfun_socket.c rpi_sfun_socket_wrapper.c
+mex rpi_sfun_iosocket.c rpi_sfun_iosocket_wrapper.c
 mex rpi_sfun_dxl.c rpi_sfun_dxl_wrapper.c
 mex rpi_sfun_js.c rpi_sfun_js_wrapper.c
 
