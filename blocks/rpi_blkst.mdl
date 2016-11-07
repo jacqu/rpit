@@ -15,9 +15,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jacques"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Nov 07 16:55:41 2016"
-  RTWModifiedTimeStamp	  400438539
-  ModelVersionFormat	  "1.%<AutoIncrement:40>"
+  LastModifiedDate	  "Mon Nov 07 17:33:14 2016"
+  RTWModifiedTimeStamp	  400440789
+  ModelVersionFormat	  "1.%<AutoIncrement:41>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1779,7 +1779,8 @@ Library {
       MaskDescription	      "Input / Output socket"
       MaskHelp		      "Enables a bidirectional communication with other machines using UDP sockets.\n\nIP adress of th"
       "e server is IP1.IP2.IP3.IP4.\n\nMultiple IO socket blocks (max 10) can be used simultaneously with different IP "
-      "addresses.\n\nMinimum sampling period is 1ms."
+      "addresses.\n\nAn example of server code can be found in \"res/rpit_socket_server.c\".\n\nMinimum sampling period"
+      " is 1ms."
       MaskPromptString	      "Sampling interval (s)|IP1|IP2|IP3|IP4"
       MaskStyleString	      "edit,edit,edit,edit,edit"
       MaskVariables	      "rpi_mask_Ts=@1;rpi_mask_ip1=@2;rpi_mask_ip2=@3;rpi_mask_ip3=@4;rpi_mask_ip4=@5;"
