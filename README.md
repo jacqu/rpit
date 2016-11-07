@@ -3,8 +3,8 @@
 Quickstart:
 * git clone https://github.com/jacqu/rpit.git
 * Start Matlab:
-** > cd rpit
-** > setup
+  * > cd rpit
+  * > setup
 * Test some demos in the "demos" directory.
 
 Visit http://icube-avr.unistra.fr/en/index.php/RPIt for detailed instructions.
