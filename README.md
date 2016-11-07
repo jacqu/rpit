@@ -2,7 +2,7 @@
 
 Quickstart:
 * git clone https://github.com/jacqu/rpit.git
-* Start Matlab:
+* Within Matlab:
   * > cd rpit
   * > setup
 * Test some demos in the "demos" directory.
