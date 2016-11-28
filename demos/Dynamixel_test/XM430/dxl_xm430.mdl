@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.24"
+    ComputedModelVersion    "1.28"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -31,17 +31,15 @@ Model {
   MinMaxOverflowLogging	  "UseLocalSettings"
   MinMaxOverflowArchiveMode "Overwrite"
   MaxMDLFileLineLength	  120
-  InitFcn		  "init_fun;"
-  StopFcn		  "save last_positions;"
   Created		  "Fri Sep 02 16:40:48 2016"
   Creator		  "jacques"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jacques"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Oct 31 13:58:08 2016"
-  RTWModifiedTimeStamp	  399823079
-  ModelVersionFormat	  "1.%<AutoIncrement:24>"
+  LastModifiedDate	  "Mon Nov 28 13:35:07 2016"
+  RTWModifiedTimeStamp	  402239307
+  ModelVersionFormat	  "1.%<AutoIncrement:28>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -327,13 +325,13 @@ Model {
 	  ProdBitPerFloat	  32
 	  ProdBitPerDouble	  64
 	  ProdBitPerPointer	  32
-	  ProdLargestAtomicInteger "Char"
-	  ProdLargestAtomicFloat  "None"
-	  ProdIntDivRoundTo	  "Zero"
+	  ProdLargestAtomicInteger "Long"
+	  ProdLargestAtomicFloat  "Double"
+	  ProdIntDivRoundTo	  "Undefined"
 	  ProdEndianess		  "LittleEndian"
 	  ProdWordSize		  32
 	  ProdShiftRightIntArith  on
-	  ProdHWDeviceType	  "Intel->x86/Pentium"
+	  ProdHWDeviceType	  "ARM Compatible->ARM 11"
 	  TargetBitPerChar	  8
 	  TargetBitPerShort	  16
 	  TargetBitPerInt	  32
@@ -792,18 +790,10 @@ Model {
     Block {
       BlockType		      Terminator
     }
-    Block {
-      BlockType		      ToWorkspace
-      VariableName	      "simulink_output"
-      MaxDataPoints	      "1000"
-      Decimation	      "1"
-      SampleTime	      "0"
-      FixptAsFi		      off
-    }
   }
   System {
     Name		    "dxl_xm430"
-    Location		    [382, 144, 1245, 657]
+    Location		    [394, 90, 1408, 709]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -817,108 +807,95 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "37"
+    SIDHighWatermark	    "42"
     Block {
       BlockType		      Constant
       Name		      "Constant"
       SID		      "11"
-      Position		      [275, 165, 305, 195]
+      Position		      [360, 165, 390, 195]
       ShowName		      off
       Value		      "0"
-      SampleTime	      "0.01"
+      SampleTime	      "0.005"
     }
     Block {
       BlockType		      Constant
       Name		      "Constant1"
       SID		      "12"
-      Position		      [275, 200, 305, 230]
+      Position		      [360, 200, 390, 230]
       ShowName		      off
       Value		      "0"
-      SampleTime	      "0.01"
+      SampleTime	      "0.005"
     }
     Block {
       BlockType		      Constant
       Name		      "Constant2"
       SID		      "13"
-      Position		      [275, 270, 305, 300]
+      Position		      [360, 270, 390, 300]
       ShowName		      off
       Value		      "0"
-      SampleTime	      "0.01"
+      SampleTime	      "0.005"
     }
     Block {
       BlockType		      Constant
       Name		      "Constant3"
       SID		      "14"
-      Position		      [275, 235, 305, 265]
+      Position		      [360, 235, 390, 265]
       ShowName		      off
       Value		      "0"
-      SampleTime	      "0.01"
+      SampleTime	      "0.005"
     }
     Block {
       BlockType		      Constant
       Name		      "Constant4"
       SID		      "15"
-      Position		      [275, 305, 305, 335]
+      Position		      [360, 305, 390, 335]
       ShowName		      off
       Value		      "0"
-      SampleTime	      "0.01"
+      SampleTime	      "0.005"
     }
     Block {
       BlockType		      Constant
       Name		      "Constant5"
       SID		      "16"
-      Position		      [275, 340, 305, 370]
+      Position		      [360, 340, 390, 370]
       ShowName		      off
       Value		      "0"
-      SampleTime	      "0.01"
+      SampleTime	      "0.005"
     }
     Block {
       BlockType		      Constant
       Name		      "Constant6"
       SID		      "17"
-      Position		      [275, 375, 305, 405]
+      Position		      [360, 375, 390, 405]
       ShowName		      off
       Value		      "0"
-      SampleTime	      "0.01"
+      SampleTime	      "0.005"
     }
     Block {
       BlockType		      Constant
       Name		      "Constant7"
       SID		      "18"
-      Position		      [275, 410, 305, 440]
+      Position		      [360, 410, 390, 440]
       ShowName		      off
       Value		      "0"
-      SampleTime	      "0.01"
+      SampleTime	      "0.005"
     }
     Block {
       BlockType		      Constant
       Name		      "Constant8"
       SID		      "19"
-      Position		      [275, 445, 305, 475]
+      Position		      [360, 445, 390, 475]
       ShowName		      off
       Value		      "0"
-      SampleTime	      "0.01"
-    }
-    Block {
-      BlockType		      DiscreteIntegrator
-      Name		      "Discrete-Time\nIntegrator"
-      SID		      "33"
-      Ports		      [2, 1]
-      Position		      [150, 126, 205, 159]
-      IntegratorMethod	      "Integration: Trapezoidal"
-      ExternalReset	      "none"
-      InitialConditionSource  "external"
-      SampleTime	      "0.01"
-      ICPrevOutput	      "DiscIntNeverNeededParam"
-      ICPrevScaledInput	      "DiscIntNeverNeededParam"
+      SampleTime	      "0.005"
     }
     Block {
       BlockType		      Reference
       Name		      "Dynamixel XM 430"
       SID		      "1"
       Ports		      [10, 10]
-      Position		      [345, 122, 600, 483]
-      LibraryVersion	      "1.33"
+      Position		      [430, 122, 685, 483]
+      LibraryVersion	      "1.41"
       SourceBlock	      "rpi_blkst/Dynamixel"
       SourceType	      "Dynamixel actuator"
       ShowPortLabels	      "FromPortIcon"
@@ -930,7 +907,7 @@ Model {
       RTWMemSecDataInternal   "Inherit from model"
       RTWMemSecDataParameters "Inherit from model"
       GeneratePreprocessorConditionals off
-      rpi_mask_Ts	      "0.01"
+      rpi_mask_Ts	      "0.005"
       rpi_mask_portname	      "0"
       rpi_mask_baudrate	      "1000000"
       rpi_mask_startid	      "1"
@@ -949,14 +926,14 @@ Model {
       rpi_mask_init2_data     "150"
       rpi_mask_init3_addr     "82"
       rpi_mask_init3_length   "2"
-      rpi_mask_init3_data     "2000"
+      rpi_mask_init3_data     "5000"
       rpi_mask_init4_addr     "84"
       rpi_mask_init4_length   "2"
       rpi_mask_init4_data     "1500"
       rpi_mask_init5_addr     "90"
       rpi_mask_init5_length   "2"
       rpi_mask_init5_data     "200"
-      rpi_mask_init6_addr     "90"
+      rpi_mask_init6_addr     "88"
       rpi_mask_init6_length   "2"
       rpi_mask_init6_data     "0"
       rpi_mask_init7_addr     "65"
@@ -973,47 +950,79 @@ Model {
       rpi_mask_halt2_data     "0"
     }
     Block {
-      BlockType		      Constant
-      Name		      "Initial value"
-      SID		      "32"
-      Position		      [15, 200, 100, 230]
-      Value		      "init_positions"
-      SampleTime	      "0.01"
+      BlockType		      DiscreteIntegrator
+      Name		      "Initial position"
+      SID		      "33"
+      Ports		      [3, 1]
+      Position		      [160, 210, 230, 300]
+      IntegratorMethod	      "Integration: Trapezoidal"
+      ExternalReset	      "rising"
+      InitialConditionSource  "external"
+      SampleTime	      "0.005"
+      ICPrevOutput	      "DiscIntNeverNeededParam"
+      ICPrevScaledInput	      "DiscIntNeverNeededParam"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Integer Delay"
+      SID		      "40"
+      Ports		      [1, 1]
+      Position		      [90, 238, 125, 272]
+      ShowName		      off
+      LibraryVersion	      "1.225"
+      UserDataPersistent      on
+      UserData		      "DataTag0"
+      SourceBlock	      "simulink/Discrete/Integer Delay"
+      SourceType	      "Integer Delay"
+      NumDelays		      "1"
+      InputProcessing	      "Elements as channels (sample based)"
+      vinit		      "0.0"
+      samptime		      "-1"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Integer Delay1"
+      SID		      "41"
+      Ports		      [1, 1]
+      Position		      [540, 533, 575, 567]
+      BlockMirror	      on
+      ShowName		      off
+      LibraryVersion	      "1.225"
+      UserDataPersistent      on
+      UserData		      "DataTag1"
+      SourceBlock	      "simulink/Discrete/Integer Delay"
+      SourceType	      "Integer Delay"
+      NumDelays		      "1"
+      InputProcessing	      "Elements as channels (sample based)"
+      vinit		      "0.0"
+      samptime		      "-1"
     }
     Block {
       BlockType		      Mux
       Name		      "Mux"
       SID		      "34"
       Ports		      [2, 1]
-      Position		      [735, 116, 740, 154]
+      Position		      [820, 116, 825, 154]
       ShowName		      off
       Inputs		      "2"
       DisplayOption	      "bar"
-    }
-    Block {
-      BlockType		      Constant
-      Name		      "Offset"
-      SID		      "23"
-      Position		      [135, 255, 165, 285]
-      Value		      "0"
-      SampleTime	      "0.01"
     }
     Block {
       BlockType		      Scope
       Name		      "Position"
       SID		      "20"
       Ports		      [1]
-      Position		      [805, 119, 835, 151]
+      Position		      [890, 119, 920, 151]
       Floating		      off
-      Location		      [285, 346, 1440, 858]
+      Location		      [163, 162, 1318, 674]
       Open		      on
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      YMin		      "-250"
-      YMax		      "2500"
+      YMin		      "-4485"
+      YMax		      "-4370"
       DataFormat	      "StructureWithTime"
       SampleTime	      "0"
     }
@@ -1022,16 +1031,16 @@ Model {
       Name		      "Signal\nGenerator"
       SID		      "37"
       Ports		      [0, 1]
-      Position		      [15, 120, 45, 150]
-      WaveForm		      "square"
-      Amplitude		      "5000"
+      Position		      [180, 130, 210, 160]
+      WaveForm		      "sawtooth"
+      Amplitude		      "50"
     }
     Block {
       BlockType		      Sum
       Name		      "Sum"
-      SID		      "22"
+      SID		      "38"
       Ports		      [2, 1]
-      Position		      [235, 135, 255, 155]
+      Position		      [290, 135, 310, 155]
       ShowName		      off
       IconShape		      "round"
       Inputs		      "|++"
@@ -1043,75 +1052,80 @@ Model {
       BlockType		      Terminator
       Name		      "Terminator"
       SID		      "2"
-      Position		      [620, 170, 640, 190]
+      Position		      [705, 170, 725, 190]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator1"
       SID		      "3"
-      Position		      [620, 205, 640, 225]
+      Position		      [705, 205, 725, 225]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator2"
       SID		      "4"
-      Position		      [620, 240, 640, 260]
+      Position		      [705, 240, 725, 260]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator3"
       SID		      "5"
-      Position		      [620, 275, 640, 295]
+      Position		      [705, 275, 725, 295]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator4"
       SID		      "6"
-      Position		      [620, 310, 640, 330]
+      Position		      [705, 310, 725, 330]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator5"
       SID		      "7"
-      Position		      [620, 345, 640, 365]
+      Position		      [705, 345, 725, 365]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator6"
       SID		      "8"
-      Position		      [620, 380, 640, 400]
+      Position		      [705, 380, 725, 400]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator7"
       SID		      "9"
-      Position		      [620, 415, 640, 435]
+      Position		      [705, 415, 725, 435]
       ShowName		      off
     }
     Block {
       BlockType		      Terminator
       Name		      "Terminator8"
       SID		      "10"
-      Position		      [620, 450, 640, 470]
+      Position		      [705, 450, 725, 470]
       ShowName		      off
     }
     Block {
-      BlockType		      ToWorkspace
-      Name		      "To Workspace"
-      SID		      "30"
-      Ports		      [1]
-      Position		      [705, 209, 795, 241]
-      VariableName	      "last_positions"
-      MaxDataPoints	      "1"
-      SampleTime	      "-1"
-      SaveFormat	      "Array"
+      BlockType		      Constant
+      Name		      "Trigger"
+      SID		      "39"
+      Position		      [25, 240, 55, 270]
+      SampleTime	      "0.005"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Trigger1"
+      SID		      "42"
+      Position		      [25, 190, 55, 220]
+      ShowName		      off
+      Value		      "0"
+      SampleTime	      "0.005"
     }
     Line {
       SrcBlock		      "Dynamixel XM 430"
@@ -1226,48 +1240,14 @@ Model {
       SrcPort		      1
       Points		      [70, 0]
       Branch {
-	Points			[0, 80]
-	DstBlock		"To Workspace"
-	DstPort			1
-      }
-      Branch {
 	DstBlock		"Mux"
 	DstPort			2
       }
-    }
-    Line {
-      SrcBlock		      "Sum"
-      SrcPort		      1
-      Points		      [60, 0]
       Branch {
-	DstBlock		"Dynamixel XM 430"
+	Points			[0, 405]
+	DstBlock		"Integer Delay1"
 	DstPort			1
       }
-      Branch {
-	Points			[0, -65; 330, 0; 0, 45]
-	DstBlock		"Mux"
-	DstPort			1
-      }
-    }
-    Line {
-      SrcBlock		      "Discrete-Time\nIntegrator"
-      SrcPort		      1
-      DstBlock		      "Sum"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Offset"
-      SrcPort		      1
-      Points		      [75, 0]
-      DstBlock		      "Sum"
-      DstPort		      2
-    }
-    Line {
-      SrcBlock		      "Initial value"
-      SrcPort		      1
-      Points		      [5, 0; 0, -65]
-      DstBlock		      "Discrete-Time\nIntegrator"
-      DstPort		      2
     }
     Line {
       SrcBlock		      "Mux"
@@ -1278,11 +1258,76 @@ Model {
     Line {
       SrcBlock		      "Signal\nGenerator"
       SrcPort		      1
-      DstBlock		      "Discrete-Time\nIntegrator"
+      DstBlock		      "Sum"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Initial position"
+      SrcPort		      1
+      Points		      [65, 0]
+      DstBlock		      "Sum"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Sum"
+      SrcPort		      1
+      Points		      [40, 0]
+      Branch {
+	DstBlock		"Dynamixel XM 430"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, -55; 405, 0; 0, 35]
+	DstBlock		"Mux"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "Trigger"
+      SrcPort		      1
+      DstBlock		      "Integer Delay"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Integer Delay"
+      SrcPort		      1
+      DstBlock		      "Initial position"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Integer Delay1"
+      SrcPort		      1
+      Points		      [-395, 0; 0, -265]
+      DstBlock		      "Initial position"
+      DstPort		      3
+    }
+    Line {
+      SrcBlock		      "Trigger1"
+      SrcPort		      1
+      Points		      [40, 0; 0, 20]
+      DstBlock		      "Initial position"
       DstPort		      1
     }
     Annotation {
-      Position		      [708, 499]
+      Position		      [793, 499]
     }
+    Annotation {
+      Name		      "Note: the first sample of u is not sent to the Dynamixel allowing for initial position initializati"
+      "on."
+      Position		      [238, 21]
+    }
+  }
+}
+MatData {
+  NumRecords		  2
+  DataRecord {
+    Tag			    DataTag1
+    Data		    "  %)30     .    B     8    (     @         %    \"     $    !     0         %  0 $P    $    3    :&%S26"
+    "YH97)I=&5D3W!T:6]N        #@   #     &    \"     D\"        !0    @    !     0    $          @ !  $    "
+  }
+  DataRecord {
+    Tag			    DataTag0
+    Data		    "  %)30     .    B     8    (     @         %    \"     $    !     0         %  0 $P    $    3    :&%S26"
+    "YH97)I=&5D3W!T:6]N        #@   #     &    \"     D\"        !0    @    !     0    $          @ !  $    "
   }
 }
