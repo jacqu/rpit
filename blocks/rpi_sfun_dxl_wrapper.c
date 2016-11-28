@@ -68,7 +68,7 @@ char* dxl_portnb2portname( uint8_t portname )  {
     strncpy( dxl_simulink_portname, buf, DXL_SIMULINK_PRORTNAME_MAXSIZE );
   }
   
-  if ( ( portname >= 10 ) && ( portname < 20 ) )  {
+  if ( ( portname >= 10 ) && ( portname < DXL_SIMULINK_MAX_DEV ) )  {
     snprintf( buf, DXL_SIMULINK_PRORTNAME_MAXSIZE, "/dev/ttyS%d", portname - 10 );
     strncpy( dxl_simulink_portname, buf, DXL_SIMULINK_PRORTNAME_MAXSIZE );
   }
@@ -134,16 +134,17 @@ void rpi_sfun_dxl_Outputs_wrapper(
 
   #else
 
-  int           i, err;
-  double        data[DXL_SIMULINK_MAX_ID];
-  static double old_y[DXL_SIMULINK_MAX_DEV][DXL_SIMULINK_MAX_ID] = {{ 0.0 }};
+  int             i, err;
+  double          data[DXL_SIMULINK_MAX_ID];
+  static double   old_y[DXL_SIMULINK_MAX_DEV][DXL_SIMULINK_MAX_ID] = {{ 0.0 }};
+  static uint8_T  first_control[DXL_SIMULINK_MAX_DEV] = { 0 };
 	
 	(void)rpi_baudrate;
 	
   /* Consistency check */
-
-  if ( *rpi_nbid > DXL_SIMULINK_MAX_ID )	{
-    fprintf( stderr, "** Max devices = %d **\n", DXL_SIMULINK_MAX_ID );
+  
+   if ( ( *rpi_startid < 1 ) || ( *rpi_startid > MAX_ID ) )	{
+    fprintf( stderr, "** Start ID > %d **\n", MAX_ID );
     y1[0] = 0.0;
     y2[0] = 0.0;
     y3[0] = 0.0;
@@ -159,6 +160,36 @@ void rpi_sfun_dxl_Outputs_wrapper(
   
   if ( *rpi_nbid < 1 )	{
     fprintf( stderr, "** Min devices = 1 **\n" );
+    y1[0] = 0.0;
+    y2[0] = 0.0;
+    y3[0] = 0.0;
+    y4[0] = 0.0;
+    y5[0] = 0.0;
+    y6[0] = 0.0;
+    y7[0] = 0.0;
+    y8[0] = 0.0;
+    y9[0] = 0.0;
+    y10[0] = 0.0;
+    return;
+  }
+  
+  if ( *rpi_nbid > DXL_SIMULINK_MAX_ID  )	{
+    fprintf( stderr, "** Max devices = %d **\n", DXL_SIMULINK_MAX_ID );
+    y1[0] = 0.0;
+    y2[0] = 0.0;
+    y3[0] = 0.0;
+    y4[0] = 0.0;
+    y5[0] = 0.0;
+    y6[0] = 0.0;
+    y7[0] = 0.0;
+    y8[0] = 0.0;
+    y9[0] = 0.0;
+    y10[0] = 0.0;
+    return;
+  }
+ 
+  if ( *rpi_startid + *rpi_nbid - 1 > MAX_ID )	{
+    fprintf( stderr, "** Start ID + NB of devices - 1 > %d **\n", MAX_ID );
     y1[0] = 0.0;
     y2[0] = 0.0;
     y3[0] = 0.0;
@@ -251,14 +282,21 @@ void rpi_sfun_dxl_Outputs_wrapper(
         fprintf( stderr, "** Internal error. **\n" );
     }
   }
-
-  err = dxl_write(  dxl_portnb2portname( *rpi_portname ),
+  
+  /* Don't send the first control signal */
+  
+  err = 0;
+  if ( first_control[*rpi_portname] )
+    err = dxl_write(  dxl_portnb2portname( *rpi_portname ),
                     *rpi_proto,
                     *rpi_startid,
                     *rpi_nbid,
                     *rpi_write_addr,
                     *rpi_write_length,
                     data );
+  else
+    first_control[*rpi_portname] = 1;
+  
   if ( err )
     fprintf( stderr, "** dxl_write: error %d while writing device %s. **\n", err, dxl_portnb2portname( *rpi_portname ) );
 
@@ -289,7 +327,7 @@ void rpi_sfun_dxl_Outputs_wrapper(
     return;
   }
   
-  for ( i = 0; i < *rpi_nbid; i++ ) {
+  for ( i = 0; ( i < *rpi_nbid ) && ( i < DXL_SIMULINK_MAX_ID ); i++ ) {
     
     old_y[*rpi_portname][i] = data[i];
     
@@ -439,6 +477,8 @@ void rpi_sfun_dxl_Start_wrapper(
   
   if ( ( *rpi_nbid > DXL_SIMULINK_MAX_ID ) ||
        ( *rpi_nbid < 1 ) ||
+       ( *rpi_startid < 1 ) ||
+       ( *rpi_startid + *rpi_nbid - 1 > MAX_ID ) ||
        ( *rpi_portname > DXL_SIMULINK_MAX_DEV - 1 ) ) {
     fprintf( stderr, "** Device %s: out of range parameters error. **\n", dxl_portnb2portname( *rpi_portname ) );
     return;
@@ -658,6 +698,8 @@ void rpi_sfun_dxl_Terminate_wrapper(
   
   if ( ( *rpi_nbid > DXL_SIMULINK_MAX_ID ) ||
        ( *rpi_nbid < 1 ) ||
+       ( *rpi_startid < 1 ) ||
+       ( *rpi_startid + *rpi_nbid - 1 > MAX_ID ) ||
        ( *rpi_portname > DXL_SIMULINK_MAX_DEV - 1 ) ) {
     return;
   }
