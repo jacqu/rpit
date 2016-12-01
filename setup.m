@@ -477,19 +477,19 @@ if ( target_is_rpi )
   disp( '  > Adding user pi to the i2c group.' );
   command = sprintf( '%s pi@%s "sudo usermod -a -G i2c pi"', ssh_command, piip );
   [ status, out ] = system( command );
-  disp( '  > Checking cpu governor configuration.' );
-  command = sprintf( '%s pi@%s "sudo cat /etc/rc.local"', ssh_command, piip );
-  [ status, out ] = system( command );
-  strfind( out, '# Change governor to performance' );
-  if strfind( out, '# Change governor to performance' );
-    disp( '  > rc.local already set cpu governor to performance mode.' );
-  else
-    disp( '  > Force cpu governor to performance mode in rc.local.' );
-    command = sprintf( '%s pi@%s %s', ssh_command, piip, '"sudo sed -i -e ''s/^exit 0/# Change governor to performance\nfor cpucore in \/sys\/devices\/system\/cpu\/cpu?; do echo performance | sudo tee $cpucore\/cpufreq\/scaling_governor > \/dev\/null; done\n\nexit 0/g'' /etc/rc.local"' );
-    [ status, out ] = system( command );
-  end;
 end
 
+disp( '  > Checking cpu governor configuration.' );
+command = sprintf( '%s pi@%s "sudo cat /etc/rc.local"', ssh_command, piip );
+[ status, out ] = system( command );
+if strfind( out, '# Change governor to performance' );
+  disp( '  > rc.local already set cpu governor to performance mode.' );
+else
+  disp( '  > Force cpu governor to performance mode in rc.local.' );
+  command = sprintf( '%s pi@%s %s', ssh_command, piip, '"sudo sed -i -e ''s/^exit 0/# Change governor to performance\nfor cpucore in \/sys\/devices\/system\/cpu\/cpu?; do echo performance | sudo tee `echo ''$cpucore''`\/cpufreq\/scaling_governor > \/dev\/null; done\n\nexit 0/g'' /etc/rc.local"' );
+  [ status, out ] = system( command );
+end;
+  
 disp( '  > Configuration of RPIt successfully completed.' );
 disp( '  > NOTE: please reboot your target for changes to take effect.' );
 
