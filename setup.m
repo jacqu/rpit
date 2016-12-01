@@ -224,7 +224,7 @@ if isunix
   
   [ status, out ] = system( 'ls' );
   if isempty( strfind( out, 'key' ) ) || isempty( strfind( out, 'key.pub' ) );
-    [ status, out ] = system( 'ssh-keygen -t rsa -N '''' -f key' );
+    [ status, out ] = system( 'LD_LIBRARY_PATH=;ssh-keygen -t rsa -N '''' -f key' );
     if ( status )
       disp( '  > Unable to generate private and public key. Check your ssh installation.' );
       cd( rpitdir );
@@ -237,16 +237,16 @@ if isunix
 
   piip = input( '  > Enter IP address of the target : ', 's' );
   disp( '  > Enter password of the pi account on your target when prompted.' );
-  command = sprintf( 'LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libcrypto.so.1.0.0 scp -q key.pub install_key.sh pi@%s:.', piip );
+  command = sprintf( 'LD_LIBRARY_PATH=;scp -q key.pub install_key.sh pi@%s:.', piip );
   system( command );
   disp( '  > Enter password of the pi account on your target again please.' );
-  command = sprintf( 'LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libcrypto.so.1.0.0 ssh pi@%s "bash install_key.sh"', piip );
+  command = sprintf( 'LD_LIBRARY_PATH=;ssh pi@%s "bash install_key.sh"', piip );
   system( command );
   
   % Checking passwordless connection
   
   disp( '  > Checking passwordless ssh connection [CRTL-C if hanging]...' );
-  command = sprintf( 'LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libcrypto.so.1.0.0 ssh  -i key pi@%s "pwd"', piip );
+  command = sprintf( 'LD_LIBRARY_PATH=;ssh  -i key pi@%s "pwd"', piip );
   [ status, out ] = system( command );
   if strfind( out, '/home/pi' );
     disp( '  > Passwordless connection to the target established.' );
@@ -261,8 +261,8 @@ if isunix
   
   % Defining ssh commands
   
-  ssh_command = 'LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libcrypto.so.1.0.0 ssh -i key';
-  scp_command = 'LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libcrypto.so.1.0.0 scp -i key';
+  ssh_command = 'LD_LIBRARY_PATH=;ssh -i key';
+  scp_command = 'LD_LIBRARY_PATH=;scp -i key';
   
 end % End of UNIX configuration
   
