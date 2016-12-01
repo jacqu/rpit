@@ -161,8 +161,8 @@ function ert_rpi_make_rtw_hook(hookMethod,modelName,rtwroot,templateMakefile,bui
     %
     if isunix
       pip = [ rpidir '/tools/key' ];
-      ssh_command = [ 'LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libcrypto.so.1.0.0 ssh -i ' pip ];
-      scp_command = [ 'LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libcrypto.so.1.0.0 scp -i ' pip ];
+      ssh_command = [ 'LD_LIBRARY_PATH=;ssh -i ' pip ];
+      scp_command = [ 'LD_LIBRARY_PATH=;scp -i ' pip ];
     end
     
 
