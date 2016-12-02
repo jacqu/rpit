@@ -8,8 +8,10 @@ rpitdir = pwd;
 
 disp( '  > Configuration of RPIt.' );
 disp( '  > NOTES:' );
+disp( '  >  - You should configure a compiler to build mex files. Try ''mex -setup'' first.' );
 disp( '  >  - In what follows, ''target'' means the distant Linux system which you want' );
 disp( '  >    to prepare for using with RPIt. The system type is automatically detected.' );
+disp( '  >  - MAKE SURE THE DISTANT TARGET IS CONNECTED TO THE INTERNET (at least the first time your run setup).' );
 disp( '  >  - If the target is a Raspberry Pi, the setup should go without a problem.' );
 disp( '  >    In this case, some specific configurations will be done.' );
 disp( '  >  - If the target is a Debian-based distribution (Debian, Ubuntu, Mint), ' );
@@ -20,8 +22,6 @@ disp( '  >    and issue the following command as root: ' );
 disp( '  >    ''echo "pi ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/00-RPIt;chmod 0440 /etc/sudoers.d/00-RPIt''' );
 disp( '  >    You should also install some basic additional packages by running:' );
 disp( '  >    ''sudo apt-get install build-essential ssh''' );
-disp( '  >    If you have warnings about libcrypto.so.1.0.0, replace simply Matlab''s' );
-disp( '  >    version of libcrypto.so.1.0.0 by your system''s version.' );
 disp( '  >  - If the target is not Debian-based, you cannot use it with RPIt.' );
 cont_quest = input( '  > Continue with the setup (''y'' to continue or ''n'' to abort) ? ', 's' );
 
@@ -486,9 +486,13 @@ if strfind( out, '# Change governor to performance' );
   disp( '  > rc.local already set cpu governor to performance mode.' );
 else
   disp( '  > Force cpu governor to performance mode in rc.local.' );
-  command = sprintf( '%s pi@%s %s', ssh_command, piip, '"sudo sed -i -e ''s/^exit 0/# Change governor to performance\nfor cpucore in \/sys\/devices\/system\/cpu\/cpu?; do echo performance | sudo tee `echo ''$cpucore''`\/cpufreq\/scaling_governor > \/dev\/null; done\n\nexit 0/g'' /etc/rc.local"' );
+  if ispc
+    command = sprintf( '%s pi@%s %s', ssh_command, piip, '"sudo sed -i -e ''s/^exit 0/# Change governor to performance\nfor cpucore in \/sys\/devices\/system\/cpu\/cpu?; do echo performance | sudo tee $cpucore\/cpufreq\/scaling_governor > \/dev\/null; done\n\nexit 0/g'' /etc/rc.local"' );
+  else
+    command = sprintf( '%s pi@%s %s', ssh_command, piip, '"sudo sed -i -e ''s/^exit 0/# Change governor to performance\nfor cpucore in \/sys\/devices\/system\/cpu\/cpu?; do echo performance | sudo tee `echo ''$cpucore''`\/cpufreq\/scaling_governor > \/dev\/null; done\n\nexit 0/g'' /etc/rc.local"' );
+  end
   [ status, out ] = system( command );
-end;
+end
   
 disp( '  > Configuration of RPIt successfully completed.' );
 disp( '  > NOTE: please reboot your target for changes to take effect.' );
