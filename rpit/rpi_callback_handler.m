@@ -10,8 +10,8 @@ function rpi_callback_handler(hDlg, hSrc)
   slConfigUISetVal( hDlg, hSrc, 'Solver', 'FixedStepDiscrete' );			% Discrete system
   slConfigUISetVal( hDlg, hSrc, 'InlineParams', 'off' );							% Params can be changed on the fly
   slConfigUISetEnabled( hDlg, hSrc, 'InlineParams', 0 );							% Force no inline params
-  slConfigUISetVal( hDlg, hSrc, 'ProdHWDeviceType', 'ARM Compatible->ARM 11' );	
-  																																		% ARM11 hardware
+  slConfigUISetVal( hDlg, hSrc, 'ProdHWDeviceType', 'Intel->x86/Pentium' );	
+  																																		% x86 hardware
   slConfigUISetVal( hDlg, hSrc.Components, 'SupportContinuousTime', 'on' );
                                                                       % Allow continuous blocks
   slConfigUISetVal( hDlg, hSrc.Components, 'ExtMode', 'on' );					% Force external mode

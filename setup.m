@@ -99,8 +99,16 @@ if status ~= 0,
   return;
 else
   disp( '  > Saving Matlab search path in user path for future sessions.' );
-  if strcmp( mvernum, '2015a' ) || strcmp( mvernum, '2015b' )
-    disp( '  > WARNING: your Matlab release needs to add ''path(pathdef);'' in ''startup.m'' in your userpath.' );
+  if exist( [ up filesep 'startup.m' ], 'file' ) == 2
+    disp( '  > WARNING: ''startup.m'' found in your userpath. If needed, add manually ''path(pathdef);'' to ''startup.m''.' );
+  else
+    fid = fopen( [ up filesep 'startup.m' ], 'wt' );
+    if fid ~= -1
+      fprintf( fid, 'path(pathdef);\n' );
+      fclose(fid);
+    else
+       disp( '  > WARNING: unable to create ''startup.m''. Please add manually ''path(pathdef);'' to ''startup.m''.' );
+    end;
   end;
 end;
 path(pathdef);
