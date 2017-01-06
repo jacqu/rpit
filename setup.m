@@ -100,7 +100,12 @@ if status ~= 0,
 else
   disp( '  > Saving Matlab search path in user path for future sessions.' );
   if exist( [ up filesep 'startup.m' ], 'file' ) == 2
-    disp( '  > WARNING: ''startup.m'' found in your userpath. If needed, add manually ''path(pathdef);'' to ''startup.m''.' );
+    startup_content = fileread( [ up filesep 'startup.m' ] );
+    if strfind( startup_content, 'path(pathdef);' )
+      disp( '  > ''startup.m'' already has a ''path(pathdef);'' command. Skipping.' );
+    else
+      disp( '  > WARNING: ''startup.m'' found in your userpath. Please add manually ''path(pathdef);'' to ''startup.m''.' );
+    end
   else
     fid = fopen( [ up filesep 'startup.m' ], 'wt' );
     if fid ~= -1
@@ -125,8 +130,8 @@ if ispc
 
   while 1;
     [ status, out ] = system( 'dir' );
-    if strfind( out, 'public_key' );
-      if strfind( out, 'private_key.ppk' );
+    if strfind( out, 'public_key' )
+      if strfind( out, 'private_key.ppk' )
         disp( '  > ''public_key'' and ''private_key.ppk'' already generated. Skipping.' );
         break;
       end
@@ -139,7 +144,7 @@ if ispc
     [ status, out ] = system( command );
     [ status, out ] = system( 'dir' );
     if strfind( out, 'public_key' ) 
-      if strfind( out, 'private_key.ppk' );
+      if strfind( out, 'private_key.ppk' )
         disp( '  > ''public_key'' and ''private_key.ppk'' successfully generated.' );
         break;
       else
@@ -200,7 +205,7 @@ if ispc
   disp( '  > Checking the passworless connection [CRTL-C if hanging]...' );
   command = sprintf( 'plink -i private_key.ppk pi@%s pwd', piip );
   [ status, out ] = system( command );
-  if strfind( out, '/home/pi' );
+  if strfind( out, '/home/pi' )
     disp( '  > Passwordless configuration successfully operating.' );
   else
     disp( '  > Unable to connect to the target passwordlessly. Try to configure manually:' );
@@ -231,7 +236,7 @@ if isunix
   disp( '  > Generating a public/private RSA pair for ssh level 2.' );
   
   [ status, out ] = system( 'ls' );
-  if isempty( strfind( out, 'key' ) ) || isempty( strfind( out, 'key.pub' ) );
+  if isempty( strfind( out, 'key' ) ) || isempty( strfind( out, 'key.pub' ) )
     [ status, out ] = system( 'LD_LIBRARY_PATH=;ssh-keygen -t rsa -N '''' -f key' );
     if ( status )
       disp( '  > Unable to generate private and public key. Check your ssh installation.' );
@@ -256,7 +261,7 @@ if isunix
   disp( '  > Checking passwordless ssh connection [CRTL-C if hanging]...' );
   command = sprintf( 'LD_LIBRARY_PATH=;ssh  -i key pi@%s "pwd"', piip );
   [ status, out ] = system( command );
-  if strfind( out, '/home/pi' );
+  if strfind( out, '/home/pi' )
     disp( '  > Passwordless connection to the target established.' );
   else
     disp( '  > Unable to connect to the target. Troubleshout the cmd.' );
@@ -278,13 +283,13 @@ end % End of UNIX configuration
 
 command = sprintf( '%s pi@%s sudo cat /etc/os-release', ssh_command, piip );
 [ status, out ] = system( command );
-if isempty( strfind( out, 'debian' ) );
+if isempty( strfind( out, 'debian' ) )
   disp( '  > Distant target is not Debian-based. Aborting.' );
   cd( rpitdir );
   clear;
   return;
 else
-  if isempty( strfind( out, 'raspbian' ) );
+  if isempty( strfind( out, 'raspbian' ) )
     disp( '  > Distant target is Debian-based but not a RPI.' );
     disp( '  > Checking if distant target is ARM or x86.' );
     command = sprintf( '%s pi@%s sudo uname -m', ssh_command, piip );
@@ -441,8 +446,8 @@ if ( target_is_rpi )
   disp( '  > Verifying /etc/modules.' );
   command = sprintf( '%s pi@%s "sudo cat /etc/modules"', ssh_command, piip );
   [ status, out ] = system( command );
-  if strfind( out, 'i2c-dev' );
-    if strfind( out, 'i2c-bcm270' );
+  if strfind( out, 'i2c-dev' )
+    if strfind( out, 'i2c-bcm270' )
       disp( '  > /etc/modules already up to date.' );
     else
       disp( '  > Adding i2c-bcm2708 to /etc/modules.' );
@@ -475,7 +480,7 @@ if ( target_is_rpi )
     disp( '  > Verifying /boot/config.txt.' );
   command = sprintf( '%s pi@%s "sudo cat /boot/config.txt"', ssh_command, piip );
   [ status, out ] = system( command );
-  if strfind( out, 'device_tree=' );
+  if strfind( out, 'device_tree=' )
     disp( '  > /boot/config.txt already up to date.' );
   else
     disp( '  > Adding ''device_tree='' at the end of  /boot/config.txt.' );
@@ -490,7 +495,7 @@ end
 disp( '  > Checking cpu governor configuration.' );
 command = sprintf( '%s pi@%s "sudo cat /etc/rc.local"', ssh_command, piip );
 [ status, out ] = system( command );
-if strfind( out, '# Change governor to performance' );
+if strfind( out, '# Change governor to performance' )
   disp( '  > rc.local already set cpu governor to performance mode.' );
 else
   disp( '  > Force cpu governor to performance mode in rc.local.' );
