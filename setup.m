@@ -473,18 +473,18 @@ if ( target_is_rpi )
 %     [ status, out ] = system( command );
 %   end
   disp( '  > Configuring i2c at 400kHz.' );
-  command = sprintf( '%s pi@%s "sudo bash -c ''echo options i2c_bcm2708 baudrate=400000 > /etc/modprobe.d/i2c.conf''"', ssh_command, piip );
-  [ status, out ] = system( command );
-  command = sprintf( '%s pi@%s "sudo rmmod i2c_bcm2708;sudo modprobe i2c_bcm2708;sudo modprobe i2c_dev"', ssh_command, piip );
-  [ status, out ] = system( command );
-    disp( '  > Verifying /boot/config.txt.' );
+%   command = sprintf( '%s pi@%s "sudo bash -c ''echo options i2c_bcm2708 baudrate=400000 > /etc/modprobe.d/i2c.conf''"', ssh_command, piip );
+%   [ status, out ] = system( command );
+%   command = sprintf( '%s pi@%s "sudo rmmod i2c_bcm2708;sudo modprobe i2c_bcm2708;sudo modprobe i2c_dev"', ssh_command, piip );
+%   [ status, out ] = system( command );
+  disp( '  > Verifying /boot/config.txt.' );
   command = sprintf( '%s pi@%s "sudo cat /boot/config.txt"', ssh_command, piip );
   [ status, out ] = system( command );
-  if strfind( out, 'device_tree=' )
+  if strfind( out, 'dtparam=i2c_arm_baudrate=400000' )
     disp( '  > /boot/config.txt already up to date.' );
   else
-    disp( '  > Adding ''device_tree='' at the end of  /boot/config.txt.' );
-    command = sprintf( '%s pi@%s "sudo bash -c ''echo device_tree= >> /boot/config.txt''"', ssh_command, piip );
+    disp( '  > Adding ''dtparam=i2c_arm_baudrate=400000'' at the end of  /boot/config.txt.' );
+    command = sprintf( '%s pi@%s "sudo bash -c ''echo dtparam=i2c_arm_baudrate=400000 >> /boot/config.txt''"', ssh_command, piip );
     [ status, out ] = system( command );
   end
   disp( '  > Adding user pi to the i2c group.' );
