@@ -136,7 +136,6 @@ void rpi_sfun_dxl_Outputs_wrapper(
 
   int             i, err;
   double          data[DXL_SIMULINK_MAX_ID];
-  static double   old_y[DXL_SIMULINK_MAX_DEV][DXL_SIMULINK_MAX_ID] = {{ 0.0 }};
   static uint8_T  first_control[DXL_SIMULINK_MAX_DEV] = { 0 };
 	
 	(void)rpi_baudrate;
@@ -160,6 +159,21 @@ void rpi_sfun_dxl_Outputs_wrapper(
   
   if ( *rpi_nbid < 1 )	{
     fprintf( stderr, "** Min devices = 1 **\n" );
+    y1[0] = 0.0;
+    y2[0] = 0.0;
+    y3[0] = 0.0;
+    y4[0] = 0.0;
+    y5[0] = 0.0;
+    y6[0] = 0.0;
+    y7[0] = 0.0;
+    y8[0] = 0.0;
+    y9[0] = 0.0;
+    y10[0] = 0.0;
+    return;
+  }
+  
+  if ( *rpi_read_addr >= DXL_SIMULINK_MAX_ADDR )  {
+    fprintf( stderr, "** Upper read address = %d **\n", DXL_SIMULINK_MAX_ADDR );
     y1[0] = 0.0;
     y2[0] = 0.0;
     y3[0] = 0.0;
@@ -287,13 +301,17 @@ void rpi_sfun_dxl_Outputs_wrapper(
   
   err = 0;
   if ( first_control[*rpi_portname] )
-    err = dxl_write(  dxl_portnb2portname( *rpi_portname ),
-                    *rpi_proto,
-                    *rpi_startid,
-                    *rpi_nbid,
-                    *rpi_write_addr,
-                    *rpi_write_length,
-                    data );
+    
+    /* Don't send control if write address is 0 */
+    
+    if ( *rpi_write_addr )
+      err = dxl_write(  dxl_portnb2portname( *rpi_portname ),
+                        *rpi_proto,
+                        *rpi_startid,
+                        *rpi_nbid,
+                        *rpi_write_addr,
+                        *rpi_write_length,
+                        data );
   else
     first_control[*rpi_portname] = 1;
   
@@ -302,16 +320,16 @@ void rpi_sfun_dxl_Outputs_wrapper(
 
   /* Read outputs */
   
-  y1[0] = old_y[*rpi_portname][0];
-  y2[0] = old_y[*rpi_portname][1];
-  y3[0] = old_y[*rpi_portname][2];
-  y4[0] = old_y[*rpi_portname][3];
-  y5[0] = old_y[*rpi_portname][4];
-  y6[0] = old_y[*rpi_portname][5];
-  y7[0] = old_y[*rpi_portname][6];
-  y8[0] = old_y[*rpi_portname][7];
-  y9[0] = old_y[*rpi_portname][8];
-  y10[0] = old_y[*rpi_portname][9];
+  y1[0] = 0.0;
+  y2[0] = 0.0;
+  y3[0] = 0.0;
+  y4[0] = 0.0;
+  y5[0] = 0.0;
+  y6[0] = 0.0;
+  y7[0] = 0.0;
+  y8[0] = 0.0;
+  y9[0] = 0.0;
+  y10[0] = 0.0;
     
   err = dxl_read( dxl_portnb2portname( *rpi_portname ),
                   *rpi_proto,
@@ -323,13 +341,24 @@ void rpi_sfun_dxl_Outputs_wrapper(
                   data );
   
   if ( err )  {
-    fprintf( stderr, "** dxl_read: error %d while reading device %s. **\n", err, dxl_portnb2portname( *rpi_portname ) );
-    return;
+    fprintf( stderr, "** dxl_read: error %d while reading device %s. Retrying. **\n", err, dxl_portnb2portname( *rpi_portname ) );
+    
+    err = dxl_read( dxl_portnb2portname( *rpi_portname ),
+                    *rpi_proto,
+                    *rpi_startid,
+                    *rpi_nbid,
+                    *rpi_read_addr,
+                    *rpi_read_length,
+                    *rpi_read_sign,
+                    data );
+    
+    if ( err )  {
+      fprintf( stderr, "** dxl_read: error %d while reading device %s. Aborting. **\n", err, dxl_portnb2portname( *rpi_portname ) );
+      return;
+    }
   }
   
   for ( i = 0; ( i < *rpi_nbid ) && ( i < DXL_SIMULINK_MAX_ID ); i++ ) {
-    
-    old_y[*rpi_portname][i] = data[i];
     
     switch( i ) {
       case 0:
