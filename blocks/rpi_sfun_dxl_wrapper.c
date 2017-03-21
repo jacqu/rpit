@@ -140,110 +140,51 @@ void rpi_sfun_dxl_Outputs_wrapper(
 	
 	(void)rpi_baudrate;
 	
+  y1[0] = 0.0;
+  y2[0] = 0.0;
+  y3[0] = 0.0;
+  y4[0] = 0.0;
+  y5[0] = 0.0;
+  y6[0] = 0.0;
+  y7[0] = 0.0;
+  y8[0] = 0.0;
+  y9[0] = 0.0;
+  y10[0] = 0.0;
+    
   /* Consistency check */
   
    if ( ( *rpi_startid < 1 ) || ( *rpi_startid > MAX_ID ) )	{
     fprintf( stderr, "** Start ID > %d **\n", MAX_ID );
-    y1[0] = 0.0;
-    y2[0] = 0.0;
-    y3[0] = 0.0;
-    y4[0] = 0.0;
-    y5[0] = 0.0;
-    y6[0] = 0.0;
-    y7[0] = 0.0;
-    y8[0] = 0.0;
-    y9[0] = 0.0;
-    y10[0] = 0.0;
     return;
   }
   
   if ( *rpi_nbid < 1 )	{
     fprintf( stderr, "** Min devices = 1 **\n" );
-    y1[0] = 0.0;
-    y2[0] = 0.0;
-    y3[0] = 0.0;
-    y4[0] = 0.0;
-    y5[0] = 0.0;
-    y6[0] = 0.0;
-    y7[0] = 0.0;
-    y8[0] = 0.0;
-    y9[0] = 0.0;
-    y10[0] = 0.0;
     return;
   }
   
   if ( *rpi_read_addr >= DXL_SIMULINK_MAX_ADDR )  {
     fprintf( stderr, "** Upper read address = %d **\n", DXL_SIMULINK_MAX_ADDR );
-    y1[0] = 0.0;
-    y2[0] = 0.0;
-    y3[0] = 0.0;
-    y4[0] = 0.0;
-    y5[0] = 0.0;
-    y6[0] = 0.0;
-    y7[0] = 0.0;
-    y8[0] = 0.0;
-    y9[0] = 0.0;
-    y10[0] = 0.0;
     return;
   }
   
   if ( *rpi_nbid > DXL_SIMULINK_MAX_ID  )	{
     fprintf( stderr, "** Max devices = %d **\n", DXL_SIMULINK_MAX_ID );
-    y1[0] = 0.0;
-    y2[0] = 0.0;
-    y3[0] = 0.0;
-    y4[0] = 0.0;
-    y5[0] = 0.0;
-    y6[0] = 0.0;
-    y7[0] = 0.0;
-    y8[0] = 0.0;
-    y9[0] = 0.0;
-    y10[0] = 0.0;
     return;
   }
  
   if ( *rpi_startid + *rpi_nbid - 1 > MAX_ID )	{
     fprintf( stderr, "** Start ID + NB of devices - 1 > %d **\n", MAX_ID );
-    y1[0] = 0.0;
-    y2[0] = 0.0;
-    y3[0] = 0.0;
-    y4[0] = 0.0;
-    y5[0] = 0.0;
-    y6[0] = 0.0;
-    y7[0] = 0.0;
-    y8[0] = 0.0;
-    y9[0] = 0.0;
-    y10[0] = 0.0;
     return;
   }
   
   if ( *rpi_portname > DXL_SIMULINK_MAX_DEV - 1 ) {
     fprintf( stderr, "** Max port number = %d **\n", DXL_SIMULINK_MAX_DEV - 1 );
-    y1[0] = 0.0;
-    y2[0] = 0.0;
-    y3[0] = 0.0;
-    y4[0] = 0.0;
-    y5[0] = 0.0;
-    y6[0] = 0.0;
-    y7[0] = 0.0;
-    y8[0] = 0.0;
-    y9[0] = 0.0;
-    y10[0] = 0.0;
     return;
   }
 
   if ( *rpi_Ts < 0.005 )	{
     fprintf( stderr, "** Max sampling rate = 200Hz **\n" );
-    y1[0] = 0.0;
-    y2[0] = 0.0;
-    y3[0] = 0.0;
-    y4[0] = 0.0;
-    y5[0] = 0.0;
-    y6[0] = 0.0;
-    y7[0] = 0.0;
-    y8[0] = 0.0;
-    y9[0] = 0.0;
-    y10[0] = 0.0;
     return;
   }
 
@@ -319,17 +260,6 @@ void rpi_sfun_dxl_Outputs_wrapper(
     fprintf( stderr, "** dxl_write: error %d while writing device %s. **\n", err, dxl_portnb2portname( *rpi_portname ) );
 
   /* Read outputs */
-  
-  y1[0] = 0.0;
-  y2[0] = 0.0;
-  y3[0] = 0.0;
-  y4[0] = 0.0;
-  y5[0] = 0.0;
-  y6[0] = 0.0;
-  y7[0] = 0.0;
-  y8[0] = 0.0;
-  y9[0] = 0.0;
-  y10[0] = 0.0;
     
   err = dxl_read( dxl_portnb2portname( *rpi_portname ),
                   *rpi_proto,
