@@ -163,11 +163,6 @@ void rpi_sfun_dxl_Outputs_wrapper(
     return;
   }
   
-  if ( *rpi_read_addr >= DXL_SIMULINK_MAX_ADDR )  {
-    fprintf( stderr, "** Upper read address = %d **\n", DXL_SIMULINK_MAX_ADDR );
-    return;
-  }
-  
   if ( *rpi_nbid > DXL_SIMULINK_MAX_ID  )	{
     fprintf( stderr, "** Max devices = %d **\n", DXL_SIMULINK_MAX_ID );
     return;
