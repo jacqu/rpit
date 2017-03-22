@@ -236,7 +236,7 @@ void rpi_sfun_dxl_Outputs_wrapper(
   /* Don't send the first control signal */
   
   err = 0;
-  if ( first_control[*rpi_portname] )
+  if ( first_control[*rpi_portname] ) {
     
     /* Don't send control if write address is 0 */
     
@@ -248,6 +248,7 @@ void rpi_sfun_dxl_Outputs_wrapper(
                         *rpi_write_addr,
                         *rpi_write_length,
                         data );
+  }
   else
     first_control[*rpi_portname] = 1;
   
