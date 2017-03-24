@@ -56,6 +56,8 @@
 #define DXL_SIMULINK_DEFAULT_PORTNAME         "/dev/ttyUSB0"
 #define DXL_SIMULINK_PRORTNAME_MAXSIZE        32
 
+static uint8_T  access_counter[DXL_SIMULINK_MAX_DEV] = { 0 };
+
 /* Convert port number into serial device name */
 char  dxl_simulink_portname[DXL_SIMULINK_PRORTNAME_MAXSIZE];
 char* dxl_portnb2portname( uint8_t portname )  {
@@ -447,6 +449,10 @@ void rpi_sfun_dxl_Start_wrapper(
     return;
   }
   
+  /* Increment access counter */
+  
+  access_counter[*rpi_portname]++;
+  
   /* Initialize sequence */
   
   /* Instruction 1 */
@@ -704,10 +710,11 @@ void rpi_sfun_dxl_Terminate_wrapper(
   /* Close serial link */
   
   skip_remaining:
-    
-  dxl_close( dxl_portnb2portname( *rpi_portname ) );
   
-  fprintf( stderr, "** Device %s successfully halted **\n", dxl_portnb2portname( *rpi_portname ) );
+  if ( --access_counter[*rpi_portname] == 0 ) {
+    dxl_close( dxl_portnb2portname( *rpi_portname ) );
+    fprintf( stderr, "** Device %s successfully halted **\n", dxl_portnb2portname( *rpi_portname ) );
+  }
   
   #endif
 }
