@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.18"
+    ComputedModelVersion    "1.19"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -38,9 +38,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jacques"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Apr 11 13:35:21 2017"
-  RTWModifiedTimeStamp	  400433657
-  ModelVersionFormat	  "1.%<AutoIncrement:18>"
+  LastModifiedDate	  "Tue Apr 11 18:18:55 2017"
+  RTWModifiedTimeStamp	  413835519
+  ModelVersionFormat	  "1.%<AutoIncrement:19>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -326,13 +326,13 @@ Model {
 	  ProdBitPerFloat	  32
 	  ProdBitPerDouble	  64
 	  ProdBitPerPointer	  32
-	  ProdLargestAtomicInteger "Long"
-	  ProdLargestAtomicFloat  "Double"
-	  ProdIntDivRoundTo	  "Undefined"
+	  ProdLargestAtomicInteger "Char"
+	  ProdLargestAtomicFloat  "None"
+	  ProdIntDivRoundTo	  "Zero"
 	  ProdEndianess		  "LittleEndian"
 	  ProdWordSize		  32
 	  ProdShiftRightIntArith  on
-	  ProdHWDeviceType	  "ARM Compatible->ARM 11"
+	  ProdHWDeviceType	  "Intel->x86/Pentium"
 	  TargetBitPerChar	  8
 	  TargetBitPerShort	  16
 	  TargetBitPerInt	  32
@@ -741,7 +741,7 @@ Model {
   }
   System {
     Name		    "xim_test"
-    Location		    [1113, 509, 1599, 904]
+    Location		    [538, 431, 1024, 826]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -807,7 +807,7 @@ Model {
       Ports		      [1]
       Position		      [330, 59, 360, 91]
       Floating		      off
-      Location		      [1, 49, 1681, 1009]
+      Location		      [5, 49, 1681, 1009]
       Open		      on
       NumInputPorts	      "1"
       List {
@@ -838,6 +838,12 @@ Model {
       SrcPort		      1
       DstBlock		      "IO socket 1"
       DstPort		      1
+    }
+    Annotation {
+      Name		      "Note :\nYou should lauch a vision socket server before\nstarting this model. Enter the IP address i"
+      "nto the block\nparameters. The code for the server can be found at :\nhttps://github.com/jacqu/xim "
+      Position		      [15, 338]
+      HorizontalAlignment     "left"
     }
   }
 }
