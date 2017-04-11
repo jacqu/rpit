@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.19"
+    ComputedModelVersion    "1.20"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -38,9 +38,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jacques"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Apr 11 18:18:55 2017"
+  LastModifiedDate	  "Tue Apr 11 18:20:19 2017"
   RTWModifiedTimeStamp	  413835519
-  ModelVersionFormat	  "1.%<AutoIncrement:19>"
+  ModelVersionFormat	  "1.%<AutoIncrement:20>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -840,8 +840,8 @@ Model {
       DstPort		      1
     }
     Annotation {
-      Name		      "Note :\nYou should lauch a vision socket server before\nstarting this model. Enter the IP address i"
-      "nto the block\nparameters. The code for the server can be found at :\nhttps://github.com/jacqu/xim "
+      Name		      "Note :\nYou should launch a vision socket server before\nstarting this model. Enter the IP address "
+      "into the block\nparameters. The code for the server can be found at :\nhttps://github.com/jacqu/xim "
       Position		      [15, 338]
       HorizontalAlignment     "left"
     }
