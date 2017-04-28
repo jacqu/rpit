@@ -302,10 +302,10 @@ endif
 
 SYSLIBS = $(EXT_LIB)
 ifeq ($(SFCN),0)
-SYSLIBS += -lm
+SYSLIBS += 
 endif
 
-LIBS = -lpthread -lrt -lusb-1.0
+LIBS = -lm -lpthread -lrt -lusb-1.0
 |>START_PRECOMP_LIBRARIES<|
 ifeq ($(OPT_OPTS),$(DEFAULT_OPT_OPTS))
 ifeq ($(INTEGER_CODE),0)
