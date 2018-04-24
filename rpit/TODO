@@ -3,4 +3,7 @@
 * Don't prompt the password
 * Manage error cases : EV3 off or not connected
 * Valgrind mpu9150 code
-* Hint: for customizing TLC, refer to rtw/c/tlc/mw/ertmain_grtinterface.tlc
+* Hint: for customizing TLC, refer to 
+  rtw/c/tlc/mw/ertmain_grtinterface.tlc
+  rtw/c/tlc/mw/bareboard_srmain.tlc
+  rtw/c/tlc/mw/bareboard_srmain.tlc

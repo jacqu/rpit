@@ -40,8 +40,13 @@
   #include "%<LibGetMdlPubHdrBaseName()>.h"
   %<SLibIncludeUsedCoderTypesFilenames()>
   %if ExtMode
-    #include "ext_work.h" /* External mode header file */
+    %if !ExtModeXCP || ExtModeXCPClassicInterface
+        #include "ext_work.h" /* External mode header file */
+    %else
+        #include "ext_mode.h" /* External mode header file */
+    %endif
   %endif
+
 
   struct rpi_periodic_info
   {
@@ -55,7 +60,6 @@
   %<SLibCacheCodeToFile("mainSrc_incl", tmpBuf)>
   
   %openfile tmpBuf
-
   %assign fcnReturns = "static int_T"
   %assign fcnName = "rpi_make_periodic"
   %assign fcnParams = "uint_T period, struct rpi_periodic_info *info"
@@ -152,7 +156,7 @@
       %<LibSetRTModelErrorStatus("\"Overrun\"")>;
       return;
     }
-    OverrunFlags[0] = true;
+    OverrunFlags[0] = %<GET_TYPE_ID_REPLACEMENT("true")>;
     
     /* Save FPU context here (if necessary) */
     /* Re-enable timer or interrupt here */
@@ -178,7 +182,7 @@
       #endif
     %endif
     
-    OverrunFlags[0] = false;
+    OverrunFlags[0] = %<GET_TYPE_ID_REPLACEMENT("false")>;
     
     %if LibGetNumSyncPeriodicTasks() > 2
       /* Step the model for any subrate */
@@ -194,7 +198,7 @@
              return;
            }
          %endif
-           OverrunFlags[i] = true;
+           OverrunFlags[i] = %<GET_TYPE_ID_REPLACEMENT("true")>;
 
          %foreach idx = LibNumSynchronousSampleTimes()
            %assign varbuf = LibWriteModelInput(idx+1,RollThreshold)
@@ -231,9 +235,9 @@
 	   %endif
 	  %endforeach
 
-	  OverrunFlags[i] = false;
+	  OverrunFlags[i] = %<GET_TYPE_ID_REPLACEMENT("false")>;
           %if InlineSetEventsForThisBaseRateFcn
-            eventFlags[i] = false;
+            eventFlags[i] = %<GET_TYPE_ID_REPLACEMENT("false")>;
           %endif
           
      }
@@ -252,7 +256,7 @@
             return;
           }
         %endif
-        OverrunFlags[%<tid>] = true;
+        OverrunFlags[%<tid>] = %<GET_TYPE_ID_REPLACEMENT("true")>;
 
         /* Set model inputs associated with subrates here */
         
@@ -262,9 +266,9 @@
         /* Get model outputs associated with subrates here */
         
         /* Indicate task complete for subrate */
-        OverrunFlags[%<tid>] = false; 
+        OverrunFlags[%<tid>] = %<GET_TYPE_ID_REPLACEMENT("false")>;
         %if InlineSetEventsForThisBaseRateFcn
-          eventFlags[%<tid>] = false;
+          eventFlags[%<tid>] = %<GET_TYPE_ID_REPLACEMENT("false")>;
         %endif
       }    
    %endif
@@ -285,14 +289,14 @@
   %undef fcnRec
   %<fcnReturns> %<fcnName>(%<fcnParams>)
   {
-    /* Unused arguments */
-    (void)(argc);
-    (void)(argv);
+    %if (ExtMode == 1) && ExtModeXCP && !ExtModeXCPClassicInterface
+      extmodeErrorCode_T errorCode = EXTMODE_SUCCESS;
+    %endif
 
     struct rpi_periodic_info  info;
     struct timespec           tmspc_before, tmspc_after;
     
-    real_T     finaltime = -2.0;
+    real_T            finaltime = -2.0;
 
     int_T  oldStyle_argc;
     const char_T *oldStyle_argv[5];
@@ -336,7 +340,7 @@
         double    tmpDouble;
         char_T tmpStr2[200];
         int_T  count      = 1;
-        int_T  parseError = false;
+        int_T  parseError = %<GET_TYPE_ID_REPLACEMENT("false")>;
 
         /*
          * Parse the standard input parameters.  Let all unrecognized parameters
@@ -351,15 +355,15 @@
                 const char_T *tfStr = argv[count++];
                 
                 sscanf(tfStr, "%200s", tmpStr2);
-                if ( (strcmp(tmpStr2, "inf") == 0) || (strcmp(tmpStr2, "Inf") == 0) ) {
-                    tmpDouble = -1.0;
+                if (strcmp(tmpStr2, "inf") == 0) {
+                    tmpDouble = RUN_FOREVER;
                 } else {
                     char_T tmpstr[2];
 
                     if ( (sscanf(tmpStr2,"%lf%1s", &tmpDouble, tmpstr) != 1) ||
                          (tmpDouble < 0.0) ) {
                         (void)printf("Finaltime must be a positive, real value or inf.\n");
-                        parseError = true;
+                        parseError = %<GET_TYPE_ID_REPLACEMENT("true")>;
                         break;
                     }
                 }
@@ -380,9 +384,21 @@
             return(EXIT_FAILURE);
         }
 
-        %if ExtMode == 1
-        rtExtModeParseArgs(argc, argv, %<SLibGetNullDefinitionFromTfl()>); 
-        %endif
+    %if ExtMode == 1
+      %if !ExtModeXCP || ExtModeXCPClassicInterface
+	rtExtModeParseArgs(argc, argv, %<SLibGetNullDefinitionFromTfl()>); 
+      %else
+        /* Parse External Mode command line arguments */
+        errorCode = extmodeParseArgs(argc, argv);
+        if (errorCode != EXTMODE_SUCCESS) {
+            return (errorCode);
+        }
+      %endif
+    %endif
+
+    %if !ExtModeXCP || ExtModeXCPClassicInterface
+    %% The check for unprocessed args is already part of extmodeParseArgs if XCP is enabled
+    %% with the new ext_mode.h interface
 
         /*
          * Check for unprocessed ("unhandled") args.
@@ -396,66 +412,91 @@
                 }
             }
         }
+    %endif
     }
-    
+
     /* Initialize model */
     %<LibCallModelInitialize()>\
     
     /* Associate rt_OneStep() with a timer that executes at the base rate of the model */
     
     %if ExtMode == 1
-    /* External mode */
-    %if !PurelyIntegerCode
-    rtSetTFinalForExtMode(&%<RTMGet("TFinal")>);
-    %else
-    rtSetTFinalForExtMode(rteiGetPtrTFinalTicks(%<RTMGet("RTWExtModeInfo")>));
-    %endif
-    rtExtModeCheckInit(%<NumSynchronousSampleTimes>);
-    {
-      boolean_T rtmStopReq = false;
-      rtExtModeWaitForStartPkt(%<RTMGet("RTWExtModeInfo")>, ...
-        %<NumSynchronousSampleTimes>, ...
-        &rtmStopReq);
-      if (rtmStopReq) {
-        %<RTMSetStopRequested("true")>;
-      }
-    }
-    
-    /* Start timer */
-    %assign period = LibGetClockTickStepSize(0)
-    rpi_make_periodic((uint_T)(%<period>*1000000.0), &info);
+      %if !ExtModeXCP || ExtModeXCPClassicInterface
+        /* External mode */
+        %if !PurelyIntegerCode
+          rtSetTFinalForExtMode(&%<RTMGet("TFinal")>);
+        %else
+          rtSetTFinalForExtMode(rteiGetPtrTFinalTicks(%<RTMGet("RTWExtModeInfo")>));
+        %endif
 
-    /* Main loop */
-    while ((rtmGetErrorStatus(%<Name>_M) == (NULL)) &&
-           !rtmGetStopRequested(%<Name>_M)) {
-      {
-        /* external mode */
-        boolean_T rtmStopReq = false;
-
-        rtExtModePauseIfNeeded(%<RTMGet("RTWExtModeInfo")>, ...
-          %<NumSynchronousSampleTimes>, ...
-          &rtmStopReq);
-
-        rtExtModeOneStep(%<RTMGet("RTWExtModeInfo")>, ...
-          %<NumSynchronousSampleTimes>, ...
-          &rtmStopReq);
-
-        if (rtmStopReq) {
-          %<RTMSetStopRequested("true")>;
+        rtExtModeCheckInit(%<NumSynchronousSampleTimes>);
+        {
+            boolean_T rtmStopReq = %<GET_TYPE_ID_REPLACEMENT("false")>;
+            rtExtModeWaitForStartPkt(%<RTMGet("RTWExtModeInfo")>, ...
+                                     %<NumSynchronousSampleTimes>, ...
+                                     &rtmStopReq);
+            if (rtmStopReq) {
+                %<RTMSetStopRequested("true")>;
+            }
         }
+      %else
+        /* External Mode initialization */
+        %if !PurelyIntegerCode
+          errorCode = extmodeInit(%<RTMGet("RTWExtModeInfo")>, &%<RTMGet("TFinal")>);
+        %else
+          errorCode = extmodeInit(%<RTMGet("RTWExtModeInfo")>, rteiGetPtrTFinalTicks(%<RTMGet("RTWExtModeInfo")>));
+        %endif
+          
+        if (errorCode != EXTMODE_SUCCESS) {
+            /* Code to handle External Mode initialization errors
+               may be added here */
+        }
+
+        if (errorCode == EXTMODE_SUCCESS) {
+            /* Wait until a Start or Stop Request has been received from the Host */
+            extmodeWaitForHostRequest(EXTMODE_WAIT_FOREVER);
+
+            if (extmodeStopRequested()) {
+              %<RTMSetStopRequested("true")>;
+            }
+        }
+      %endif
+
+      /* Start timer */
+      %assign period = LibGetClockTickStepSize(0)
+      rpi_make_periodic((uint_T)(%<period>*1000000.0), &info);
+
+      /* Main loop */
+      while ((rtmGetErrorStatus(%<Name>_M) == (NULL)) &&
+             !rtmGetStopRequested(%<Name>_M)) {
+        {
+          /* external mode */
+          boolean_T rtmStopReq = false;
+
+          rtExtModePauseIfNeeded(%<RTMGet("RTWExtModeInfo")>, ...
+            %<NumSynchronousSampleTimes>, ...
+            &rtmStopReq);
+
+          rtExtModeOneStep(%<RTMGet("RTWExtModeInfo")>, ...
+            %<NumSynchronousSampleTimes>, ...
+            &rtmStopReq);
+
+          if (rtmStopReq) {
+            %<RTMSetStopRequested("true")>;
+          }
+        }
+
+        rpi_wait_period(&info);
+        clock_gettime( CLOCK_MONOTONIC, &tmspc_before );
+        rt_OneStep( );
+        clock_gettime( CLOCK_MONOTONIC, &tmspc_after );
+        rpi_cpu_usage = (uint_T)( (  (real_T)( tmspc_after.tv_sec - tmspc_before.tv_sec ) 
+                                   + (real_T)( tmspc_after.tv_nsec - tmspc_before.tv_nsec ) * 1e-9 )
+                                   / (real_T)%<period> * 100.0 );
       }
 
-      rpi_wait_period(&info);
-      clock_gettime( CLOCK_MONOTONIC, &tmspc_before );
-      rt_OneStep( );
-      clock_gettime( CLOCK_MONOTONIC, &tmspc_after );
-      rpi_cpu_usage = (uint_T)( (  (real_T)( tmspc_after.tv_sec - tmspc_before.tv_sec ) 
-                                 + (real_T)( tmspc_after.tv_nsec - tmspc_before.tv_nsec ) * 1e-9 )
-                                 / (real_T)%<period> * 100.0 );
-    }
-    
-    /* Terminate external mode */
-    rtExtModeShutdown(%<NumSynchronousSampleTimes>);
+      /* Terminate external mode */
+      rtExtModeShutdown(%<NumSynchronousSampleTimes>);
     
     %endif
 
