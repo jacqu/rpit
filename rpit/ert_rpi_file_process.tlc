@@ -15,13 +15,13 @@
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %selectfile NULL_FILE
-
+ 
 %%  Uncomment this TLC line to execute the example
 %%   ||   ||
 %%   ||   ||
 %%   \/   \/
 %assign ERTCustomFileTest = TLC_TRUE
-
+ 
 %if EXISTS("ERTCustomFileTest") && ERTCustomFileTest == TLC_TRUE
   
   %% Need to set the template compliance flag before you can use the API
@@ -29,9 +29,12 @@
   
   %% Create a simple main.  Files are located in MATLAB/rtw/c/tlc/mw.
   
-  %include "rpi_ertposixthread.tlc"
-  %<SLibGenerateThreadedMain()>
-  
+  %if LibIsSingleRateModel() || LibIsSingleTasking()
+    %include "rpi_srmain.tlc"
+    %<FcnSingleTaskingMain()>
+  %else
+    %include "rpi_mrmain.tlc"
+    %<FcnMultiTaskingMain()>
   %endif
   
 %endif
