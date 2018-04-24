@@ -29,12 +29,9 @@
   
   %% Create a simple main.  Files are located in MATLAB/rtw/c/tlc/mw.
   
-  %if LibIsSingleRateModel() || LibIsSingleTasking()
-    %include "rpi_srmain.tlc"
-    %<FcnSingleTaskingMain()>
-  %else
-    %include "rpi_mrmain.tlc"
-    %<FcnMultiTaskingMain()>
+  %include "rpi_ertposixthread.tlc"
+  %<SLibGenerateThreadedMain()>
+  
   %endif
   
 %endif
