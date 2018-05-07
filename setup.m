@@ -102,9 +102,12 @@ mex rpi_sfun_js.c rpi_sfun_js_wrapper.c
 addpath( [ rpitdir '/blocks' ] );		% Path to the blockset
 addpath( [ rpitdir '/rpit' ] );			% Path to target files
 up = userpath;                      % Get userpath
+if isempty(up)                      % Check for an empty userpath
+  userpath('reset');                % Reset userpath to default
+end;
 up = regexprep(up,';','');          % Remove semicolon at end of userpath
 status = savepath( [ up filesep 'pathdef.m' ] );
-if status ~= 0,
+if status ~= 0
   disp( '  > Could not save the Matlab search path for future sessions.' );
   cd( rpitdir );
   clear;
