@@ -42,7 +42,7 @@
 #  SYS_TARGET_FILE - Name of system target file.
 
 MAKECMD         = make
-HOST            = UNIX
+HOST            = any
 BUILD           = no
 SYS_TARGET_FILE = any
 COMPILER_TOOL_CHAIN = unix
