@@ -44,7 +44,7 @@ if strcmp( mvernum, '2018a' )
   copyfile('res/rpi_mrmain_2018a.tlc','rpit/rpi_mrmain.tlc');
   copyfile('res/rpi_srmain_2018a.tlc','rpit/rpi_srmain.tlc');
   copyfile('res/slblocks_2014a.m','blocks/slblocks.m');
-  load_system('res/rpi_blkst.mdl.2010b');
+  load_system('res/rpi_blkst.mdl.r2010b');
   save_system('rpi_blkst', 'blocks/rpi_blkst.slx');
   close_system('rpi_blkst',0);
 else
@@ -53,7 +53,7 @@ else
     copyfile('res/rpi_mrmain_2014a.tlc','rpit/rpi_mrmain.tlc');
     copyfile('res/rpi_srmain_2014a.tlc','rpit/rpi_srmain.tlc');
     copyfile('res/slblocks_2014a.m','blocks/slblocks.m');
-    load_system('res/rpi_blkst.mdl.2010b');
+    load_system('res/rpi_blkst.mdl.r2010b');
     save_system('rpi_blkst', 'blocks/rpi_blkst.slx');
     close_system('rpi_blkst',0);
   else
@@ -62,21 +62,21 @@ else
       copyfile('res/rpi_mrmain_2012a.tlc','rpit/rpi_mrmain.tlc');
       copyfile('res/rpi_srmain_2012a.tlc','rpit/rpi_srmain.tlc');
       copyfile('res/slblocks_2010b.m','blocks/slblocks.m');
-      copyfile('res/rpi_blkst.mdl.2010b','blocks/rpi_blkst.mdl');
+      copyfile('res/rpi_blkst.mdl.r2010b','blocks/rpi_blkst.mdl');
     else
       if strcmp( mvernum, '2011a' )
         disp( '  > Configuring TLC files for release 2011a.' );
         copyfile('res/rpi_mrmain_2010b.tlc','rpit/rpi_mrmain.tlc');
         copyfile('res/rpi_srmain_2010b.tlc','rpit/rpi_srmain.tlc');
         copyfile('res/slblocks_2010b.m','blocks/slblocks.m');
-        copyfile('res/rpi_blkst.mdl.2010b','blocks/rpi_blkst.mdl');
+        copyfile('res/rpi_blkst.mdl.r2010b','blocks/rpi_blkst.mdl');
       else
         if strcmp( mvernum, '2010b' )
           disp( '  > Configuring TLC files for release 2010b.' );
           copyfile('res/rpi_mrmain_2010b.tlc','rpit/rpi_mrmain.tlc');
           copyfile('res/rpi_srmain_2010b.tlc','rpit/rpi_srmain.tlc');
           copyfile('res/slblocks_2010b.m','blocks/slblocks.m');
-          copyfile('res/rpi_blkst.mdl.2010b','blocks/rpi_blkst.mdl');
+          copyfile('res/rpi_blkst.mdl.r2010b','blocks/rpi_blkst.mdl');
         else
           disp( '  > This release of Matlab is currently not supported.' );
           disp( '  > Supported releases: 2010b, 2010b SP1, 2010b SP2, 2011a, 2012a, 2014a, 2015a, 2015b, 2016a, 2016b, 2017a, 2017b or 2018a.' );
