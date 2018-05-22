@@ -89,7 +89,7 @@ struct trex_config_struct trex_config[] =	{
 /******************************************************************************
  *	trex_init_port : initialize serial port
  *****************************************************************************/
-int trex_init_port( void )	{
+int trex_init_port( char *portname )	{
 	struct termios 	newtio;
 
 	/* Open device */
@@ -423,7 +423,7 @@ int main( int argc, char *argv[] )	{
 	
 	/* Test command */
 	if ( !strcmp( argv[1], "test" ) )	{
-		if ( trex_init_port( ) )	{
+		if ( trex_init_port( TREX_MODEMDEVICE ) )	{
 			printf( "Error while initializing TReX port.\n" );
 			exit( -1 );
 		}
@@ -465,7 +465,7 @@ int main( int argc, char *argv[] )	{
 	
 	/* Blink command */
 	if ( !strcmp( argv[1], "blink" ) )	{
-		if ( trex_init_port( ) )	{
+		if ( trex_init_port( TREX_MODEMDEVICE ) )	{
 			printf( "Error while initializing TReX port.\n" );
 			exit( -1 );
 		}
@@ -512,7 +512,7 @@ int main( int argc, char *argv[] )	{
 			printf( "Configuration value is out of range.\n" );
 			exit( -1 );
 		}
-		if ( trex_init_port( ) )	{
+		if ( trex_init_port( TREX_MODEMDEVICE ) )	{
 			printf( "Error while initializing TReX port.\n" );
 			exit( -1 );
 		}

@@ -3,7 +3,7 @@
  *	JG, may 2018
  *****************************************************************************/
  
-int trex_init_port( void );
+int trex_init_port( char* );
 void trex_release_port( void );
 int trex_check_presence( unsigned char );
 int trex_print_config( unsigned char );

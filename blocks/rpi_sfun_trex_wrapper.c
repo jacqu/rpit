@@ -18,7 +18,7 @@
   *   in the Real-Time Workshop User's Manual in the Chapter titled,
   *   "Wrapper S-functions".
   *
-  *   Created: Fri May 18 17:13:43 2018
+  *   Created: Tue May 22 12:04:58 2018
   */
 
 
@@ -37,7 +37,7 @@
 #include <math.h>
 /* %%%-SFUNWIZ_wrapper_includes_Changes_END --- EDIT HERE TO _BEGIN */
 #define u_width 1
-#define y_width 
+#define y_width 1
 /*
  * Create external references here.  
  *
@@ -53,14 +53,15 @@
  *
  */
 void rpi_sfun_trex_Outputs_wrapper(const real_T *u1,
-                          const real_T *u2,                          
+                          const real_T *u2,
+                          real_T *Err  , 
                           const int8_T  *rpi_trex_port, const int_T  p_width0, 
                           const uint8_T  *rpi_trex_id, const int_T  p_width1, 
                           const real_T  *rpi_Ts,  const int_T p_width2)
 {
 /* %%%-SFUNWIZ_wrapper_Outputs_Changes_BEGIN --- EDIT HERE TO _END */
 #ifdef MATLAB_MEX_FILE
-
+  Err[0] = 0;
   return;
 
 #else
@@ -70,14 +71,19 @@ void rpi_sfun_trex_Outputs_wrapper(const real_T *u1,
           
   char        port_name[PORT_NAME_SIZE];
   signed char out1, out2;
-
+  int         ret;
+  
+  Err[0] = 0;
+  
   if ( ( p_width0 > 1 ) || ( p_width1 > 1 ) || ( p_width2 > 1 ) )	{
     fprintf( stderr, "** Multiple rates not allowed in this block **\n" );
+    Err[0] = 1;
     return;
   }
 
   if ( *rpi_Ts < 0.01 )	{
     fprintf( stderr, "** Max sampling rate = 100Hz **\n" );
+    Err[0] = 2;
     return;
   
   if ( *rpi_trex_port < 0 )
@@ -85,7 +91,11 @@ void rpi_sfun_trex_Outputs_wrapper(const real_T *u1,
   else
     snprintf( port_name, "%s%d", PORT_NAME_USB, *rpi_trex_port );
     
-  trex_init_port( port_name );
+  ret = trex_init_port( port_name );
+  if ( ret )  {
+    Err[0] = 3;
+    return;
+  }
   
   if ( *u1 > TREX_MAX_DUTY_CYCLE )
     out1 = TREX_MAX_DUTY_CYCLE;
@@ -105,7 +115,11 @@ void rpi_sfun_trex_Outputs_wrapper(const real_T *u1,
   if ( isnan( *u2 ) )
     out2 = TREX_MIN_DUTY_CYCLE;
   
-  trex_output( *rpi_trex_id, out1, out2 );
+  ret = trex_output( *rpi_trex_id, out1, out2 );
+  if ( ret )  {
+    Err[0] = 4;
+    return;
+  }
   
   trex_release_port(  );
   }

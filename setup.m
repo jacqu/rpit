@@ -44,6 +44,9 @@ if strcmp( mvernum, '2018a' )
   copyfile('res/rpi_mrmain_2018a.tlc','rpit/rpi_mrmain.tlc');
   copyfile('res/rpi_srmain_2018a.tlc','rpit/rpi_srmain.tlc');
   copyfile('res/slblocks_2014a.m','blocks/slblocks.m');
+  load_system('res/rpi_blkst.mdl');
+  save_system('rpi_blkst', 'res/rpi_blkst.slx');
+  close_system('rpi_blkst',0);
   copyfile('res/rpi_blkst.slx','blocks/rpi_blkst.slx');
 else
   if strcmp( mvernum, '2014a' ) || strcmp( mvernum, '2015a' ) || strcmp( mvernum, '2015b' ) || strcmp( mvernum, '2016a' ) || strcmp( mvernum, '2016b' ) || strcmp( mvernum, '2017a' ) || strcmp( mvernum, '2017b' )
@@ -51,6 +54,9 @@ else
     copyfile('res/rpi_mrmain_2014a.tlc','rpit/rpi_mrmain.tlc');
     copyfile('res/rpi_srmain_2014a.tlc','rpit/rpi_srmain.tlc');
     copyfile('res/slblocks_2014a.m','blocks/slblocks.m');
+    load_system('res/rpi_blkst.mdl');
+    save_system('rpi_blkst', 'res/rpi_blkst.slx');
+    close_system('rpi_blkst',0);
     copyfile('res/rpi_blkst.slx','blocks/rpi_blkst.slx');
   else
     if strcmp( mvernum, '2012a' )
@@ -97,6 +103,7 @@ mex rpi_sfun_polaris.c rpi_sfun_polaris_wrapper.c
 mex rpi_sfun_iosocket.c rpi_sfun_iosocket_wrapper.c
 mex rpi_sfun_dxl.c rpi_sfun_dxl_wrapper.c
 mex rpi_sfun_js.c rpi_sfun_js_wrapper.c
+mex rpi_sfun_trex.c rpi_sfun_trex_wrapper.c
 
 % Add target paths to matlab paths
 addpath( [ rpitdir '/blocks' ] );		% Path to the blockset

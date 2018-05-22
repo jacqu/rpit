@@ -26,7 +26,7 @@
   *  -------------------------------------------------------------------------
   * | See matlabroot/simulink/src/sfuntmpl_doc.c for a more detailed template |
   *  ------------------------------------------------------------------------- 
- * Created: Fri May 18 17:13:43 2018
+ * Created: Tue May 22 12:04:58 2018
  * 
  *
  */
@@ -71,7 +71,23 @@
 #define IN_1_BIAS            0
 #define IN_1_SLOPE           0.125
 
-#define NUM_OUTPUTS           0
+#define NUM_OUTPUTS          1
+/* Output Port  0 */
+#define OUT_PORT_0_NAME      Err
+#define OUTPUT_0_WIDTH       1
+#define OUTPUT_DIMS_0_COL    1
+#define OUTPUT_0_DTYPE       real_T
+#define OUTPUT_0_COMPLEX     COMPLEX_NO
+#define OUT_0_FRAME_BASED    FRAME_NO
+#define OUT_0_BUS_BASED      0
+#define OUT_0_BUS_NAME       
+#define OUT_0_DIMS           1-D
+#define OUT_0_ISSIGNED        1
+#define OUT_0_WORDLENGTH      8
+#define OUT_0_FIXPOINTSCALING 1
+#define OUT_0_FRACTIONLENGTH  3
+#define OUT_0_BIAS            0
+#define OUT_0_SLOPE           0.125
 
 #define NPARAMS              3
 /* Parameter  1 */
@@ -98,8 +114,8 @@
 #define PANELINDEX           6
 #define USE_SIMSTRUCT        0
 #define SHOW_COMPILE_STEPS   1                   
-#define CREATE_DEBUG_MEXFILE 0
-#define SAVE_CODE_ONLY       1
+#define CREATE_DEBUG_MEXFILE 1
+#define SAVE_CODE_ONLY       0
 #define SFUNWIZ_REVISION     3.0
 /* %%%-SFUNWIZ_defines_Changes_END --- EDIT HERE TO _BEGIN */
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -119,7 +135,7 @@
 
 extern void rpi_sfun_trex_Outputs_wrapper(const real_T *u1,
                           const real_T *u2,
-                             
+                          real_T *Err  , 
                           const int8_T  *rpi_trex_port, const int_T  p_width0, 
                           const uint8_T  *rpi_trex_id, const int_T  p_width1, 
                           const real_T  *rpi_Ts,  const int_T p_width2);
@@ -228,7 +244,9 @@ static void mdlInitializeSizes(SimStruct *S)
 
 
     if (!ssSetNumOutputPorts(S, NUM_OUTPUTS)) return;
-
+    ssSetOutputPortWidth(S, 0, OUTPUT_0_WIDTH);
+    ssSetOutputPortDataType(S, 0, SS_DOUBLE);
+    ssSetOutputPortComplexSignal(S, 0, OUTPUT_0_COMPLEX);
     ssSetNumSampleTimes(S, 1);
     ssSetNumRWork(S, 0);
     ssSetNumIWork(S, 0);
@@ -283,6 +301,7 @@ static void mdlOutputs(SimStruct *S, int_T tid)
 {
     const real_T   *u1  = (const real_T*) ssGetInputPortSignal(S,0);
     const real_T   *u2  = (const real_T*) ssGetInputPortSignal(S,1);
+    real_T        *Err  = (real_T *)ssGetOutputPortRealSignal(S,0);
     const int_T   p_width0  = mxGetNumberOfElements(PARAM_DEF0(S));
     const int_T   p_width1  = mxGetNumberOfElements(PARAM_DEF1(S));
     const int_T   p_width2  = mxGetNumberOfElements(PARAM_DEF2(S));
@@ -290,7 +309,7 @@ static void mdlOutputs(SimStruct *S, int_T tid)
     const uint8_T  *rpi_trex_id  = (const uint8_T *)mxGetData(PARAM_DEF1(S));
     const real_T  *rpi_Ts  = (const real_T *)mxGetData(PARAM_DEF2(S));
 
-    rpi_sfun_trex_Outputs_wrapper(u1, u2, rpi_trex_port, p_width0, rpi_trex_id, p_width1, rpi_Ts, p_width2);
+    rpi_sfun_trex_Outputs_wrapper(u1, u2, Err, rpi_trex_port, p_width0, rpi_trex_id, p_width1, rpi_Ts, p_width2);
 }
 
 

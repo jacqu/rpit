@@ -1,5 +1,5 @@
 %% File : rpi_sfun_trex.tlc
-%% Created: Fri May 18 17:13:43 2018
+%% Created: Tue May 22 12:04:58 2018
 %%
 %% Description: 
 %%   Real-Time Workshop wrapper functions interface generated for 
@@ -26,7 +26,7 @@
     
   extern void rpi_sfun_trex_Outputs_wrapper(const real_T *u1,
                           const real_T *u2,
-                             
+                          real_T *Err  , 
                           const int8_T  *rpi_trex_port, const int_T  p_width0, 
                           const uint8_T  *rpi_trex_id, const int_T  p_width1, 
                           const real_T  *rpi_Ts,  const int_T p_width2);
@@ -45,6 +45,7 @@
   %%
   %assign pu0 = LibBlockInputSignalAddr(0, "", "", 0)
   %assign pu1 = LibBlockInputSignalAddr(1, "", "", 0)
+  %assign py0 = LibBlockOutputSignalAddr(0, "", "", 0)
   %assign nelements1 = LibBlockParameterSize(P1)
   %assign param_width1 = nelements1[0] * nelements1[1]
   %if (param_width1) > 1
@@ -66,8 +67,9 @@
    %else
      %assign pp3 = LibBlockParameterAddr(P3, "", "", 0)
    %endif
+  %assign py_width = LibBlockOutputSignalWidth(0)
   %assign pu_width = LibBlockInputSignalWidth(0)
-  rpi_sfun_trex_Outputs_wrapper(%<pu0>, %<pu1>,  %<pp1>, %<param_width1>,  %<pp2>, %<param_width2>, %<pp3>, %<param_width3>);
+  rpi_sfun_trex_Outputs_wrapper(%<pu0>, %<pu1>, %<py0>,  %<pp1>, %<param_width1>,  %<pp2>, %<param_width2>, %<pp3>, %<param_width3>);
 
   %%
 %endfunction
