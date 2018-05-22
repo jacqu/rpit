@@ -44,6 +44,7 @@
  */
 /* %%%-SFUNWIZ_wrapper_externs_Changes_BEGIN --- EDIT HERE TO _END */
 #ifndef MATLAB_MEX_FILE
+#define TREX_LIB
 #include "trex.c"
 #endif
 /* %%%-SFUNWIZ_wrapper_externs_Changes_END --- EDIT HERE TO _BEGIN */
@@ -85,11 +86,12 @@ void rpi_sfun_trex_Outputs_wrapper(const real_T *u1,
     fprintf( stderr, "** Max sampling rate = 100Hz **\n" );
     Err[0] = 2;
     return;
+  }
   
   if ( *rpi_trex_port < 0 )
-    snprintf( port_name, "%s%d", PORT_NAME_INT, -(*rpi_trex_port+1) );
+    snprintf( port_name, PORT_NAME_SIZE, "%s%d", PORT_NAME_INT, -(*rpi_trex_port+1) );
   else
-    snprintf( port_name, "%s%d", PORT_NAME_USB, *rpi_trex_port );
+    snprintf( port_name, PORT_NAME_SIZE, "%s%d", PORT_NAME_USB, *rpi_trex_port );
     
   ret = trex_init_port( port_name );
   if ( ret )  {
@@ -122,7 +124,6 @@ void rpi_sfun_trex_Outputs_wrapper(const real_T *u1,
   }
   
   trex_release_port(  );
-  }
 
 #endif
 /* %%%-SFUNWIZ_wrapper_Outputs_Changes_END --- EDIT HERE TO _BEGIN */

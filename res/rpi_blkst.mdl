@@ -15,9 +15,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jacques"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jun 01 01:00:06 2016"
-  RTWModifiedTimeStamp	  386643582
-  ModelVersionFormat	  "1.%<AutoIncrement:49>"
+  LastModifiedDate	  "Wed Jun 01 00:02:22 2016"
+  RTWModifiedTimeStamp	  386640136
+  ModelVersionFormat	  "1.%<AutoIncrement:50>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -689,7 +689,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "163"
+    SIDHighWatermark	    "168"
     Block {
       BlockType		      SubSystem
       Name		      "CPU usage"
@@ -2790,7 +2790,7 @@ Library {
     Block {
       BlockType		      SubSystem
       Name		      "TReX Jr"
-      SID		      "159"
+      SID		      "164"
       Ports		      [2, 1]
       Position		      [35, 433, 265, 657]
       MinAlgLoopOccurrences   off
@@ -2839,14 +2839,14 @@ Library {
 	Block {
 	  BlockType		  Inport
 	  Name			  "Motor 1"
-	  SID			  "160"
+	  SID			  "165"
 	  Position		  [25, 43, 55, 57]
 	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
 	  Name			  "Motor 2"
-	  SID			  "161"
+	  SID			  "166"
 	  Position		  [25, 88, 55, 102]
 	  Port			  "2"
 	  IconDisplay		  "Port number"
@@ -2854,8 +2854,8 @@ Library {
 	Block {
 	  BlockType		  "S-Function"
 	  Name			  "TReX Jr"
-	  SID			  "162"
-	  Ports			  [2]
+	  SID			  "167"
+	  Ports			  [2, 1]
 	  Position		  [95, 25, 200, 120]
 	  LibraryVersion	  "1.225"
 	  CopyFcn		  "set_param(gcbh,'LinkStatus','none')"
@@ -2888,8 +2888,8 @@ Library {
 	Block {
 	  BlockType		  Outport
 	  Name			  "Ret"
-	  SID			  "163"
-	  Position		  [220, 63, 250, 77]
+	  SID			  "168"
+	  Position		  [230, 68, 260, 82]
 	  IconDisplay		  "Port number"
 	}
 	Line {
@@ -2905,7 +2905,8 @@ Library {
 	  DstPort		  2
 	}
 	Line {
-	  Points		  [205, 70]
+	  SrcBlock		  "TReX Jr"
+	  SrcPort		  1
 	  DstBlock		  "Ret"
 	  DstPort		  1
 	}

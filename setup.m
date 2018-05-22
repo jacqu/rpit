@@ -419,6 +419,12 @@ if ( status )
   disp( '  > Please install it manually: sudo apt-get install libusb-1.0-0-dev' );
 end
 
+% Enable user access to serial port
+
+disp( '  > Enabling user serial port access by adding pi to the dialout group.' );
+command = sprintf( '%s pi@%s sudo usermod -a -G dialout $USER', ssh_command, piip );
+[ status, out ] = system( command );
+
 % Enable user access to the EV3 USB port on the target
 
 disp( '  > Enabling user access to the EV3 USB port.' );

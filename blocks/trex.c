@@ -93,7 +93,7 @@ int trex_init_port( char *portname )	{
 	struct termios 	newtio;
 
 	/* Open device */
-	trex_fd = open( TREX_MODEMDEVICE, O_RDWR | O_NOCTTY ); 
+	trex_fd = open( portname, O_RDWR | O_NOCTTY ); 
 	if ( trex_fd < 0 )  { 
 		perror( TREX_MODEMDEVICE ); 
 		return -1; 
