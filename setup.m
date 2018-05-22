@@ -45,6 +45,8 @@ if strcmp( mvernum, '2018a' )
   copyfile('res/rpi_srmain_2018a.tlc','rpit/rpi_srmain.tlc');
   copyfile('res/slblocks_2014a.m','blocks/slblocks.m');
   load_system('res/rpi_blkst.mdl');
+  set_param(gcs,'Lock','off');
+  set_param(gcs,'EnableLBRepository','on');
   save_system('rpi_blkst', 'blocks/rpi_blkst.slx');
   close_system('rpi_blkst',0);
 else
@@ -54,6 +56,8 @@ else
     copyfile('res/rpi_srmain_2014a.tlc','rpit/rpi_srmain.tlc');
     copyfile('res/slblocks_2014a.m','blocks/slblocks.m');
     load_system('res/rpi_blkst.mdl');
+    set_param(gcs,'Lock','off');
+    set_param(gcs,'EnableLBRepository','on');
     save_system('rpi_blkst', 'blocks/rpi_blkst.slx');
     close_system('rpi_blkst',0);
   else
