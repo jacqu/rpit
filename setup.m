@@ -472,7 +472,7 @@ if ( target_is_rpi )
   % Setup i2c subsystem on the RPI at full speed
 
   disp( '  > Installing the i2c utilities on the RPI.' );
-  command = sprintf( '%s pi@%s sudo apt-get install i2c-tools libi2c-dev', ssh_command, piip );
+  command = sprintf( '%s pi@%s sudo apt-get -y install i2c-tools libi2c-dev', ssh_command, piip );
   [ status, out ] = system( command );
   if ( status )
     disp( '  > Installation of i2c utilities returned an error.' );
