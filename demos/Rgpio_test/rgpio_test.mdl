@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.3"
+    ComputedModelVersion    "1.7"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -37,9 +37,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jacques"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jun 01 03:50:01 2016"
-  RTWModifiedTimeStamp	  0
-  ModelVersionFormat	  "1.%<AutoIncrement:3>"
+  LastModifiedDate	  "Wed Jun 01 01:47:44 2016"
+  RTWModifiedTimeStamp	  386643355
+  ModelVersionFormat	  "1.%<AutoIncrement:7>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -63,7 +63,7 @@ Model {
   StatusBar		  on
   BrowserShowLibraryLinks off
   BrowserLookUnderMasks	  off
-  SimulationMode	  "normal"
+  SimulationMode	  "external"
   LinearizationMsg	  "none"
   Profile		  off
   ParamWorkspaceSource	  "MATLABWorkspace"
@@ -658,6 +658,7 @@ Model {
 	PropName		"Components"
       }
       Name		      "Configuration"
+      ExtraOptions	      "-aGenerateTraceInfo=0 -aIgnoreTestpoints=0 "
       CurrentDlgPage	      "Real-Time Workshop/Interface"
       ConfigPrmDlgPosition    " [ 280, 225, 1160, 855 ] "
     }
@@ -720,7 +721,7 @@ Model {
   }
   System {
     Name		    "rgpio_test"
-    Location		    [235, 94, 1221, 712]
+    Location		    [653, 222, 1639, 840]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -734,7 +735,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "9"
+    SIDHighWatermark	    "10"
     Block {
       BlockType		      Display
       Name		      "Display"
@@ -791,8 +792,8 @@ Model {
       SID		      "3"
       Ports		      [0, 1]
       Position		      [30, 291, 220, 339]
-      Period		      "1000"
-      PulseWidth	      "500"
+      Period		      "100"
+      PulseWidth	      "50"
       SampleTime	      "0.001"
     }
     Block {

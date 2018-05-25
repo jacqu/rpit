@@ -69,6 +69,7 @@
   %else  
    %assign pp1 = LibBlockParameterAddr(P1, "", "", 0)
   %endif
+  rgpio_init( );
 
 %endfunction
 
@@ -101,7 +102,6 @@
   %assign pu_width = LibBlockInputSignalWidth(0)
   rpi_sfun_rgpio_Outputs_wrapper(%<pu0>, %<pu1>, %<pu2>, %<pu3>, %<pu4>, %<pu5>, %<py0>, %<py1>, %<py2>, %<py3>, %<py4>, %<pp1>, %<param_width1>);
   
-  rgpio_init( );
   %%
 %endfunction
 

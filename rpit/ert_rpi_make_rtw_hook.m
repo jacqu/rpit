@@ -230,8 +230,25 @@ function ert_rpi_make_rtw_hook(hookMethod,modelName,rtwroot,templateMakefile,bui
             set_param(gcs, 'SimulationCommand', 'start');
             disp('### Simulink started and running in external mode.');
         else
-            disp('### Error while starting remote mex file: did you install ''screen'' on the target ?');
-            error('### Aborting procedure.');
+            % Give some more time
+            pause(2);
+            command = sprintf( '%s pi@%s screen -list', ssh_command, piip );
+            [ status, out ] = system( command );
+            if strfind( out, 'Simulink_external' );
+              disp('### Target is laggy.');
+              disp('### Real-time code successfully started on the target.');
+              % Renice the rpi process
+              command = sprintf( '%s pi@%s "sudo renice -5 -p `ps -eo pid,comm | awk ''/rpi$/  {print $1; exit}''`"', ssh_command, piip );
+              [ status, out ] = system( command );
+              % Autoatically start external mode
+              set_param(gcs, 'SimulationMode', 'external');
+              set_param(gcs, 'SimulationCommand', 'connect');
+              set_param(gcs, 'SimulationCommand', 'start');
+              disp('### Simulink started and running in external mode.');
+            else
+              disp('### Error while starting remote mex file: did you install ''screen'' on the target ?');
+              error('### Aborting procedure.');
+            end
         end
       else
         disp(['### Compilation failed. Check the errors and tweak file ''ert_rpi.tmf''']);
