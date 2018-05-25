@@ -112,6 +112,7 @@ mex rpi_sfun_iosocket.c rpi_sfun_iosocket_wrapper.c
 mex rpi_sfun_dxl.c rpi_sfun_dxl_wrapper.c
 mex rpi_sfun_js.c rpi_sfun_js_wrapper.c
 mex rpi_sfun_trex.c rpi_sfun_trex_wrapper.c
+mex rpi_sfun_rgpio.c rpi_sfun_rgpio_wrapper.c
 
 % Add target paths to matlab paths
 addpath( [ rpitdir '/blocks' ] );		% Path to the blockset
@@ -525,6 +526,12 @@ if ( target_is_rpi )
   end
   disp( '  > Adding user pi to the i2c group.' );
   command = sprintf( '%s pi@%s "sudo usermod -a -G i2c pi"', ssh_command, piip );
+  [ status, out ] = system( command );
+  
+  % Enabling non-root access to GPIO
+  
+  disp( '  > Adding user pi to the gpio group.' );
+  command = sprintf( '%s pi@%s "sudo usermod -a -G gpio pi"', ssh_command, piip );
   [ status, out ] = system( command );
 end
 
