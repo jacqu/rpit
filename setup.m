@@ -278,6 +278,7 @@ if isunix
   else
     disp( '  > ''key'' and ''key.pub'' already generated. Skipping.' );
   end
+  [ status, out ] = system( 'chmod 600 key' );
 
   piip = input( '  > Enter IP address of the target : ', 's' );
   disp( '  > Enter password of the pi account on your target when prompted.' );
