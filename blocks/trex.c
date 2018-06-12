@@ -95,7 +95,7 @@ int trex_init_port( char *portname )	{
 	/* Open device */
 	trex_fd = open( portname, O_RDWR | O_NOCTTY ); 
 	if ( trex_fd < 0 )  { 
-		perror( TREX_MODEMDEVICE ); 
+		perror( portname ); 
 		return -1; 
 	}
 

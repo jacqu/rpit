@@ -68,6 +68,7 @@ void rpi_sfun_trex_Outputs_wrapper(const real_T *u1,
 #else
   #define PORT_NAME_SIZE  255
   #define PORT_NAME_INT   "/dev/ttyS"
+  #define PORT_NAME_AMA   "/dev/ttyAMA"
   #define PORT_NAME_USB   "/dev/ttyUSB"
           
   char        port_name[PORT_NAME_SIZE];
@@ -88,8 +89,12 @@ void rpi_sfun_trex_Outputs_wrapper(const real_T *u1,
     return;
   }
   
-  if ( *rpi_trex_port < 0 )
-    snprintf( port_name, PORT_NAME_SIZE, "%s%d", PORT_NAME_INT, -(*rpi_trex_port+1) );
+  if ( *rpi_trex_port < 0 ) {
+    if ( *rpi_trex_port < -10 )
+      snprintf( port_name, PORT_NAME_SIZE, "%s%d", PORT_NAME_AMA, -(*rpi_trex_port+11) );
+    else
+      snprintf( port_name, PORT_NAME_SIZE, "%s%d", PORT_NAME_INT, -(*rpi_trex_port+1) );
+  }
   else
     snprintf( port_name, PORT_NAME_SIZE, "%s%d", PORT_NAME_USB, *rpi_trex_port );
     
