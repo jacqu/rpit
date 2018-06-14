@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <time.h>
 #include <string.h>
 #include <strings.h>
 #include "trex.h"
@@ -25,12 +26,12 @@ struct trex_config_struct	{
 };
 
 #define TREX_BAUDRATE 			B115200					// Serial baudrate
-#define TREX_MODEMDEVICE 		"/dev/ttyUSB0"			// Serial port
+#define TREX_MODEMDEVICE 		"/dev/ttyAMA0"			// Serial port
 #define TREX_READ_TIMEOUT		5						// Tenth of second
 #define TREX_SIGNATURE_SIZE		9						// Size of TReX signature
 #define TREX_WRITE_SIZE			10						// Max write buffer size
 #define TREX_SIGNATURE			"TReXJr"				// Prefix of the signature
-#define TREX_DEFAULT_ID			0						// Default device ID
+#define TREX_DEFAULT_ID			8						// Default device ID
 #define TREX_MAX_DUTY_CYCLE		127						// Max output value
 #define TREX_MIN_DUTY_CYCLE		0						// Min output value
 
@@ -135,6 +136,42 @@ void trex_release_port( void )	{
 }
 
 /******************************************************************************
+ * trex_read : read data on serail port until timout occurs on desired nb
+ *             of bytes received.
+ *****************************************************************************/
+int trex_read( int fd, void *buf, size_t count )	{
+
+	int 				i, ret, res = 0;
+	unsigned char*		pt = buf;
+	struct timespec 	start, cur;
+	unsigned long long	elapsed_ms;
+	
+	/* Get current time */
+	clock_gettime( CLOCK_MONOTONIC, &start );
+	
+	do	{
+		ret = read( fd, &pt[res], count-res );
+		if ( ret > 0 )	{
+			res += ret;
+		}
+		
+		/* Read error */
+		if ( ret < 0 )
+			break;
+			
+		/* Compute time elapsed */
+		clock_gettime( CLOCK_MONOTONIC, &cur );
+		elapsed_ms = ( cur.tv_sec * 1e3 + cur.tv_nsec / 1e6 ) - ( start.tv_sec * 1e3 + start.tv_nsec / 1e6 );
+		
+		/* Timeout */
+		if ( elapsed_ms / 100 > TREX_READ_TIMEOUT )
+			break;
+		
+	} while ( res < count ); 
+	
+	return res;
+} 
+/******************************************************************************
  *	trex_check_presence : send a get signature command and check for the result
  *	0 : no TReX detected
  *	1 : TReX detected
@@ -164,7 +201,8 @@ int trex_check_presence( unsigned char id )	{
 	}
 
 	/* Read signature */
-	res = read( trex_fd, buf, TREX_SIGNATURE_SIZE );
+	res = trex_read( trex_fd, buf, TREX_SIGNATURE_SIZE );
+
 	if ( res != TREX_SIGNATURE_SIZE )  { 
 		perror( "trex_check_presence read signature" ); 
 		return 0; 
@@ -213,7 +251,7 @@ int trex_print_config( unsigned char id )	{
 		}
 		
 		/* Read config */
-		res = read( trex_fd, &cfg, 1 );
+		res = trex_read( trex_fd, &cfg, 1 );
 		if ( res != 1 )  { 
 			perror( "trex_print_config read config" ); 
 			return -3; 
@@ -295,7 +333,7 @@ int trex_get_status( unsigned char id )	{
 	}
 
 	/* Read status */
-	res = read( trex_fd, &status, 1 );
+	res = trex_read( trex_fd, &status, 1 );
 	if ( res != 1 )  { 
 		perror( "trex_get_status read status" ); 
 		return -3; 
@@ -333,7 +371,7 @@ int trex_get_uart_error( unsigned char id )	{
 	}
 
 	/* Read error code */
-	res = read( trex_fd, &status, 1 );
+	res = trex_read( trex_fd, &status, 1 );
 	if ( res != 1 )  { 
 		perror( "trex_get_uart_error read UART error" ); 
 		return -3; 
@@ -381,7 +419,7 @@ int trex_set_config( unsigned char id, unsigned char addr, unsigned char val )	{
 	}
 
 	/* Read error code */
-	res = read( trex_fd, &status, 1 );
+	res = trex_read( trex_fd, &status, 1 );
 	if ( res != 1 )  { 
 		perror( "trex_set_config read UART error" ); 
 		return -3; 
@@ -471,6 +509,7 @@ int main( int argc, char *argv[] )	{
 		}
 
 		if ( trex_check_presence( TREX_DEFAULT_ID ) )	{
+			
 			printf( "TReX detected.\n" );
 			
 			/* Display config */
