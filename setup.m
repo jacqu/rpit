@@ -8,7 +8,6 @@ rpitdir = pwd;
 
 disp( '  > Configuration of RPIt.' );
 disp( '  > NOTES:' );
-disp( '  >  - You should configure a compiler to build mex files. Try ''mex -setup'' first.' );
 disp( '  >  - In what follows, ''target'' means the distant Linux system which you want' );
 disp( '  >    to prepare for using with RPIt. The system type is automatically detected.' );
 disp( '  >  - MAKE SURE THE DISTANT TARGET IS CONNECTED TO THE INTERNET (at least the first time your run setup).' );
@@ -36,6 +35,41 @@ else
     return;
   end
 end
+
+% Add target paths to matlab paths
+addpath( [ rpitdir '/blocks' ] );		% Path to the blockset
+addpath( [ rpitdir '/rpit' ] );			% Path to target files
+up = userpath;                      % Get userpath
+if isempty(up)                      % Check for an empty userpath
+  userpath('reset');                % Reset userpath to default
+end;
+up = regexprep(up,';','');          % Remove semicolon at end of userpath
+status = savepath( [ up filesep 'pathdef.m' ] );
+if status ~= 0
+  disp( '  > Could not save the Matlab search path for future sessions.' );
+  cd( rpitdir );
+  clear;
+  return;
+else
+  disp( '  > Saving Matlab search path in user path for future sessions.' );
+  if exist( [ up filesep 'startup.m' ], 'file' ) == 2
+    startup_content = fileread( [ up filesep 'startup.m' ] );
+    if strfind( startup_content, 'path(pathdef);' )
+      disp( '  > ''startup.m'' already has a ''path(pathdef);'' command. Skipping.' );
+    else
+      disp( '  > WARNING: ''startup.m'' found in your userpath. Please add manually ''path(pathdef);'' to ''startup.m''.' );
+    end
+  else
+    fid = fopen( [ up filesep 'startup.m' ], 'wt' );
+    if fid ~= -1
+      fprintf( fid, 'path(pathdef);\n' );
+      fclose(fid);
+    else
+       disp( '  > WARNING: unable to create ''startup.m''. Please add manually ''path(pathdef);'' to ''startup.m''.' );
+    end;
+  end;
+end;
+path(pathdef);
 
 % Check for compatible matlab version
 mvernum = version( '-release' );
@@ -98,8 +132,11 @@ else
 end
 
 % Compile s-functions mex files to generate executables for the host
-cd( [ rpitdir '/blocks' ] );
+disp( '  > Defining mex file compiler.' );
+mex -setup
+
 disp( '  > Compiling S-functions mex files (you can safely ignore warnings).' );
+cd( [ rpitdir '/blocks' ] );
 mex rpi_sfun_time.c rpi_sfun_time_wrapper.c
 mex rpi_sfun_ev3.c rpi_sfun_ev3_wrapper.c
 mex rpi_sfun_imu.c rpi_sfun_imu_wrapper.c
@@ -113,41 +150,6 @@ mex rpi_sfun_dxl.c rpi_sfun_dxl_wrapper.c
 mex rpi_sfun_js.c rpi_sfun_js_wrapper.c
 mex rpi_sfun_trex.c rpi_sfun_trex_wrapper.c
 mex rpi_sfun_rgpio.c rpi_sfun_rgpio_wrapper.c
-
-% Add target paths to matlab paths
-addpath( [ rpitdir '/blocks' ] );		% Path to the blockset
-addpath( [ rpitdir '/rpit' ] );			% Path to target files
-up = userpath;                      % Get userpath
-if isempty(up)                      % Check for an empty userpath
-  userpath('reset');                % Reset userpath to default
-end;
-up = regexprep(up,';','');          % Remove semicolon at end of userpath
-status = savepath( [ up filesep 'pathdef.m' ] );
-if status ~= 0
-  disp( '  > Could not save the Matlab search path for future sessions.' );
-  cd( rpitdir );
-  clear;
-  return;
-else
-  disp( '  > Saving Matlab search path in user path for future sessions.' );
-  if exist( [ up filesep 'startup.m' ], 'file' ) == 2
-    startup_content = fileread( [ up filesep 'startup.m' ] );
-    if strfind( startup_content, 'path(pathdef);' )
-      disp( '  > ''startup.m'' already has a ''path(pathdef);'' command. Skipping.' );
-    else
-      disp( '  > WARNING: ''startup.m'' found in your userpath. Please add manually ''path(pathdef);'' to ''startup.m''.' );
-    end
-  else
-    fid = fopen( [ up filesep 'startup.m' ], 'wt' );
-    if fid ~= -1
-      fprintf( fid, 'path(pathdef);\n' );
-      fclose(fid);
-    else
-       disp( '  > WARNING: unable to create ''startup.m''. Please add manually ''path(pathdef);'' to ''startup.m''.' );
-    end;
-  end;
-end;
-path(pathdef);
 
 %
 % PC platform specific configuration
