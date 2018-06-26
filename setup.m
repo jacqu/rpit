@@ -471,6 +471,23 @@ if ( status )
   disp( command );
 end
 
+% Reduce latency on FTDI chipsets
+
+disp( '  > Reduce latency of FTDI chipsets.' );
+command = sprintf( '%s ../res/99-dynamixelsdk-usb.rules pi@%s:.', scp_command, piip );
+[ status, out ] = system( command );
+command = sprintf( '%s pi@%s "sudo mv ./99-dynamixelsdk-usb.rules /etc/udev/rules.d"', ssh_command, piip );
+[ status, out ] = system( command );
+command = sprintf( '%s pi@%s "sudo chown root.root /etc/udev/rules.d/99-dynamixelsdk-usb.rules"', ssh_command, piip );
+[ status, out ] = system( command );
+command = sprintf( '%s pi@%s "sudo chmod 644 /etc/udev/rules.d/99-dynamixelsdk-usb.rules"', ssh_command, piip );
+[ status, out ] = system( command );
+if ( status )
+  disp( '  > Creation of /etc/udev/rules.d/99-dynamixelsdk-usb.rules returned an error.' );
+  disp( '  > Please install this manually: ' );
+  disp( command );
+end
+
 if ( target_is_rpi )
 
   % Setup i2c subsystem on the RPI at full speed
