@@ -180,8 +180,8 @@ void rpi_sfun_dxl_Outputs_wrapper(
     return;
   }
 
-  if ( *rpi_Ts < 0.005 )	{
-    fprintf( stderr, "** Max sampling rate = 200Hz **\n" );
+  if ( *rpi_Ts < 0.003 )	{
+    fprintf( stderr, "** Min sampling interval = 3ms **\n" );
     return;
   }
 
