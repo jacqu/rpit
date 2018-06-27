@@ -34,6 +34,9 @@
 #define DXL_VERSION_MAJOR								0
 #define DXL_VERSION_MINOR								6
 
+#define PROTOCOL_VERSION1               1.0
+#define PROTOCOL_VERSION2               2.0
+
 // Special IDs
 #define NOT_USED_ID         						0xFF		// 255
 #define BROADCAST_ID        						0xFE    // 254
@@ -142,8 +145,8 @@ uint8_t isPacketTimeout         	(int port_num);
 
 void        packetHandler       	( void );
 
-void        printTxRxResult     	(int protocol_version, int result);
-void        printRxPacketError  	(int protocol_version, uint8_t error);
+const char *getTxRxResult       	(int protocol_version, int result);
+const char *getRxPacketError    	(int protocol_version, uint8_t error);
 
 int         getLastTxRxResult   	(int port_num, int protocol_version);
 uint8_t     getLastRxPacketError  (int port_num, int protocol_version);
@@ -221,8 +224,8 @@ void    bulkWriteTxOnly         	(int port_num, int protocol_version, uint16_t p
  * 
  */
 
-void        printTxRxResult1    	(int result);
-void        printRxPacketError1 	(uint8_t error);
+const char *getTxRxResult1      	(int result);
+const char *getRxPacketError1   	(uint8_t error);
 
 int         getLastTxRxResult1  	(int port_num);
 uint8_t     getLastRxPacketError1 (int port_num);
@@ -304,8 +307,8 @@ uint16_t    updateCRC           	(uint16_t crc_accum, uint8_t *data_blk_ptr, uin
 void        addStuffing         	(uint8_t *packet);
 void        removeStuffing      	(uint8_t *packet);
 
-void        printTxRxResult2    	(int result);
-void        printRxPacketError2   (uint8_t error);
+const char *getTxRxResult2      	(int result);
+const char *getRxPacketError2     (uint8_t error);
 
 int         getLastTxRxResult2  	(int port_num);
 uint8_t     getLastRxPacketError2 (int port_num);

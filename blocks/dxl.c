@@ -154,7 +154,7 @@ typedef struct
 {
   int     socket_fd;
   int     baudrate;
-  char    port_name[30];
+  char    port_name[100];
 
   double  packet_start_time;
   double  packet_timeout;
@@ -374,7 +374,7 @@ void closePortLinux(int port_num)
 
 void clearPortLinux(int port_num)
 {
-  tcflush(portData[port_num].socket_fd, TCIOFLUSH);
+  tcflush(portData[port_num].socket_fd, TCIFLUSH);
 }
 
 void setPortNameLinux(int port_num, const char *port_name)
@@ -665,27 +665,27 @@ void packetHandler()
   }
 }
 
-void printTxRxResult(int protocol_version, int result)
+const char *getTxRxResult(int protocol_version, int result)
 {
-  if (protocol_version == 1)
-  {
-    printTxRxResult1(result);
-  }
-  else
-  {
-    printTxRxResult2(result);
-  }
+	if (protocol_version == 1)
+	{
+		return getTxRxResult1(result);
+	}
+	else
+	{
+		return getTxRxResult2(result);
+	}
 }
 
-void printRxPacketError(int protocol_version, uint8_t error)
+const char *getRxPacketError(int protocol_version, uint8_t error)
 {
   if (protocol_version == 1)
   {
-    printRxPacketError1(error);
+    return getRxPacketError1(error);
   }
   else
   {
-    printRxPacketError2(error);
+    return getRxPacketError2(error);
   }
 }
 
@@ -1181,73 +1181,66 @@ void bulkWriteTxOnly(int port_num, int protocol_version, uint16_t param_length)
  * 
  */
 
-void printTxRxResult1(int result)
+const char *getTxRxResult1(int result)
 {
   switch (result)
   {
     case COMM_SUCCESS:
-      fprintf(stderr,"[TxRxResult] Communication success.\n");
-      break;
+      return "[TxRxResult] Communication success.";
 
     case COMM_PORT_BUSY:
-      fprintf(stderr,"[TxRxResult] Port is in use!\n");
-      break;
+      return "[TxRxResult] Port is in use!";
 
     case COMM_TX_FAIL:
-      fprintf(stderr,"[TxRxResult] Failed transmit instruction packet!\n");
-      break;
+      return "[TxRxResult] Failed transmit instruction packet!";
 
     case COMM_RX_FAIL:
-      fprintf(stderr,"[TxRxResult] Failed get status packet from device!\n");
-      break;
+      return "[TxRxResult] Failed get status packet from device!";
 
     case COMM_TX_ERROR:
-      fprintf(stderr,"[TxRxResult] Incorrect instruction packet!\n");
-      break;
+      return "[TxRxResult] Incorrect instruction packet!";
 
     case COMM_RX_WAITING:
-      fprintf(stderr,"[TxRxResult] Now recieving status packet!\n");
-      break;
+      return "[TxRxResult] Now recieving status packet!";
 
     case COMM_RX_TIMEOUT:
-      fprintf(stderr,"[TxRxResult] There is no status packet!\n");
-      break;
+      return "[TxRxResult] There is no status packet!";
 
     case COMM_RX_CORRUPT:
-      fprintf(stderr,"[TxRxResult] Incorrect status packet!\n");
-      break;
+      return "[TxRxResult] Incorrect status packet!";
 
     case COMM_NOT_AVAILABLE:
-      fprintf(stderr,"[TxRxResult] Protocol does not support This function!\n");
-      break;
+      return "[TxRxResult] Protocol does not support This function!";
 
     default:
-      break;
+      return "";
   }
 }
 
-void printRxPacketError1(uint8_t error)
+const char *getRxPacketError1(uint8_t error)
 {
   if (error & ERRBIT_VOLTAGE)
-    fprintf(stderr,"[RxPacketError] Input voltage error!\n");
+    return "[RxPacketError] Input voltage error!";
 
   if (error & ERRBIT_ANGLE)
-    fprintf(stderr,"[RxPacketError] Angle limit error!\n");
+    return "[RxPacketError] Angle limit error!";
 
   if (error & ERRBIT_OVERHEAT)
-    fprintf(stderr,"[RxPacketError] Overheat error!\n");
+    return "[RxPacketError] Overheat error!";
 
   if (error & ERRBIT_RANGE)
-    fprintf(stderr,"[RxPacketError] Out of range error!\n");
+    return "[RxPacketError] Out of range error!";
 
   if (error & ERRBIT_CHECKSUM)
-    fprintf(stderr,"[RxPacketError] Checksum error!\n");
+    return "[RxPacketError] Checksum error!";
 
   if (error & ERRBIT_OVERLOAD)
-    fprintf(stderr,"[RxPacketError] Overload error!\n");
+    return "[RxPacketError] Overload error!";
 
   if (error & ERRBIT_INSTRUCTION)
-    fprintf(stderr,"[RxPacketError] Instruction code error!\n");
+    return "[RxPacketError] Instruction code error!";
+
+  return "";
 }
 
 int getLastTxRxResult1(int port_num)
@@ -1298,7 +1291,7 @@ uint32_t getDataRead1(int port_num, uint16_t data_length, uint16_t data_pos)
 
 void txPacket1(int port_num)
 {
-  int idx;
+  uint16_t idx;
 
   uint8_t checksum = 0;
   uint8_t total_packet_length = packetData[port_num].tx_packet[PKT_LENGTH] + 4; // 4: HEADER0 HEADER1 ID LENGTH
@@ -1345,7 +1338,7 @@ void txPacket1(int port_num)
 
 void rxPacket1(int port_num)
 {
-  uint8_t idx, s;
+  uint16_t idx, s;
   int i;
 
   packetData[port_num].communication_result = COMM_TX_FAIL;
@@ -1370,9 +1363,9 @@ void rxPacket1(int port_num)
 
       if (idx == 0)   // found at the beginning of the packet
       {
-        if (packetData[port_num].rx_packet[PKT_ID] > 0xFD ||                   // unavailable ID
-            packetData[port_num].rx_packet[PKT_LENGTH] > RXPACKET_MAX_LEN ||   // unavailable Length
-            packetData[port_num].rx_packet[PKT_ERROR] >= 0x64)                 // unavailable Error
+        if (packetData[port_num].rx_packet[PKT_ID] > 0xFD ||                   	// unavailable ID
+            packetData[port_num].rx_packet[PKT_LENGTH] > RXPACKET_MAX_LEN ||   	// unavailable Length
+            packetData[port_num].rx_packet[PKT_ERROR] > 0x7F)                 	// unavailable Error
         {
           // remove the first byte in the packet
           for (s = 0; s < rx_length - 1; s++)
@@ -1602,7 +1595,7 @@ void readTx1(int port_num, uint8_t id, uint16_t address, uint16_t length)
 
 void readRx1(int port_num, uint16_t length)
 {
-  uint8_t s;
+  uint16_t s;
 
   packetData[port_num].communication_result = COMM_TX_FAIL;
 
@@ -1622,7 +1615,7 @@ void readRx1(int port_num, uint16_t length)
 
 void readTxRx1(int port_num, uint8_t id, uint16_t address, uint16_t length)
 {
-  uint8_t s;
+  uint16_t s;
   packetData[port_num].communication_result = COMM_TX_FAIL;
 
   packetData[port_num].tx_packet = (uint8_t *)realloc(packetData[port_num].tx_packet, 8);
@@ -1706,23 +1699,33 @@ uint16_t read2ByteTxRx1(int port_num, uint8_t id, uint16_t address)
 }
 
 void read4ByteTx1(int port_num, uint8_t id, uint16_t address)
-{
-	(void)id;
-	(void)address;
-	
-  packetData[port_num].communication_result = COMM_NOT_AVAILABLE;
+{	
+  readTx1(port_num, id, address, 4);
 }
+
 uint32_t read4ByteRx1(int port_num)
 {
-  packetData[port_num].communication_result = COMM_NOT_AVAILABLE;
+  packetData[port_num].data_read = (uint8_t *)realloc(packetData[port_num].data_read, 4 * sizeof(uint8_t));
+  packetData[port_num].data_read[0] = 0;
+  packetData[port_num].data_read[1] = 0;
+  packetData[port_num].data_read[2] = 0;
+  packetData[port_num].data_read[3] = 0;
+  readRx1(port_num, 4);
+  if (packetData[port_num].communication_result == COMM_SUCCESS)
+    return DXL_MAKEDWORD(DXL_MAKEWORD(packetData[port_num].data_read[0], packetData[port_num].data_read[1]), DXL_MAKEWORD(packetData[port_num].data_read[2], packetData[port_num].data_read[3]));
   return 0;
 }
+
 uint32_t read4ByteTxRx1(int port_num, uint8_t id, uint16_t address)
 {
-	(void)id;
-	(void)address;
-	
-  packetData[port_num].communication_result = COMM_NOT_AVAILABLE;
+  packetData[port_num].data_read = (uint8_t *)realloc(packetData[port_num].data_read, 4 * sizeof(uint8_t));
+  packetData[port_num].data_read[0] = 0;
+  packetData[port_num].data_read[1] = 0;
+  packetData[port_num].data_read[2] = 0;
+  packetData[port_num].data_read[3] = 0;
+  readTxRx1(port_num, id, address, 4);
+  if (packetData[port_num].communication_result == COMM_SUCCESS)
+    return DXL_MAKEDWORD(DXL_MAKEWORD(packetData[port_num].data_read[0], packetData[port_num].data_read[1]), DXL_MAKEWORD(packetData[port_num].data_read[2], packetData[port_num].data_read[3]));
   return 0;
 }
 
@@ -1740,7 +1743,7 @@ uint8_t* readNByteTxRx1(int port_num, uint8_t id, uint16_t address, uint8_t leng
 
 void writeTxOnly1(int port_num, uint8_t id, uint16_t address, uint16_t length)
 {
-  uint8_t s;
+  uint16_t s;
 
   packetData[port_num].communication_result = COMM_TX_FAIL;
 
@@ -1763,7 +1766,7 @@ void writeTxOnly1(int port_num, uint8_t id, uint16_t address, uint16_t length)
 
 void writeTxRx1(int port_num, uint8_t id, uint16_t address, uint16_t length)
 {
-  uint8_t s;
+  uint16_t s;
 
   packetData[port_num].communication_result = COMM_TX_FAIL;
 
@@ -1813,24 +1816,26 @@ void write2ByteTxRx1(int port_num, uint8_t id, uint16_t address, uint16_t data)
 
 void write4ByteTxOnly1(int port_num, uint8_t id, uint16_t address, uint32_t data)
 {
-	(void)id;
-	(void)address;
-	(void)data;
-	
-  packetData[port_num].communication_result = COMM_NOT_AVAILABLE;
+  packetData[port_num].data_write = (uint8_t *)realloc(packetData[port_num].data_write, 4 * sizeof(uint8_t));
+  packetData[port_num].data_write[0] = DXL_LOBYTE(DXL_LOWORD(data));
+  packetData[port_num].data_write[1] = DXL_HIBYTE(DXL_LOWORD(data));
+  packetData[port_num].data_write[2] = DXL_LOBYTE(DXL_HIWORD(data));
+  packetData[port_num].data_write[3] = DXL_HIBYTE(DXL_HIWORD(data));
+  writeTxOnly1(port_num, id, address, 4);
 }
 void write4ByteTxRx1(int port_num, uint8_t id, uint16_t address, uint32_t data)
 {
-	(void)id;
-	(void)address;
-	(void)data;
-	
-  packetData[port_num].communication_result = COMM_NOT_AVAILABLE;
+  packetData[port_num].data_write = (uint8_t *)realloc(packetData[port_num].data_write, 4 * sizeof(uint8_t));
+  packetData[port_num].data_write[0] = DXL_LOBYTE(DXL_LOWORD(data));
+  packetData[port_num].data_write[1] = DXL_HIBYTE(DXL_LOWORD(data));
+  packetData[port_num].data_write[2] = DXL_LOBYTE(DXL_HIWORD(data));
+  packetData[port_num].data_write[3] = DXL_HIBYTE(DXL_HIWORD(data));
+  writeTxRx1(port_num, id, address, 4);
 }
 
 void regWriteTxOnly1(int port_num, uint8_t id, uint16_t address, uint16_t length)
 {
-  uint8_t s;
+  uint16_t s;
 
   packetData[port_num].communication_result = COMM_TX_FAIL;
 
@@ -1846,13 +1851,13 @@ void regWriteTxOnly1(int port_num, uint8_t id, uint16_t address, uint16_t length
     packetData[port_num].tx_packet[PKT_PARAMETER0 + 1 + s] = packetData[port_num].data_write[s];
   }
 
-   txPacket1(port_num);
+  txPacket1(port_num);
   g_is_using[port_num] = False;
 }
 
 void regWriteTxRx1(int port_num, uint8_t id, uint16_t address, uint16_t length)
 {
-  uint8_t s;
+  uint16_t s;
 
   packetData[port_num].communication_result = COMM_TX_FAIL;
 
@@ -1885,7 +1890,7 @@ void syncReadTx1(int port_num, uint16_t start_address, uint16_t data_length, uin
 
 void syncWriteTxOnly1(int port_num, uint16_t start_address, uint16_t data_length, uint16_t param_length)
 {
-  uint8_t s;
+  uint16_t s;
 
   packetData[port_num].communication_result = COMM_TX_FAIL;
 
@@ -1907,7 +1912,7 @@ void syncWriteTxOnly1(int port_num, uint16_t start_address, uint16_t data_length
 
 void bulkReadTx1(int port_num, uint16_t param_length)
 {
-  uint8_t s;
+  uint16_t s;
 
   int i;
   packetData[port_num].communication_result = COMM_TX_FAIL;
@@ -1952,94 +1957,78 @@ void bulkWriteTxOnly1(int port_num, uint16_t param_length)
  * 
  */
 
-void printTxRxResult2(int result)
+const char *getTxRxResult2(int result)
 {
   switch (result)
   {
     case COMM_SUCCESS:
-      fprintf(stderr,"[TxRxResult] Communication success.\n");
-      break;
+      return "[TxRxResult] Communication success.";
 
     case COMM_PORT_BUSY:
-      fprintf(stderr,"[TxRxResult] Port is in use!\n");
-      break;
+      return "[TxRxResult] Port is in use!";
 
     case COMM_TX_FAIL:
-      fprintf(stderr,"[TxRxResult] Failed transmit instruction packet!\n");
-      break;
+      return "[TxRxResult] Failed transmit instruction packet!";
 
     case COMM_RX_FAIL:
-      fprintf(stderr,"[TxRxResult] Failed get status packet from device!\n");
-      break;
+      return "[TxRxResult] Failed get status packet from device!";
 
     case COMM_TX_ERROR:
-      fprintf(stderr,"[TxRxResult] Incorrect instruction packet!\n");
-      break;
+      return "[TxRxResult] Incorrect instruction packet!";
 
     case COMM_RX_WAITING:
-      fprintf(stderr,"[TxRxResult] Now recieving status packet!\n");
-      break;
+      return "[TxRxResult] Now recieving status packet!";
 
     case COMM_RX_TIMEOUT:
-      fprintf(stderr,"[TxRxResult] There is no status packet!\n");
-      break;
+      return "[TxRxResult] There is no status packet!";
 
     case COMM_RX_CORRUPT:
-      fprintf(stderr,"[TxRxResult] Incorrect status packet!\n");
-      break;
+      return "[TxRxResult] Incorrect status packet!";
 
     case COMM_NOT_AVAILABLE:
-      fprintf(stderr,"[TxRxResult] Protocol does not support This function!\n");
-      break;
+      return "[TxRxResult] Protocol does not support This function!";
 
     default:
-      break;
+      return "";
   }
 }
 
-void printRxPacketError2(uint8_t error)
+const char *getRxPacketError2(uint8_t error)
 {
+  int not_alert_error;
   if (error & ERRBIT_ALERT_2)
-    fprintf(stderr,"[RxPacketError] Hardware error occurred. Check the error at Control Table (Hardware Error Status)!\n");
+    return "[RxPacketError] Hardware error occurred. Check the error at Control Table (Hardware Error Status)!";
 
-  int not_alert_error = error & ~ERRBIT_ALERT_2;
+  not_alert_error = error & ~ERRBIT_ALERT_2;
 
   switch (not_alert_error)
   {
     case 0:
-      break;
+      return "";
 
     case ERRNUM_RESULT_FAIL_2:
-      fprintf(stderr,"[RxPacketError] Failed to process the instruction packet!\n");
-      break;
+      return "[RxPacketError] Failed to process the instruction packet!";
 
     case ERRNUM_INSTRUCTION_2:
-      fprintf(stderr,"[RxPacketError] Undefined instruction or incorrect instruction!\n");
-      break;
+      return "[RxPacketError] Undefined instruction or incorrect instruction!";
 
     case ERRNUM_CRC_2:
-      fprintf(stderr,"[RxPacketError] CRC doesn't match!\n");
-      break;
+      return "[RxPacketError] CRC doesn't match!";
 
     case ERRNUM_DATA_RANGE_2:
-      fprintf(stderr,"[RxPacketError] The data value is out of range!\n");
-      break;
+      return "[RxPacketError] The data value is out of range!";
 
     case ERRNUM_DATA_LENGTH_2:
-      fprintf(stderr,"[RxPacketError] The data length does not match as expected!\n");
-      break;
+      return "[RxPacketError] The data length does not match as expected!";
 
     case ERRNUM_DATA_LIMIT_2:
-      fprintf(stderr,"[RxPacketError] The data value exceeds the limit value!\n");
-      break;
+      return "[RxPacketError] The data value exceeds the limit value!";
 
     case ERRNUM_ACCESS_2:
-      fprintf(stderr,"[RxPacketError] Writing or Reading is not available to target address!\n");
-      break;
+      return "[RxPacketError] Writing or Reading is not available to target address!";
 
     default:
-      fprintf(stderr,"[RxPacketError] Unknown error code!\n");
-      break;
+      return "[RxPacketError] Unknown error code!";
   }
 }
 
@@ -2152,9 +2141,10 @@ unsigned short updateCRC(uint16_t crc_accum, uint8_t *data_blk_ptr, uint16_t dat
 
 void addStuffing(uint8_t *packet)
 {
-  uint8_t s;
+  uint16_t s;
 
-  int i = 0, index = 0;
+  uint16_t 	i = 0;
+  int				index = 0;
   int packet_length_in = DXL_MAKEWORD(packet[PKT_LENGTH_L_2], packet[PKT_LENGTH_H_2]);
   int packet_length_out = packet_length_in;
   uint8_t temp[TXPACKET_MAX_LEN_2] = { 0 };
@@ -2263,7 +2253,7 @@ void txPacket2(int port_num)
 
 void rxPacket2(int port_num)
 {
-  uint8_t s;
+  uint16_t s;
   uint16_t idx;
 
   packetData[port_num].communication_result = COMM_TX_FAIL;
@@ -2451,7 +2441,7 @@ uint16_t pingGetModelNum2(int port_num, uint8_t id)
 
 void broadcastPing2(int port_num)
 {
-  uint8_t s;
+  uint16_t s;
   int id;
   uint16_t idx;
 
@@ -2645,7 +2635,7 @@ void readTx2(int port_num, uint8_t id, uint16_t address, uint16_t length)
 
 void readRx2(int port_num, uint16_t length)
 {
-  uint8_t s;
+  uint16_t s;
 
   packetData[port_num].communication_result = COMM_TX_FAIL;
   packetData[port_num].rx_packet = (uint8_t *)realloc(packetData[port_num].rx_packet, RXPACKET_MAX_LEN_2);  //(length + 11 + (length/3));  // (length/3): consider stuffing
@@ -2664,7 +2654,7 @@ void readRx2(int port_num, uint16_t length)
 
 void readTxRx2(int port_num, uint8_t id, uint16_t address, uint16_t length)
 {
-  uint8_t s;
+  uint16_t s;
 
   packetData[port_num].communication_result = COMM_TX_FAIL;
 
@@ -2786,7 +2776,7 @@ uint8_t* readNByteTxRx2(int port_num, uint8_t id, uint16_t address, uint8_t leng
 
 void writeTxOnly2(int port_num, uint8_t id, uint16_t address, uint16_t length)
 {
-  uint8_t s;
+  uint16_t s;
 
   packetData[port_num].communication_result = COMM_TX_FAIL;
 
@@ -2810,7 +2800,7 @@ void writeTxOnly2(int port_num, uint8_t id, uint16_t address, uint16_t length)
 
 void writeTxRx2(int port_num, uint8_t id, uint16_t address, uint16_t length)
 {
-  uint8_t s;
+  uint16_t s;
 
   packetData[port_num].communication_result = COMM_TX_FAIL;
 
@@ -2881,7 +2871,7 @@ void write4ByteTxRx2(int port_num, uint8_t id, uint16_t address, uint32_t data)
 
 void regWriteTxOnly2(int port_num, uint8_t id, uint16_t address, uint16_t length)
 {
-  uint8_t s;
+  uint16_t s;
 
   packetData[port_num].communication_result = COMM_TX_FAIL;
 
@@ -2905,7 +2895,7 @@ void regWriteTxOnly2(int port_num, uint8_t id, uint16_t address, uint16_t length
 
 void regWriteTxRx2(int port_num, uint8_t id, uint16_t address, uint16_t length)
 {
-  uint8_t s;
+  uint16_t s;
 
   packetData[port_num].communication_result = COMM_TX_FAIL;
 
@@ -2929,7 +2919,7 @@ void regWriteTxRx2(int port_num, uint8_t id, uint16_t address, uint16_t length)
 
 void syncReadTx2(int port_num, uint16_t start_address, uint16_t data_length, uint16_t param_length)
 {
-  uint8_t s;
+  uint16_t s;
 
   packetData[port_num].communication_result = COMM_TX_FAIL;
 
@@ -2958,7 +2948,7 @@ void syncReadTx2(int port_num, uint16_t start_address, uint16_t data_length, uin
 
 void syncWriteTxOnly2(int port_num, uint16_t start_address, uint16_t data_length, uint16_t param_length)
 {
-  uint8_t s;
+  uint16_t s;
 
   packetData[port_num].communication_result = COMM_TX_FAIL;
 
@@ -2984,8 +2974,8 @@ void syncWriteTxOnly2(int port_num, uint16_t start_address, uint16_t data_length
 
 void bulkReadTx2(int port_num, uint16_t param_length)
 {
-  uint8_t s;
-  int i;
+  uint16_t s;
+  uint16_t i;
 
   packetData[port_num].communication_result = COMM_TX_FAIL;
 
@@ -3016,7 +3006,7 @@ void bulkReadTx2(int port_num, uint16_t param_length)
 
 void bulkWriteTxOnly2(int port_num, uint16_t param_length)
 {
-  uint8_t s;
+  uint16_t s;
 
   packetData[port_num].communication_result = COMM_TX_FAIL;
 
@@ -3078,7 +3068,9 @@ int groupBulkRead(int port_num, int protocol_version)
   {
     for (group_num = 0; group_num < g_used_group_num_r; group_num++)
     {
-      if (groupDataR[group_num].is_param_changed != True)
+      if (groupDataR[group_num].is_param_changed != True
+          && groupDataR[group_num].port_num == port_num
+          && groupDataR[group_num].protocol_version == protocol_version)
         break;
     }
   }
@@ -3355,7 +3347,9 @@ int groupBulkWrite(int port_num, int protocol_version)
   {
     for (group_num = 0; group_num < g_used_group_num_w; group_num++)
     {
-      if (groupDataW[group_num].is_param_changed != True)
+      if (groupDataW[group_num].is_param_changed != True
+          && groupDataW[group_num].port_num == port_num
+          && groupDataW[group_num].protocol_version == protocol_version)
         break;
     }
   }
@@ -3618,7 +3612,11 @@ int groupSyncRead(int port_num, int protocol_version, uint16_t start_address, ui
   {
     for (group_num = 0; group_num < g_used_group_num_sr; group_num++)
     {
-      if (groupDataSR[group_num].is_param_changed != True)
+      if (groupDataSR[group_num].is_param_changed != True
+          && groupDataSR[group_num].port_num == port_num
+          && groupDataSR[group_num].protocol_version == protocol_version
+          && groupDataSR[group_num].start_address == start_address
+          && groupDataSR[group_num].data_length == data_length)
         break;
     }
   }
@@ -3778,15 +3776,15 @@ void groupSyncReadRxPacket(int group_num)
     if (groupDataSR[group_num].data_list[data_num].id == NOT_USED_ID)
       continue;
 
-      packetData[port_num].data_read
-        = (uint8_t *)realloc(packetData[port_num].data_read, groupDataSR[group_num].data_length * sizeof(uint8_t));
+		packetData[port_num].data_read
+			= (uint8_t *)realloc(packetData[port_num].data_read, groupDataSR[group_num].data_length * sizeof(uint8_t));
 
-      readRx(groupDataSR[group_num].port_num, groupDataSR[group_num].protocol_version, groupDataSR[group_num].data_length);
-      if (packetData[port_num].communication_result != COMM_SUCCESS)
-        return;
+		readRx(groupDataSR[group_num].port_num, groupDataSR[group_num].protocol_version, groupDataSR[group_num].data_length);
+		if (packetData[port_num].communication_result != COMM_SUCCESS)
+			return;
 
-      for (c = 0; c < groupDataSR[group_num].data_length; c++)
-        groupDataSR[group_num].data_list[data_num].data[c] = packetData[port_num].data_read[c];
+		for (c = 0; c < groupDataSR[group_num].data_length; c++)
+			groupDataSR[group_num].data_list[data_num].data[c] = packetData[port_num].data_read[c];
   }
 
   if (packetData[port_num].communication_result == COMM_SUCCESS)
@@ -3897,7 +3895,11 @@ int groupSyncWrite(int port_num, int protocol_version, uint16_t start_address, u
   {
     for (group_num = 0; group_num < g_used_group_num_sw; group_num++)
     {
-      if (groupDataSW[group_num].is_param_changed != True)
+      if (groupDataSW[group_num].is_param_changed != True
+          && groupDataSW[group_num].port_num == port_num
+          && groupDataSW[group_num].protocol_version == protocol_version
+          && groupDataSW[group_num].start_address == start_address
+          && groupDataSW[group_num].data_length == data_length)
         break;
     }
   }
@@ -4301,7 +4303,7 @@ int dxl_read( char*			port_name,
 	
 	if ( ( dxl_comm_result = getLastTxRxResult( port_num, protocol ) ) != COMM_SUCCESS )	{
 		fprintf( stderr, 	"dxl_read: error during bulk read.\n" );
-		printTxRxResult( protocol, dxl_comm_result );
+		fprintf(stderr,"%s\n", getTxRxResult(protocol, dxl_comm_result));
 		groupBulkReadClearParam( group_num );
 		return -3;
 	}
@@ -4441,7 +4443,7 @@ int dxl_write(	char*			port_name,
 	groupSyncWriteTxPacket( group_num );
 	if ( ( dxl_comm_result = getLastTxRxResult( port_num, protocol ) ) != COMM_SUCCESS )	{
 		fprintf( stderr, 	"dxl_write: error during sync write.\n" );
-		printTxRxResult( protocol, dxl_comm_result );
+		fprintf(stderr,"%s\n", getTxRxResult(protocol, dxl_comm_result));
 		groupSyncWriteClearParam( group_num );
 		return -3;
 	}
@@ -4666,13 +4668,13 @@ int dxl_status( char *port_name,
 	buf = readNByteTxRx(port_num, proto, devid, 0, buf_size);
 	if ((dxl_comm_result = getLastTxRxResult(port_num, proto)) != COMM_SUCCESS)
 	{
-		printTxRxResult(proto, dxl_comm_result);
+		fprintf(stderr,"%s\n", getTxRxResult(proto, dxl_comm_result));
 		closePort( port_num );
 		return -5;
 	}
 	else if ((dxl_error = getLastRxPacketError(port_num, proto)) != 0)
 	{
-		printRxPacketError(proto, dxl_error);
+		fprintf(stderr,"%s\n", getRxPacketError(proto, dxl_error));
 		closePort( port_num );
 		return -6;
 	}
