@@ -42,7 +42,7 @@ addpath( [ rpitdir '/rpit' ] );			% Path to target files
 up = userpath;                      % Get userpath
 if isempty(up)                      % Check for an empty userpath
   userpath('reset');                % Reset userpath to default
-end;
+end
 up = regexprep(up,';','');          % Remove semicolon at end of userpath
 status = savepath( [ up filesep 'pathdef.m' ] );
 if status ~= 0
@@ -66,69 +66,20 @@ else
       fclose(fid);
     else
        disp( '  > WARNING: unable to create ''startup.m''. Please add manually ''path(pathdef);'' to ''startup.m''.' );
-    end;
-  end;
-end;
+    end
+  end
+end
 path(pathdef);
 
 % Check for compatible matlab version
 mvernum = version( '-release' );
 if strcmp( mvernum, '2018a' ) || strcmp( mvernum, '2018b' )
-  disp( '  > Configuring TLC files for releases starting from 2018a' );
-  copyfile('res/rpi_mrmain_2018a.tlc','rpit/rpi_mrmain.tlc');
-  copyfile('res/rpi_srmain_2018a.tlc','rpit/rpi_srmain.tlc');
-  copyfile('res/slblocks_2014a.m','blocks/slblocks.m');
-  if exist('blocks/rpi_blkst.slx','file')
-    delete('blocks/rpi_blkst.slx');
-  end
-  load_system('res/rpi_blkst.mdl');
-  set_param(gcs,'Lock','off');
-  set_param(gcs,'EnableLBRepository','on');
-  save_system('rpi_blkst', 'blocks/rpi_blkst.slx');
-  close_system('rpi_blkst',0);
+  disp( '  > Supported Matlab version detected.' );
+ 
 else
-  if strcmp( mvernum, '2014a' ) || strcmp( mvernum, '2015a' ) || strcmp( mvernum, '2015b' ) || strcmp( mvernum, '2016a' ) || strcmp( mvernum, '2016b' ) || strcmp( mvernum, '2017a' ) || strcmp( mvernum, '2017b' )
-    disp( '  > Configuring TLC files for release 2014a, 2015a, 2015b, 2016a, 2016b, 2017a or 2017b.' );
-    copyfile('res/rpi_mrmain_2014a.tlc','rpit/rpi_mrmain.tlc');
-    copyfile('res/rpi_srmain_2014a.tlc','rpit/rpi_srmain.tlc');
-    copyfile('res/slblocks_2014a.m','blocks/slblocks.m');
-    if exist('blocks/rpi_blkst.slx','file')
-      delete('blocks/rpi_blkst.slx');
-    end
-    load_system('res/rpi_blkst.mdl');
-    set_param(gcs,'Lock','off');
-    set_param(gcs,'EnableLBRepository','on');
-    save_system('rpi_blkst', 'blocks/rpi_blkst.slx');
-    close_system('rpi_blkst',0);
-  else
-    if strcmp( mvernum, '2012a' )
-      disp( '  > Configuring TLC files for release 2012a.' );
-      copyfile('res/rpi_mrmain_2012a.tlc','rpit/rpi_mrmain.tlc');
-      copyfile('res/rpi_srmain_2012a.tlc','rpit/rpi_srmain.tlc');
-      copyfile('res/slblocks_2010b.m','blocks/slblocks.m');
-      copyfile('res/rpi_blkst.mdl','blocks/rpi_blkst.mdl');
-    else
-      if strcmp( mvernum, '2011a' )
-        disp( '  > Configuring TLC files for release 2011a.' );
-        copyfile('res/rpi_mrmain_2010b.tlc','rpit/rpi_mrmain.tlc');
-        copyfile('res/rpi_srmain_2010b.tlc','rpit/rpi_srmain.tlc');
-        copyfile('res/slblocks_2010b.m','blocks/slblocks.m');
-        copyfile('res/rpi_blkst.mdl','blocks/rpi_blkst.mdl');
-      else
-        if strcmp( mvernum, '2010b' )
-          disp( '  > Configuring TLC files for release 2010b.' );
-          copyfile('res/rpi_mrmain_2010b.tlc','rpit/rpi_mrmain.tlc');
-          copyfile('res/rpi_srmain_2010b.tlc','rpit/rpi_srmain.tlc');
-          copyfile('res/slblocks_2010b.m','blocks/slblocks.m');
-          copyfile('res/rpi_blkst.mdl','blocks/rpi_blkst.mdl');
-        else
-          disp( '  > This release of Matlab is currently not supported.' );
-          disp( '  > Supported releases: 2010b, 2010b SP1, 2010b SP2, 2011a, 2012a, 2014a, 2015a, 2015b, 2016a, 2016b, 2017a, 2017b, 2018a, 2018b.' );
-          return;
-        end
-      end
-    end
-  end
+  disp( '  > This release of Matlab is currently not supported.' );
+  disp( '  > Supported releases: 2018a, 2018b.' );
+  return;
 end
 
 % Compile s-functions mex files to generate executables for the host
@@ -161,8 +112,8 @@ if ispc
   cd( [ rpitdir '/tools' ] );
   disp( '  > Generating a public/private RSA pair for ssh level 2.' );
 
-  while 1;
-    [ status, out ] = system( 'dir' );
+  while 1
+    [ ~, out ] = system( 'dir' );
     if strfind( out, 'public_key' )
       if strfind( out, 'private_key.ppk' )
         disp( '  > ''public_key'' and ''private_key.ppk'' already generated. Skipping.' );
@@ -174,8 +125,8 @@ if ispc
     disp( '  > Exit the key generator.' );
     pause( 1 );
     command = 'puttygen';
-    [ status, out ] = system( command );
-    [ status, out ] = system( 'dir' );
+    [ ~, ~ ] = system( command );
+    [ ~, out ] = system( 'dir' );
     if strfind( out, 'public_key' ) 
       if strfind( out, 'private_key.ppk' )
         disp( '  > ''public_key'' and ''private_key.ppk'' successfully generated.' );
@@ -202,36 +153,36 @@ if ispc
 
   disp( '  > Answer ''y'' if asked for storing the key in the cache in the cmd window.' );
   command = sprintf( 'start /WAIT plink -pw %s pi@%s pwd', pipwd, piip );
-  [ status, out ] = system( command );
+  [ ~, ~ ] = system( command );
   
   % Create .ssh folder and define its permission
 
   command = sprintf( 'plink -pw %s pi@%s mkdir .ssh', pipwd, piip );
-  [ status, out ] = system( command );
+  [ ~, ~ ] = system( command );
   command = sprintf( 'plink -pw %s pi@%s chmod 700 .ssh', pipwd, piip );
-  [ status, out ] = system( command );
+  [ ~, ~ ] = system( command );
   
   % Upload public key to the target
   
   disp( '  > Uploading public key to the target.' );
   command = sprintf( 'pscp -pw %s public_key pi@%s:.', pipwd, piip );
-  [ status, out ] = system( command );
+  [ ~, ~ ] = system( command );
   disp( '  > Verifying the authorized keys list.' );
   command = sprintf( 'plink -pw %s pi@%s "cat .ssh/authorized_keys"', pipwd, piip );
-  [ status, out ] = system( command );
+  [ ~, out ] = system( command );
   command = sprintf( 'plink -pw %s pi@%s "ssh-keygen -i -f public_key"', pipwd, piip );
-  [ status, public_key ] = system( command );
-  if strfind( out, public_key );
+  [ ~, public_key ] = system( command );
+  if strfind( out, public_key )
     disp( '  > Public key already known by the target.' );
   else
     disp( '  > Adding publig key to the authorized keys list.' );
     command = sprintf( 'plink -pw %s pi@%s "ssh-keygen -i -f public_key >> .ssh/authorized_keys"', pipwd, piip );
-    [ status, out ] = system( command );
+    [ ~, ~ ] = system( command );
     command = sprintf( 'plink -pw %s pi@%s chmod 640 .ssh/authorized_keys', pipwd, piip );
-    [ status, out ] = system( command );
+    [ ~, ~ ] = system( command );
   end
   command = sprintf( 'plink -pw %s pi@%s "rm public_key"', pipwd, piip );
-  [ status, out ] = system( command );
+  [ ~, ~ ] = system( command );
   
   % Checking passwordless connection
   
@@ -268,8 +219,8 @@ if isunix
   cd( [ rpitdir '/tools' ] );
   disp( '  > Generating a public/private RSA pair for ssh level 2.' );
   
-  [ status, out ] = system( 'ls' );
-  if isempty( strfind( out, 'key' ) ) || isempty( strfind( out, 'key.pub' ) )
+  [ ~, out ] = system( 'ls' );
+  if  ~contains( out, 'key' )  ||  ~contains( out, 'key.pub' ) 
     [ status, out ] = system( 'LD_LIBRARY_PATH=;ssh-keygen -t rsa -N '''' -f key' );
     if ( status )
       disp( '  > Unable to generate private and public key. Check your ssh installation.' );
@@ -280,7 +231,7 @@ if isunix
   else
     disp( '  > ''key'' and ''key.pub'' already generated. Skipping.' );
   end
-  [ status, out ] = system( 'chmod 600 key' );
+  [ ~, ~ ] = system( 'chmod 600 key' );
 
   piip = input( '  > Enter IP address of the target : ', 's' );
   disp( '  > Enter password of the pi account on your target when prompted.' );
@@ -317,53 +268,33 @@ end % End of UNIX configuration
 
 command = sprintf( '%s pi@%s sudo cat /etc/os-release', ssh_command, piip );
 [ status, out ] = system( command );
-if isempty( strfind( out, 'debian' ) )
+if  ~contains( out, 'debian' ) 
   disp( '  > Distant target is not Debian-based. Aborting.' );
   cd( rpitdir );
   clear;
   return;
 else
-  if isempty( strfind( out, 'raspbian' ) )
+  if  ~contains( out, 'raspbian' ) 
     disp( '  > Distant target is Debian-based but not a RPI.' );
     disp( '  > Checking if distant target is ARM or x86.' );
     command = sprintf( '%s pi@%s sudo uname -m', ssh_command, piip );
-    [ status, out ] = system( command );
-    if isempty( strfind( out, 'arm' ) )
-      if isempty( strfind( out, 'x86' ) )
+    [ ~, out ] = system( command );
+    if  ~contains( out, 'arm' ) 
+      if  ~contains( out, 'x86' ) 
         disp( '  > Warning: unrecognized platform. Defaulting to ARM setup.' );
         copyfile('../res/rpi_callback_handler_arm.m','../rpit/rpi_callback_handler.m');
-        if strcmp( mvernum, '2014a' ) || strcmp( mvernum, '2015a' ) || strcmp( mvernum, '2015b' ) || strcmp( mvernum, '2016a' ) || strcmp( mvernum, '2016b' ) || strcmp( mvernum, '2017a' ) || strcmp( mvernum, '2017b' ) || strcmp( mvernum, '2018a' ) || strcmp( mvernum, '2018b' )
-          copyfile('../res/ert_rpi_2014a_arm.tmf','../rpit/ert_rpi.tmf');
-        else
-          copyfile('../res/ert_rpi_2010b_arm.tmf','../rpit/ert_rpi.tmf');
-        end
       else
         disp( '  > Updating the TMF for x86 gcc optimizations.' );
         copyfile('../res/rpi_callback_handler_x86.m','../rpit/rpi_callback_handler.m');
-        if strcmp( mvernum, '2014a' ) || strcmp( mvernum, '2015a' ) || strcmp( mvernum, '2015b' ) || strcmp( mvernum, '2016a' ) || strcmp( mvernum, '2016b' ) || strcmp( mvernum, '2017a' ) || strcmp( mvernum, '2017b' ) || strcmp( mvernum, '2018a' ) || strcmp( mvernum, '2018b' )
-          copyfile('../res/ert_rpi_2014a_x86.tmf','../rpit/ert_rpi.tmf');
-        else
-          copyfile('../res/ert_rpi_2010b_x86.tmf','../rpit/ert_rpi.tmf');
-        end
       end
     else
       disp( '  > Updating the TMF for ARM gcc optimizations.' );
       copyfile('../res/rpi_callback_handler_arm.m','../rpit/rpi_callback_handler.m');
-      if strcmp( mvernum, '2014a' ) || strcmp( mvernum, '2015a' ) || strcmp( mvernum, '2015b' ) || strcmp( mvernum, '2016a' ) || strcmp( mvernum, '2016b' ) || strcmp( mvernum, '2017a' ) || strcmp( mvernum, '2017b' ) || strcmp( mvernum, '2018a' ) || strcmp( mvernum, '2018b' )
-        copyfile('../res/ert_rpi_2014a_arm.tmf','../rpit/ert_rpi.tmf');
-      else
-        copyfile('../res/ert_rpi_2010b_arm.tmf','../rpit/ert_rpi.tmf');
-      end
     end
     target_is_rpi = 0;
   else
     disp( '  > Distant target is a RPI.' );
     copyfile('../res/rpi_callback_handler_arm.m','../rpit/rpi_callback_handler.m');
-    if strcmp( mvernum, '2014a' ) || strcmp( mvernum, '2015a' ) || strcmp( mvernum, '2015b' ) || strcmp( mvernum, '2016a' ) || strcmp( mvernum, '2016b' ) || strcmp( mvernum, '2017a' ) || strcmp( mvernum, '2017b' ) || strcmp( mvernum, '2018a' ) || strcmp( mvernum, '2018b' )
-      copyfile('../res/ert_rpi_2014a_arm.tmf','../rpit/ert_rpi.tmf');
-    else
-      copyfile('../res/ert_rpi_2010b_arm.tmf','../rpit/ert_rpi.tmf');
-    end
     target_is_rpi = 1;
   end
 end
@@ -372,51 +303,41 @@ end
 
 disp( '  > Copying MATLAB files (may take a while).' );
 command = sprintf( '%s pi@%s "rm -r MATLAB;mkdir MATLAB;mkdir MATLAB/simulink;mkdir -p MATLAB/toolbox/coder/rtiostream/src"', ssh_command, piip );
-[ status, out ] = system( command );
+[ ~, ~ ] = system( command );
 command = sprintf( '%s -r %s pi@%s:./MATLAB', scp_command, [ '"' matlabroot '/extern' '"' ], piip );
-[ status, out ] = system( command );
+[ ~, ~ ] = system( command );
 command = sprintf( '%s -r %s pi@%s:./MATLAB', scp_command, [ '"' matlabroot '/rtw' '"' ], piip );
-[ status, out ] = system( command );
+[ ~, ~ ] = system( command );
 command = sprintf( '%s -r %s pi@%s:./MATLAB/simulink', scp_command, [ '"' matlabroot '/simulink/include' '"' ], piip );
-[ status, out ] = system( command );
+[ ~, ~ ] = system( command );
 command = sprintf( '%s -r %s pi@%s:./MATLAB/simulink', scp_command, [ '"' matlabroot '/simulink/src' '"' ], piip );
-[ status, out ] = system( command );
-if strcmp( mvernum, '2014a' ) || strcmp( mvernum, '2015a' ) || strcmp( mvernum, '2015b' ) || strcmp( mvernum, '2016a' ) || strcmp( mvernum, '2016b' ) || strcmp( mvernum, '2017a' ) || strcmp( mvernum, '2017b' ) || strcmp( mvernum, '2018a' ) || strcmp( mvernum, '2018b' )
-  command = sprintf( '%s -r %s pi@%s:./MATLAB/toolbox/coder/rtiostream/src', scp_command, [ '"' matlabroot '/toolbox/coder/rtiostream/src/utils' '"' ], piip );
-  [ status, out ] = system( command );
-end
-
-% Apply 2012a char16_t bug workaround
-
-if strcmp( mvernum, '2012a' )
-  disp( '  > Apply 2012a char16_t bug workaround.' );
-  command = sprintf( '%s -r ../res/tmwtypes_2012a.h pi@%s:./MATLAB/extern/include/tmwtypes.h', scp_command, piip );
-  [ status, out ] = system( command );
-end
+[ ~, ~ ] = system( command );
+command = sprintf( '%s -r %s pi@%s:./MATLAB/toolbox/coder/rtiostream/src', scp_command, [ '"' matlabroot '/toolbox/coder/rtiostream/src/utils' '"' ], piip );
+[ ~, ~ ] = system( command );
 
 % Copy S-function sources to the target
 
 disp( '  > Uploading S-Function files.' );
 command = sprintf( '%s -r ../blocks pi@%s:./MATLAB', scp_command, piip );
-[ status, out ] = system( command );
+[ ~, ~ ] = system( command );
 
 % Create the target working directory
 
 disp( '  > Creating a working directory ''RTW'' in user ''pi'' home dir.' );
 command = sprintf( '%s pi@%s "rm -r RTW;mkdir RTW"', ssh_command, piip );
-[ status, out ] = system( command );
+[ ~, ~ ] = system( command );
 
 % Copy Polaris rom file to the target into the RTW dir
 
 disp( '  > Uploading Polaris rom file.' );
 command = sprintf( '%s -r ../res/polaris.rom pi@%s:./RTW', scp_command, piip );
-[ status, out ] = system( command );
+[ ~, ~ ] = system( command );
 
 % Install some additional packages on the target
 
 disp( '  > Installing the ''screen'' utility on the target.' );
 command = sprintf( '%s pi@%s sudo apt-get -y install screen', ssh_command, piip );
-[ status, out ] = system( command );
+[ status, ~ ] = system( command );
 if ( status )
   disp( '  > Installation of ''screen'' returned an error.' );
   disp( '  > Is your target connected to internet ?' );
@@ -424,7 +345,7 @@ if ( status )
 end
 disp( '  > Installing the ''libusb-1.0-0-dev'' package on the target.' );
 command = sprintf( '%s pi@%s sudo apt-get -y install libusb-1.0-0-dev', ssh_command, piip );
-[ status, out ] = system( command );
+[ status, ~ ] = system( command );
 if ( status )
   disp( '  > Installation of ''libusb-1.0-0-dev'' returned an error.' );
   disp( '  > Is your target connected to internet ?' );
@@ -435,19 +356,19 @@ end
 
 disp( '  > Enabling user serial port access by adding pi to the dialout group.' );
 command = sprintf( '%s pi@%s sudo usermod -a -G dialout $USER', ssh_command, piip );
-[ status, out ] = system( command );
+[ ~, ~ ] = system( command );
 
 % Enable user access to the EV3 USB port on the target
 
 disp( '  > Enabling user access to the EV3 USB port.' );
 command = sprintf( '%s ../res/99-EV3.rules pi@%s:.', scp_command, piip );
-[ status, out ] = system( command );
+[ ~, ~ ] = system( command );
 command = sprintf( '%s pi@%s "sudo mv ./99-EV3.rules /etc/udev/rules.d"', ssh_command, piip );
-[ status, out ] = system( command );
+[ ~, ~ ] = system( command );
 command = sprintf( '%s pi@%s "sudo chown root.root /etc/udev/rules.d/99-EV3.rules"', ssh_command, piip );
-[ status, out ] = system( command );
+[ ~, ~ ] = system( command );
 command = sprintf( '%s pi@%s "sudo chmod 644 /etc/udev/rules.d/99-EV3.rules"', ssh_command, piip );
-[ status, out ] = system( command );
+[ status, ~ ] = system( command );
 if ( status )
   disp( '  > Creation of /etc/udev/rules.d/99-EV3.rules returned an error.' );
   disp( '  > Please install this manually: ' );
@@ -458,13 +379,13 @@ end
 
 disp( '  > Enabling user access to the NXT USB port.' );
 command = sprintf( '%s ../res/99-NXT.rules pi@%s:.', scp_command, piip );
-[ status, out ] = system( command );
+[ ~, ~ ] = system( command );
 command = sprintf( '%s pi@%s "sudo mv ./99-NXT.rules /etc/udev/rules.d"', ssh_command, piip );
-[ status, out ] = system( command );
+[ ~, ~ ] = system( command );
 command = sprintf( '%s pi@%s "sudo chown root.root /etc/udev/rules.d/99-NXT.rules"', ssh_command, piip );
-[ status, out ] = system( command );
+[ ~, ~ ] = system( command );
 command = sprintf( '%s pi@%s "sudo chmod 644 /etc/udev/rules.d/99-NXT.rules"', ssh_command, piip );
-[ status, out ] = system( command );
+[ status, ~ ] = system( command );
 if ( status )
   disp( '  > Creation of /etc/udev/rules.d/99-NXT.rules returned an error.' );
   disp( '  > Please install this manually: ' );
@@ -475,13 +396,13 @@ end
 
 disp( '  > Reduce latency of FTDI chipsets.' );
 command = sprintf( '%s ../res/99-dynamixelsdk-usb.rules pi@%s:.', scp_command, piip );
-[ status, out ] = system( command );
+[ ~, ~ ] = system( command );
 command = sprintf( '%s pi@%s "sudo mv ./99-dynamixelsdk-usb.rules /etc/udev/rules.d"', ssh_command, piip );
-[ status, out ] = system( command );
+[ ~, ~ ] = system( command );
 command = sprintf( '%s pi@%s "sudo chown root.root /etc/udev/rules.d/99-dynamixelsdk-usb.rules"', ssh_command, piip );
-[ status, out ] = system( command );
+[ ~, ~ ] = system( command );
 command = sprintf( '%s pi@%s "sudo chmod 644 /etc/udev/rules.d/99-dynamixelsdk-usb.rules"', ssh_command, piip );
-[ status, out ] = system( command );
+[ status, ~ ] = system( command );
 if ( status )
   disp( '  > Creation of /etc/udev/rules.d/99-dynamixelsdk-usb.rules returned an error.' );
   disp( '  > Please install this manually: ' );
@@ -494,7 +415,7 @@ if ( target_is_rpi )
 
   disp( '  > Installing the i2c utilities on the RPI.' );
   command = sprintf( '%s pi@%s sudo apt-get -y install i2c-tools libi2c-dev', ssh_command, piip );
-  [ status, out ] = system( command );
+  [ status, ~ ] = system( command );
   if ( status )
     disp( '  > Installation of i2c utilities returned an error.' );
     disp( '  > Is your RPI connected to internet ?' );
@@ -502,19 +423,19 @@ if ( target_is_rpi )
   end
   disp( '  > Verifying /etc/modules.' );
   command = sprintf( '%s pi@%s "sudo cat /etc/modules"', ssh_command, piip );
-  [ status, out ] = system( command );
+  [ ~, out ] = system( command );
   if strfind( out, 'i2c-dev' )
     if strfind( out, 'i2c-bcm270' )
       disp( '  > /etc/modules already up to date.' );
     else
       disp( '  > Adding i2c-bcm2708 to /etc/modules.' );
       command = sprintf( '%s pi@%s "sudo bash -c ''echo i2c-bcm2708 >> /etc/modules''"', ssh_command, piip );
-      [ status, out ] = system( command );
+      [ ~, ~ ] = system( command );
     end
   else
      disp( '  > Adding i2c-dev to /etc/modules.' );
      command = sprintf( '%s pi@%s "sudo bash -c ''echo i2c-dev >> /etc/modules''"', ssh_command, piip );
-     [ status, out ] = system( command );
+     [ ~, ~ ] = system( command );
   end
 % Not needed anymore on recent systems
 %   disp( '  > Verifying /etc/modprobe.d/raspi-blacklist.conf.' );
@@ -536,23 +457,23 @@ if ( target_is_rpi )
 %   [ status, out ] = system( command );
   disp( '  > Verifying /boot/config.txt.' );
   command = sprintf( '%s pi@%s "sudo cat /boot/config.txt"', ssh_command, piip );
-  [ status, out ] = system( command );
+  [ ~, out ] = system( command );
   if strfind( out, 'dtparam=i2c_arm_baudrate=400000' )
     disp( '  > /boot/config.txt already up to date.' );
   else
     disp( '  > Adding ''dtparam=i2c_arm_baudrate=400000'' at the end of  /boot/config.txt.' );
     command = sprintf( '%s pi@%s "sudo bash -c ''echo dtparam=i2c_arm_baudrate=400000 >> /boot/config.txt''"', ssh_command, piip );
-    [ status, out ] = system( command );
+    [ ~, ~ ] = system( command );
   end
   disp( '  > Adding user pi to the i2c group.' );
   command = sprintf( '%s pi@%s "sudo usermod -a -G i2c pi"', ssh_command, piip );
-  [ status, out ] = system( command );
+  [ ~, ~ ] = system( command );
   
   % Enabling non-root access to GPIO
   
   disp( '  > Adding user pi to the gpio group.' );
   command = sprintf( '%s pi@%s "sudo usermod -a -G gpio pi"', ssh_command, piip );
-  [ status, out ] = system( command );
+  [ ~, ~ ] = system( command );
 end
 
 disp( '  > Checking cpu governor configuration.' );
