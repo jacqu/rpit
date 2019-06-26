@@ -101,6 +101,7 @@ mex rpi_sfun_dxl.c rpi_sfun_dxl_wrapper.c
 mex rpi_sfun_js.c rpi_sfun_js_wrapper.c
 mex rpi_sfun_trex.c rpi_sfun_trex_wrapper.c
 mex rpi_sfun_rgpio.c rpi_sfun_rgpio_wrapper.c
+mex rpi_sfun_teensyshot.c rpi_sfun_teensyshot_wrapper.c
 
 %
 % PC platform specific configuration
