@@ -1,5 +1,5 @@
 %% File : rpi_sfun_teensyshot.tlc
-%% Created : Tue Jun 25 17:48:53 2019
+%% Created : Wed Jun 26 14:54:59 2019
 %%
 %% Description: 
 %%   Simulink Coder wrapper functions interface generated for 
@@ -130,6 +130,194 @@
 %endfunction
 
 
+%% Function: Start ============================================================
+%%
+%function Start(block, system) Output
+   /* %<Type> Block: %<Name> */
+  %assign nelements1 = LibBlockParameterSize(P1)
+  %assign param_width1 = nelements1[0] * nelements1[1]
+  %if (param_width1) > 1
+    %assign pp1 = LibBlockMatrixParameterBaseAddr(P1)
+  %else
+    %assign pp1 = LibBlockParameterAddr(P1, "", "", 0)
+  %endif
+  %assign nelements2 = LibBlockParameterSize(P2)
+  %assign param_width2 = nelements2[0] * nelements2[1]
+  %if (param_width2) > 1
+    %assign pp2 = LibBlockMatrixParameterBaseAddr(P2)
+  %else
+    %assign pp2 = LibBlockParameterAddr(P2, "", "", 0)
+  %endif
+  %assign nelements3 = LibBlockParameterSize(P3)
+  %assign param_width3 = nelements3[0] * nelements3[1]
+  %if (param_width3) > 1
+    %assign pp3 = LibBlockMatrixParameterBaseAddr(P3)
+  %else
+    %assign pp3 = LibBlockParameterAddr(P3, "", "", 0)
+  %endif
+  %assign nelements4 = LibBlockParameterSize(P4)
+  %assign param_width4 = nelements4[0] * nelements4[1]
+  %if (param_width4) > 1
+    %assign pp4 = LibBlockMatrixParameterBaseAddr(P4)
+  %else
+    %assign pp4 = LibBlockParameterAddr(P4, "", "", 0)
+  %endif
+  %assign nelements5 = LibBlockParameterSize(P5)
+  %assign param_width5 = nelements5[0] * nelements5[1]
+  %if (param_width5) > 1
+    %assign pp5 = LibBlockMatrixParameterBaseAddr(P5)
+  %else
+    %assign pp5 = LibBlockParameterAddr(P5, "", "", 0)
+  %endif
+  %assign nelements6 = LibBlockParameterSize(P6)
+  %assign param_width6 = nelements6[0] * nelements6[1]
+  %if (param_width6) > 1
+    %assign pp6 = LibBlockMatrixParameterBaseAddr(P6)
+  %else
+    %assign pp6 = LibBlockParameterAddr(P6, "", "", 0)
+  %endif
+  %assign nelements7 = LibBlockParameterSize(P7)
+  %assign param_width7 = nelements7[0] * nelements7[1]
+  %if (param_width7) > 1
+    %assign pp7 = LibBlockMatrixParameterBaseAddr(P7)
+  %else
+    %assign pp7 = LibBlockParameterAddr(P7, "", "", 0)
+  %endif
+  %assign nelements8 = LibBlockParameterSize(P8)
+  %assign param_width8 = nelements8[0] * nelements8[1]
+  %if (param_width8) > 1
+    %assign pp8 = LibBlockMatrixParameterBaseAddr(P8)
+  %else
+    %assign pp8 = LibBlockParameterAddr(P8, "", "", 0)
+  %endif
+  %assign nelements9 = LibBlockParameterSize(P9)
+  %assign param_width9 = nelements9[0] * nelements9[1]
+  %if (param_width9) > 1
+    %assign pp9 = LibBlockMatrixParameterBaseAddr(P9)
+  %else
+    %assign pp9 = LibBlockParameterAddr(P9, "", "", 0)
+  %endif
+  %assign nelements10 = LibBlockParameterSize(P10)
+  %assign param_width10 = nelements10[0] * nelements10[1]
+  %if (param_width10) > 1
+    %assign pp10 = LibBlockMatrixParameterBaseAddr(P10)
+  %else
+    %assign pp10 = LibBlockParameterAddr(P10, "", "", 0)
+  %endif
+  %assign nelements11 = LibBlockParameterSize(P11)
+  %assign param_width11 = nelements11[0] * nelements11[1]
+  %if (param_width11) > 1
+    %assign pp11 = LibBlockMatrixParameterBaseAddr(P11)
+  %else
+    %assign pp11 = LibBlockParameterAddr(P11, "", "", 0)
+  %endif
+  %assign nelements12 = LibBlockParameterSize(P12)
+  %assign param_width12 = nelements12[0] * nelements12[1]
+  %if (param_width12) > 1
+    %assign pp12 = LibBlockMatrixParameterBaseAddr(P12)
+  %else
+    %assign pp12 = LibBlockParameterAddr(P12, "", "", 0)
+  %endif
+  %assign nelements13 = LibBlockParameterSize(P13)
+  %assign param_width13 = nelements13[0] * nelements13[1]
+  %if (param_width13) > 1
+    %assign pp13 = LibBlockMatrixParameterBaseAddr(P13)
+  %else
+    %assign pp13 = LibBlockParameterAddr(P13, "", "", 0)
+  %endif
+  %assign nelements14 = LibBlockParameterSize(P14)
+  %assign param_width14 = nelements14[0] * nelements14[1]
+  %if (param_width14) > 1
+    %assign pp14 = LibBlockMatrixParameterBaseAddr(P14)
+  %else
+    %assign pp14 = LibBlockParameterAddr(P14, "", "", 0)
+  %endif
+  %assign nelements15 = LibBlockParameterSize(P15)
+  %assign param_width15 = nelements15[0] * nelements15[1]
+  %if (param_width15) > 1
+    %assign pp15 = LibBlockMatrixParameterBaseAddr(P15)
+  %else
+    %assign pp15 = LibBlockParameterAddr(P15, "", "", 0)
+  %endif
+  %assign nelements16 = LibBlockParameterSize(P16)
+  %assign param_width16 = nelements16[0] * nelements16[1]
+  %if (param_width16) > 1
+    %assign pp16 = LibBlockMatrixParameterBaseAddr(P16)
+  %else
+    %assign pp16 = LibBlockParameterAddr(P16, "", "", 0)
+  %endif
+  %assign nelements17 = LibBlockParameterSize(P17)
+  %assign param_width17 = nelements17[0] * nelements17[1]
+  %if (param_width17) > 1
+    %assign pp17 = LibBlockMatrixParameterBaseAddr(P17)
+  %else
+    %assign pp17 = LibBlockParameterAddr(P17, "", "", 0)
+  %endif
+  %assign nelements18 = LibBlockParameterSize(P18)
+  %assign param_width18 = nelements18[0] * nelements18[1]
+  %if (param_width18) > 1
+    %assign pp18 = LibBlockMatrixParameterBaseAddr(P18)
+  %else
+    %assign pp18 = LibBlockParameterAddr(P18, "", "", 0)
+  %endif
+  %assign nelements19 = LibBlockParameterSize(P19)
+  %assign param_width19 = nelements19[0] * nelements19[1]
+  %if (param_width19) > 1
+    %assign pp19 = LibBlockMatrixParameterBaseAddr(P19)
+  %else
+    %assign pp19 = LibBlockParameterAddr(P19, "", "", 0)
+  %endif
+  %assign nelements20 = LibBlockParameterSize(P20)
+  %assign param_width20 = nelements20[0] * nelements20[1]
+  %if (param_width20) > 1
+    %assign pp20 = LibBlockMatrixParameterBaseAddr(P20)
+  %else
+    %assign pp20 = LibBlockParameterAddr(P20, "", "", 0)
+  %endif
+  %assign nelements21 = LibBlockParameterSize(P21)
+  %assign param_width21 = nelements21[0] * nelements21[1]
+  %if (param_width21) > 1
+    %assign pp21 = LibBlockMatrixParameterBaseAddr(P21)
+  %else
+    %assign pp21 = LibBlockParameterAddr(P21, "", "", 0)
+  %endif
+  %assign nelements22 = LibBlockParameterSize(P22)
+  %assign param_width22 = nelements22[0] * nelements22[1]
+  %if (param_width22) > 1
+    %assign pp22 = LibBlockMatrixParameterBaseAddr(P22)
+  %else
+    %assign pp22 = LibBlockParameterAddr(P22, "", "", 0)
+  %endif
+  %assign nelements23 = LibBlockParameterSize(P23)
+  %assign param_width23 = nelements23[0] * nelements23[1]
+  %if (param_width23) > 1
+    %assign pp23 = LibBlockMatrixParameterBaseAddr(P23)
+  %else
+    %assign pp23 = LibBlockParameterAddr(P23, "", "", 0)
+  %endif
+  %assign nelements24 = LibBlockParameterSize(P24)
+  %assign param_width24 = nelements24[0] * nelements24[1]
+  %if (param_width24) > 1
+    %assign pp24 = LibBlockMatrixParameterBaseAddr(P24)
+  %else
+    %assign pp24 = LibBlockParameterAddr(P24, "", "", 0)
+  %endif
+  %assign nelements25 = LibBlockParameterSize(P25)
+  %assign param_width25 = nelements25[0] * nelements25[1]
+  %if (param_width25) > 1
+    %assign pp25 = LibBlockMatrixParameterBaseAddr(P25)
+  %else
+    %assign pp25 = LibBlockParameterAddr(P25, "", "", 0)
+  %endif
+  %assign nelements26 = LibBlockParameterSize(P26)
+  %assign param_width26 = nelements26[0] * nelements26[1]
+  %if (param_width26) > 1
+    %assign pp26 = LibBlockMatrixParameterBaseAddr(P26)
+  %else
+    %assign pp26 = LibBlockParameterAddr(P26, "", "", 0)
+  %endif
+  rpi_sfun_teensyshot_Start_wrapper(%<pp1>, %<param_width1>, %<pp2>, %<param_width2>, %<pp3>, %<param_width3>, %<pp4>, %<param_width4>, %<pp5>, %<param_width5>, %<pp6>, %<param_width6>, %<pp7>, %<param_width7>, %<pp8>, %<param_width8>, %<pp9>, %<param_width9>, %<pp10>, %<param_width10>, %<pp11>, %<param_width11>, %<pp12>, %<param_width12>, %<pp13>, %<param_width13>, %<pp14>, %<param_width14>, %<pp15>, %<param_width15>, %<pp16>, %<param_width16>, %<pp17>, %<param_width17>, %<pp18>, %<param_width18>, %<pp19>, %<param_width19>, %<pp20>, %<param_width20>, %<pp21>, %<param_width21>, %<pp22>, %<param_width22>, %<pp23>, %<param_width23>, %<pp24>, %<param_width24>, %<pp25>, %<param_width25>, %<pp26>, %<param_width26>);
+%endfunction
 %% Function: Outputs ==========================================================
 %%
 %% Purpose:
@@ -335,6 +523,194 @@
   %%
 %endfunction
 
+%% Function: Terminate ========================================================
+%%
+%function Terminate(block, system) Output
+   /* %<Type> Block: %<Name> */
+  %assign nelements1 = LibBlockParameterSize(P1)
+  %assign param_width1 = nelements1[0] * nelements1[1]
+  %if (param_width1) > 1
+    %assign pp1 = LibBlockMatrixParameterBaseAddr(P1)
+  %else
+    %assign pp1 = LibBlockParameterAddr(P1, "", "", 0)
+  %endif
+  %assign nelements2 = LibBlockParameterSize(P2)
+  %assign param_width2 = nelements2[0] * nelements2[1]
+  %if (param_width2) > 1
+    %assign pp2 = LibBlockMatrixParameterBaseAddr(P2)
+  %else
+    %assign pp2 = LibBlockParameterAddr(P2, "", "", 0)
+  %endif
+  %assign nelements3 = LibBlockParameterSize(P3)
+  %assign param_width3 = nelements3[0] * nelements3[1]
+  %if (param_width3) > 1
+    %assign pp3 = LibBlockMatrixParameterBaseAddr(P3)
+  %else
+    %assign pp3 = LibBlockParameterAddr(P3, "", "", 0)
+  %endif
+  %assign nelements4 = LibBlockParameterSize(P4)
+  %assign param_width4 = nelements4[0] * nelements4[1]
+  %if (param_width4) > 1
+    %assign pp4 = LibBlockMatrixParameterBaseAddr(P4)
+  %else
+    %assign pp4 = LibBlockParameterAddr(P4, "", "", 0)
+  %endif
+  %assign nelements5 = LibBlockParameterSize(P5)
+  %assign param_width5 = nelements5[0] * nelements5[1]
+  %if (param_width5) > 1
+    %assign pp5 = LibBlockMatrixParameterBaseAddr(P5)
+  %else
+    %assign pp5 = LibBlockParameterAddr(P5, "", "", 0)
+  %endif
+  %assign nelements6 = LibBlockParameterSize(P6)
+  %assign param_width6 = nelements6[0] * nelements6[1]
+  %if (param_width6) > 1
+    %assign pp6 = LibBlockMatrixParameterBaseAddr(P6)
+  %else
+    %assign pp6 = LibBlockParameterAddr(P6, "", "", 0)
+  %endif
+  %assign nelements7 = LibBlockParameterSize(P7)
+  %assign param_width7 = nelements7[0] * nelements7[1]
+  %if (param_width7) > 1
+    %assign pp7 = LibBlockMatrixParameterBaseAddr(P7)
+  %else
+    %assign pp7 = LibBlockParameterAddr(P7, "", "", 0)
+  %endif
+  %assign nelements8 = LibBlockParameterSize(P8)
+  %assign param_width8 = nelements8[0] * nelements8[1]
+  %if (param_width8) > 1
+    %assign pp8 = LibBlockMatrixParameterBaseAddr(P8)
+  %else
+    %assign pp8 = LibBlockParameterAddr(P8, "", "", 0)
+  %endif
+  %assign nelements9 = LibBlockParameterSize(P9)
+  %assign param_width9 = nelements9[0] * nelements9[1]
+  %if (param_width9) > 1
+    %assign pp9 = LibBlockMatrixParameterBaseAddr(P9)
+  %else
+    %assign pp9 = LibBlockParameterAddr(P9, "", "", 0)
+  %endif
+  %assign nelements10 = LibBlockParameterSize(P10)
+  %assign param_width10 = nelements10[0] * nelements10[1]
+  %if (param_width10) > 1
+    %assign pp10 = LibBlockMatrixParameterBaseAddr(P10)
+  %else
+    %assign pp10 = LibBlockParameterAddr(P10, "", "", 0)
+  %endif
+  %assign nelements11 = LibBlockParameterSize(P11)
+  %assign param_width11 = nelements11[0] * nelements11[1]
+  %if (param_width11) > 1
+    %assign pp11 = LibBlockMatrixParameterBaseAddr(P11)
+  %else
+    %assign pp11 = LibBlockParameterAddr(P11, "", "", 0)
+  %endif
+  %assign nelements12 = LibBlockParameterSize(P12)
+  %assign param_width12 = nelements12[0] * nelements12[1]
+  %if (param_width12) > 1
+    %assign pp12 = LibBlockMatrixParameterBaseAddr(P12)
+  %else
+    %assign pp12 = LibBlockParameterAddr(P12, "", "", 0)
+  %endif
+  %assign nelements13 = LibBlockParameterSize(P13)
+  %assign param_width13 = nelements13[0] * nelements13[1]
+  %if (param_width13) > 1
+    %assign pp13 = LibBlockMatrixParameterBaseAddr(P13)
+  %else
+    %assign pp13 = LibBlockParameterAddr(P13, "", "", 0)
+  %endif
+  %assign nelements14 = LibBlockParameterSize(P14)
+  %assign param_width14 = nelements14[0] * nelements14[1]
+  %if (param_width14) > 1
+    %assign pp14 = LibBlockMatrixParameterBaseAddr(P14)
+  %else
+    %assign pp14 = LibBlockParameterAddr(P14, "", "", 0)
+  %endif
+  %assign nelements15 = LibBlockParameterSize(P15)
+  %assign param_width15 = nelements15[0] * nelements15[1]
+  %if (param_width15) > 1
+    %assign pp15 = LibBlockMatrixParameterBaseAddr(P15)
+  %else
+    %assign pp15 = LibBlockParameterAddr(P15, "", "", 0)
+  %endif
+  %assign nelements16 = LibBlockParameterSize(P16)
+  %assign param_width16 = nelements16[0] * nelements16[1]
+  %if (param_width16) > 1
+    %assign pp16 = LibBlockMatrixParameterBaseAddr(P16)
+  %else
+    %assign pp16 = LibBlockParameterAddr(P16, "", "", 0)
+  %endif
+  %assign nelements17 = LibBlockParameterSize(P17)
+  %assign param_width17 = nelements17[0] * nelements17[1]
+  %if (param_width17) > 1
+    %assign pp17 = LibBlockMatrixParameterBaseAddr(P17)
+  %else
+    %assign pp17 = LibBlockParameterAddr(P17, "", "", 0)
+  %endif
+  %assign nelements18 = LibBlockParameterSize(P18)
+  %assign param_width18 = nelements18[0] * nelements18[1]
+  %if (param_width18) > 1
+    %assign pp18 = LibBlockMatrixParameterBaseAddr(P18)
+  %else
+    %assign pp18 = LibBlockParameterAddr(P18, "", "", 0)
+  %endif
+  %assign nelements19 = LibBlockParameterSize(P19)
+  %assign param_width19 = nelements19[0] * nelements19[1]
+  %if (param_width19) > 1
+    %assign pp19 = LibBlockMatrixParameterBaseAddr(P19)
+  %else
+    %assign pp19 = LibBlockParameterAddr(P19, "", "", 0)
+  %endif
+  %assign nelements20 = LibBlockParameterSize(P20)
+  %assign param_width20 = nelements20[0] * nelements20[1]
+  %if (param_width20) > 1
+    %assign pp20 = LibBlockMatrixParameterBaseAddr(P20)
+  %else
+    %assign pp20 = LibBlockParameterAddr(P20, "", "", 0)
+  %endif
+  %assign nelements21 = LibBlockParameterSize(P21)
+  %assign param_width21 = nelements21[0] * nelements21[1]
+  %if (param_width21) > 1
+    %assign pp21 = LibBlockMatrixParameterBaseAddr(P21)
+  %else
+    %assign pp21 = LibBlockParameterAddr(P21, "", "", 0)
+  %endif
+  %assign nelements22 = LibBlockParameterSize(P22)
+  %assign param_width22 = nelements22[0] * nelements22[1]
+  %if (param_width22) > 1
+    %assign pp22 = LibBlockMatrixParameterBaseAddr(P22)
+  %else
+    %assign pp22 = LibBlockParameterAddr(P22, "", "", 0)
+  %endif
+  %assign nelements23 = LibBlockParameterSize(P23)
+  %assign param_width23 = nelements23[0] * nelements23[1]
+  %if (param_width23) > 1
+    %assign pp23 = LibBlockMatrixParameterBaseAddr(P23)
+  %else
+    %assign pp23 = LibBlockParameterAddr(P23, "", "", 0)
+  %endif
+  %assign nelements24 = LibBlockParameterSize(P24)
+  %assign param_width24 = nelements24[0] * nelements24[1]
+  %if (param_width24) > 1
+    %assign pp24 = LibBlockMatrixParameterBaseAddr(P24)
+  %else
+    %assign pp24 = LibBlockParameterAddr(P24, "", "", 0)
+  %endif
+  %assign nelements25 = LibBlockParameterSize(P25)
+  %assign param_width25 = nelements25[0] * nelements25[1]
+  %if (param_width25) > 1
+    %assign pp25 = LibBlockMatrixParameterBaseAddr(P25)
+  %else
+    %assign pp25 = LibBlockParameterAddr(P25, "", "", 0)
+  %endif
+  %assign nelements26 = LibBlockParameterSize(P26)
+  %assign param_width26 = nelements26[0] * nelements26[1]
+  %if (param_width26) > 1
+    %assign pp26 = LibBlockMatrixParameterBaseAddr(P26)
+  %else
+    %assign pp26 = LibBlockParameterAddr(P26, "", "", 0)
+  %endif
+  rpi_sfun_teensyshot_Terminate_wrapper(%<pp1>, %<param_width1>, %<pp2>, %<param_width2>, %<pp3>, %<param_width3>, %<pp4>, %<param_width4>, %<pp5>, %<param_width5>, %<pp6>, %<param_width6>, %<pp7>, %<param_width7>, %<pp8>, %<param_width8>, %<pp9>, %<param_width9>, %<pp10>, %<param_width10>, %<pp11>, %<param_width11>, %<pp12>, %<param_width12>, %<pp13>, %<param_width13>, %<pp14>, %<param_width14>, %<pp15>, %<param_width15>, %<pp16>, %<param_width16>, %<pp17>, %<param_width17>, %<pp18>, %<param_width18>, %<pp19>, %<param_width19>, %<pp20>, %<param_width20>, %<pp21>, %<param_width21>, %<pp22>, %<param_width22>, %<pp23>, %<param_width23>, %<pp24>, %<param_width24>, %<pp25>, %<param_width25>, %<pp26>, %<param_width26>);
+%endfunction
 
 %% [EOF] rpi_sfun_teensyshot.tlc
 

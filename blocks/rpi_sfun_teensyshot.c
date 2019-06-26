@@ -26,7 +26,7 @@
  * | See matlabroot/simulink/src/sfuntmpl_doc.c for a more detailed template |
  *  ------------------------------------------------------------------------- 
  *
- * Created: Tue Jun 25 17:48:53 2019
+ * Created: Wed Jun 26 14:54:59 2019
  */
 
 #define S_FUNCTION_LEVEL 2
@@ -348,12 +348,12 @@
 #define CONT_STATES_IC        [0]
 
 #define SFUNWIZ_GENERATE_TLC  1
-#define SOURCEFILES           "__SFB__"
+#define SOURCEFILES           "__SFB__host.c"
 #define PANELINDEX            8
 #define USE_SIMSTRUCT         0
 #define SHOW_COMPILE_STEPS    1
 #define CREATE_DEBUG_MEXFILE  0
-#define SAVE_CODE_ONLY        0
+#define SAVE_CODE_ONLY        1
 #define SFUNWIZ_REVISION      3.0
 /* %%%-SFUNWIZ_defines_Changes_END --- EDIT HERE TO _BEGIN */
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -392,6 +392,32 @@
 #define IS_PARAM_UINT32(pVal) (mxIsNumeric(pVal) && !mxIsLogical(pVal) &&\
 !mxIsEmpty(pVal) && !mxIsSparse(pVal) && !mxIsComplex(pVal) && mxIsUint32(pVal))
 
+extern void rpi_sfun_teensyshot_Start_wrapper(const real_T *rpi_Ts, const int_T p_width0,
+			const real_T *P1, const int_T p_width1,
+			const real_T *I1, const int_T p_width2,
+			const real_T *D1, const int_T p_width3,
+			const real_T *f1, const int_T p_width4,
+			const real_T *P2, const int_T p_width5,
+			const real_T *I2, const int_T p_width6,
+			const real_T *D2, const int_T p_width7,
+			const real_T *f2, const int_T p_width8,
+			const real_T *P3, const int_T p_width9,
+			const real_T *I3, const int_T p_width10,
+			const real_T *D3, const int_T p_width11,
+			const real_T *f3, const int_T p_width12,
+			const real_T *P4, const int_T p_width13,
+			const real_T *I4, const int_T p_width14,
+			const real_T *D4, const int_T p_width15,
+			const real_T *f4, const int_T p_width16,
+			const real_T *P5, const int_T p_width17,
+			const real_T *I5, const int_T p_width18,
+			const real_T *D5, const int_T p_width19,
+			const real_T *f5, const int_T p_width20,
+			const real_T *P6, const int_T p_width21,
+			const real_T *I6, const int_T p_width22,
+			const real_T *D6, const int_T p_width23,
+			const real_T *f6, const int_T p_width24,
+			const uint32_T *Port, const int_T p_width25);
 extern void rpi_sfun_teensyshot_Outputs_wrapper(const real_T *u1,
 			const real_T *u2,
 			const real_T *u3,
@@ -405,6 +431,32 @@ extern void rpi_sfun_teensyshot_Outputs_wrapper(const real_T *u1,
 			real_T *y5,
 			real_T *y6,
 			const real_T *rpi_Ts, const int_T p_width0,
+			const real_T *P1, const int_T p_width1,
+			const real_T *I1, const int_T p_width2,
+			const real_T *D1, const int_T p_width3,
+			const real_T *f1, const int_T p_width4,
+			const real_T *P2, const int_T p_width5,
+			const real_T *I2, const int_T p_width6,
+			const real_T *D2, const int_T p_width7,
+			const real_T *f2, const int_T p_width8,
+			const real_T *P3, const int_T p_width9,
+			const real_T *I3, const int_T p_width10,
+			const real_T *D3, const int_T p_width11,
+			const real_T *f3, const int_T p_width12,
+			const real_T *P4, const int_T p_width13,
+			const real_T *I4, const int_T p_width14,
+			const real_T *D4, const int_T p_width15,
+			const real_T *f4, const int_T p_width16,
+			const real_T *P5, const int_T p_width17,
+			const real_T *I5, const int_T p_width18,
+			const real_T *D5, const int_T p_width19,
+			const real_T *f5, const int_T p_width20,
+			const real_T *P6, const int_T p_width21,
+			const real_T *I6, const int_T p_width22,
+			const real_T *D6, const int_T p_width23,
+			const real_T *f6, const int_T p_width24,
+			const uint32_T *Port, const int_T p_width25);
+extern void rpi_sfun_teensyshot_Terminate_wrapper(const real_T *rpi_Ts, const int_T p_width0,
 			const real_T *P1, const int_T p_width1,
 			const real_T *I1, const int_T p_width2,
 			const real_T *D1, const int_T p_width3,
@@ -867,6 +919,60 @@ static void mdlSetWorkWidths(SimStruct *S)
  */
 static void mdlStart(SimStruct *S)
 {
+    const int_T   p_width0  = mxGetNumberOfElements(PARAM_DEF0(S));
+    const int_T   p_width1  = mxGetNumberOfElements(PARAM_DEF1(S));
+    const int_T   p_width2  = mxGetNumberOfElements(PARAM_DEF2(S));
+    const int_T   p_width3  = mxGetNumberOfElements(PARAM_DEF3(S));
+    const int_T   p_width4  = mxGetNumberOfElements(PARAM_DEF4(S));
+    const int_T   p_width5  = mxGetNumberOfElements(PARAM_DEF5(S));
+    const int_T   p_width6  = mxGetNumberOfElements(PARAM_DEF6(S));
+    const int_T   p_width7  = mxGetNumberOfElements(PARAM_DEF7(S));
+    const int_T   p_width8  = mxGetNumberOfElements(PARAM_DEF8(S));
+    const int_T   p_width9  = mxGetNumberOfElements(PARAM_DEF9(S));
+    const int_T   p_width10  = mxGetNumberOfElements(PARAM_DEF10(S));
+    const int_T   p_width11  = mxGetNumberOfElements(PARAM_DEF11(S));
+    const int_T   p_width12  = mxGetNumberOfElements(PARAM_DEF12(S));
+    const int_T   p_width13  = mxGetNumberOfElements(PARAM_DEF13(S));
+    const int_T   p_width14  = mxGetNumberOfElements(PARAM_DEF14(S));
+    const int_T   p_width15  = mxGetNumberOfElements(PARAM_DEF15(S));
+    const int_T   p_width16  = mxGetNumberOfElements(PARAM_DEF16(S));
+    const int_T   p_width17  = mxGetNumberOfElements(PARAM_DEF17(S));
+    const int_T   p_width18  = mxGetNumberOfElements(PARAM_DEF18(S));
+    const int_T   p_width19  = mxGetNumberOfElements(PARAM_DEF19(S));
+    const int_T   p_width20  = mxGetNumberOfElements(PARAM_DEF20(S));
+    const int_T   p_width21  = mxGetNumberOfElements(PARAM_DEF21(S));
+    const int_T   p_width22  = mxGetNumberOfElements(PARAM_DEF22(S));
+    const int_T   p_width23  = mxGetNumberOfElements(PARAM_DEF23(S));
+    const int_T   p_width24  = mxGetNumberOfElements(PARAM_DEF24(S));
+    const int_T   p_width25  = mxGetNumberOfElements(PARAM_DEF25(S));
+    const real_T *rpi_Ts = (const real_T *) mxGetData(PARAM_DEF0(S));
+    const real_T *P1 = (const real_T *) mxGetData(PARAM_DEF1(S));
+    const real_T *I1 = (const real_T *) mxGetData(PARAM_DEF2(S));
+    const real_T *D1 = (const real_T *) mxGetData(PARAM_DEF3(S));
+    const real_T *f1 = (const real_T *) mxGetData(PARAM_DEF4(S));
+    const real_T *P2 = (const real_T *) mxGetData(PARAM_DEF5(S));
+    const real_T *I2 = (const real_T *) mxGetData(PARAM_DEF6(S));
+    const real_T *D2 = (const real_T *) mxGetData(PARAM_DEF7(S));
+    const real_T *f2 = (const real_T *) mxGetData(PARAM_DEF8(S));
+    const real_T *P3 = (const real_T *) mxGetData(PARAM_DEF9(S));
+    const real_T *I3 = (const real_T *) mxGetData(PARAM_DEF10(S));
+    const real_T *D3 = (const real_T *) mxGetData(PARAM_DEF11(S));
+    const real_T *f3 = (const real_T *) mxGetData(PARAM_DEF12(S));
+    const real_T *P4 = (const real_T *) mxGetData(PARAM_DEF13(S));
+    const real_T *I4 = (const real_T *) mxGetData(PARAM_DEF14(S));
+    const real_T *D4 = (const real_T *) mxGetData(PARAM_DEF15(S));
+    const real_T *f4 = (const real_T *) mxGetData(PARAM_DEF16(S));
+    const real_T *P5 = (const real_T *) mxGetData(PARAM_DEF17(S));
+    const real_T *I5 = (const real_T *) mxGetData(PARAM_DEF18(S));
+    const real_T *D5 = (const real_T *) mxGetData(PARAM_DEF19(S));
+    const real_T *f5 = (const real_T *) mxGetData(PARAM_DEF20(S));
+    const real_T *P6 = (const real_T *) mxGetData(PARAM_DEF21(S));
+    const real_T *I6 = (const real_T *) mxGetData(PARAM_DEF22(S));
+    const real_T *D6 = (const real_T *) mxGetData(PARAM_DEF23(S));
+    const real_T *f6 = (const real_T *) mxGetData(PARAM_DEF24(S));
+    const uint32_T *Port = (const uint32_T *) mxGetData(PARAM_DEF25(S));
+    
+    rpi_sfun_teensyshot_Start_wrapper(rpi_Ts, p_width0, P1, p_width1, I1, p_width2, D1, p_width3, f1, p_width4, P2, p_width5, I2, p_width6, D2, p_width7, f2, p_width8, P3, p_width9, I3, p_width10, D3, p_width11, f3, p_width12, P4, p_width13, I4, p_width14, D4, p_width15, f4, p_width16, P5, p_width17, I5, p_width18, D5, p_width19, f5, p_width20, P6, p_width21, I6, p_width22, D6, p_width23, f6, p_width24, Port, p_width25);
 }
 #endif /*  MDL_START */
 
@@ -952,6 +1058,60 @@ static void mdlOutputs(SimStruct *S, int_T tid)
  */
 static void mdlTerminate(SimStruct *S)
 {
+    const int_T   p_width0  = mxGetNumberOfElements(PARAM_DEF0(S));
+    const int_T   p_width1  = mxGetNumberOfElements(PARAM_DEF1(S));
+    const int_T   p_width2  = mxGetNumberOfElements(PARAM_DEF2(S));
+    const int_T   p_width3  = mxGetNumberOfElements(PARAM_DEF3(S));
+    const int_T   p_width4  = mxGetNumberOfElements(PARAM_DEF4(S));
+    const int_T   p_width5  = mxGetNumberOfElements(PARAM_DEF5(S));
+    const int_T   p_width6  = mxGetNumberOfElements(PARAM_DEF6(S));
+    const int_T   p_width7  = mxGetNumberOfElements(PARAM_DEF7(S));
+    const int_T   p_width8  = mxGetNumberOfElements(PARAM_DEF8(S));
+    const int_T   p_width9  = mxGetNumberOfElements(PARAM_DEF9(S));
+    const int_T   p_width10  = mxGetNumberOfElements(PARAM_DEF10(S));
+    const int_T   p_width11  = mxGetNumberOfElements(PARAM_DEF11(S));
+    const int_T   p_width12  = mxGetNumberOfElements(PARAM_DEF12(S));
+    const int_T   p_width13  = mxGetNumberOfElements(PARAM_DEF13(S));
+    const int_T   p_width14  = mxGetNumberOfElements(PARAM_DEF14(S));
+    const int_T   p_width15  = mxGetNumberOfElements(PARAM_DEF15(S));
+    const int_T   p_width16  = mxGetNumberOfElements(PARAM_DEF16(S));
+    const int_T   p_width17  = mxGetNumberOfElements(PARAM_DEF17(S));
+    const int_T   p_width18  = mxGetNumberOfElements(PARAM_DEF18(S));
+    const int_T   p_width19  = mxGetNumberOfElements(PARAM_DEF19(S));
+    const int_T   p_width20  = mxGetNumberOfElements(PARAM_DEF20(S));
+    const int_T   p_width21  = mxGetNumberOfElements(PARAM_DEF21(S));
+    const int_T   p_width22  = mxGetNumberOfElements(PARAM_DEF22(S));
+    const int_T   p_width23  = mxGetNumberOfElements(PARAM_DEF23(S));
+    const int_T   p_width24  = mxGetNumberOfElements(PARAM_DEF24(S));
+    const int_T   p_width25  = mxGetNumberOfElements(PARAM_DEF25(S));
+    const real_T *rpi_Ts = (const real_T *) mxGetData(PARAM_DEF0(S));
+    const real_T *P1 = (const real_T *) mxGetData(PARAM_DEF1(S));
+    const real_T *I1 = (const real_T *) mxGetData(PARAM_DEF2(S));
+    const real_T *D1 = (const real_T *) mxGetData(PARAM_DEF3(S));
+    const real_T *f1 = (const real_T *) mxGetData(PARAM_DEF4(S));
+    const real_T *P2 = (const real_T *) mxGetData(PARAM_DEF5(S));
+    const real_T *I2 = (const real_T *) mxGetData(PARAM_DEF6(S));
+    const real_T *D2 = (const real_T *) mxGetData(PARAM_DEF7(S));
+    const real_T *f2 = (const real_T *) mxGetData(PARAM_DEF8(S));
+    const real_T *P3 = (const real_T *) mxGetData(PARAM_DEF9(S));
+    const real_T *I3 = (const real_T *) mxGetData(PARAM_DEF10(S));
+    const real_T *D3 = (const real_T *) mxGetData(PARAM_DEF11(S));
+    const real_T *f3 = (const real_T *) mxGetData(PARAM_DEF12(S));
+    const real_T *P4 = (const real_T *) mxGetData(PARAM_DEF13(S));
+    const real_T *I4 = (const real_T *) mxGetData(PARAM_DEF14(S));
+    const real_T *D4 = (const real_T *) mxGetData(PARAM_DEF15(S));
+    const real_T *f4 = (const real_T *) mxGetData(PARAM_DEF16(S));
+    const real_T *P5 = (const real_T *) mxGetData(PARAM_DEF17(S));
+    const real_T *I5 = (const real_T *) mxGetData(PARAM_DEF18(S));
+    const real_T *D5 = (const real_T *) mxGetData(PARAM_DEF19(S));
+    const real_T *f5 = (const real_T *) mxGetData(PARAM_DEF20(S));
+    const real_T *P6 = (const real_T *) mxGetData(PARAM_DEF21(S));
+    const real_T *I6 = (const real_T *) mxGetData(PARAM_DEF22(S));
+    const real_T *D6 = (const real_T *) mxGetData(PARAM_DEF23(S));
+    const real_T *f6 = (const real_T *) mxGetData(PARAM_DEF24(S));
+    const uint32_T *Port = (const uint32_T *) mxGetData(PARAM_DEF25(S));
+    
+    rpi_sfun_teensyshot_Terminate_wrapper(rpi_Ts, p_width0, P1, p_width1, I1, p_width2, D1, p_width3, f1, p_width4, P2, p_width5, I2, p_width6, D2, p_width7, f2, p_width8, P3, p_width9, I3, p_width10, D3, p_width11, f3, p_width12, P4, p_width13, I4, p_width14, D4, p_width15, f4, p_width16, P5, p_width17, I5, p_width18, D5, p_width19, f5, p_width20, P6, p_width21, I6, p_width22, D6, p_width23, f6, p_width24, Port, p_width25);
 
 }
 
