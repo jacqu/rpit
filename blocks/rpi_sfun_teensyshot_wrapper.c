@@ -14,7 +14,6 @@
 
 /* %%%-SFUNWIZ_wrapper_includes_Changes_BEGIN --- EDIT HERE TO _END */
 #include <math.h>
-#include "host.h"
 /* %%%-SFUNWIZ_wrapper_includes_Changes_END --- EDIT HERE TO _BEGIN */
 #define u_width 1
 #define y_width 1
@@ -25,6 +24,9 @@
  */
 /* %%%-SFUNWIZ_wrapper_externs_Changes_BEGIN --- EDIT HERE TO _END */
 /* External function declarations */
+#ifndef MATLAB_MEX_FILE
+#include "host.c"
+#endif
 /* %%%-SFUNWIZ_wrapper_externs_Changes_END --- EDIT HERE TO _BEGIN */
 
 /*
@@ -59,37 +61,69 @@ void rpi_sfun_teensyshot_Start_wrapper(const real_T *rpi_Ts, const int_T p_width
 			const uint32_T *Port, const int_T p_width25)
 {
 /* %%%-SFUNWIZ_wrapper_Start_Changes_BEGIN --- EDIT HERE TO _END */
-	/*
+ /*
 	* Custom Start code goes here.
 	*/
 	#ifndef MATLAB_MEX_FILE
-	// Silence unused variable warnings
-	(void*)p_width0;
-	(void*)p_width1;
-	(void*)p_width2;
-	(void*)p_width3;
-	(void*)p_width4;
-	(void*)p_width5;
-	(void*)p_width6;
-	(void*)p_width7;
-	(void*)p_width8;
-	(void*)p_width9;
-	(void*)p_width10;
-	(void*)p_width11;
-	(void*)p_width12;
-	(void*)p_width13;
-	(void*)p_width14;
-	(void*)p_width15;
-	(void*)p_width16;
-	(void*)p_width17;
-	(void*)p_width18;
-	(void*)p_width19;
-	(void*)p_width20;
-	(void*)p_width21;
-	(void*)p_width22;
-	(void*)p_width23;
-	(void*)p_width24;
-	(void*)p_width25;
+	// Check parameter dimension
+	if ( 	p_width0 *
+				p_width1 *
+				p_width2 *
+				p_width3 *
+				p_width4 *
+				p_width5 *
+				p_width6 *
+				p_width7 *
+				p_width8 *
+				p_width9 *
+				p_width10 *
+				p_width11 *
+				p_width12 *
+				p_width13 *
+				p_width14 *
+				p_width15 *
+				p_width16 *
+				p_width17 *
+				p_width18 *
+				p_width19 *
+				p_width20 *
+				p_width21 *
+				p_width22 *
+				p_width23 *
+				p_width24 *
+				p_width25 != 1 )
+		return;
+	
+	// Check parameter value
+	if (
+		( *rpi_Ts < 0 ) ||
+		( *P1 < 0 ) ||
+		( *I1 < 0 ) ||
+		( *D1 < 0 ) ||
+		( *f1 < 0 ) ||
+		( *P2 < 0 ) ||
+		( *I2 < 0 ) ||
+		( *D2 < 0 ) ||
+		( *f2 < 0 ) ||
+		( *P3 < 0 ) ||
+		( *I3 < 0 ) ||
+		( *D3 < 0 ) ||
+		( *f3 < 0 ) ||
+		( *P4 < 0 ) ||
+		( *I4 < 0 ) ||
+		( *D4 < 0 ) ||
+		( *f4 < 0 ) ||
+		( *P5 < 0 ) ||
+		( *I5 < 0 ) ||
+		( *D5 < 0 ) ||
+		( *f5 < 0 ) ||
+		( *P6 < 0 ) ||
+		( *I6 < 0 ) ||
+		( *D6 < 0 ) ||
+		( *f6 < 0 ) ||
+		( *Port == 0 )
+		)
+		return;
 
 	// Open serial port
 	Host_init_port( *Port );
@@ -140,7 +174,7 @@ void rpi_sfun_teensyshot_Outputs_wrapper(const real_T *u1,
 			const uint32_T *Port, const int_T p_width25)
 {
 /* %%%-SFUNWIZ_wrapper_Outputs_Changes_BEGIN --- EDIT HERE TO _END */
-	/* This sample sets the output equal to the input
+ /* This sample sets the output equal to the input
 		y0[0] = u0[0]; 
 	For complex signals use: y0[0].re = u0[0].re; 
 		y0[0].im = u0[0].im;
@@ -191,39 +225,72 @@ void rpi_sfun_teensyshot_Outputs_wrapper(const real_T *u1,
 	y6[5] = 0.0;
 	#else
 	int                 i, ret;
-	int16_t             RPM_r[ESCPID_MAX_ESC];
-	uint16_t            PID_P[ESCPID_MAX_ESC];
-	uint16_t            PID_I[ESCPID_MAX_ESC];
-	uint16_t            PID_D[ESCPID_MAX_ESC];
-	uint16_t            PID_f[ESCPID_MAX_ESC];
+	int16_T             RPM_r[ESCPID_MAX_ESC] = { 0 };
+	uint16_T            PID_P[ESCPID_MAX_ESC] = { 0 };
+	uint16_T            PID_I[ESCPID_MAX_ESC] = { 0 };
+	uint16_T            PID_D[ESCPID_MAX_ESC] = { 0 };
+	uint16_T            PID_f[ESCPID_MAX_ESC] = { 0 };
 	ESCPIDcomm_struct_t *comm;
 
-	// Silence unused variable warnings
-	(void*)p_width1;
-	(void*)p_width2;
-	(void*)p_width3;
-	(void*)p_width4;
-	(void*)p_width5;
-	(void*)p_width6;
-	(void*)p_width7;
-	(void*)p_width8;
-	(void*)p_width9;
-	(void*)p_width10;
-	(void*)p_width11;
-	(void*)p_width12;
-	(void*)p_width13;
-	(void*)p_width14;
-	(void*)p_width15;
-	(void*)p_width16;
-	(void*)p_width17;
-	(void*)p_width18;
-	(void*)p_width19;
-	(void*)p_width20;
-	(void*)p_width21;
-	(void*)p_width22;
-	(void*)p_width23;
-	(void*)p_width24;
-	(void*)p_width25;
+	// Check parameter dimension
+	if ( 	p_width0 *
+				p_width1 *
+				p_width2 *
+				p_width3 *
+				p_width4 *
+				p_width5 *
+				p_width6 *
+				p_width7 *
+				p_width8 *
+				p_width9 *
+				p_width10 *
+				p_width11 *
+				p_width12 *
+				p_width13 *
+				p_width14 *
+				p_width15 *
+				p_width16 *
+				p_width17 *
+				p_width18 *
+				p_width19 *
+				p_width20 *
+				p_width21 *
+				p_width22 *
+				p_width23 *
+				p_width24 *
+				p_width25 != 1 )
+		return;
+	
+	// Check parameter value
+	if (
+		( *rpi_Ts < 0 ) ||
+		( *P1 < 0 ) ||
+		( *I1 < 0 ) ||
+		( *D1 < 0 ) ||
+		( *f1 < 0 ) ||
+		( *P2 < 0 ) ||
+		( *I2 < 0 ) ||
+		( *D2 < 0 ) ||
+		( *f2 < 0 ) ||
+		( *P3 < 0 ) ||
+		( *I3 < 0 ) ||
+		( *D3 < 0 ) ||
+		( *f3 < 0 ) ||
+		( *P4 < 0 ) ||
+		( *I4 < 0 ) ||
+		( *D4 < 0 ) ||
+		( *f4 < 0 ) ||
+		( *P5 < 0 ) ||
+		( *I5 < 0 ) ||
+		( *D5 < 0 ) ||
+		( *f5 < 0 ) ||
+		( *P6 < 0 ) ||
+		( *I6 < 0 ) ||
+		( *D6 < 0 ) ||
+		( *f6 < 0 ) ||
+		( *Port == 0 )
+		)
+		return;
 
 	// Check for errors
 	if ( ( p_width0 > 1 ) || ( *rpi_Ts < 0.002 ) )	{
@@ -276,46 +343,46 @@ void rpi_sfun_teensyshot_Outputs_wrapper(const real_T *u1,
 	for ( i = 0; i < ESCPID_MAX_ESC; i++ )  {
 		switch( i )	{
 			case 0:
-				RPM_r[i] = (int16_t)*u1;
-				PID_P[i] = (uint16_t)*P1;
-				PID_I[i] = (uint16_t)*I1;
-				PID_D[i] = (uint16_t)*D1;
-				PID_f[i] = (uint16_t)*f1;
+				RPM_r[i] = (int16_T)*u1;
+				PID_P[i] = (uint16_T)*P1;
+				PID_I[i] = (uint16_T)*I1;
+				PID_D[i] = (uint16_T)*D1;
+				PID_f[i] = (uint16_T)*f1;
 			break;
 			case 1:
-				RPM_r[i] = (int16_t)*u2;
-				PID_P[i] = (uint16_t)*P2;
-				PID_I[i] = (uint16_t)*I2;
-				PID_D[i] = (uint16_t)*D2;
-				PID_f[i] = (uint16_t)*f2;
+				RPM_r[i] = (int16_T)*u2;
+				PID_P[i] = (uint16_T)*P2;
+				PID_I[i] = (uint16_T)*I2;
+				PID_D[i] = (uint16_T)*D2;
+				PID_f[i] = (uint16_T)*f2;
 			break;
 			case 2:
-				RPM_r[i] = (int16_t)*u3;
-				PID_P[i] = (uint16_t)*P3;
-				PID_I[i] = (uint16_t)*I3;
-				PID_D[i] = (uint16_t)*D3;
-				PID_f[i] = (uint16_t)*f3;
+				RPM_r[i] = (int16_T)*u3;
+				PID_P[i] = (uint16_T)*P3;
+				PID_I[i] = (uint16_T)*I3;
+				PID_D[i] = (uint16_T)*D3;
+				PID_f[i] = (uint16_T)*f3;
 			break;
 			case 3:
-				RPM_r[i] = (int16_t)*u4;
-				PID_P[i] = (uint16_t)*P4;
-				PID_I[i] = (uint16_t)*I4;
-				PID_D[i] = (uint16_t)*D4;
-				PID_f[i] = (uint16_t)*f4;
+				RPM_r[i] = (int16_T)*u4;
+				PID_P[i] = (uint16_T)*P4;
+				PID_I[i] = (uint16_T)*I4;
+				PID_D[i] = (uint16_T)*D4;
+				PID_f[i] = (uint16_T)*f4;
 			break;
 			case 4:
-				RPM_r[i] = (int16_t)*u5;
-				PID_P[i] = (uint16_t)*P5;
-				PID_I[i] = (uint16_t)*I5;
-				PID_D[i] = (uint16_t)*D5;
-				PID_f[i] = (uint16_t)*f5;
+				RPM_r[i] = (int16_T)*u5;
+				PID_P[i] = (uint16_T)*P5;
+				PID_I[i] = (uint16_T)*I5;
+				PID_D[i] = (uint16_T)*D5;
+				PID_f[i] = (uint16_T)*f5;
 			break;
 			case 5:
-				RPM_r[i] = (int16_t)*u6;
-				PID_P[i] = (uint16_t)*P6;
-				PID_I[i] = (uint16_t)*I6;
-				PID_D[i] = (uint16_t)*D6;
-				PID_f[i] = (uint16_t)*f6;
+				RPM_r[i] = (int16_T)*u6;
+				PID_P[i] = (uint16_T)*P6;
+				PID_I[i] = (uint16_T)*I6;
+				PID_D[i] = (uint16_T)*D6;
+				PID_f[i] = (uint16_T)*f6;
 			break;
 			default:
 			break;
@@ -424,37 +491,69 @@ void rpi_sfun_teensyshot_Terminate_wrapper(const real_T *rpi_Ts, const int_T p_w
 			const uint32_T *Port, const int_T p_width25)
 {
 /* %%%-SFUNWIZ_wrapper_Terminate_Changes_BEGIN --- EDIT HERE TO _END */
-	/*
+ /*
 	* Custom Terminate code goes here.
 	*/
 	#ifndef MATLAB_MEX_FILE
-	// Silence unused variable warnings
-	(void*)p_width0;
-	(void*)p_width1;
-	(void*)p_width2;
-	(void*)p_width3;
-	(void*)p_width4;
-	(void*)p_width5;
-	(void*)p_width6;
-	(void*)p_width7;
-	(void*)p_width8;
-	(void*)p_width9;
-	(void*)p_width10;
-	(void*)p_width11;
-	(void*)p_width12;
-	(void*)p_width13;
-	(void*)p_width14;
-	(void*)p_width15;
-	(void*)p_width16;
-	(void*)p_width17;
-	(void*)p_width18;
-	(void*)p_width19;
-	(void*)p_width20;
-	(void*)p_width21;
-	(void*)p_width22;
-	(void*)p_width23;
-	(void*)p_width24;
-	(void*)p_width25;
+	// Check parameter dimension
+	if ( 	p_width0 *
+				p_width1 *
+				p_width2 *
+				p_width3 *
+				p_width4 *
+				p_width5 *
+				p_width6 *
+				p_width7 *
+				p_width8 *
+				p_width9 *
+				p_width10 *
+				p_width11 *
+				p_width12 *
+				p_width13 *
+				p_width14 *
+				p_width15 *
+				p_width16 *
+				p_width17 *
+				p_width18 *
+				p_width19 *
+				p_width20 *
+				p_width21 *
+				p_width22 *
+				p_width23 *
+				p_width24 *
+				p_width25 != 1 )
+		return;
+	
+	// Check parameter value
+	if (
+		( *rpi_Ts < 0 ) ||
+		( *P1 < 0 ) ||
+		( *I1 < 0 ) ||
+		( *D1 < 0 ) ||
+		( *f1 < 0 ) ||
+		( *P2 < 0 ) ||
+		( *I2 < 0 ) ||
+		( *D2 < 0 ) ||
+		( *f2 < 0 ) ||
+		( *P3 < 0 ) ||
+		( *I3 < 0 ) ||
+		( *D3 < 0 ) ||
+		( *f3 < 0 ) ||
+		( *P4 < 0 ) ||
+		( *I4 < 0 ) ||
+		( *D4 < 0 ) ||
+		( *f4 < 0 ) ||
+		( *P5 < 0 ) ||
+		( *I5 < 0 ) ||
+		( *D5 < 0 ) ||
+		( *f5 < 0 ) ||
+		( *P6 < 0 ) ||
+		( *I6 < 0 ) ||
+		( *D6 < 0 ) ||
+		( *f6 < 0 ) ||
+		( *Port == 0 )
+		)
+		return;
 
 	// Close serial port
 	Host_release_port( *Port );

@@ -26,7 +26,7 @@
  * | See matlabroot/simulink/src/sfuntmpl_doc.c for a more detailed template |
  *  ------------------------------------------------------------------------- 
  *
- * Created: Wed Jun 26 14:54:59 2019
+ * Created: Thu Jun 27 09:46:34 2019
  */
 
 #define S_FUNCTION_LEVEL 2
@@ -348,7 +348,7 @@
 #define CONT_STATES_IC        [0]
 
 #define SFUNWIZ_GENERATE_TLC  1
-#define SOURCEFILES           "__SFB__host.c"
+#define SOURCEFILES           "__SFB__"
 #define PANELINDEX            8
 #define USE_SIMSTRUCT         0
 #define SHOW_COMPILE_STEPS    1

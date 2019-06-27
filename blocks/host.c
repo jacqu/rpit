@@ -83,7 +83,7 @@ Hostcomm_struct_t   Host_comm[HOST_MAX_DEVICES];
 //
 //  Get the device name from the device serial number
 //
-char *Host_name_from_serial( uint32_t serial_nb ) {
+char *Host_name_from_serial( uint32_T serial_nb ) {
   DIR           *d;
   struct dirent *dir;
   char          serial_nb_char[HOST_DEV_SERIALLG];
@@ -118,7 +118,7 @@ char *Host_name_from_serial( uint32_t serial_nb ) {
 //  specified serial number. 
 //  Returns -1 if no matching fd is found.
 //
-int Host_get_fd( uint32_t serial_nb ) {
+int Host_get_fd( uint32_T serial_nb ) {
   int   i;
   char  serial_nb_char[HOST_DEV_SERIALLG];
   
@@ -136,7 +136,7 @@ int Host_get_fd( uint32_t serial_nb ) {
 //
 //  Initialize serial port
 //
-int Host_init_port( uint32_t serial_nb )  {
+int Host_init_port( uint32_T serial_nb )  {
   struct  termios newtio;
   int     check_fd;
   int     i, fd_idx;
@@ -209,7 +209,7 @@ int Host_init_port( uint32_t serial_nb )  {
 //
 //  Release serial port
 //
-void Host_release_port( uint32_t serial_nb )  {
+void Host_release_port( uint32_T serial_nb )  {
   int   fd_idx;
     
   // Get fd index from serial number
@@ -229,16 +229,16 @@ void Host_release_port( uint32_t serial_nb )  {
 //
 // Manage communication with the teensy connected to portname
 //
-int Host_comm_update( uint32_t            serial_nb,
-                      int16_t             *RPM_r,
-                      uint16_t            *PID_P,
-                      uint16_t            *PID_I,
-                      uint16_t            *PID_D,
-                      uint16_t            *PID_f,
+int Host_comm_update( uint32_T            serial_nb,
+                      int16_T             *RPM_r,
+                      uint16_T            *PID_P,
+                      uint16_T            *PID_I,
+                      uint16_T            *PID_D,
+                      uint16_T            *PID_f,
                       ESCPIDcomm_struct_t **comm ) {
                       
   int                 i, ret, res = 0, fd_idx;
-  uint8_t             *pt_in;
+  uint8_T             *pt_in;
   struct timespec     start, cur;
   unsigned long long  elapsed_us;
   
@@ -276,7 +276,7 @@ int Host_comm_update( uint32_t            serial_nb,
   // Reset byte counter and magic number
   res = 0;
   ESCPID_comm[fd_idx].magic = 0;
-  pt_in = (uint8_t*)(&ESCPID_comm[fd_idx]);
+  pt_in = (uint8_T*)(&ESCPID_comm[fd_idx]);
 
   do  {
     ret = read( Host_fd[fd_idx], &pt_in[res], 1 );
@@ -299,7 +299,7 @@ int Host_comm_update( uint32_t            serial_nb,
     if ( elapsed_us / 100000 > HOST_READ_TIMEOUT )
       break;
 
-  } while ( res < sizeof( ESCPID_comm[fd_idx] ) );
+  } while ( res < (int)sizeof( ESCPID_comm[fd_idx] ) );
 
   // Check response size
   if ( res != sizeof( ESCPID_comm[fd_idx] ) )  {
@@ -337,11 +337,11 @@ int Host_comm_update( uint32_t            serial_nb,
 int main( int argc, char *argv[] )  {
 
   int                 i, k, ret;
-  int16_t             RPM_r[ESCPID_MAX_ESC];
-  uint16_t            PID_P[ESCPID_MAX_ESC];
-  uint16_t            PID_I[ESCPID_MAX_ESC];
-  uint16_t            PID_D[ESCPID_MAX_ESC];
-  uint16_t            PID_f[ESCPID_MAX_ESC];
+  int16_T             RPM_r[ESCPID_MAX_ESC];
+  uint16_T            PID_P[ESCPID_MAX_ESC];
+  uint16_T            PID_I[ESCPID_MAX_ESC];
+  uint16_T            PID_D[ESCPID_MAX_ESC];
+  uint16_T            PID_f[ESCPID_MAX_ESC];
   ESCPIDcomm_struct_t *comm;
   
   // Initialize tunable PID data
