@@ -2,3 +2,6 @@
 *.mexw64
 *.ppk
 *.asv
+slprj/
+*ert_rtw/
+
