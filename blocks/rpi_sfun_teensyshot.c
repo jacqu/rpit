@@ -26,14 +26,14 @@
  * | See matlabroot/simulink/src/sfuntmpl_doc.c for a more detailed template |
  *  ------------------------------------------------------------------------- 
  *
- * Created: Thu Jun 27 09:46:34 2019
+ * Created: Thu Jul 04 12:40:17 2019
  */
 
 #define S_FUNCTION_LEVEL 2
 #define S_FUNCTION_NAME rpi_sfun_teensyshot
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* %%%-SFUNWIZ_defines_Changes_BEGIN --- EDIT HERE TO _END */
-#define NUM_INPUTS            6
+#define NUM_INPUTS            7
 /* Input Port  0 */
 #define IN_PORT_0_NAME        u1
 #define INPUT_0_WIDTH         1
@@ -136,6 +136,23 @@
 #define IN_5_FRACTIONLENGTH   9
 #define IN_5_BIAS             0
 #define IN_5_SLOPE            0.125
+/* Input Port  6 */
+#define IN_PORT_6_NAME        en
+#define INPUT_6_WIDTH         1
+#define INPUT_DIMS_6_COL      1
+#define INPUT_6_DTYPE         real_T
+#define INPUT_6_COMPLEX       COMPLEX_NO
+#define IN_6_FRAME_BASED      FRAME_NO
+#define IN_6_BUS_BASED        0
+#define IN_6_BUS_NAME         
+#define IN_6_DIMS             1-D
+#define INPUT_6_FEEDTHROUGH   1
+#define IN_6_ISSIGNED         0
+#define IN_6_WORDLENGTH       8
+#define IN_6_FIXPOINTSCALING  1
+#define IN_6_FRACTIONLENGTH   9
+#define IN_6_BIAS             0
+#define IN_6_SLOPE            0.125
 
 #define NUM_OUTPUTS           6
 /* Output Port  0 */
@@ -353,7 +370,7 @@
 #define USE_SIMSTRUCT         0
 #define SHOW_COMPILE_STEPS    1
 #define CREATE_DEBUG_MEXFILE  0
-#define SAVE_CODE_ONLY        1
+#define SAVE_CODE_ONLY        0
 #define SFUNWIZ_REVISION      3.0
 /* %%%-SFUNWIZ_defines_Changes_END --- EDIT HERE TO _BEGIN */
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -424,6 +441,7 @@ extern void rpi_sfun_teensyshot_Outputs_wrapper(const real_T *u1,
 			const real_T *u4,
 			const real_T *u5,
 			const real_T *u6,
+			const real_T *en,
 			real_T *y1,
 			real_T *y2,
 			real_T *y3,
@@ -824,6 +842,13 @@ static void mdlInitializeSizes(SimStruct *S)
     ssSetInputPortDirectFeedThrough(S, 5, INPUT_5_FEEDTHROUGH);
     ssSetInputPortRequiredContiguous(S, 5, 1); /*direct input signal access*/
 
+    /* Input Port 6 */
+    ssSetInputPortWidth(S, 6, INPUT_6_WIDTH);
+    ssSetInputPortDataType(S, 6, SS_DOUBLE);
+    ssSetInputPortComplexSignal(S, 6, INPUT_6_COMPLEX);
+    ssSetInputPortDirectFeedThrough(S, 6, INPUT_6_FEEDTHROUGH);
+    ssSetInputPortRequiredContiguous(S, 6, 1); /*direct input signal access*/
+
 
     if (!ssSetNumOutputPorts(S, NUM_OUTPUTS)) return;
     /* Output Port 0 */
@@ -987,6 +1012,7 @@ static void mdlOutputs(SimStruct *S, int_T tid)
     const real_T *u4 = (real_T *) ssGetInputPortRealSignal(S, 3);
     const real_T *u5 = (real_T *) ssGetInputPortRealSignal(S, 4);
     const real_T *u6 = (real_T *) ssGetInputPortRealSignal(S, 5);
+    const real_T *en = (real_T *) ssGetInputPortRealSignal(S, 6);
     real_T *y1 = (real_T *) ssGetOutputPortRealSignal(S, 0);
     real_T *y2 = (real_T *) ssGetOutputPortRealSignal(S, 1);
     real_T *y3 = (real_T *) ssGetOutputPortRealSignal(S, 2);
@@ -1046,7 +1072,7 @@ static void mdlOutputs(SimStruct *S, int_T tid)
     const real_T *f6 = (const real_T *) mxGetData(PARAM_DEF24(S));
     const uint32_T *Port = (const uint32_T *) mxGetData(PARAM_DEF25(S));
     
-    rpi_sfun_teensyshot_Outputs_wrapper(u1, u2, u3, u4, u5, u6, y1, y2, y3, y4, y5, y6, rpi_Ts, p_width0, P1, p_width1, I1, p_width2, D1, p_width3, f1, p_width4, P2, p_width5, I2, p_width6, D2, p_width7, f2, p_width8, P3, p_width9, I3, p_width10, D3, p_width11, f3, p_width12, P4, p_width13, I4, p_width14, D4, p_width15, f4, p_width16, P5, p_width17, I5, p_width18, D5, p_width19, f5, p_width20, P6, p_width21, I6, p_width22, D6, p_width23, f6, p_width24, Port, p_width25);
+    rpi_sfun_teensyshot_Outputs_wrapper(u1, u2, u3, u4, u5, u6, en, y1, y2, y3, y4, y5, y6, rpi_Ts, p_width0, P1, p_width1, I1, p_width2, D1, p_width3, f1, p_width4, P2, p_width5, I2, p_width6, D2, p_width7, f2, p_width8, P3, p_width9, I3, p_width10, D3, p_width11, f3, p_width12, P4, p_width13, I4, p_width14, D4, p_width15, f4, p_width16, P5, p_width17, I5, p_width18, D5, p_width19, f5, p_width20, P6, p_width21, I6, p_width22, D6, p_width23, f6, p_width24, Port, p_width25);
 
 }
 
