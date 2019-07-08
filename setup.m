@@ -125,7 +125,7 @@ if ispc
     disp( '  > Save the private key passwordless in the current directory as ''private_key''.' );
     disp( '  > Exit the key generator.' );
     pause( 1 );
-    command = 'puttygen';
+    command = './puttygen';
     [ ~, ~ ] = system( command );
     [ ~, out ] = system( 'dir' );
     if strfind( out, 'public_key' ) 
