@@ -6,3 +6,4 @@ slprj/
 *ert_rtw/
 *.autosave
 rpit/ert_rpi.tmf
+rpit/rpi_callback_handler.m
