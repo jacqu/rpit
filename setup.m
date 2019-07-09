@@ -297,18 +297,19 @@ else
     end
     target_is_rpi = 0;
   else
-    disp( '  > Distant target is a RPI.' );
     command = sprintf( '%s pi@%s cat /proc/device-tree/model', ssh_command, piip );
     [ ~, out ] = system( command );
+    disp( ['  > Distant target is a ', out, '.'] );
     if  contains( out, 'Raspberry Pi 3' )
-      disp( '  > Distant target is a RPI 3.' );
+      disp( '  > Optimizing compiler flags for a RPI 3.' );
       copyfile('../res/rpi_callback_handler_arm_pi3.m','../rpit/rpi_callback_handler.m');
       copyfile('../res/ert_rpi_2014a_arm_pi3.tmf','../rpit/ert_rpi.tmf');
     elseif contains( out, 'Raspberry Pi 4' )
-      disp( '  > Distant target is a RPI 4: great!' );
+      disp( '  > Optimizing compiler flags for a RPI 4.' );
       copyfile('../res/rpi_callback_handler_arm_pi4.m','../rpit/rpi_callback_handler.m');
       copyfile('../res/ert_rpi_2014a_arm_pi4.tmf','../rpit/ert_rpi.tmf');
     else
+      disp( '  > Optimizing compiler flags for a RPI 1 and 2.' );
       copyfile('../res/rpi_callback_handler_arm.m','../rpit/rpi_callback_handler.m');
       copyfile('../res/ert_rpi_2014a_arm.tmf','../rpit/ert_rpi.tmf');
     end
