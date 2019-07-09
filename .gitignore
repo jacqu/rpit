@@ -4,5 +4,5 @@
 *.asv
 slprj/
 *ert_rtw/
-ert_rpi.tmf
 *.autosave
+rpit/ert_rpi.tmf
