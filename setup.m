@@ -426,37 +426,13 @@ if ( target_is_rpi )
   command = sprintf( '%s pi@%s "sudo cat /etc/modules"', ssh_command, piip );
   [ ~, out ] = system( command );
   if strfind( out, 'i2c-dev' )
-    if strfind( out, 'i2c-bcm270' )
-      disp( '  > /etc/modules already up to date.' );
-    else
-      disp( '  > Adding i2c-bcm2708 to /etc/modules.' );
-      command = sprintf( '%s pi@%s "sudo bash -c ''echo i2c-bcm2708 >> /etc/modules''"', ssh_command, piip );
-      [ ~, ~ ] = system( command );
-    end
+    disp( '  > /etc/modules already up to date.' );
   else
-     disp( '  > Adding i2c-dev to /etc/modules.' );
-     command = sprintf( '%s pi@%s "sudo bash -c ''echo i2c-dev >> /etc/modules''"', ssh_command, piip );
-     [ ~, ~ ] = system( command );
+   disp( '  > Adding i2c-dev to /etc/modules.' );
+   command = sprintf( '%s pi@%s "sudo bash -c ''echo i2c-dev >> /etc/modules''"', ssh_command, piip );
+   [ ~, ~ ] = system( command );
   end
-% Not needed anymore on recent systems
-%   disp( '  > Verifying /etc/modprobe.d/raspi-blacklist.conf.' );
-%   command = sprintf( '%s pi@%s "sudo cat /etc/modprobe.d/raspi-blacklist.conf"', ssh_command, piip );
-%   [ status, out ] = system( command );
-%   if strfind( out, '#blacklist i2c-bcm2708' );
-%     disp( '  > /etc/modprobe.d/raspi-blacklist.conf already up to date.' );
-%   else
-%     disp( '  > Commenting out ''blacklist i2c-bcm2708'' in  /etc/modprobe.d/raspi-blacklist.conf.' );
-%     command = sprintf( '%s pi@%s "sudo sed ''s/blacklist i2c-bcm2708/#blacklist i2c-bcm2708/'' < /etc/modprobe.d/raspi-blacklist.conf > ~/raspi-blacklist.conf"', ssh_command, piip );
-%     [ status, out ] = system( command );
-%     command = sprintf( '%s pi@%s "sudo mv ~/raspi-blacklist.conf /etc/modprobe.d/"', ssh_command, piip );
-%     [ status, out ] = system( command );
-%   end
   disp( '  > Configuring i2c at 400kHz.' );
-%   command = sprintf( '%s pi@%s "sudo bash -c ''echo options i2c_bcm2708 baudrate=400000 > /etc/modprobe.d/i2c.conf''"', ssh_command, piip );
-%   [ status, out ] = system( command );
-%   command = sprintf( '%s pi@%s "sudo rmmod i2c_bcm2708;sudo modprobe i2c_bcm2708;sudo modprobe i2c_dev"', ssh_command, piip );
-%   [ status, out ] = system( command );
-  disp( '  > Verifying /boot/config.txt.' );
   command = sprintf( '%s pi@%s "sudo cat /boot/config.txt"', ssh_command, piip );
   [ ~, out ] = system( command );
   if strfind( out, 'dtparam=i2c_arm_baudrate=400000' )
@@ -466,6 +442,7 @@ if ( target_is_rpi )
     command = sprintf( '%s pi@%s "sudo bash -c ''echo dtparam=i2c_arm_baudrate=400000 >> /boot/config.txt''"', ssh_command, piip );
     [ ~, ~ ] = system( command );
   end
+  disp( '  > NOTE: if needed, use raspi-config to enable i2c.' );
   disp( '  > Adding user pi to the i2c group.' );
   command = sprintf( '%s pi@%s "sudo usermod -a -G i2c pi"', ssh_command, piip );
   [ ~, ~ ] = system( command );
