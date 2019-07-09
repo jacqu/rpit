@@ -284,18 +284,22 @@ else
       if  ~contains( out, 'x86' ) 
         disp( '  > Warning: unrecognized platform. Defaulting to ARM setup.' );
         copyfile('../res/rpi_callback_handler_arm.m','../rpit/rpi_callback_handler.m');
+        copyfile('../res/ert_rpi_2014a_arm.tmf','../rpit/ert_rpi.tmf');
       else
         disp( '  > Updating the TMF for x86 gcc optimizations.' );
         copyfile('../res/rpi_callback_handler_x86.m','../rpit/rpi_callback_handler.m');
+        copyfile('../res/ert_rpi_2014a_x86.tmf','../rpit/ert_rpi.tmf');
       end
     else
       disp( '  > Updating the TMF for ARM gcc optimizations.' );
       copyfile('../res/rpi_callback_handler_arm.m','../rpit/rpi_callback_handler.m');
+      copyfile('../res/ert_rpi_2014a_arm.tmf','../rpit/ert_rpi.tmf');
     end
     target_is_rpi = 0;
   else
     disp( '  > Distant target is a RPI.' );
     copyfile('../res/rpi_callback_handler_arm.m','../rpit/rpi_callback_handler.m');
+    copyfile('../res/ert_rpi_2014a_arm.tmf','../rpit/ert_rpi.tmf');
     target_is_rpi = 1;
   end
 end
@@ -421,16 +425,6 @@ if ( target_is_rpi )
     disp( '  > Installation of i2c utilities returned an error.' );
     disp( '  > Is your RPI connected to internet ?' );
     disp( '  > Please install it manually: sudo apt-get install i2c-tools libi2c-dev' );
-  end
-  disp( '  > Verifying /etc/modules.' );
-  command = sprintf( '%s pi@%s "sudo cat /etc/modules"', ssh_command, piip );
-  [ ~, out ] = system( command );
-  if strfind( out, 'i2c-dev' )
-    disp( '  > /etc/modules already up to date.' );
-  else
-   disp( '  > Adding i2c-dev to /etc/modules.' );
-   command = sprintf( '%s pi@%s "sudo bash -c ''echo i2c-dev >> /etc/modules''"', ssh_command, piip );
-   [ ~, ~ ] = system( command );
   end
   disp( '  > Configuring i2c at 400kHz.' );
   command = sprintf( '%s pi@%s "sudo cat /boot/config.txt"', ssh_command, piip );
