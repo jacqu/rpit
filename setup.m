@@ -317,6 +317,14 @@ else
   end
 end
 
+% Synchronizing timezones
+
+disp( '  > Synchronizing timezones.' );
+time_data = datetime('now','TimeZone','local','Format','d-MMM-y HH:mm:ss Z');
+local_tz = time_data.TimeZone;
+command = sprintf( '%s pi@%s "sudo timedatectl set-timezone %s"', ssh_command, piip, local_tz );
+[ ~, ~ ] = system( command );
+
 % Copy MATLAB files to the target
 
 disp( '  > Copying MATLAB files (may take a while).' );
