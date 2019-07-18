@@ -73,12 +73,12 @@ path(pathdef);
 
 % Check for compatible matlab version
 mvernum = version( '-release' );
-if strcmp( mvernum, '2018a' ) || strcmp( mvernum, '2018b' )
+if strcmp( mvernum, '2018b' )
   disp( '  > Supported Matlab version detected.' );
  
 else
   disp( '  > This release of Matlab is currently not supported.' );
-  disp( '  > Supported releases: 2018a, 2018b.' );
+  disp( '  > Supported releases: 2018b.' );
   return;
 end
 
