@@ -193,7 +193,7 @@ SYSLIBS             =
 CC                  = gcc
 CPP                 = g++
 LD                  = gcc
-DEFAULT_OPT_OPTS    = -Ofast -mfpu=vfp -mfloat-abi=hard -march=armv6zk -mtune=arm1176jzf-s
+DEFAULT_OPT_OPTS    = -O2 -mfpu=vfp -mfloat-abi=hard -march=native -mtune=native
 LDFLAGS             = 
 SHRLIBLDFLAGS       = -shared -Wl,--no-undefined -Wl,--version-script,
 ANSI_OPTS           = -std=gnu99 -pedantic
