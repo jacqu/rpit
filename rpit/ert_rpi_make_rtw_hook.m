@@ -216,7 +216,7 @@ function ert_rpi_make_rtw_hook(hookMethod,modelName,rtwroot,templateMakefile,bui
         [ status, out ] = system( command );
 
         % Check if the model is started
-        pause(1);
+        pause(2);
         command = sprintf( '%s pi@%s screen -list', ssh_command, piip );
         [ status, out ] = system( command );
         if strfind( out, 'Simulink_external' );
