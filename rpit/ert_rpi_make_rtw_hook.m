@@ -75,15 +75,9 @@ function ert_rpi_make_rtw_hook(hookMethod,modelName,rtwroot,templateMakefile,bui
     % Valid arguments at this stage are hookMethod, modelName, and buildArgs.
     
     % Check if we are in the right directory
-    modelPath1 = which( [ modelName '.mdl' ] );
-    modelPath2 = which( [ modelName '.slx' ] );
-    if ( strcmp( modelPath1, '' ) && strcmp( modelPath2, '' ) )
-      if ispc
-        system( 'rmdir slprj /s /q' );
-      end
-      if isunix
-        system( 'rm -r slprj' );
-      end
+    modelPath = which( modelName );
+    if ~strcmp( fileparts( modelPath ), pwd )
+      % Wrong directory, aborting
       disp( '### Please change current directory to the one containing the model.' );
       error( '### Wrong current directory. Aborting procedure.' );
     end
@@ -125,7 +119,7 @@ function ert_rpi_make_rtw_hook(hookMethod,modelName,rtwroot,templateMakefile,bui
     
     rtwdir = pwd;
     fpath = which( mfilename() );
-    [ rpitdir,  filename ] = fileparts( fpath );
+    [ rpitdir,  ~ ] = fileparts( fpath );
     cd( rpitdir );cd  ..;
     rpidir = pwd;
     rpidir = [ '"' rpidir '"' ];
@@ -167,64 +161,64 @@ function ert_rpi_make_rtw_hook(hookMethod,modelName,rtwroot,templateMakefile,bui
 
     % Check if the target responds
     command = sprintf('%s pi@%s pwd', ssh_command, piip );
-    [ status, out ] = system( command );
-    if strfind( out, '/home/pi' )
+    [ ~, out ] = system( command );
+    if contains( out, '/home/pi' )
 
       % Check if the target is a RPI. If yes, synchronize the clocks.
       command = sprintf( '%s pi@%s sudo cat /etc/os-release', ssh_command, piip );
-      [ status, out ] = system( command );
+      [ ~, out ] = system( command );
       if  ~contains( out, 'raspbian' ) 
         disp( '### Target is not a Raspberry Pi.' );
       else
         disp( '### Target is a Raspberry Pi.' );
         
         % Synchronize target clock with the host clock
-        disp(['### Synchronizing host and target clocks.']);
+        disp( '### Synchronizing host and target clocks.' );
         curr_time = datestr( now, 'mmmm dd yyyy HH:MM:SS.FFF AM' );
         command = sprintf( '%s pi@%s sudo date --set=''%s''', ssh_command, piip, curr_time );
-        [ status, out ] = system( command );
+        [ ~, ~ ] = system( command );
       end
       
       % Kill any pending "rpi" process
-      disp(['### Kill any pending rtw process.']);
+      disp( '### Kill any pending rtw process.' );
       command = sprintf( '%s pi@%s killall -9 rpi', ssh_command, piip );
-      [ status, out ] = system( command );
+      [ ~, ~ ] = system( command );
 
       % Send the model directory to the target
       disp(['### Uploading ', modelName, ' to the target.']);
       cd ..;
       command = sprintf('%s -r -p * pi@%s:./RTW', scp_command, piip );
-      [ status, out ] = system( command );
+      [ ~, ~ ] = system( command );
       cd( rtwdir );
 
       % Compile the model on the target
       disp(['### Compiling ', modelName, ' on the target (may take awhile).']);
       command = sprintf('%s pi@%s "cd ~/RTW/%s_ert_rtw;make -j -f %s.mk"', ssh_command, piip, modelName, modelName );
-      [ status, out ] = system( command );
+      [ ~, out ] = system( command );
       disp( out );
-      if strfind( out, '### Created executable' )
+      if contains( out, '### Created executable' )
 
-        disp(['### Compilation successful. Starting model.']);
+        disp( '### Compilation successful. Starting model.' );
 
         % Rename the executable
         command = sprintf( '%s pi@%s mv RTW/%s RTW/rpi', ssh_command, piip, modelName );
-        [ status, out ] = system( command );
+        [ ~, ~ ] = system( command );
 
         % Start the executable within screen
         command = sprintf( '%s pi@%s screen -h 32 -dmS Simulink_external RTW/rpi -tf Inf -w', ssh_command, piip );
-        [ status, out ] = system( command );
+        [ ~, ~ ] = system( command );
 
         % Check if the model is started: check if socket is open
         rpi_start_cnt = 0;
         while 1
           pause(1);
           command = sprintf( '%s pi@%s sudo netstat -lntup', ssh_command, piip );
-          [ status, out ] = system( command );
+          [ ~, out ] = system( command );
           if contains( out, '17725' ) && contains( out, 'rpi' )
             disp('### Real-time code successfully started on the target.');
             % Renice the rpi process
             command = sprintf( '%s pi@%s "sudo renice -5 -p `ps -eo pid,comm | awk ''/rpi$/  {print $1; exit}''`"', ssh_command, piip );
-            [ status, out ] = system( command );
+            [ ~, ~ ] = system( command );
             % Autoatically start external mode
             set_param(gcs, 'SimulationMode', 'external');
             set_param(gcs, 'SimulationCommand', 'connect');
@@ -266,9 +260,9 @@ function ert_rpi_make_rtw_hook(hookMethod,modelName,rtwroot,templateMakefile,bui
 %   optimized_floating_point=1
 function option = LocalParseArgList(args)
   
-  if findstr(args,'optimized_fixed_point=1')
+  if contains(args,'optimized_fixed_point=1')
     option = 'optimized_fixed_point';
-  elseif findstr(args,'optimized_floating_point=1')
+  elseif contains(args,'optimized_floating_point=1')
     option = 'optimized_floating_point';
   else
     option = 'none';
