@@ -77,7 +77,7 @@ function ert_rpi_make_rtw_hook(hookMethod,modelName,rtwroot,templateMakefile,bui
     % Check if we are in the right directory
     modelPath1 = which( [ modelName '.mdl' ] );
     modelPath2 = which( [ modelName '.slx' ] );
-    if ( strcmp( modelPath1, '' ) && strcmp( modelPath2, '' ) );
+    if ( strcmp( modelPath1, '' ) && strcmp( modelPath2, '' ) )
       if ispc
         system( 'rmdir slprj /s /q' );
       end
@@ -138,8 +138,7 @@ function ert_rpi_make_rtw_hook(hookMethod,modelName,rtwroot,templateMakefile,bui
     size_quotes_in_piip = size( quotes_in_piip );
     size_quotes_in_piip = size_quotes_in_piip( 2 );
     if ( size_quotes_in_piip ~= 2 )
-      disp('### Error: target IP address mispelled. Try put quotes around.');
-      error('### Aborting procedure.');
+      error('### Error: target IP address mispelled. Try put quotes around.');
     else
       piip = piip( quotes_in_piip(1)+1:quotes_in_piip(2)-1 );
       disp(['### Target IP address: ' piip]);
@@ -169,12 +168,12 @@ function ert_rpi_make_rtw_hook(hookMethod,modelName,rtwroot,templateMakefile,bui
     % Check if the target responds
     command = sprintf('%s pi@%s pwd', ssh_command, piip );
     [ status, out ] = system( command );
-    if strfind( out, '/home/pi' );
+    if strfind( out, '/home/pi' )
 
       % Check if the target is a RPI. If yes, synchronize the clocks.
       command = sprintf( '%s pi@%s sudo cat /etc/os-release', ssh_command, piip );
       [ status, out ] = system( command );
-      if isempty( strfind( out, 'raspbian' ) );
+      if  ~contains( out, 'raspbian' ) 
         disp( '### Target is not a Raspberry Pi.' );
       else
         disp( '### Target is a Raspberry Pi.' );
@@ -203,7 +202,7 @@ function ert_rpi_make_rtw_hook(hookMethod,modelName,rtwroot,templateMakefile,bui
       command = sprintf('%s pi@%s "cd ~/RTW/%s_ert_rtw;make -j -f %s.mk"', ssh_command, piip, modelName, modelName );
       [ status, out ] = system( command );
       disp( out );
-      if strfind( out, '### Created executable' );
+      if strfind( out, '### Created executable' )
 
         disp(['### Compilation successful. Starting model.']);
 
@@ -215,11 +214,13 @@ function ert_rpi_make_rtw_hook(hookMethod,modelName,rtwroot,templateMakefile,bui
         command = sprintf( '%s pi@%s screen -h 32 -dmS Simulink_external RTW/rpi -tf Inf -w', ssh_command, piip );
         [ status, out ] = system( command );
 
-        % Check if the model is started
-        pause(2);
-        command = sprintf( '%s pi@%s screen -list', ssh_command, piip );
-        [ status, out ] = system( command );
-        if strfind( out, 'Simulink_external' );
+        % Check if the model is started: check if socket is open
+        rpi_start_cnt = 0;
+        while 1
+          pause(1);
+          command = sprintf( '%s pi@%s sudo netstat -lntup', ssh_command, piip );
+          [ status, out ] = system( command );
+          if contains( out, '17725' ) && contains( out, 'rpi' )
             disp('### Real-time code successfully started on the target.');
             % Renice the rpi process
             command = sprintf( '%s pi@%s "sudo renice -5 -p `ps -eo pid,comm | awk ''/rpi$/  {print $1; exit}''`"', ssh_command, piip );
@@ -229,38 +230,22 @@ function ert_rpi_make_rtw_hook(hookMethod,modelName,rtwroot,templateMakefile,bui
             set_param(gcs, 'SimulationCommand', 'connect');
             set_param(gcs, 'SimulationCommand', 'start');
             disp('### Simulink started and running in external mode.');
-        else
-            % Give some more time
-            pause(2);
-            command = sprintf( '%s pi@%s screen -list', ssh_command, piip );
-            [ status, out ] = system( command );
-            if strfind( out, 'Simulink_external' );
-              disp('### Target is laggy.');
-              disp('### Real-time code successfully started on the target.');
-              % Renice the rpi process
-              command = sprintf( '%s pi@%s "sudo renice -5 -p `ps -eo pid,comm | awk ''/rpi$/  {print $1; exit}''`"', ssh_command, piip );
-              [ status, out ] = system( command );
-              % Autoatically start external mode
-              set_param(gcs, 'SimulationMode', 'external');
-              set_param(gcs, 'SimulationCommand', 'connect');
-              set_param(gcs, 'SimulationCommand', 'start');
-              disp('### Simulink started and running in external mode.');
-            else
-              disp('### Error while starting remote mex file: did you install ''screen'' on the target ?');
-              error('### Aborting procedure.');
-            end
+            break;
+          end
+          rpi_start_cnt = rpi_start_cnt + 1;
+          if rpi_start_cnt == 10
+            error('### Target program did not start: did you install ''screen'' on the target ?');
+          end 
         end
       else
-        disp(['### Compilation failed. Check the errors and tweak file ''ert_rpi.tmf''']);
-        error('### Aborting procedure.');
+        error('### Compilation failed. Check the errors and tweak file ''ert_rpi.tmf''');
       end
     else
-      disp('### Error: target unreachable.');
       disp('    Did you enter the correct address in Real-Time Workshop->Interface->Mex file arguments ?');
       disp('    Example : ''192.168.1.50'' with the single quotes around.');
       disp('    Did you configure a passworless putty session into the target ?');
       disp('    See the comment at the end of ''setup.m''.');
-      error('### Aborting procedure.');
+      error('### Error: target unreachable.');
     end
     
    case 'exit'
