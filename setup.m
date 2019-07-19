@@ -1,37 +1,44 @@
 % Run this script to install the RPI target
-% Author : jacques.gangloff@unistra.fr, June 18th 2014
+% Author : jacques.gangloff@unistra.fr, July 2019
 
 clear;
 clc;
 
+global rpitdir;
 rpitdir = pwd;
 
-disp( '  > Configuration of RPIt.' );
-disp( '  > NOTES:' );
-disp( '  >  - In what follows, ''target'' means the distant Linux system which you want' );
-disp( '  >    to prepare for using with RPIt. The system type is automatically detected.' );
-disp( '  >  - MAKE SURE THE DISTANT TARGET IS CONNECTED TO THE INTERNET (at least the first time your run setup).' );
-disp( '  >  - If the target is a Raspberry Pi, the setup should go without a problem.' );
-disp( '  >    In this case, some specific configurations will be done.' );
-disp( '  >  - If the target is a Debian-based distribution (Debian, Ubuntu, Mint), ' );
-disp( '  >    you should first add a user ''pi'' to the system and add it to the' );
-disp( '  >    passwordless sudoers (sudo without password prompt with user ''pi'').' );
-disp( '  >    To do so, create an account ''pi'' with ''sudo adduser pi''' );
-disp( '  >    and issue the following command as root: ' );
-disp( '  >    ''echo "pi ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/00-RPIt;chmod 0440 /etc/sudoers.d/00-RPIt''' );
-disp( '  >    You should also install some basic additional packages by running:' );
-disp( '  >    ''sudo apt-get install build-essential ssh''' );
-disp( '  >  - If the target is not Debian-based, you cannot use it with RPIt.' );
-cont_quest = input( '  > Continue with the setup (''y'' to continue or ''n'' to abort) ? ', 's' );
+disp( 'C O N F I G U R A T I O N  O F  R P I t.' );
+disp( '========================================' );
+disp( ' ' );
 
+rpit_message({...
+'IMPORTANT NOTES:';...
+'  - In what follows, ''target'' means the distant Linux system you want';...
+'    to prepare for RPIt. The system type is automatically detected.';...
+'  - If the target is a Raspberry Pi, the setup should go without problem.';...
+'    In this case, some specific configurations will be done.';...
+'  - If the target is a Debian-based distribution (Debian, Ubuntu),';...
+'    you should first add a user ''pi'' to the system and add it to the';...
+'    passwordless sudoers (sudo without password prompt with user ''pi'').';...
+'    To do so, create an account ''pi'' with ''sudo adduser pi''';...
+'    and issue the following command as root: ';...
+'    ''echo "pi ALL=(ALL) NOPASSWD:ALL" >';...
+'      /etc/sudoers.d/00-RPIt;chmod 0440 /etc/sudoers.d/00-RPIt''';...
+'    You should also install some basic additional packages by running:';...
+'    ''sudo apt-get install build-essential ssh''';...
+'  - If the target is not Debian-based, you cannot use it with RPIt.';});
+
+cont_quest = input( '  > Continue with the setup (''y'' to continue or ''n'' to abort) ? ', 's' );
 if strcmp( cont_quest, 'y' )
   disp( '  > Starting RPIt setup.' );
 else
   if strcmp( cont_quest, 'n' )
     disp( '  > Aborting RPIt setup.' );
+    clear;
     return;
   else
-    disp( '  > Unrecognized answer. Aborting RPIt setup.' );
+    rpit_error( 'Unrecognized answer. Aborting RPIt setup.' );
+    clear;
     return;
   end
 end
@@ -45,19 +52,18 @@ if isempty(up)                      % Check for an empty userpath
 end
 up = regexprep(up,';','');          % Remove semicolon at end of userpath
 status = savepath( [ up filesep 'pathdef.m' ] );
-if status ~= 0
-  disp( '  > Could not save the Matlab search path for future sessions.' );
-  cd( rpitdir );
+if status
+  rpit_error( 'Could not save the Matlab search path for future sessions.' );
   clear;
   return;
 else
   disp( '  > Saving Matlab search path in user path for future sessions.' );
   if exist( [ up filesep 'startup.m' ], 'file' ) == 2
     startup_content = fileread( [ up filesep 'startup.m' ] );
-    if strfind( startup_content, 'path(pathdef);' )
+    if contains( startup_content, 'path(pathdef);' )
       disp( '  > ''startup.m'' already has a ''path(pathdef);'' command. Skipping.' );
     else
-      disp( '  > WARNING: ''startup.m'' found in your userpath. Please add manually ''path(pathdef);'' to ''startup.m''.' );
+      rpit_warning( '''startup.m'' found in your userpath. Please add manually ''path(pathdef);'' to ''startup.m''.' );
     end
   else
     fid = fopen( [ up filesep 'startup.m' ], 'wt' );
@@ -65,7 +71,7 @@ else
       fprintf( fid, 'path(pathdef);\n' );
       fclose(fid);
     else
-       disp( '  > WARNING: unable to create ''startup.m''. Please add manually ''path(pathdef);'' to ''startup.m''.' );
+       rpit_warning( 'Unable to create ''startup.m''. Please add manually ''path(pathdef);'' to ''startup.m''.' );
     end
   end
 end
@@ -75,10 +81,10 @@ path(pathdef);
 mvernum = version( '-release' );
 if strcmp( mvernum, '2018b' )
   disp( '  > Supported Matlab version detected.' );
- 
 else
-  disp( '  > This release of Matlab is currently not supported.' );
   disp( '  > Supported releases: 2018b.' );
+  rpit_error( 'This release of Matlab is currently not supported.' );
+  clear;
   return;
 end
 
@@ -88,20 +94,20 @@ mex -setup
 
 disp( '  > Compiling S-functions mex files (you can safely ignore warnings).' );
 cd( [ rpitdir '/blocks' ] );
-mex rpi_sfun_time.c rpi_sfun_time_wrapper.c
-mex rpi_sfun_ev3.c rpi_sfun_ev3_wrapper.c
-mex rpi_sfun_imu.c rpi_sfun_imu_wrapper.c
-mex rpi_sfun_mpu9150.c rpi_sfun_mpu9150_wrapper.c
-mex rpi_sfun_nxt.c rpi_sfun_nxt_wrapper.c
-mex rpi_sfun_cpu.c rpi_sfun_cpu_wrapper.c 
-mex rpi_sfun_ev314.c rpi_sfun_ev314_wrapper.c
-mex rpi_sfun_polaris.c rpi_sfun_polaris_wrapper.c
-mex rpi_sfun_iosocket.c rpi_sfun_iosocket_wrapper.c
-mex rpi_sfun_dxl.c rpi_sfun_dxl_wrapper.c
-mex rpi_sfun_js.c rpi_sfun_js_wrapper.c
-mex rpi_sfun_trex.c rpi_sfun_trex_wrapper.c
-mex rpi_sfun_rgpio.c rpi_sfun_rgpio_wrapper.c
-mex rpi_sfun_teensyshot.c rpi_sfun_teensyshot_wrapper.c
+mex rpi_sfun_time.c rpi_sfun_time_wrapper.c;
+mex rpi_sfun_ev3.c rpi_sfun_ev3_wrapper.c;
+mex rpi_sfun_imu.c rpi_sfun_imu_wrapper.c;
+mex rpi_sfun_mpu9150.c rpi_sfun_mpu9150_wrapper.c;
+mex rpi_sfun_nxt.c rpi_sfun_nxt_wrapper.c;
+mex rpi_sfun_cpu.c rpi_sfun_cpu_wrapper.c;
+mex rpi_sfun_ev314.c rpi_sfun_ev314_wrapper.c;
+mex rpi_sfun_polaris.c rpi_sfun_polaris_wrapper.c;
+mex rpi_sfun_iosocket.c rpi_sfun_iosocket_wrapper.c;
+mex rpi_sfun_dxl.c rpi_sfun_dxl_wrapper.c;
+mex rpi_sfun_js.c rpi_sfun_js_wrapper.c;
+mex rpi_sfun_trex.c rpi_sfun_trex_wrapper.c;
+mex rpi_sfun_rgpio.c rpi_sfun_rgpio_wrapper.c;
+mex rpi_sfun_teensyshot.c rpi_sfun_teensyshot_wrapper.c;
 
 %
 % PC platform specific configuration
@@ -115,8 +121,8 @@ if ispc
 
   while 1
     [ ~, out ] = system( 'dir' );
-    if strfind( out, 'public_key' )
-      if strfind( out, 'private_key.ppk' )
+    if contains( out, 'public_key' )
+      if contains( out, 'private_key.ppk' )
         disp( '  > ''public_key'' and ''private_key.ppk'' already generated. Skipping.' );
         break;
       end
@@ -128,8 +134,8 @@ if ispc
     command = './puttygen';
     [ ~, ~ ] = system( command );
     [ ~, out ] = system( 'dir' );
-    if strfind( out, 'public_key' ) 
-      if strfind( out, 'private_key.ppk' )
+    if contains( out, 'public_key' ) 
+      if contains( out, 'private_key.ppk' )
         disp( '  > ''public_key'' and ''private_key.ppk'' successfully generated.' );
         break;
       else
@@ -143,18 +149,27 @@ if ispc
   end
 
   piip = input( '  > Enter IP address of the target : ', 's' );
-  pipwd = input( '  > Enter password of the ''pi'' account on the target : ', 's' );
-
-  % Clear command window and history to hide password
-
-  clc;
-  com.mathworks.mlservices.MLCommandHistoryServices.removeAll;
+  disp( '  > Enter password of the ''pi'' account on the target: ' );
+  while 1
+    pipwd = passwordUI();
+    if ~isempty(pipwd)
+      break;
+    else
+      disp( '  > Please enter a non-empty password: ' );
+    end
+  end
 
   % Check if the target is responding
 
-  disp( '  > Answer ''y'' if asked for storing the key in the cache in the cmd window.' );
-  command = sprintf( 'start /WAIT plink -pw %s pi@%s pwd', pipwd, piip );
-  [ ~, ~ ] = system( command );
+  %disp( '  > Answer ''y'' if asked for storing the key in the cache in the cmd window.' );
+  %command = sprintf( 'start /WAIT plink -pw %s pi@%s pwd', pipwd, piip );
+  command = sprintf( 'plink -pw -batch %s pi@%s pwd', pipwd, piip );
+  [ status, ~ ] = system( command );
+  if status
+    rpit_error( 'Unable to connect to the target passwordlessly.' );
+    clear;
+    return;
+  end
   
   % Create .ssh folder and define its permission
 
@@ -173,7 +188,7 @@ if ispc
   [ ~, out ] = system( command );
   command = sprintf( 'plink -pw %s pi@%s "ssh-keygen -i -f public_key"', pipwd, piip );
   [ ~, public_key ] = system( command );
-  if strfind( out, public_key )
+  if contains( out, public_key )
     disp( '  > Public key already known by the target.' );
   else
     disp( '  > Adding publig key to the authorized keys list.' );
@@ -189,8 +204,8 @@ if ispc
   
   disp( '  > Checking the passworless connection [CRTL-C if hanging]...' );
   command = sprintf( 'plink -i private_key.ppk pi@%s pwd', piip );
-  [ status, out ] = system( command );
-  if strfind( out, '/home/pi' )
+  [ ~, out ] = system( command );
+  if contains( out, '/home/pi' )
     disp( '  > Passwordless configuration successfully operating.' );
   else
     disp( '  > Unable to connect to the target passwordlessly. Try to configure manually:' );
@@ -198,7 +213,7 @@ if ispc
     disp( '   - on the host: save public key in putty.exe folder and name it ''public_key''.' );
     disp( '   - on the host: save private key without passphrase in putty.exe folder and name it ''private_key.ppk''.' );
     disp( '   - on the target: import public key and run ''ssh-keygen -i -f public_key >> ~/.ssh/authorized_keys''' );
-    cd( rpitdir );
+    rpit_error( 'Unable to connect to the target passwordlessly.' );
     clear;
     return;
   end
@@ -222,10 +237,9 @@ if isunix
   
   [ ~, out ] = system( 'ls' );
   if  ~contains( out, 'key' )  ||  ~contains( out, 'key.pub' ) 
-    [ status, out ] = system( 'LD_LIBRARY_PATH=;ssh-keygen -t rsa -N '''' -f key' );
+    [ status, ~ ] = system( 'LD_LIBRARY_PATH=;ssh-keygen -t rsa -N '''' -f key' );
     if ( status )
-      disp( '  > Unable to generate private and public key. Check your ssh installation.' );
-      cd( rpitdir );
+      rpit_error( 'Unable to generate private and public key. Check your ssh installation.' );
       clear;
       return;
     end
@@ -246,14 +260,14 @@ if isunix
   
   disp( '  > Checking passwordless ssh connection [CRTL-C if hanging]...' );
   command = sprintf( 'LD_LIBRARY_PATH=;ssh  -i key pi@%s "pwd"', piip );
-  [ status, out ] = system( command );
-  if strfind( out, '/home/pi' )
+  [ ~, out ] = system( command );
+  if contains( out, '/home/pi' )
     disp( '  > Passwordless connection to the target established.' );
   else
     disp( '  > Unable to connect to the target. Troubleshout the cmd.' );
     disp( ['  > Command: ' command ] );
     disp( '  > And try setup again.' );
-    cd( rpitdir );
+    rpit_error( 'Unable to connect to the target.' );
     clear;
     return;
   end
@@ -268,10 +282,9 @@ end % End of UNIX configuration
 % Check if the target is a RPI
 
 command = sprintf( '%s pi@%s sudo cat /etc/os-release', ssh_command, piip );
-[ status, out ] = system( command );
-if  ~contains( out, 'debian' ) 
-  disp( '  > Distant target is not Debian-based. Aborting.' );
-  cd( rpitdir );
+[ ~, out ] = system( command );
+if  ~contains( out, 'debian' )
+  rpit_error( 'Distant target is not Debian-based. Aborting.' );
   clear;
   return;
 else
@@ -282,7 +295,7 @@ else
     [ ~, out ] = system( command );
     if  ~contains( out, 'arm' ) 
       if  ~contains( out, 'x86' ) 
-        disp( '  > Warning: unrecognized platform. Defaulting to ARM setup.' );
+        rpit_warning( 'Unrecognized platform. Defaulting to ARM setup.' );
         copyfile('../res/rpi_callback_handler_arm.m','../rpit/rpi_callback_handler.m');
         copyfile('../res/ert_rpi_2014a_arm.tmf','../rpit/ert_rpi.tmf');
       else
@@ -359,13 +372,25 @@ disp( '  > Uploading Polaris rom file.' );
 command = sprintf( '%s -r ../res/polaris.rom pi@%s:./RTW', scp_command, piip );
 [ ~, ~ ] = system( command );
 
+% Check internet access
+disp( '  > Checking internet access on the target.' );
+command = sprintf( '%s pi@%s wget -q --spider http://google.com', ssh_command, piip );
+[ status, ~ ] = system( command );
+if ( status )
+  rpit_error( 'Target is offline. Connect it to internet and rerun setup.' );
+  clear;
+  return;
+else
+  disp( '  > Target is online. Installing addtional packages' );
+end
+
 % Install some additional packages on the target
 
 disp( '  > Installing the ''screen'' utility on the target.' );
 command = sprintf( '%s pi@%s sudo apt-get -y install screen', ssh_command, piip );
 [ status, ~ ] = system( command );
 if ( status )
-  disp( '  > Installation of ''screen'' returned an error.' );
+  rpit_warning( 'Installation of ''screen'' returned an error.' );
   disp( '  > Is your target connected to internet ?' );
   disp( '  > Please install it manually: sudo apt-get install screen' );
 end
@@ -373,7 +398,7 @@ disp( '  > Installing the ''libusb-1.0-0-dev'' package on the target.' );
 command = sprintf( '%s pi@%s sudo apt-get -y install libusb-1.0-0-dev', ssh_command, piip );
 [ status, ~ ] = system( command );
 if ( status )
-  disp( '  > Installation of ''libusb-1.0-0-dev'' returned an error.' );
+  rpit_warning( 'Installation of ''libusb-1.0-0-dev'' returned an error.' );
   disp( '  > Is your target connected to internet ?' );
   disp( '  > Please install it manually: sudo apt-get install libusb-1.0-0-dev' );
 end
@@ -413,7 +438,7 @@ command = sprintf( '%s pi@%s "sudo chown root.root /etc/udev/rules.d/99-NXT.rule
 command = sprintf( '%s pi@%s "sudo chmod 644 /etc/udev/rules.d/99-NXT.rules"', ssh_command, piip );
 [ status, ~ ] = system( command );
 if ( status )
-  disp( '  > Creation of /etc/udev/rules.d/99-NXT.rules returned an error.' );
+  rpit_warning( 'Creation of /etc/udev/rules.d/99-NXT.rules returned an error.' );
   disp( '  > Please install this manually: ' );
   disp( command );
 end
@@ -430,7 +455,7 @@ command = sprintf( '%s pi@%s "sudo chown root.root /etc/udev/rules.d/99-dynamixe
 command = sprintf( '%s pi@%s "sudo chmod 644 /etc/udev/rules.d/99-dynamixelsdk-usb.rules"', ssh_command, piip );
 [ status, ~ ] = system( command );
 if ( status )
-  disp( '  > Creation of /etc/udev/rules.d/99-dynamixelsdk-usb.rules returned an error.' );
+  rpit_warning( 'Creation of /etc/udev/rules.d/99-dynamixelsdk-usb.rules returned an error.' );
   disp( '  > Please install this manually: ' );
   disp( command );
 end
@@ -443,14 +468,14 @@ if ( target_is_rpi )
   command = sprintf( '%s pi@%s sudo apt-get -y install i2c-tools libi2c-dev', ssh_command, piip );
   [ status, ~ ] = system( command );
   if ( status )
-    disp( '  > Installation of i2c utilities returned an error.' );
+    rpit_warning( 'Installation of i2c utilities returned an error.' );
     disp( '  > Is your RPI connected to internet ?' );
     disp( '  > Please install it manually: sudo apt-get install i2c-tools libi2c-dev' );
   end
   disp( '  > Configuring i2c at 400kHz.' );
   command = sprintf( '%s pi@%s "sudo cat /boot/config.txt"', ssh_command, piip );
   [ ~, out ] = system( command );
-  if strfind( out, 'dtparam=i2c_arm_baudrate=400000' )
+  if contains( out, 'dtparam=i2c_arm_baudrate=400000' )
     disp( '  > /boot/config.txt already up to date.' );
   else
     disp( '  > Adding ''dtparam=i2c_arm_baudrate=400000'' at the end of  /boot/config.txt.' );
@@ -472,7 +497,7 @@ end
 disp( '  > Checking cpu governor configuration.' );
 command = sprintf( '%s pi@%s "sudo cat /etc/rc.local"', ssh_command, piip );
 [ status, out ] = system( command );
-if strfind( out, '# Change governor to performance' )
+if contains( out, '# Change governor to performance' )
   disp( '  > rc.local already set cpu governor to performance mode.' );
 else
   disp( '  > Force cpu governor to performance mode in rc.local.' );
@@ -491,3 +516,18 @@ disp( '  > NOTE: please reboot your target for changes to take effect.' );
 
 cd( rpitdir );
 clear;
+
+function rpit_error( msg )
+  global rpitdir;
+  
+  cd( rpitdir );
+  waitfor(errordlg( msg, 'RPIt error' ));
+end
+
+function rpit_warning( msg )
+  waitfor(warndlg( msg, 'RPIt warning' ));
+end
+
+function rpit_message( msg )
+  waitfor(msgbox( msg, 'RPIt message' ));
+end
