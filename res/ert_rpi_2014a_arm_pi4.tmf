@@ -193,7 +193,7 @@ SYSLIBS             =
 CC                  = gcc
 CPP                 = g++
 LD                  = gcc
-DEFAULT_OPT_OPTS    = -O2 -mcpu=native -march=native -mtune=native -mfpu=neon -mfloat-abi=hard
+DEFAULT_OPT_OPTS    = -O2 -march=native -mfpu=neon -mfloat-abi=hard
 LDFLAGS             = 
 SHRLIBLDFLAGS       = -shared -Wl,--no-undefined -Wl,--version-script,
 ANSI_OPTS           = -std=gnu99 -pedantic

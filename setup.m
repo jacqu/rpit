@@ -7,8 +7,9 @@ clc;
 global rpitdir;
 rpitdir = pwd;
 
-disp( 'C O N F I G U R A T I O N  O F  R P I t.' );
-disp( '========================================' );
+disp( 'C O N F I G U R A T I O N    O F    R P I t' );
+disp( '===========================================' );
+
 disp( ' ' );
 
 rpit_message({...
@@ -89,25 +90,34 @@ else
 end
 
 % Compile s-functions mex files to generate executables for the host
-disp( '  > Defining mex file compiler.' );
-mex -setup
+disp( '  > Checking mex configuration.' );
+cc = mex.getCompilerConfigurations( 'C', 'Selected' );
+if isempty(cc)
+  rpit_error( {
+    'mex not configured.';...
+    'Please run ''mex -setup'' before running this setup again.'} );
+  clear;
+  return;
+else
+  disp( '  > mex is already configured for C language.' );
+end
 
 disp( '  > Compiling S-functions mex files (you can safely ignore warnings).' );
 cd( [ rpitdir '/blocks' ] );
-mex rpi_sfun_time.c rpi_sfun_time_wrapper.c;
-mex rpi_sfun_ev3.c rpi_sfun_ev3_wrapper.c;
-mex rpi_sfun_imu.c rpi_sfun_imu_wrapper.c;
-mex rpi_sfun_mpu9150.c rpi_sfun_mpu9150_wrapper.c;
-mex rpi_sfun_nxt.c rpi_sfun_nxt_wrapper.c;
-mex rpi_sfun_cpu.c rpi_sfun_cpu_wrapper.c;
-mex rpi_sfun_ev314.c rpi_sfun_ev314_wrapper.c;
-mex rpi_sfun_polaris.c rpi_sfun_polaris_wrapper.c;
-mex rpi_sfun_iosocket.c rpi_sfun_iosocket_wrapper.c;
-mex rpi_sfun_dxl.c rpi_sfun_dxl_wrapper.c;
-mex rpi_sfun_js.c rpi_sfun_js_wrapper.c;
-mex rpi_sfun_trex.c rpi_sfun_trex_wrapper.c;
-mex rpi_sfun_rgpio.c rpi_sfun_rgpio_wrapper.c;
-mex rpi_sfun_teensyshot.c rpi_sfun_teensyshot_wrapper.c;
+mex -silent rpi_sfun_time.c rpi_sfun_time_wrapper.c;
+mex -silent rpi_sfun_ev3.c rpi_sfun_ev3_wrapper.c;
+mex -silent rpi_sfun_imu.c rpi_sfun_imu_wrapper.c;
+mex -silent rpi_sfun_mpu9150.c rpi_sfun_mpu9150_wrapper.c;
+mex -silent rpi_sfun_nxt.c rpi_sfun_nxt_wrapper.c;
+mex -silent rpi_sfun_cpu.c rpi_sfun_cpu_wrapper.c;
+mex -silent rpi_sfun_ev314.c rpi_sfun_ev314_wrapper.c;
+mex -silent rpi_sfun_polaris.c rpi_sfun_polaris_wrapper.c;
+mex -silent rpi_sfun_iosocket.c rpi_sfun_iosocket_wrapper.c;
+mex -silent rpi_sfun_dxl.c rpi_sfun_dxl_wrapper.c;
+mex -silent rpi_sfun_js.c rpi_sfun_js_wrapper.c;
+mex -silent rpi_sfun_trex.c rpi_sfun_trex_wrapper.c;
+mex -silent rpi_sfun_rgpio.c rpi_sfun_rgpio_wrapper.c;
+mex -silent rpi_sfun_teensyshot.c rpi_sfun_teensyshot_wrapper.c;
 
 %
 % PC platform specific configuration
@@ -161,9 +171,9 @@ if ispc
 
   % Check if the target is responding
 
-  %disp( '  > Answer ''y'' if asked for storing the key in the cache in the cmd window.' );
-  %command = sprintf( 'start /WAIT plink -pw %s pi@%s pwd', pipwd, piip );
-  command = sprintf( 'plink -pw -batch %s pi@%s pwd', pipwd, piip );
+  disp( '  > Answer ''y'' if asked for storing the key in the cache in the cmd window.' );
+  command = sprintf( 'start /WAIT plink -pw %s pi@%s pwd', pipwd, piip );
+  %command = sprintf( 'plink -batch -pw %s pi@%s pwd', pipwd, piip );
   [ status, ~ ] = system( command );
   if status
     rpit_error( 'Unable to connect to the target passwordlessly.' );
@@ -492,21 +502,17 @@ if ( target_is_rpi )
   disp( '  > Adding user pi to the gpio group.' );
   command = sprintf( '%s pi@%s "sudo usermod -a -G gpio pi"', ssh_command, piip );
   [ ~, ~ ] = system( command );
-end
 
-disp( '  > Checking cpu governor configuration.' );
-command = sprintf( '%s pi@%s "sudo cat /etc/rc.local"', ssh_command, piip );
-[ status, out ] = system( command );
-if contains( out, '# Change governor to performance' )
-  disp( '  > rc.local already set cpu governor to performance mode.' );
-else
-  disp( '  > Force cpu governor to performance mode in rc.local.' );
-  if ispc
-    command = sprintf( '%s pi@%s %s', ssh_command, piip, '"sudo sed -i -e ''s/^exit 0/# Change governor to performance\nfor cpucore in \/sys\/devices\/system\/cpu\/cpu?; do echo performance | sudo tee $cpucore\/cpufreq\/scaling_governor > \/dev\/null; done\n\nexit 0/g'' /etc/rc.local"' );
-  else
-    command = sprintf( '%s pi@%s %s', ssh_command, piip, '"sudo sed -i -e ''s/^exit 0/# Change governor to performance\nfor cpucore in \/sys\/devices\/system\/cpu\/cpu?; do echo performance | sudo tee `echo ''$cpucore''`\/cpufreq\/scaling_governor > \/dev\/null; done\n\nexit 0/g'' /etc/rc.local"' );
-  end
+  disp( '  > Checking cpu governor configuration.' );
+  command = sprintf( '%s pi@%s "sudo cat /etc/rc.local"', ssh_command, piip );
   [ status, out ] = system( command );
+  if contains( out, '# Change governor to performance' )
+    disp( '  > rc.local already set cpu governor to performance mode.' );
+  else
+    disp( '  > Force cpu governor to performance mode in rc.local.' );
+    command = sprintf( '%s pi@%s %s', ssh_command, piip, '"sudo sed -i -e ''s/^exit 0/# Change governor to performance\nfor cpucore in \/sys\/devices\/system\/cpu\/cpu?; do echo performance | sudo tee `echo ''$cpucore''`\/cpufreq\/scaling_governor > \/dev\/null; done\n\nexit 0/g'' /etc/rc.local"' );
+    [ status, out ] = system( command );
+  end
 end
   
 disp( '  > Configuration of RPIt successfully completed.' );
