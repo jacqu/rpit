@@ -220,9 +220,9 @@ function ert_rpi_make_rtw_hook(hookMethod,modelName,rtwroot,templateMakefile,bui
             command = sprintf( '%s pi@%s "sudo renice -5 -p `ps -eo pid,comm | awk ''/rpi$/  {print $1; exit}''`"', ssh_command, piip );
             [ ~, ~ ] = system( command );
             % Autoatically start external mode
-            set_param(gcs, 'SimulationMode', 'external');
-            set_param(gcs, 'SimulationCommand', 'connect');
-            set_param(gcs, 'SimulationCommand', 'start');
+            set_param(modelName, 'SimulationMode', 'external');
+            set_param(modelName, 'SimulationCommand', 'connect');
+            set_param(modelName, 'SimulationCommand', 'start');
             disp('### Simulink started and running in external mode.');
             break;
           end
