@@ -27,7 +27,7 @@ rpit_message({...
 '      /etc/sudoers.d/00-RPIt;chmod 0440 /etc/sudoers.d/00-RPIt''';...
 '    You should also install some basic additional packages by running:';...
 '    ''sudo apt-get install build-essential ssh''';...
-'  - If the target is not Debian-based, you cannot use it with RPIt.';});
+'  - If the target is not Debian-based, you cannot use it with RPIt.'});
 
 cont_quest = input( '  > Continue with the setup (''y'' to continue or ''n'' to abort) ? ', 's' );
 if strcmp( cont_quest, 'y' )
@@ -514,9 +514,10 @@ if ( target_is_rpi )
     [ status, out ] = system( command );
   end
 end
-  
-disp( '  > Configuration of RPIt successfully completed.' );
-disp( '  > NOTE: please reboot your target for changes to take effect.' );
+
+rpit_message({...
+  'Configuration of RPIt successfull.';...
+  'Please reboot the target AND restart Matlab for changes to take effect.' });
 
 % Restore initial path and cleanup variables
 
