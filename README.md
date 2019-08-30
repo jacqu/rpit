@@ -9,4 +9,4 @@ Quickstart:
 
 Visit http://icube-avr.unistra.fr/en/index.php/RPIt for detailed instructions.
 
-More technical details are given in the file "RPIt Simulink coder.pdf" in the "docs" directory.
+More technical details are given in the file "RPIt Quick Start.pdf" in the "docs" directory.
