@@ -305,7 +305,7 @@ ifeq ($(SFCN),0)
 SYSLIBS += 
 endif
 
-LIBS = -lm -lpthread -lrt -lusb-1.0
+LIBS = -lm -lpthread -lrt -lusb-1.0 -li2c
 |>START_PRECOMP_LIBRARIES<|
 ifeq ($(OPT_OPTS),$(DEFAULT_OPT_OPTS))
 ifeq ($(INTEGER_CODE),0)
