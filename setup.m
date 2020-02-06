@@ -118,6 +118,7 @@ mex -silent rpi_sfun_js.c rpi_sfun_js_wrapper.c;
 mex -silent rpi_sfun_trex.c rpi_sfun_trex_wrapper.c;
 mex -silent rpi_sfun_rgpio.c rpi_sfun_rgpio_wrapper.c;
 mex -silent rpi_sfun_teensyshot.c rpi_sfun_teensyshot_wrapper.c;
+mex -silent rpi_sfun_resetusb.c rpi_sfun_resetusb_wrapper.c;
 
 %
 % PC platform specific configuration
@@ -449,6 +450,23 @@ command = sprintf( '%s pi@%s "sudo chmod 644 /etc/udev/rules.d/99-NXT.rules"', s
 [ status, ~ ] = system( command );
 if ( status )
   rpit_warning( 'Creation of /etc/udev/rules.d/99-NXT.rules returned an error.' );
+  disp( '  > Please install this manually: ' );
+  disp( command );
+end
+
+% Enable user access to the USB port on the target (for power control)
+
+disp( '  > Enabling user access to the USB port.' );
+command = sprintf( '%s ../res/99-usb.rules pi@%s:.', scp_command, piip );
+[ ~, ~ ] = system( command );
+command = sprintf( '%s pi@%s "sudo mv ./99-usb.rules /etc/udev/rules.d"', ssh_command, piip );
+[ ~, ~ ] = system( command );
+command = sprintf( '%s pi@%s "sudo chown root.root /etc/udev/rules.d/99-usb.rules"', ssh_command, piip );
+[ ~, ~ ] = system( command );
+command = sprintf( '%s pi@%s "sudo chmod 644 /etc/udev/rules.d/99-usb.rules"', ssh_command, piip );
+[ status, ~ ] = system( command );
+if ( status )
+  rpit_warning( 'Creation of /etc/udev/rules.d/99-usb.rules returned an error.' );
   disp( '  > Please install this manually: ' );
   disp( command );
 end
