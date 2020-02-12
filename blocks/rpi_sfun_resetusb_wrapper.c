@@ -185,6 +185,10 @@ void rpi_sfun_resetusb_Start_wrapper(const real_T *rpi_Ts, const int_T p_width0)
             printf("Delay %d\n",(int)(opt_delay * 1000));
             sleep_ms((int)(opt_delay * 1000));
         }
+        if (k == 1 && opt_action == POWER_CYCLE) {
+            printf("Delay %d\n",(int)(opt_delay * 1000));
+            sleep_ms((int)(opt_delay * 1000));
+        }
     }
     rc = 0;
 cleanup:
