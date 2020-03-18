@@ -228,7 +228,7 @@ MATLAB_INCLUDES = \
 	-I$(MATLAB_ROOT)/rtw/c/src/ext_mode/common
 
 # Additional includes
-ADD_INCLUDES = -I$(MATLAB_ROOT)/toolbox/coder/rtiostream/src/utils
+ADD_INCLUDES = -I$(MATLAB_ROOT)/toolbox/coder/rtiostream/src -I$(MATLAB_ROOT)/toolbox/coder/rtiostream/src/utils
 # Disable include dir expanding
 # ADD_INCLUDES = \
 # |>START_EXPAND_INCLUDES<|	-I|>EXPAND_DIR_NAME<| \
@@ -572,6 +572,9 @@ endif
 	$(CC) -c $(CFLAGS) $(GCC_WALL_FLAG_MAX) "$<"
 
 %.o : $(MATLAB_ROOT)/toolbox/coder/rtiostream/src/utils/%.c
+	$(CC) -c $(CFLAGS) $(GCC_WALL_FLAG_MAX) "$<"
+
+%.o : $(MATLAB_ROOT)/toolbox/coder/rtiostream/src/rtiostreamtcpip/%.c
 	$(CC) -c $(CFLAGS) $(GCC_WALL_FLAG_MAX) "$<"
 
 # Disable C automatic rules expanding
