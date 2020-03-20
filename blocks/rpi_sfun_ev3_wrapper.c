@@ -307,7 +307,8 @@ ev3_error_t ev3_process( real_T *U, real_T *Y ) {
   signed char     power[EV3_NB_MOTORS];
   unsigned char   *powerpt;
   int             power_offsets[] = { EV3_POWER_A_OFFSET, EV3_POWER_B_OFFSET, EV3_POWER_C_OFFSET, EV3_POWER_D_OFFSET };
-  int             *portval;
+  int             portval;
+  unsigned char   *portvalpt;
   unsigned char   ev3_bytecode[] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x00, opINPUT_DEVICE, LC0(GET_RAW), LC0(0), LC0(16), GV0(0), opINPUT_DEVICE, LC0(GET_RAW), LC0(0), LC0(17), GV0(4), opINPUT_DEVICE, LC0(GET_RAW), LC0(0), LC0(18), GV0(8), opINPUT_DEVICE, LC0(GET_RAW), LC0(0), LC0(19), GV0(12), opINPUT_DEVICE, LC0(GET_RAW), LC0(0), LC0(0), GV0(16), opINPUT_DEVICE, LC0(GET_RAW), LC0(0), LC0(1), GV0(20), opINPUT_DEVICE, LC0(GET_RAW), LC0(0), LC0(2), GV0(24), opINPUT_DEVICE, LC0(GET_RAW), LC0(0), LC0(3), GV0(28), opOUTPUT_POWER, LC0(0), LC0(0x01), LC1(0), opOUTPUT_POWER, LC0(0), LC0(0x02), LC1(0), opOUTPUT_POWER, LC0(0), LC0(0x04), LC1(0), opOUTPUT_POWER, LC0(0), LC0(0x08), LC1(0) };
   unsigned char   ev3_response[EV3_PROCESS_RESPONSE_SIZE];
   
@@ -365,9 +366,12 @@ ev3_error_t ev3_process( real_T *U, real_T *Y ) {
   
   /* Extract the sensor raw values from the response */
   
+  portvalpt = (unsigned char*)&portval;
   for ( i = 0; i < EV3_NB_MOTORS + EV3_NB_SENSORS; i++ )  {
-    portval = (int*)( &ev3_response[ EV3_SENSORS_OFFSET + i * sizeof( int )] );
-    Y[i] = (real_T)*portval;
+    for ( j = 0; j < sizeof( int ); j++ ) {
+      portvalpt[j] = ev3_response[ EV3_SENSORS_OFFSET + i * sizeof( int ) + j ];
+    }
+    Y[i] = (real_T)portval;
   }
   
   return EV3_OK;
