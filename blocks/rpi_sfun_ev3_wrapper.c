@@ -303,7 +303,7 @@ ev3_error_t ev3_power( void ) {
  *  Process : send motor control signals and read all inputs
  */
 ev3_error_t ev3_process( real_T *U, real_T *Y ) {
-  int             status, i;
+  int             status, i, j;
   signed char     power[EV3_NB_MOTORS];
   unsigned char   *powerpt;
   int             power_offsets[] = { EV3_POWER_A_OFFSET, EV3_POWER_B_OFFSET, EV3_POWER_C_OFFSET, EV3_POWER_D_OFFSET };
@@ -368,7 +368,7 @@ ev3_error_t ev3_process( real_T *U, real_T *Y ) {
   
   portvalpt = (unsigned char*)&portval;
   for ( i = 0; i < EV3_NB_MOTORS + EV3_NB_SENSORS; i++ )  {
-    for ( j = 0; j < sizeof( int ); j++ ) {
+    for ( j = 0; j < (int)sizeof( int ); j++ ) {
       portvalpt[j] = ev3_response[ EV3_SENSORS_OFFSET + i * sizeof( int ) + j ];
     }
     Y[i] = (real_T)portval;
