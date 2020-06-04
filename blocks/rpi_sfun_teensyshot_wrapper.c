@@ -26,6 +26,9 @@
 /* External function declarations */
 #ifndef MATLAB_MEX_FILE
 #include "host.c"
+
+#define ESCPID_WRAPPER_MAX_RPM_R    10000.0   	// Max x10 RPM
+#define ESCPID_WRAPPER_RESET_WAIT	2			// Waiting time for a teensy reset to complete (s)
 #endif
 /* %%%-SFUNWIZ_wrapper_externs_Changes_END --- EDIT HERE TO _BEGIN */
 
@@ -65,6 +68,14 @@ void rpi_sfun_teensyshot_Start_wrapper(const real_T *rpi_Ts, const int_T p_width
 	* Custom Start code goes here.
 	*/
 	#ifndef MATLAB_MEX_FILE
+	int                 ret;
+	int16_T             RPM_r[ESCPID_MAX_ESC] = { 0 };
+	uint16_T            PID_P[ESCPID_MAX_ESC] = { 0 };
+	uint16_T            PID_I[ESCPID_MAX_ESC] = { 0 };
+	uint16_T            PID_D[ESCPID_MAX_ESC] = { 0 };
+	uint16_T            PID_f[ESCPID_MAX_ESC] = { 0 };
+	ESCPIDcomm_struct_t *comm;
+
 	// Check parameter dimension
 	if ( 	p_width0 *
 				p_width1 *
@@ -127,6 +138,25 @@ void rpi_sfun_teensyshot_Start_wrapper(const real_T *rpi_Ts, const int_T p_width
 
 	// Open serial port
 	Host_init_port( *Port );
+
+	// Configure PID params of ESC #0 with reset command
+	PID_P[0] = ESCPID_RESET_GAIN;
+	PID_I[0] = ESCPID_RESET_GAIN;
+	PID_D[0] = ESCPID_RESET_GAIN;
+	PID_f[0] = ESCPID_RESET_GAIN;
+
+	// Send command to teensy
+	Host_comm_update( 	*Port,
+						RPM_r,
+						PID_P,
+						PID_I,
+						PID_D,
+						PID_f,
+						&comm );
+	
+	// Wait for the reset command to complete
+	sleep( ESCPID_WRAPPER_RESET_WAIT );
+
 	#endif
 /* %%%-SFUNWIZ_wrapper_Start_Changes_END --- EDIT HERE TO _BEGIN */
 }
@@ -341,7 +371,6 @@ void rpi_sfun_teensyshot_Outputs_wrapper(const real_T *u1,
 	}
 
 	// Initialize tunable PID data
-  #define ESCPID_WRAPPER_MAX_RPM_R    10000.0   // Max x10 RPM
   
 	for ( i = 0; i < ESCPID_MAX_ESC; i++ )  {
 		switch( i )	{
