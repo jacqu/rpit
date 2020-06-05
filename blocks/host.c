@@ -268,7 +268,14 @@ int Host_comm_update( uint32_T            serial_nb,
   // Flush output buffer
   fsync( Host_fd[fd_idx] );
 
-  // Wait for response
+  // If reset requested, do not wait for response
+  if (  ( PID_P[i] == ESCPID_RESET_GAIN ) &&
+        ( PID_I[i] == ESCPID_RESET_GAIN ) &&
+        ( PID_D[i] == ESCPID_RESET_GAIN ) &&
+        ( PID_f[i] == ESCPID_RESET_GAIN ) ) {
+    *comm = NULL;
+    return 0;
+  }
 
   // Get current time
   clock_gettime( CLOCK_MONOTONIC, &start );

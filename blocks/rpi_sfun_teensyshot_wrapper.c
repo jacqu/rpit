@@ -154,8 +154,14 @@ void rpi_sfun_teensyshot_Start_wrapper(const real_T *rpi_Ts, const int_T p_width
 						PID_f,
 						&comm );
 	
+	// Close serial port
+	Host_release_port( *Port );
+	
 	// Wait for the reset command to complete
 	sleep( ESCPID_WRAPPER_RESET_WAIT );
+
+	// Reopen serial port
+	Host_init_port( *Port );
 
 	#endif
 /* %%%-SFUNWIZ_wrapper_Start_Changes_END --- EDIT HERE TO _BEGIN */
