@@ -20,6 +20,7 @@ char *Host_name_from_serial(  uint32_T );
 int   Host_get_fd(            uint32_T );
 int   Host_init_port(         uint32_T );
 void  Host_release_port(      uint32_T );
+int   Host_reset_teensy(      uint32_T );
 int   Host_comm_update(       uint32_T, 
                               int16_T*, 
                               uint16_T*, 

@@ -227,6 +227,50 @@ void Host_release_port( uint32_T serial_nb )  {
 }
 
 //
+//  Reset teensy
+//
+int Host_reset_teensy( uint32_T serial_nb )  {
+  int i, res = 0, fd_idx;
+  
+  // Get fd index
+  fd_idx = Host_get_fd( serial_nb );
+  
+  // Check if fd index is valid
+  if ( fd_idx == HOST_ERROR_FD )
+    return HOST_ERROR_FD;
+  
+  // Update output data structue
+  for ( i = 0; i < ESCPID_MAX_ESC; i++ )  {
+    Host_comm[fd_idx].RPM_r[i] = 0;
+    Host_comm[fd_idx].PID_P[i] = ESCPID_RESET_GAIN;
+    Host_comm[fd_idx].PID_I[i] = ESCPID_RESET_GAIN;
+    Host_comm[fd_idx].PID_D[i] = ESCPID_RESET_GAIN;
+    Host_comm[fd_idx].PID_f[i] = ESCPID_RESET_GAIN;
+  }
+   
+  // Send output structure
+  res = write( Host_fd[fd_idx], &Host_comm[fd_idx], sizeof( Host_comm[fd_idx] ) );
+  if ( res < 0 )  {
+    perror( "write Host_comm" );
+    return HOST_ERROR_WRITE_SER;
+  }
+  
+  // Flush output buffer
+  fsync( Host_fd[fd_idx] );
+
+  // Close serial port
+	Host_release_port( serial_nb );
+
+  // Wait twice ESCPID_RESET_DELAY for the reset command to complete
+	sleep( (unsigned int)( ESCPID_RESET_DELAY / 500 ) );
+
+	// Reopen serial port
+	Host_init_port( serial_nb );
+
+  return 0;
+}
+
+//
 // Manage communication with the teensy connected to portname
 //
 int Host_comm_update( uint32_T            serial_nb,
@@ -268,14 +312,7 @@ int Host_comm_update( uint32_T            serial_nb,
   // Flush output buffer
   fsync( Host_fd[fd_idx] );
 
-  // If reset requested, do not wait for response
-  if (  ( PID_P[i] == ESCPID_RESET_GAIN ) &&
-        ( PID_I[i] == ESCPID_RESET_GAIN ) &&
-        ( PID_D[i] == ESCPID_RESET_GAIN ) &&
-        ( PID_f[i] == ESCPID_RESET_GAIN ) ) {
-    *comm = NULL;
-    return 0;
-  }
+  // Wait for response
 
   // Get current time
   clock_gettime( CLOCK_MONOTONIC, &start );
