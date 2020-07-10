@@ -24,8 +24,8 @@
 
 /* Check that these definitions are identical in server code */
 
-#define RPIT_SOCKET_CON_N					10			// Nb of double sent (control)
-#define RPIT_SOCKET_MES_N					10			// Nb of double returned (measurement)
+#define RPIT_SOCKET_CON_N					150			// Nb of double sent (control)
+#define RPIT_SOCKET_MES_N					150			// Nb of double returned (measurement)
 #define RPIT_SOCKET_PORT					"31415"	// Port of the server
 #define RPIT_SOCKET_TIMEOUT				1000000	// Server answering timeout in us
 #define RPIT_SOCKET_SERVER_START	1000000	// Server startup time in us
