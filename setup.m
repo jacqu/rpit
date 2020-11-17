@@ -80,10 +80,10 @@ path(pathdef);
 
 % Check for compatible matlab version
 mvernum = version( '-release' );
-if strcmp( mvernum, '2018b' )
+inif strcmp( mvernum, '2020b' )
   disp( '  > Supported Matlab version detected.' );
 else
-  disp( '  > Supported releases: 2018b.' );
+  disp( '  > Supported releases: 2020b.' );
   rpit_error( 'This release of Matlab is currently not supported.' );
   clear;
   return;
@@ -363,7 +363,7 @@ command = sprintf( '%s -r %s pi@%s:./MATLAB/simulink', scp_command, [ '"' matlab
 [ ~, ~ ] = system( command );
 command = sprintf( '%s -r %s pi@%s:./MATLAB/simulink', scp_command, [ '"' matlabroot '/simulink/src' '"' ], piip );
 [ ~, ~ ] = system( command );
-command = sprintf( '%s -r %s pi@%s:./MATLAB/toolbox/coder/rtiostream/src', scp_command, [ '"' matlabroot '/toolbox/coder/rtiostream/src/utils' '"' ], piip );
+command = sprintf( '%s -r %s pi@%s:./MATLAB/toolbox/coder/rtiostream/src', scp_command, [ '"' matlabroot '/toolbox/coder/rtiostream/src/*' '"' ], piip );
 [ ~, ~ ] = system( command );
 
 % Copy S-function sources to the target
