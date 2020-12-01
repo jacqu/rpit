@@ -130,6 +130,7 @@ COMPILE_FLAGS_OTHER     = |>COMPILE_FLAGS_OTHER<|
 SYSTEM_LIBS             = |>SYSTEM_LIBS<|
 MODEL_HAS_DYNAMICALLY_LOADED_SFCNS = |>MODEL_HAS_DYNAMICALLY_LOADED_SFCNS<|
 
+
 # To enable debugging:
 # set DEBUG_BUILD = 1
 DEBUG_BUILD             = 0
@@ -137,7 +138,7 @@ DEBUG_BUILD             = 0
 #--------------------------- Model and reference models -----------------------
 MODELLIB                  = |>MODELLIB<|
 MODELREF_LINK_LIBS        = |>MODELREF_LINK_LIBS<|
-MODELREF_INC_PATH         = -I 
+MODELREF_INC_PATH         = |>START_MDLREFINC_EXPAND_INCLUDES<|-I|>MODELREF_INC_PATH<| |>END_MDLREFINC_EXPAND_INCLUDES<|
 RELATIVE_PATH_TO_ANCHOR   = |>RELATIVE_PATH_TO_ANCHOR<|
 # NONE: standalone, SIM: modelref sim, RTW: modelref coder target
 MODELREF_TARGET_TYPE       = |>MODELREF_TARGET_TYPE<|
@@ -194,7 +195,7 @@ SYSLIBS             =
 CC                  = gcc
 CPP                 = g++
 LD                  = gcc
-DEFAULT_OPT_OPTS    = -O2 -march=native -mfpu=vfp -mfloat-abi=hard
+DEFAULT_OPT_OPTS    = -O2 -march=native -mfpmath=sse
 LDFLAGS             = 
 SHRLIBLDFLAGS       = -shared -Wl,--no-undefined -Wl,--version-script,
 ANSI_OPTS           = -std=gnu99 -pedantic
@@ -268,8 +269,7 @@ CPP_REQ_DEFINES1 = -DMODEL=$(MODEL) -DNUMST=$(NUMST) -DNCSTATES=$(NCSTATES) \
 		  -DONESTEPFCN=$(ONESTEPFCN) -DTERMFCN=$(TERMFCN) \
 		  -DHAVESTDIO -DMULTI_INSTANCE_CODE=$(MULTI_INSTANCE_CODE) \
 		  -DCLASSIC_INTERFACE=$(CLASSIC_INTERFACE) \
-		  -DALLOCATIONFCN=$(ALLOCATIONFCN) \
-		  -DMODEL_HAS_DYNAMICALLY_LOADED_SFCNS=$(MODEL_HAS_DYNAMICALLY_LOADED_SFCNS)
+		  -DALLOCATIONFCN=$(ALLOCATIONFCN)
 
 CPP_REQ_DEFINES = $(CPP_REQ_DEFINES1)
 ifeq ($(MODELREF_TARGET_TYPE),SIM)
@@ -307,7 +307,7 @@ ifeq ($(SFCN),0)
 SYSLIBS += 
 endif
 
-LIBS = -lm -lpthread -lrt -lusb-1.0 -li2c
+LIBS = -lm -lpthread -lrt -lusb-1.0
 |>START_PRECOMP_LIBRARIES<|
 ifeq ($(OPT_OPTS),$(DEFAULT_OPT_OPTS))
 ifeq ($(INTEGER_CODE),0)

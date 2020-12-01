@@ -309,16 +309,16 @@ else
       if  ~contains( out, 'x86' ) 
         rpit_warning( 'Unrecognized platform. Defaulting to ARM setup.' );
         copyfile('../res/rpi_callback_handler_arm.m','../rpit/rpi_callback_handler.m');
-        copyfile('../res/ert_rpi_2014a_arm.tmf','../rpit/ert_rpi.tmf');
+        copyfile('../res/ert_rpi_2020b_arm.tmf','../rpit/ert_rpi.tmf');
       else
         disp( '  > Updating the TMF for x86 gcc optimizations.' );
         copyfile('../res/rpi_callback_handler_x86.m','../rpit/rpi_callback_handler.m');
-        copyfile('../res/ert_rpi_2014a_x86.tmf','../rpit/ert_rpi.tmf');
+        copyfile('../res/ert_rpi_2020b_x86.tmf','../rpit/ert_rpi.tmf');
       end
     else
       disp( '  > Updating the TMF for ARM gcc optimizations.' );
       copyfile('../res/rpi_callback_handler_arm.m','../rpit/rpi_callback_handler.m');
-      copyfile('../res/ert_rpi_2014a_arm.tmf','../rpit/ert_rpi.tmf');
+      copyfile('../res/ert_rpi_2020b_arm.tmf','../rpit/ert_rpi.tmf');
     end
     target_is_rpi = 0;
   else
@@ -328,7 +328,7 @@ else
     if  contains( out, 'Raspberry Pi 3' )
       disp( '  > Optimizing compiler flags for a RPI 3.' );
       copyfile('../res/rpi_callback_handler_arm_pi3.m','../rpit/rpi_callback_handler.m');
-      copyfile('../res/ert_rpi_2014a_arm_pi3.tmf','../rpit/ert_rpi.tmf');
+      copyfile('../res/ert_rpi_2020b_arm_pi3.tmf','../rpit/ert_rpi.tmf');
     elseif contains( out, 'Raspberry Pi 4' )
       disp( '  > Optimizing compiler flags for a RPI 4.' );
       copyfile('../res/rpi_callback_handler_arm_pi4.m','../rpit/rpi_callback_handler.m');
@@ -336,7 +336,7 @@ else
     else
       disp( '  > Optimizing compiler flags for a RPI 1 and 2.' );
       copyfile('../res/rpi_callback_handler_arm.m','../rpit/rpi_callback_handler.m');
-      copyfile('../res/ert_rpi_2014a_arm.tmf','../rpit/ert_rpi.tmf');
+      copyfile('../res/ert_rpi_2020b_arm.tmf','../rpit/ert_rpi.tmf');
     end
     target_is_rpi = 1;
   end
