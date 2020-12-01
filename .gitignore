@@ -1,5 +1,5 @@
-
 *.mexw64
+*.mexmaci64
 *.ppk
 *.asv
 slprj/
@@ -7,3 +7,5 @@ slprj/
 *.autosave
 rpit/ert_rpi.tmf
 rpit/rpi_callback_handler.m
+tools/key
+tools/key.pub
