@@ -137,7 +137,6 @@ DEBUG_BUILD             = 0
 #--------------------------- Model and reference models -----------------------
 MODELLIB                  = |>MODELLIB<|
 MODELREF_LINK_LIBS        = |>MODELREF_LINK_LIBS<|
-MODELREF_INC_PATH         = -I 
 RELATIVE_PATH_TO_ANCHOR   = |>RELATIVE_PATH_TO_ANCHOR<|
 # NONE: standalone, SIM: modelref sim, RTW: modelref coder target
 MODELREF_TARGET_TYPE       = |>MODELREF_TARGET_TYPE<|
