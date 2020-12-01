@@ -80,10 +80,10 @@ path(pathdef);
 
 % Check for compatible matlab version
 mvernum = version( '-release' );
-if strcmp( mvernum, '2018b' )
+if strcmp( mvernum, '2020b' )
   disp( '  > Supported Matlab version detected.' );
 else
-  disp( '  > Supported releases: 2018b.' );
+  disp( '  > Supported releases: 2020b.' );
   rpit_error( 'This release of Matlab is currently not supported.' );
   clear;
   return;
@@ -332,7 +332,7 @@ else
     elseif contains( out, 'Raspberry Pi 4' )
       disp( '  > Optimizing compiler flags for a RPI 4.' );
       copyfile('../res/rpi_callback_handler_arm_pi4.m','../rpit/rpi_callback_handler.m');
-      copyfile('../res/ert_rpi_2014a_arm_pi4.tmf','../rpit/ert_rpi.tmf');
+      copyfile('../res/ert_rpi_2020b_arm_pi4.tmf','../rpit/ert_rpi.tmf');
     else
       disp( '  > Optimizing compiler flags for a RPI 1 and 2.' );
       copyfile('../res/rpi_callback_handler_arm.m','../rpit/rpi_callback_handler.m');
@@ -363,7 +363,7 @@ command = sprintf( '%s -r %s pi@%s:./MATLAB/simulink', scp_command, [ '"' matlab
 [ ~, ~ ] = system( command );
 command = sprintf( '%s -r %s pi@%s:./MATLAB/simulink', scp_command, [ '"' matlabroot '/simulink/src' '"' ], piip );
 [ ~, ~ ] = system( command );
-command = sprintf( '%s -r %s pi@%s:./MATLAB/toolbox/coder/rtiostream/src', scp_command, [ '"' matlabroot '/toolbox/coder/rtiostream/src/utils' '"' ], piip );
+command = sprintf( '%s -r %s pi@%s:./MATLAB/toolbox/coder/rtiostream', scp_command, [ '"' matlabroot '/toolbox/coder/rtiostream/src' '"' ], piip );
 [ ~, ~ ] = system( command );
 
 % Copy S-function sources to the target

@@ -92,7 +92,7 @@ MATLAB_ROOT             = /home/pi/MATLAB
 ALT_MATLAB_ROOT         = /home/pi/MATLAB
 MASTER_ANCHOR_DIR       = /home/pi/RTW/|>MODEL_NAME<|
 START_DIR               = /home/pi/RTW/|>MODEL_NAME<|
-S_FUNCTIONS             = |>S_FUNCTIONS<|
+S_FUNCTIONS             = 
 S_FUNCTIONS_LIB         = |>S_FUNCTIONS_LIB<|
 NUMST                   = |>NUMST<|
 NCSTATES                = |>NCSTATES<|
@@ -116,10 +116,10 @@ CODE_INTERFACE_PACKAGING = |>CODE_INTERFACE_PACKAGING<|
 CLASSIC_INTERFACE       = |>CLASSIC_INTERFACE<|
 TGT_FCN_LIB             = |>TGT_FCN_LIB<|
 MODELREFS               = |>MODELREFS<|
-SHARED_SRC              = |>SHARED_SRC<|
-SHARED_SRC_DIR          = |>SHARED_SRC_DIR<|
-SHARED_BIN_DIR          = |>SHARED_BIN_DIR<|
-SHARED_LIB              = |>SHARED_LIB<|
+SHARED_SRC              = 
+SHARED_SRC_DIR          = 
+SHARED_BIN_DIR          = 
+SHARED_LIB              = 
 GEN_SAMPLE_MAIN         = |>GEN_SAMPLE_MAIN<|
 TARGET_LANG_EXT         = |>TARGET_LANG_EXT<|
 PORTABLE_WORDSIZES      = |>PORTABLE_WORDSIZES<|
@@ -128,6 +128,7 @@ MAKEFILEBUILDER_TGT     = |>MAKEFILEBUILDER_TGT<|
 STANDALONE_SUPPRESS_EXE = |>STANDALONE_SUPPRESS_EXE<|
 OPTIMIZATION_FLAGS      = |>OPTIMIZATION_FLAGS<|
 ADDITIONAL_LDFLAGS      = |>ADDITIONAL_LDFLAGS<|
+MODEL_HAS_DYNAMICALLY_LOADED_SFCNS = |>MODEL_HAS_DYNAMICALLY_LOADED_SFCNS<|
 
 # To enable debugging:
 # set DEBUG_BUILD = 1
@@ -136,7 +137,7 @@ DEBUG_BUILD             = 0
 #--------------------------- Model and reference models -----------------------
 MODELLIB                  = |>MODELLIB<|
 MODELREF_LINK_LIBS        = |>MODELREF_LINK_LIBS<|
-MODELREF_INC_PATH         = |>START_MDLREFINC_EXPAND_INCLUDES<|-I|>MODELREF_INC_PATH<| |>END_MDLREFINC_EXPAND_INCLUDES<|
+MODELREF_INC_PATH         = -I 
 RELATIVE_PATH_TO_ANCHOR   = |>RELATIVE_PATH_TO_ANCHOR<|
 # NONE: standalone, SIM: modelref sim, RTW: modelref coder target
 MODELREF_TARGET_TYPE       = |>MODELREF_TARGET_TYPE<|
@@ -193,7 +194,7 @@ SYSLIBS             =
 CC                  = gcc
 CPP                 = g++
 LD                  = gcc
-DEFAULT_OPT_OPTS    = -O2 -march=native -mfpmath=sse
+DEFAULT_OPT_OPTS    = -O2 -march=native -mfpu=vfp -mfloat-abi=hard
 LDFLAGS             = 
 SHRLIBLDFLAGS       = -shared -Wl,--no-undefined -Wl,--version-script,
 ANSI_OPTS           = -std=gnu99 -pedantic
@@ -267,7 +268,8 @@ CPP_REQ_DEFINES1 = -DMODEL=$(MODEL) -DNUMST=$(NUMST) -DNCSTATES=$(NCSTATES) \
 		  -DONESTEPFCN=$(ONESTEPFCN) -DTERMFCN=$(TERMFCN) \
 		  -DHAVESTDIO -DMULTI_INSTANCE_CODE=$(MULTI_INSTANCE_CODE) \
 		  -DCLASSIC_INTERFACE=$(CLASSIC_INTERFACE) \
-		  -DALLOCATIONFCN=$(ALLOCATIONFCN)
+		  -DALLOCATIONFCN=$(ALLOCATIONFCN) \
+		  -DMODEL_HAS_DYNAMICALLY_LOADED_SFCNS=$(MODEL_HAS_DYNAMICALLY_LOADED_SFCNS)
 
 CPP_REQ_DEFINES = $(CPP_REQ_DEFINES1)
 ifeq ($(MODELREF_TARGET_TYPE),SIM)
@@ -305,7 +307,7 @@ ifeq ($(SFCN),0)
 SYSLIBS += 
 endif
 
-LIBS = -lm -lpthread -lrt -lusb-1.0
+LIBS = -lm -lpthread -lrt -lusb-1.0 -li2c
 |>START_PRECOMP_LIBRARIES<|
 ifeq ($(OPT_OPTS),$(DEFAULT_OPT_OPTS))
 ifeq ($(INTEGER_CODE),0)
@@ -562,7 +564,7 @@ endif
 %.o : $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/%.c
 	$(CC) -c $(CFLAGS) $(GCC_WALL_FLAG_MAX) "$<"
 
-%.o : $(MATLAB_ROOT)/rtw/c/src/rtiostream/rtiostreamtcpip/%.c
+%.o : $(MATLAB_ROOT)/toolbox/coder/rtiostream/src/rtiostreamtcpip/%.c
 	$(CC) -c $(CFLAGS) $(GCC_WALL_FLAG_MAX) "$<"
 
 %.o : $(MATLAB_ROOT)/rtw/c/src/ext_mode/custom/%.c

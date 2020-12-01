@@ -95,6 +95,9 @@ function ert_rpi_make_rtw_hook(hookMethod,modelName,rtwroot,templateMakefile,bui
         locReportDifference(cscopy, cs);
     end
     
+    % Suppress warning: saving external mode simulation output as a single object is not supported
+    set_param(modelName,'ReturnWorkspaceOutputs','off');
+    
    case 'before_tlc'
     % Called just prior to invoking TLC Compiler (actual code generation.)
     % Valid arguments at this stage are hookMethod, modelName, and
