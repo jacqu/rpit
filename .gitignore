@@ -2,6 +2,7 @@
 *.mexmaci64
 *.ppk
 *.asv
+*.slxc
 slprj/
 *ert_rtw/
 *.autosave
