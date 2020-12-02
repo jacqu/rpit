@@ -45,38 +45,33 @@ else
 end
 
 % Add target paths to matlab paths
-addpath( [ rpitdir '/blocks' ] );		% Path to the blockset
-addpath( [ rpitdir '/rpit' ] );			% Path to target files
-up = userpath;                      % Get userpath
-if isempty(up)                      % Check for an empty userpath
-  userpath('reset');                % Reset userpath to default
+block_path = [ rpitdir '/blocks' ];		% Path to the blockset
+rpit_path = [ rpitdir '/rpit' ];		% Path to target files
+up = userpath;                          % Get userpath
+if isempty(up)                          % Check for an empty userpath
+  userpath('reset');                    % Reset userpath to default
 end
-up = regexprep(up,';','');          % Remove semicolon at end of userpath
-status = savepath( [ up filesep 'pathdef.m' ] );
-if status
-  rpit_error( 'Could not save the Matlab search path for future sessions.' );
-  clear;
-  return;
-else
-  disp( '  > Saving Matlab search path in user path for future sessions.' );
-  if exist( [ up filesep 'startup.m' ], 'file' ) == 2
-    startup_content = fileread( [ up filesep 'startup.m' ] );
-    if contains( startup_content, 'path(pathdef);' )
-      disp( '  > ''startup.m'' already has a ''path(pathdef);'' command. Skipping.' );
-    else
-      rpit_warning( '''startup.m'' found in your userpath. Please add manually ''path(pathdef);'' to ''startup.m''.' );
-    end
+up = regexprep(up,';','');              % Remove semicolon at end of userpath
+
+disp( '  > Saving Matlab search path in user path for future sessions.' );
+startup_m_comment = '% RPIt additional path definitions.';
+if exist( [ up filesep 'startup.m' ], 'file' ) == 2
+  startup_content = fileread( [ up filesep 'startup.m' ] );
+  if contains( startup_content, startup_m_comment )
+    disp( '  > ''startup.m'' already configured. Skipping.' );
   else
-    fid = fopen( [ up filesep 'startup.m' ], 'wt' );
+    fid = fopen( [ up filesep 'startup.m' ], 'at' );
     if fid ~= -1
-      fprintf( fid, 'path(pathdef);\n' );
+      fprintf( fid, '\n%s\n', startup_m_comment );
+      fprintf( fid, 'addpath( ''%s'', ''%s'' );\n', block_path, rpit_path );
       fclose(fid);
     else
-       rpit_warning( 'Unable to create ''startup.m''. Please add manually ''path(pathdef);'' to ''startup.m''.' );
+      rpit_error( 'Unable to create ''startup.m'' in MATLAB home directory. Check permissions.' );
+      clear;
+      return;
     end
   end
 end
-path(pathdef);
 
 % Check for compatible matlab version
 mvernum = version( '-release' );
