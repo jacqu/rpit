@@ -149,7 +149,7 @@ function ert_rpi_make_rtw_hook(hookMethod,modelName,rtwroot,templateMakefile,bui
       pscpexe = [ rpidir '\tools\pscp.exe' ];
       pip = [ rpidir '\tools\private_key.ppk' ];
       ssh_command = [ plinkexe ' -i ' pip ];
-      scp_command = [ pscpexe ' -i ' pip ];
+      scp_command = [ pscpexe ' -P 22 -i ' pip ];
     end
     
     %

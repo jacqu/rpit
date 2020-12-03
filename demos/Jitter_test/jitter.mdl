@@ -1,13 +1,12 @@
 Model {
   Name			  "jitter"
-  Version		  10.2
-  SavedCharacterEncoding  "UTF-8"
-  ModelUUID		  "58a29308-df39-4e04-8adb-d890ff688154"
+  Version		  10.1
+  SavedCharacterEncoding  "windows-1252"
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "5.0"
+    ComputedModelVersion    "1.16"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -29,13 +28,12 @@ Model {
     }
     OrderedModelArguments   1
   }
-  SLCCPlugin		  "on"
-  slcheck_filter_plugin	  "on"
   DiagnosticSuppressor	  "on"
-  AnimationPlugin	  "on"
+  LogicAnalyzerPlugin	  "on"
   WebScopes_FoundationPlugin "on"
   NotesPlugin		  "on"
-  LogicAnalyzerPlugin	  "on"
+  SLCCPlugin		  "on"
+  AnimationPlugin	  "on"
   EnableAccessToBaseWorkspace on
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
@@ -46,7 +44,7 @@ Model {
   MinMaxOverflowArchiveMode "Overwrite"
   FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
-  LastSavedArchitecture	  "maci64"
+  LastSavedArchitecture	  "win64"
   Object {
     $PropName		    "BdWindowsInfo"
     $ObjectID		    1
@@ -56,7 +54,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [344.0, 52.0, 1041.0, 674.0]
+      Location		      [344.0, 52.0, 1130.0, 615.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -82,70 +80,50 @@ Model {
 	IsTabbed		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[1003.0, 445.0]
+	Extents			[1076.0, 373.0]
 	ZoomFactor		[1.0]
 	Offset			[-26.203125, -6.0]
-	SceneRectInView		[-26.203125, -6.0, 1003.0, 445.0]
+	SceneRectInView		[-26.203125, -6.0, 1076.0, 373.0]
       }
-      Array {
-	Type			"Simulink.DockComponentInfo"
-	Dimension		2
-	Object {
-	  $ObjectID		  6
-	  Type			  "GLUE2:PropertyInspector"
-	  ID			  "Property Inspector"
-	  Visible		  [0]
-	  CreateCallback	  ""
-	  UserData		  ""
-	  Floating		  [0]
-	  DockPosition		  "Right"
-	  Width			  [640]
-	  Height		  [480]
-	  Minimized		  "Unset"
-	}
-	Object {
-	  $ObjectID		  7
-	  Type			  "Simulink:Editor:ReferencedFiles"
-	  ID			  "Referenced Files"
-	  Visible		  [0]
-	  CreateCallback	  ""
-	  UserData		  "{\"filterShowRefModels\":\"true\",\"filterShowRefSubs\":\"true\",\"filterShowOnlyDirtyFiles\":\"false\"}\n"
-	  Floating		  [0]
-	  DockPosition		  "Left"
-	  Width			  [640]
-	  Height		  [480]
-	  Minimized		  "Unset"
-	}
-	PropName		"DockComponentsInfo"
+      Object {
+	$PropName		"DockComponentsInfo"
+	$ObjectID		6
+	$ClassName		"Simulink.DockComponentInfo"
+	Type			"GLUE2:PropertyInspector"
+	ID			"Property Inspector"
+	Visible			[0]
+	CreateCallback		""
+	UserData		""
+	Floating		[0]
+	DockPosition		"Right"
+	Width			[640]
+	Height			[480]
+	Minimized		"Unset"
       }
-      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAADMAAACV/wCAAAABPsAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
+      WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAAB+PwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
-      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAHAAAAlcAAABrAP////sAAABgAFMAaQBtAHUAb"
-      "ABpAG4AawA6AEUAZABpAHQAbwByADoAUgBlAGYAZQByAGUAbgBjAGUAZABGAGkAbABlAHMALwBSAGUAZgBlAHIAZQBuAGMAZQBkACAARgBpAGwAZ"
-      "QBzAAAAAAD/////AAAAjwD///8AAAABAAAAAAAAAAD8AgAAAAH7AAAAVABHAEwAVQBFADIAOgBQAHIAbwBwAGUAcgB0AHkASQBuAHMAcABlAGMAd"
-      "ABvAHIALwBQAHIAbwBwAGUAcgB0AHkAIABJAG4AcwBwAGUAYwB0AG8AcgAAAAAA/////wAAAawA////AAAEEQAAAfoAAAABAAAAAgAAAAEAAAAC/"
-      "AAAAAEAAAACAAAAAA=="
+      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAABjAP///wAAAAEAAAAAAAAAAPwCA"
+      "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
+      "QBjAHQAbwByAAAAAAD/////AAABrAD///8AAARaAAABsgAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAA"
       Array {
 	Type			"Cell"
 	Dimension		0
 	PropName		"PersistedApps"
       }
-      WindowUuid	      "5ede454a-c09d-48be-a162-58bcdfdf477f"
+      WindowUuid	      "5299250c-500e-42a0-87b5-050f22fa2b2d"
     }
-    BDUuid		    "bbe3a2e6-a38e-4918-89c3-7b0c47d2977c"
+    BDUuid		    "69fc19a0-9f6a-4e29-9a38-86913dbbf873"
   }
   HideAutomaticNames	  on
-  SequenceViewerTimePrecision 3
-  SequenceViewerHistory	  1000
   Created		  "Wed Aug 07 16:21:21 2013"
   Creator		  "Jacques GANGLOFF"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "jacques"
+  LastModifiedBy	  "chlog"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Dec 01 16:44:43 2020"
-  RTWModifiedTimeStamp	  528735303
-  ModelVersionFormat	  "%<AutoIncrement:5.0>"
+  LastModifiedDate	  "Thu Dec 03 19:08:38 2020"
+  RTWModifiedTimeStamp	  528923313
+  ModelVersionFormat	  "1.%<AutoIncrement:16>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "none"
@@ -165,6 +143,7 @@ Model {
   ShowTestPointIcons	  on
   ShowSignalResolutionIcons on
   ShowViewerIcons	  on
+  SortedOrder		  off
   VariantCondition	  off
   ShowLinearizationAnnotations on
   ShowVisualizeInsertedRTB on
@@ -202,7 +181,7 @@ Model {
   TryForcingSFcnDF	  off
   Object {
     $PropName		    "DataLoggingOverride"
-    $ObjectID		    8
+    $ObjectID		    7
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "jitter"
     Array {
@@ -224,7 +203,6 @@ Model {
   ExtModeTrigMode	  "normal"
   ExtModeTrigPort	  "1"
   ExtModeTrigElement	  "any"
-  ExtModeTrigSignalOutputPortIndex 0
   ExtModeTrigDuration	  1000
   ExtModeTrigDurationFloating "auto"
   ExtModeTrigHoldOff	  0
@@ -240,7 +218,6 @@ Model {
   ExtModeSkipDownloadWhenConnect off
   ExtModeLogAll		  on
   ExtModeAutoUpdateStatusClock on
-  VariantFading		  on
   ShowModelReferenceBlockVersion off
   ShowModelReferenceBlockIO off
   OrderedModelArguments	  on
@@ -248,16 +225,16 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      9
-      Version		      "20.1.0"
+      $ObjectID		      8
+      Version		      "20.0.1"
       DisabledProps	      []
       Description	      ""
       Array {
 	Type			"Handle"
 	Dimension		9
 	Simulink.SolverCC {
-	  $ObjectID		  10
-	  Version		  "20.1.0"
+	  $ObjectID		  9
+	  Version		  "20.0.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  Components		  []
@@ -279,6 +256,7 @@ Model {
 	  RelTol		  "1e-3"
 	  EnableMultiTasking	  on
 	  ConcurrentTasks	  off
+	  Solver		  "FixedStepDiscrete"
 	  SolverName		  "FixedStepDiscrete"
 	  SolverJacobianMethodControl "auto"
 	  ShapePreserveControl	  "DisableAll"
@@ -298,8 +276,8 @@ Model {
 	  ODENIntegrationMethod	  "ode3"
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  11
-	  Version		  "20.1.0"
+	  $ObjectID		  10
+	  Version		  "20.0.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  Components		  []
@@ -340,8 +318,8 @@ Model {
 	  LoggingIntervals	  "[-inf, inf]"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  12
-	  Version		  "20.1.0"
+	  $ObjectID		  11
+	  Version		  "20.0.1"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    1
@@ -406,8 +384,8 @@ Model {
 	  EfficientTunableParamExpr on
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  13
-	  Version		  "20.1.0"
+	  $ObjectID		  12
+	  Version		  "20.0.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  Components		  []
@@ -479,7 +457,6 @@ Model {
 	  ModelReferenceIOMismatchMessage "none"
 	  UnknownTsInhSupMsg	  "warning"
 	  ModelReferenceDataLoggingMessage "warning"
-	  ModelReferenceNoExplicitFinalValueMsg	"none"
 	  ModelReferenceSymbolNameMessage "warning"
 	  ModelReferenceExtraNoncontSigs "error"
 	  StateNameClashWarn	  "warning"
@@ -521,11 +498,10 @@ Model {
 	  UnderSpecifiedDimensionMsg "none"
 	  DebugExecutionForFMUViaOutOfProcess off
 	  ArithmeticOperatorsInVariantConditions "warning"
-	  VariantConditionMismatch "none"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  14
-	  Version		  "20.1.0"
+	  $ObjectID		  13
+	  Version		  "20.0.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  Components		  []
@@ -574,8 +550,8 @@ Model {
 	  HardwareBoardFeatureSet "EmbeddedCoderHSP"
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  15
-	  Version		  "20.1.0"
+	  $ObjectID		  14
+	  Version		  "20.0.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  Components		  []
@@ -594,8 +570,8 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  16
-	  Version		  "20.1.0"
+	  $ObjectID		  15
+	  Version		  "20.0.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  Components		  []
@@ -616,6 +592,7 @@ Model {
 	  SimUseLocalCustomCode	  off
 	  SimParseCustomCode	  on
 	  SimAnalyzeCustomCode	  off
+	  SimBuildMode		  "sf_incremental_build"
 	  SimGenImportedTypeDefs  off
 	  ModelFunctionsGlobalVisibility "on"
 	  CompileTimeRecursionLimit 50
@@ -625,21 +602,11 @@ Model {
 	  CustomCodeFunctionArrayLayout	[]
 	  DefaultCustomCodeFunctionArrayLayout "NotSpecified"
 	  CustomCodeUndefinedFunction "UseInterfaceOnly"
-	  CustomCodeGlobalsAsFunctionIO	off
-	  SimTargetLang		  "C"
-	  GPUAcceleration	  off
-	  SimGPUMallocThreshold	  200
-	  SimGPUStackLimitPerThread 1024
-	  SimGPUErrorChecks	  off
-	  SimGPUCustomComputeCapability	""
-	  SimGPUCompilerFlags	  ""
-	  SimDLTargetLibrary	  "mkl-dnn"
-	  SimDLAutoTuning	  on
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  17
-	  Version		  "20.1.0"
+	  $ObjectID		  16
+	  Version		  "20.0.1"
 	  DisabledProps		  []
 	  Description		  "RTW Embedded Coder RPI target"
 	  SystemTargetFile	  "ert_rpi.tlc"
@@ -688,7 +655,6 @@ Model {
 	  CodeProfilingInstrumentation "off"
 	  SILDebugging		  off
 	  TargetLang		  "C"
-	  GenerateGPUCode	  "None"
 	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
 	  GenerateTraceInfo	  off
 	  GenerateTraceReport	  off
@@ -704,28 +670,12 @@ Model {
 	  RTWCustomCompilerOptimizations ""
 	  CheckMdlBeforeBuild	  "Off"
 	  SharedConstantsCachingThreshold 1024
-	  GPUKernelNamePrefix	  ""
-	  GPUDeviceID		  -1
-	  GPUMallocMode		  "discrete"
-	  GPUMallocThreshold	  200
-	  GPUStackLimitPerThread  1024
-	  GPUcuBLAS		  on
-	  GPUcuSOLVER		  on
-	  GPUcuFFT		  on
-	  GPUErrorChecks	  off
-	  GPUComputeCapability	  "3.5"
-	  GPUCustomComputeCapability ""
-	  GPUCompilerFlags	  ""
-	  DLTargetLibrary	  "none"
-	  DLAutoTuning		  on
-	  DLArmComputeVersion	  "19.05"
-	  DLArmComputeArch	  "unspecified"
 	  Array {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      18
-	      Version		      "20.1.0"
+	      $ObjectID		      17
+	      Version		      "20.0.1"
 	      DisabledProps	      []
 	      Description	      ""
 	      Components	      []
@@ -782,8 +732,8 @@ Model {
 	    }
 	    Simulink.STFCustomTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      19
-	      Version		      "20.1.0"
+	      $ObjectID		      18
+	      Version		      "20.0.1"
 	      Array {
 		Type			"Cell"
 		Dimension		1
@@ -820,6 +770,7 @@ Model {
 	      SupportAbsoluteTime     on
 	      LogVarNameModifier      "rt_"
 	      MatFileLogging	      off
+	      MultiInstanceERTCode    off
 	      CodeInterfacePackaging  "Nonreusable function"
 	      PurelyIntegerCode	      off
 	      SupportNonFinite	      on
@@ -857,8 +808,8 @@ Model {
 		Dimension		1
 		Simulink.ERTTargetCC {
 		  $BackupClass		  "Simulink.TargetCC"
-		  $ObjectID		  20
-		  Version		  "20.1.0"
+		  $ObjectID		  19
+		  Version		  "20.0.1"
 		  Array {
 		    Type		    "Cell"
 		    Dimension		    4
@@ -899,6 +850,7 @@ Model {
 		  SupportAbsoluteTime	  on
 		  LogVarNameModifier	  "rt_"
 		  MatFileLogging	  off
+		  MultiInstanceERTCode	  off
 		  CodeInterfacePackaging  "Nonreusable function"
 		  PurelyIntegerCode	  off
 		  SupportNonFinite	  on
@@ -1036,8 +988,8 @@ Model {
 	  }
 	}
 	SlCovCC.ConfigComp {
-	  $ObjectID		  21
-	  Version		  "20.1.0"
+	  $ObjectID		  20
+	  Version		  "20.0.1"
 	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
 	  Components		  []
@@ -1053,6 +1005,7 @@ Model {
 	  CovFilter		  ""
 	  CovHTMLOptions	  ""
 	  CovNameIncrementing	  off
+	  CovHtmlReporting	  on
 	  CovForceBlockReductionOff on
 	  CovEnableCumulative	  on
 	  CovSaveCumulativeToWorkspaceVar on
@@ -1062,6 +1015,7 @@ Model {
 	  CovSaveOutputData	  on
 	  CovOutputDir		  "slcov_output/$ModelName$"
 	  CovDataFileName	  "$ModelName$_cvdata"
+	  CovShowResultsExplorer  on
 	  CovReportOnPause	  on
 	  CovModelRefEnable	  "off"
 	  CovModelRefExcluded	  ""
@@ -1077,7 +1031,7 @@ Model {
 	PropName		"Components"
       }
       Name		      "Configuration"
-      CurrentDlgPage	      "Code Generation/Interface"
+      CurrentDlgPage	      "Hardware Implementation"
       ConfigPrmDlgPosition    [ 280, 71, 1180, 781 ]
       ExtraOptions	      "-aBlockCommentType=\"BlockPathComment\" -aIgnoreTestpoints=0 "
     }
@@ -1085,11 +1039,11 @@ Model {
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
-    $ObjectID		    9
+    $ObjectID		    8
   }
   Object {
     $PropName		    "DataTransfer"
-    $ObjectID		    22
+    $ObjectID		    21
     $ClassName		    "Simulink.GlobalDataTransfer"
     DefaultTransitionBetweenSyncTasks "Ensure deterministic transfer (maximum delay)"
     DefaultTransitionBetweenAsyncTasks "Ensure data integrity only"
@@ -1181,8 +1135,7 @@ Model {
   }
   System {
     Name		    "jitter"
-    Location		    [344, 52, 1385, 726]
-    SystemRect		    [0.000000, 0.000000, 0.000000, 0.000000]
+    Location		    [344, 52, 1474, 667]
     Open		    on
     PortBlocksUseCompactNotation off
     SetExecutionDomain	    off
@@ -1220,21 +1173,21 @@ Model {
       "gr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('S"
       "ources','WiredSimulink',true,'DataLoggingSaveFormat','StructureWithTime','DataLoggingLimitDataPoints',true,'Data"
       "LoggingDecimation','1','DataLoggingDecimateData',true),extmgr.Configuration('Visuals','Time Domain',true,'Serial"
-      "izedDisplays',{struct('MinYLimReal','0.02954','MaxYLimReal','0.03392','YLabelReal','','MinYLimMag','0.02954','Ma"
-      "xYLimMag','0.03392','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],"
+      "izedDisplays',{struct('MinYLimReal','0.02971','MaxYLimReal','0.03239','YLabelReal','','MinYLimMag','0.02971','Ma"
+      "xYLimMag','0.03239','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],"
       "'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0"
       "745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0"
       "745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156"
       "863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames'"
-      ",{{'Sum'}},'ShowContent',true,'Placement',1)},'DisplayPropertyDefaults',struct('MinYLimReal','0.02954','MaxYLimR"
-      "eal','0.03392','YLabelReal','','MinYLimMag','0.02954','MaxYLimMag','0.03392','LegendVisibility','off','XGrid',tr"
+      ",{{'Sum'}},'ShowContent',true,'Placement',1)},'DisplayPropertyDefaults',struct('MinYLimReal','0.02971','MaxYLimR"
+      "eal','0.03239','YLabelReal','','MinYLimMag','0.02971','MaxYLimMag','0.03239','LegendVisibility','off','XGrid',tr"
       "ue,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0."
       "686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353"
       " 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0"
       ".0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}"
       "},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1)),extmgr.Confi"
       "guration('Tools','Plot Navigation',true,'OnceAtStop',false),extmgr.Configuration('Tools','Measurements',true,'Ve"
-      "rsion','2020b')),'Version','2020b','Location',[1 95 1441 843])"
+      "rsion','2020a')),'Version','2020a','Location',[240 166 1680 914])"
       NumInputPorts	      "1"
       Floating		      off
     }
@@ -1292,9 +1245,9 @@ Model {
     Annotation {
       SID		      "6"
       Name		      "In \"Model Configurations Parameters->Code Generation->Interface\", define the IP\naddress of your "
-      "target in \"MEX-file arguments:\". Then press [CRTL-B] or the \"Build Model\" button. \nTip: if the build proces"
-      "s is hanging, you can hit [CRTL-C] in Matlab's Command Window."
-      Position		      [29, 199, 464, 231]
+      "target in \"MEX-file arguments:\". Then press [CRTL-B] or the \"Build For Monitoring\" button. \nTip: if the bui"
+      "ld process is hanging, you can hit [CRTL-C] in Matlab's Command Window."
+      Position		      [29, 199, 501, 237]
       InternalMargins	      [0, 0, 0, 0]
       HorizontalAlignment     "left"
       ZOrder		      -1

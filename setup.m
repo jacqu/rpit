@@ -55,27 +55,31 @@ up = regexprep(up,';','');              % Remove semicolon at end of userpath
 
 disp( '  > Saving Matlab search path in user path for future sessions.' );
 startup_m_comment = '% RPIt additional path definitions.';
-if exist( [ up filesep 'startup.m' ], 'file' ) == 2
-  startup_content = fileread( [ up filesep 'startup.m' ] );
-  if contains( startup_content, startup_m_comment )
-    disp( '  > ''startup.m'' already configured. Skipping.' );
+if exist( [ up filesep 'startup.m' ], 'file' ) ~= 2
+  disp( '  > ''startup.m'' not found. Creating blank file.' );
+  fid = fopen( [ up filesep 'startup.m' ], 'wt' );
+  fprintf( fid, '%s\n', '% MATLAB startup script.' );
+  fclose(fid);
+end
+startup_content = fileread( [ up filesep 'startup.m' ] );
+if contains( startup_content, startup_m_comment )
+  disp( '  > ''startup.m'' already configured. Skipping.' );
+else
+  fid = fopen( [ up filesep 'startup.m' ], 'at' );
+  if fid ~= -1
+    fprintf( fid, '\n%s\n', startup_m_comment );
+    fprintf( fid, 'addpath( ''%s'', ''%s'' );\n', block_path, rpit_path );
+    fclose(fid);
   else
-    fid = fopen( [ up filesep 'startup.m' ], 'at' );
-    if fid ~= -1
-      fprintf( fid, '\n%s\n', startup_m_comment );
-      fprintf( fid, 'addpath( ''%s'', ''%s'' );\n', block_path, rpit_path );
-      fclose(fid);
-    else
-      rpit_error( 'Unable to create ''startup.m'' in MATLAB home directory. Check permissions.' );
-      clear;
-      return;
-    end
+    rpit_error( 'Unable to create ''startup.m'' in MATLAB home directory. Check permissions.' );
+    clear;
+    return;
   end
 end
 
 % Check for compatible matlab version
 mvernum = version( '-release' );
-if strcmp( mvernum, '2020b' )
+if strcmp( mvernum, '2020a' ) || strcmp( mvernum, '2020b' )
   disp( '  > Supported Matlab version detected.' );
 else
   disp( '  > Supported releases: 2020b.' );
@@ -188,7 +192,7 @@ if ispc
   % Upload public key to the target
   
   disp( '  > Uploading public key to the target.' );
-  command = sprintf( 'pscp -pw %s public_key pi@%s:.', pipwd, piip );
+  command = sprintf( 'pscp -P 22 -pw %s public_key pi@%s:.', pipwd, piip );
   [ ~, ~ ] = system( command );
   disp( '  > Verifying the authorized keys list.' );
   command = sprintf( 'plink -pw %s pi@%s "cat .ssh/authorized_keys"', pipwd, piip );
@@ -228,7 +232,7 @@ if ispc
   % Defining ssh commands
   
   ssh_command = 'plink -i private_key.ppk';
-  scp_command = 'pscp -i private_key.ppk';
+  scp_command = 'pscp -P 22 -i private_key.ppk';
   
 end % End of PC configuration
 
