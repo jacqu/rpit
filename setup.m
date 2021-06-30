@@ -247,7 +247,8 @@ if isunix
   disp( '  > Generating a public/private RSA pair for ssh level 2.' );
   
   [ ~, out ] = system( 'ls' );
-  if  ~contains( out, 'key' )  ||  ~contains( out, 'key.pub' ) 
+  if  ~contains( out, 'key' )  ||  ~contains( out, 'key.pub' )
+    system( 'rm -f key key.pub' );
     [ status, ~ ] = system( 'LD_LIBRARY_PATH=;ssh-keygen -t rsa -N '''' -f key' );
     if ( status )
       rpit_error( 'Unable to generate private and public key. Check your ssh installation.' );
