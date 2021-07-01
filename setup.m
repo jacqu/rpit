@@ -290,9 +290,22 @@ if isunix
   scp_command = 'LD_LIBRARY_PATH=;scp -i key';
   
 end % End of UNIX configuration
-  
-% Check if the target is a RPI
 
+%
+% Check the target type
+%
+target_is_debian = 0;
+target_is_x86 = 0;
+target_is_x86_64 = 0;
+target_is_arm_32 = 0;
+target_is_arm_64 = 0;
+target_is_rpi = 0;
+target_is_rpi3 = 0;
+target_is_rpi4 = 0;
+target_is_jetson_xavier = 0;
+is_tmf_configured = 0;
+
+% Checking for Debian
 command = sprintf( '%s pi@%s sudo cat /etc/os-release', ssh_command, piip );
 [ ~, out ] = system( command );
 if  ~contains( out, 'debian' )
@@ -300,46 +313,91 @@ if  ~contains( out, 'debian' )
   clear;
   return;
 else
-  if  ~contains( out, 'raspbian' ) 
-    disp( '  > Distant target is Debian-based but not a RPI.' );
-    disp( '  > Checking if distant target is ARM or x86.' );
-    command = sprintf( '%s pi@%s sudo uname -m', ssh_command, piip );
-    [ ~, out ] = system( command );
-    if  ~contains( out, 'arm' ) && ~contains( out, 'aarch64' )
-      if  ~contains( out, 'x86' ) 
-        rpit_warning( 'Unrecognized platform. Defaulting to ARM setup.' );
-        copyfile('../res/rpi_callback_handler_arm.m','../rpit/rpi_callback_handler.m');
-        copyfile('../res/ert_rpi_2020b_arm.tmf','../rpit/ert_rpi.tmf');
-      else
-        disp( '  > Updating the TMF for x86 gcc optimizations.' );
-        copyfile('../res/rpi_callback_handler_x86.m','../rpit/rpi_callback_handler.m');
-        copyfile('../res/ert_rpi_2020b_x86.tmf','../rpit/ert_rpi.tmf');
-      end
-    else
-      disp( '  > Updating the TMF for ARM gcc optimizations.' );
-      copyfile('../res/rpi_callback_handler_arm.m','../rpit/rpi_callback_handler.m');
-      copyfile('../res/ert_rpi_2020b_arm.tmf','../rpit/ert_rpi.tmf');
-    end
-    target_is_rpi = 0;
-  else
-    command = sprintf( '%s pi@%s cat /proc/device-tree/model', ssh_command, piip );
-    [ ~, out ] = system( command );
-    disp( ['  > Distant target is a ', out, '.'] );
-    if  contains( out, 'Raspberry Pi 3' )
-      disp( '  > Optimizing compiler flags for a RPI 3.' );
-      copyfile('../res/rpi_callback_handler_arm_pi3.m','../rpit/rpi_callback_handler.m');
-      copyfile('../res/ert_rpi_2020b_arm_pi3.tmf','../rpit/ert_rpi.tmf');
-    elseif contains( out, 'Raspberry Pi 4' )
-      disp( '  > Optimizing compiler flags for a RPI 4.' );
-      copyfile('../res/rpi_callback_handler_arm_pi4.m','../rpit/rpi_callback_handler.m');
-      copyfile('../res/ert_rpi_2020b_arm_pi4.tmf','../rpit/ert_rpi.tmf');
-    else
-      disp( '  > Optimizing compiler flags for a RPI 1 and 2.' );
-      copyfile('../res/rpi_callback_handler_arm.m','../rpit/rpi_callback_handler.m');
-      copyfile('../res/ert_rpi_2020b_arm.tmf','../rpit/ert_rpi.tmf');
-    end
-    target_is_rpi = 1;
-  end
+  disp( '  > Distant target is Debian-based.' );
+  target_is_debian = 1;
+end
+
+% Checking for ARM 32 CPU type
+command = sprintf( '%s pi@%s sudo uname -m', ssh_command, piip );
+[ ~, out ] = system( command );
+if contains( out, 'arm' )
+  disp( '  > Distant target has an ARM 32-bit CPU.' );
+  copyfile('../res/rpi_callback_handler_arm.m','../rpit/rpi_callback_handler.m');
+  copyfile('../res/ert_rpi_2020b_arm.tmf','../rpit/ert_rpi.tmf');
+  target_is_arm_32 = 1;
+  is_tmf_configured = 1;
+end
+
+% Checking for ARM 64 CPU type
+if contains( out, 'aarch64' )
+  disp( '  > Distant target has an ARM 64-bit CPU.' );
+  copyfile('../res/rpi_callback_handler_arm.m','../rpit/rpi_callback_handler.m');
+  copyfile('../res/ert_rpi_2020b_arm.tmf','../rpit/ert_rpi.tmf');
+  target_is_arm_64 = 1;
+  is_tmf_configured = 1;
+end
+
+% Checking for x86 CPU type
+if contains( out, 'x86' )
+  disp( '  > Distant target is a X86 platform.' );
+  copyfile('../res/rpi_callback_handler_x86.m','../rpit/rpi_callback_handler.m');
+  copyfile('../res/ert_rpi_2020b_x86.tmf','../rpit/ert_rpi.tmf');
+  target_is_x86 = 1;
+  is_tmf_configured = 1;
+end
+
+% Checking for x86 64bits CPU type
+if contains( out, 'x86_64' )
+  disp( '  > Distant target has a 64-bit CPU.' );
+  copyfile('../res/rpi_callback_handler_x86.m','../rpit/rpi_callback_handler.m');
+  copyfile('../res/ert_rpi_2020b_x86.tmf','../rpit/ert_rpi.tmf');
+  target_is_x86_64 = 1;
+  is_tmf_configured = 1;
+end
+
+% Checking for Jetson Xavier platform
+command = sprintf( '%s pi@%s cat /proc/device-tree/model', ssh_command, piip );
+[ ~, out ] = system( command );
+if contains( out, 'NVIDIA Jetson Xavier' )
+  copyfile('../res/rpi_callback_handler_arm.m','../rpit/rpi_callback_handler.m');
+  copyfile('../res/ert_rpi_2020b_arm.tmf','../rpit/ert_rpi.tmf');
+  disp( '  > Distant target is a Jetson Xavier.' );
+  target_is_jetson_xavier = 1;
+  is_tmf_configured = 1;
+end
+
+% Checking for Raspberry Pi platform
+if contains( out, 'Raspberry Pi' )
+  disp( '  > Distant target is a Raspberry Pi.' );
+  copyfile('../res/rpi_callback_handler_arm.m','../rpit/rpi_callback_handler.m');
+  copyfile('../res/ert_rpi_2020b_arm.tmf','../rpit/ert_rpi.tmf');
+  target_is_rpi = 1;
+  is_tmf_configured = 1;
+end
+
+% Checking for Raspberry Pi 3 platform
+if contains( out, 'Raspberry Pi 3' )
+  disp( '  > Distant target is a Raspberry Pi 3.' );
+  copyfile('../res/rpi_callback_handler_arm_pi3.m','../rpit/rpi_callback_handler.m');
+  copyfile('../res/ert_rpi_2020b_arm_pi3.tmf','../rpit/ert_rpi.tmf');
+  target_is_rpi3 = 1;
+  is_tmf_configured = 1;
+end
+
+% Checking for Raspberry Pi 4 platform
+if contains( out, 'Raspberry Pi 4' )
+  disp( '  > Distant target is a Raspberry Pi 4.' );
+  copyfile('../res/rpi_callback_handler_arm_pi4.m','../rpit/rpi_callback_handler.m');
+  copyfile('../res/ert_rpi_2020b_arm_pi4.tmf','../rpit/ert_rpi.tmf');
+  target_is_rpi4 = 1;
+  is_tmf_configured = 1;
+end
+
+% Checking if target has been successfully detected
+if  ~is_tmf_configured
+  rpit_error( 'Unable to detect distant target hardware. Aborting.' );
+  clear;
+  return;
 end
 
 % Synchronizing timezones
@@ -533,6 +591,11 @@ if ( target_is_rpi )
     [ status, out ] = system( command );
   end
 end
+
+% Refresh library browser
+disp( '  > Refresh Simulink library browser.' );
+lb = LibraryBrowser.LibraryBrowser2;
+refresh(lb);
 
 rpit_message({...
   'Configuration of RPIt successfull.';...
