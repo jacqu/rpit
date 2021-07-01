@@ -305,7 +305,7 @@ else
     disp( '  > Checking if distant target is ARM or x86.' );
     command = sprintf( '%s pi@%s sudo uname -m', ssh_command, piip );
     [ ~, out ] = system( command );
-    if  ~contains( out, 'arm' ) 
+    if  ~contains( out, 'arm' ) && ~contains( out, 'aarch64' )
       if  ~contains( out, 'x86' ) 
         rpit_warning( 'Unrecognized platform. Defaulting to ARM setup.' );
         copyfile('../res/rpi_callback_handler_arm.m','../rpit/rpi_callback_handler.m');
