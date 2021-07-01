@@ -359,8 +359,8 @@ end
 command = sprintf( '%s pi@%s cat /proc/device-tree/model', ssh_command, piip );
 [ ~, out ] = system( command );
 if contains( out, 'NVIDIA Jetson Xavier' )
-  copyfile('../res/rpi_callback_handler_arm.m','../rpit/rpi_callback_handler.m');
-  copyfile('../res/ert_rpi_2020b_arm.tmf','../rpit/ert_rpi.tmf');
+  copyfile('../res/rpi_callback_handler_arm64_jetson.m','../rpit/rpi_callback_handler.m');
+  copyfile('../res/ert_rpi_2020b_arm64_jetson.tmf','../rpit/ert_rpi.tmf');
   disp( '  > Distant target is a Jetson Xavier.' );
   target_is_jetson_xavier = 1;
   is_tmf_configured = 1;
