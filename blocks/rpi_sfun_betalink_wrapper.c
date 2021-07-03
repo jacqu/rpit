@@ -26,6 +26,7 @@
 /* %%%-SFUNWIZ_wrapper_externs_Changes_BEGIN --- EDIT HERE TO _END */
 #if defined(MATLAB_MEX_FILE)
 #include <stdint.h>
+#include <pthread.h>
 #include "betalink.h"
 #else
 #include "betalink.c"
