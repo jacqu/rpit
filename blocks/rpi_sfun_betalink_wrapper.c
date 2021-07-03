@@ -25,6 +25,7 @@
  */
 /* %%%-SFUNWIZ_wrapper_externs_Changes_BEGIN --- EDIT HERE TO _END */
 #if defined(MATLAB_MEX_FILE)
+#include <stdint.h>
 #include "betalink.h"
 #else
 #include "betalink.c"
@@ -146,7 +147,7 @@ void rpi_sfun_betalink_Outputs_wrapper(const real_T *throttle,
       *yaw = state.yaw;
       *bat_volt = state.bat_volt * BLK_MSP_BATV_SCALING;
       *bat_amp = state.bat_amp * BLK_MSP_BATA_SCALING;
-      *bat_mah =state.bat_mah;
+      *bat_mah = state.bat_mah;
     }
   }
   #endif
