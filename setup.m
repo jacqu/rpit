@@ -119,6 +119,7 @@ mex -silent rpi_sfun_rgpio.c rpi_sfun_rgpio_wrapper.c;
 mex -silent rpi_sfun_teensyshot.c rpi_sfun_teensyshot_wrapper.c;
 mex -silent rpi_sfun_resetusb.c rpi_sfun_resetusb_wrapper.c;
 mex -silent rpi_sfun_xboxone.c rpi_sfun_xboxone_wrapper.c;
+mex -silent rpi_sfun_betalink.c rpi_sfun_betalink_wrapper.c;
 
 %
 % PC platform specific configuration
