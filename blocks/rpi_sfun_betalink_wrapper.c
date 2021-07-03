@@ -24,7 +24,11 @@
  *
  */
 /* %%%-SFUNWIZ_wrapper_externs_Changes_BEGIN --- EDIT HERE TO _END */
+#if defined(MATLAB_MEX_FILE)
+#include "betalink.h"
+#else
 #include "betalink.c"
+#endif
 /* %%%-SFUNWIZ_wrapper_externs_Changes_END --- EDIT HERE TO _BEGIN */
 
 /*
@@ -162,7 +166,9 @@ void rpi_sfun_betalink_Terminate_wrapper(const real_T *rpi_Ts, const int_T p_wid
     (void)p_width0;
     (void)p_width1;
     
+    #ifndef MATLAB_MEX_FILE
     blk_release_port( (uint64_t)*usb_serial_number );
+    #endif
 /* %%%-SFUNWIZ_wrapper_Terminate_Changes_END --- EDIT HERE TO _BEGIN */
 }
 
