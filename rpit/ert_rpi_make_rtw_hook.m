@@ -208,7 +208,9 @@ function ert_rpi_make_rtw_hook(hookMethod,modelName,rtwroot,templateMakefile,bui
         [ ~, ~ ] = system( command );
 
         % Start the executable within screen
-        command = sprintf( '%s pi@%s screen -h 32 -dmS Simulink_external RTW/rpi -tf inf -w > rpi.log 2>&1', ssh_command, piip );
+        command = sprintf( '%s pi@%s "rm -f rpi.log"', ssh_command, piip );
+        [ ~, ~ ] = system( command );
+        command = sprintf( '%s pi@%s screen -h 32 -dmS Simulink_external RTW/rpi -tf inf -w', ssh_command, piip );
         [ ~, ~ ] = system( command );
 
         % Check if the model is started: check if socket is open
@@ -222,16 +224,16 @@ function ert_rpi_make_rtw_hook(hookMethod,modelName,rtwroot,templateMakefile,bui
             % Renice the rpi process
             command = sprintf( '%s pi@%s "sudo renice -5 -p `ps -eo pid,comm | awk ''/rpi$/  {print $1; exit}''`"', ssh_command, piip );
             [ ~, ~ ] = system( command );
-            disp('### Target program initialization output:');
-            command = sprintf('%s pi@%s "cat RTW/rpi.log"', ssh_command, piip );
-            [ ~, out ] = system( command );
-            disp( out );
             % Autoatically start external mode
             disp('### Starting external mode...');
             set_param(modelName, 'SimulationMode', 'external');
             set_param(modelName, 'SimulationCommand', 'connect');
             set_param(modelName, 'SimulationCommand', 'start');
             disp('### Simulink started and running in external mode.');
+            disp('### Target program output:');
+            command = sprintf('%s pi@%s "screen -p 0 -X hardcopy rpi.log;head rpi.log"', ssh_command, piip );
+            [ ~, out ] = system( command );
+            disp( out );
             break;
           end
           rpi_start_cnt = rpi_start_cnt + 1;

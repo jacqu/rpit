@@ -53,9 +53,9 @@ if ( *rpi_Ts < SFUN_BLK_MIN_PERIOD )
     fprintf( stderr, "rpi_sfun_betalink: minimum sampling period is %f\n", SFUN_BLK_MIN_PERIOD );
 
 // Initialize USB port
-ret = blk_init_port( (uint64_t)*usb_serial_number );
+ret = blk_init_port( (uint32_t)*usb_serial_number );
 if ( ret )
-    fprintf( stderr, "rpi_sfun_betalink: error %d opening USB port SN%llud\n", ret, (unsigned long long)*usb_serial_number );
+    fprintf( stderr, "rpi_sfun_betalink: error %d opening USB port SN%u\n", ret, (unsigned int)*usb_serial_number );
 #endif
 /* %%%-SFUNWIZ_wrapper_Start_Changes_END --- EDIT HERE TO _BEGIN */
 }
@@ -119,14 +119,14 @@ void rpi_sfun_betalink_Outputs_wrapper(const real_T *throttle,
   // USB transaction with Betaflight
   for ( i = 0; i < BLK_MAX_MOTORS; i++ )
     throttle_msp[i] = lrint( throttle[i] );
-  ret = blk_update_threaded( (uint64_t)*usb_serial_number, throttle_msp );
+  ret = blk_update_threaded( (uint32_t)*usb_serial_number, throttle_msp );
   if ( ret ) {
     fprintf( stderr, "rpi_sfun_betalink: error %d in blk_update_threaded.\n", ret );
     return;
   }
   else {
     // Copy data structure locally
-    ret = blk_copy_state( (uint64_t)*usb_serial_number, &state );
+    ret = blk_copy_state( (uint32_t)*usb_serial_number, &state );
     if ( ret ) {
       fprintf( stderr, "rpi_sfun_betalink: error %d in blk_copy_state.\n", ret );
       return;
@@ -169,7 +169,7 @@ void rpi_sfun_betalink_Terminate_wrapper(const real_T *rpi_Ts, const int_T p_wid
     (void)p_width1;
     
     #ifndef MATLAB_MEX_FILE
-    blk_release_port( (uint64_t)*usb_serial_number );
+    blk_release_port( (uint32_t)*usb_serial_number );
     #endif
 /* %%%-SFUNWIZ_wrapper_Terminate_Changes_END --- EDIT HERE TO _BEGIN */
 }
