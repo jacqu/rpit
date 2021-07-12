@@ -208,7 +208,7 @@ function ert_rpi_make_rtw_hook(hookMethod,modelName,rtwroot,templateMakefile,bui
         [ ~, ~ ] = system( command );
 
         % Start the executable within screen
-        command = sprintf( '%s pi@%s "rm -f rpi.log"', ssh_command, piip );
+        command = sprintf( '%s pi@%s "rm -f RTW/rpi.log"', ssh_command, piip );
         [ ~, ~ ] = system( command );
         command = sprintf( '%s pi@%s screen -h 32 -dmS Simulink_external RTW/rpi -tf inf -w', ssh_command, piip );
         [ ~, ~ ] = system( command );
@@ -231,7 +231,7 @@ function ert_rpi_make_rtw_hook(hookMethod,modelName,rtwroot,templateMakefile,bui
             set_param(modelName, 'SimulationCommand', 'start');
             disp('### Simulink started and running in external mode.');
             disp('### Target program output:');
-            command = sprintf('%s pi@%s "screen -p 0 -X hardcopy rpi.log;head rpi.log"', ssh_command, piip );
+            command = sprintf('%s pi@%s "screen -p 0 -X hardcopy RTW/rpi.log;head RTW/rpi.log"', ssh_command, piip );
             [ ~, out ] = system( command );
             disp( out );
             break;
