@@ -30,20 +30,23 @@
 
 // Flags
 //#define BLK_STANDALONE 										// main is added for testing
-//#define BLK_THREADED_UPDATE								// activate threaded update
+#define BLK_THREADED_UPDATE								// activate threaded update
+//#define BLK_TWO_FC                        // Test with rwo FCs
+//#define BLK_SINGLE_THREAD										// Only one thread per device at a time
 //#define BLK_DEBUG													// Display additional debug infos
 
 // Defines
 
-#define BLK_DEV_SERIALNB  643986269		    // Serial number of the test FC
+#define BLK_DEV_SERIALNB  3399628743		  // Serial number of the test FC
+#define BLK_DEV2_SERIALNB 707372631       // Serial number of the second test FC
 #define BLK_DEV_SERIALLG	16							// Max length of a serial number
-#define BLK_BAUDRATE      B115200        	// Serial baudrate
+#define BLK_BAUDRATE      B230400	        // Serial baudrate
 #define BLK_READ_TIMEOUT  5              	// Tenth of second
-#define BLK_NB_PING       100           	// Nb roundtrip communication
-#define BLK_STEP_REF      200            	// Velocity reference step size (10 rpm motor)
+#define BLK_NB_PING       500           	// Nb roundtrip communication
 #define BLK_PERIOD        3000          	// Period of serial exchange (us)
 #define BLK_STEP_PERIOD   200            	// Duration of a step (itertions)
-#define BLK_STEP_THROTTLE	1050						// Step amplitude in throttle scale
+#define BLK_MIN_VEL				3000						// Min velocity in rpm
+#define BLK_STEP_VEL			200							// Step amplitude in rpm
 
 #if defined(__linux__)
 #define BLK_SERIAL_DEV_DIR "/dev/serial/by-id/"
@@ -840,14 +843,7 @@ int blk_detect( uint32_t serial_nb )	{
   sbuf_t		sbuf;
   int				fd_idx;
   int				i;
-  uint16_t	throttle[BLK_MAX_MOTORS] = { 	BLK_PWM_RANGE_MIN,
-																					BLK_PWM_RANGE_MIN,
-																					BLK_PWM_RANGE_MIN,
-																					BLK_PWM_RANGE_MIN,
-																					BLK_PWM_RANGE_MIN,
-																					BLK_PWM_RANGE_MIN,
-																					BLK_PWM_RANGE_MIN,
-																					BLK_PWM_RANGE_MIN };
+  uint16_t	vel_ref[BLK_MAX_MOTORS] = { 0 };
   
   // Get fd index
   fd_idx = blk_get_fd( serial_nb );
@@ -867,12 +863,7 @@ int blk_detect( uint32_t serial_nb )	{
   // Define MSP data
   sbufInit( &sbuf, buf, (uint8_t*)(buf+MSP_PROTOCOL_MAX_BUF_SZ) );
   for ( i = 0; i < blk_state[fd_idx].motor_count; i++ )	{
-  	if ( throttle[i] < BLK_PWM_RANGE_MIN )
-  		sbufWriteU16( &sbuf, BLK_PWM_RANGE_MIN );
-  	else if ( throttle[i] > BLK_PWM_RANGE_MAX )
-  		sbufWriteU16( &sbuf, BLK_PWM_RANGE_MAX );
-  	else
-	  	sbufWriteU16( &sbuf, throttle[i] );
+	  sbufWriteU16( &sbuf, vel_ref[i] );
 	}
   
   // Start communication
@@ -950,10 +941,11 @@ int blk_detect( uint32_t serial_nb )	{
 }
 
 //
-// Send motor throttle and refresh sensor values
-// BLK_PWM_RANGE_MIN : motor stop
+// Send motor velocity reference and refresh sensor values
+// If betalink firmware: vel_ref = velocity reference
+// If no betalink firmware: vel_ref = throttle (1000-2000)
 //
-int blk_update( 	uint32_t serial_nb, uint16_t *throttle ) {
+int blk_update( 	uint32_t serial_nb, uint16_t *vel_ref ) {
 	uint8_t buf[MSP_PROTOCOL_MAX_BUF_SZ];
   int 		ret, ret2;
   sbuf_t	sbuf;
@@ -974,7 +966,7 @@ int blk_update( 	uint32_t serial_nb, uint16_t *throttle ) {
   
   // Multiple transactions when no betalink firmware is detected
   if ( blk_state[fd_idx].betalink_detected == false )	{
-  	ret = blk_set_motor( serial_nb, throttle );
+  	ret = blk_set_motor( serial_nb, vel_ref );
   	if ( ret )
   		return ret;
 	  ret = blk_get_imu( serial_nb );
@@ -990,12 +982,7 @@ int blk_update( 	uint32_t serial_nb, uint16_t *throttle ) {
   // Define MSP data
   sbufInit( &sbuf, buf, (uint8_t*)(buf+MSP_PROTOCOL_MAX_BUF_SZ) );
   for ( i = 0; i < blk_state[fd_idx].motor_count; i++ )	{
-  	if ( throttle[i] < BLK_PWM_RANGE_MIN )
-  		sbufWriteU16( &sbuf, BLK_PWM_RANGE_MIN );
-  	else if ( throttle[i] > BLK_PWM_RANGE_MAX )
-  		sbufWriteU16( &sbuf, BLK_PWM_RANGE_MAX );
-  	else
-	  	sbufWriteU16( &sbuf, throttle[i] );
+	  sbufWriteU16( &sbuf, vel_ref[i] );
 	}
   
   // Start communication
@@ -1075,7 +1062,6 @@ int blk_update( 	uint32_t serial_nb, uint16_t *throttle ) {
 // threaded version: no waiting time for packet response
 //
 void *blk_update_helper_thread( void *ptr )	{
-	uint64_t 	serial_nb;
 	int				fd_idx;
 	int 			i, ret;
 	sbuf_t		sbuf;
@@ -1084,20 +1070,16 @@ void *blk_update_helper_thread( void *ptr )	{
 	// Declare the thread as detached so its ressources are released at termination
 	pthread_detach( pthread_self() );
 	
-	serial_nb = (uint64_t)(*(uint64_t*)ptr);
-	
 	// Get fd index
-  fd_idx = blk_get_fd( serial_nb );
-  
-  // Check if fd index is valid
-  if ( fd_idx == BLK_ERROR_FD )	{
-	  free( ptr );
-	  pthread_mutex_unlock( &blk_state[fd_idx].read_mutex );
-    return NULL;
-  }
+	fd_idx = (int)(*(int*)ptr);
+	
+	#ifndef BLK_SINGLE_THREAD
+	// Avoid running two thread at a time for the same device
+	pthread_mutex_lock( &blk_state[fd_idx].read_mutex );
+	#endif
 	
 	// Read response
-	ret = blk_read( serial_nb, buf, MSP_PROTOCOL_MAX_BUF_SZ );
+	ret = blk_read( blk_devname[fd_idx], buf, MSP_PROTOCOL_MAX_BUF_SZ );
 	
 	// Critical section
 	pthread_mutex_lock( &blk_state[fd_idx].update_mutex );
@@ -1149,10 +1131,11 @@ void *blk_update_helper_thread( void *ptr )	{
 	free( ptr );
 	
 	pthread_mutex_unlock( &blk_state[fd_idx].read_mutex );
+	
 	return NULL;
 }
 
-int blk_update_threaded( 	uint32_t serial_nb, uint16_t *throttle ) {
+int blk_update_threaded( 	uint32_t serial_nb, uint16_t *vel_ref ) {
 	uint8_t buf[MSP_PROTOCOL_MAX_BUF_SZ];
   int 		ret, ret2;
   sbuf_t	sbuf;
@@ -1173,7 +1156,7 @@ int blk_update_threaded( 	uint32_t serial_nb, uint16_t *throttle ) {
   
   // Multiple transactions when no betalink firmware is detected
   if ( blk_state[fd_idx].betalink_detected == false )	{
-  	ret = blk_set_motor( serial_nb, throttle );
+  	ret = blk_set_motor( serial_nb, vel_ref );
   	if ( ret )
   		return ret;
 	  ret = blk_get_imu( serial_nb );
@@ -1189,12 +1172,7 @@ int blk_update_threaded( 	uint32_t serial_nb, uint16_t *throttle ) {
   // Define MSP data
   sbufInit( &sbuf, buf, (uint8_t*)(buf+MSP_PROTOCOL_MAX_BUF_SZ) );
   for ( i = 0; i < blk_state[fd_idx].motor_count; i++ )	{
-  	if ( throttle[i] < BLK_PWM_RANGE_MIN )
-  		sbufWriteU16( &sbuf, BLK_PWM_RANGE_MIN );
-  	else if ( throttle[i] > BLK_PWM_RANGE_MAX )
-  		sbufWriteU16( &sbuf, BLK_PWM_RANGE_MAX );
-  	else
-	  	sbufWriteU16( &sbuf, throttle[i] );
+	  sbufWriteU16( &sbuf, vel_ref[i] );
 	}
   
   // Start communication
@@ -1203,14 +1181,17 @@ int blk_update_threaded( 	uint32_t serial_nb, uint16_t *throttle ) {
   	ret2 = blk_write( serial_nb, blk_msp[fd_idx].msp_buf_out, ret );
 	  if ( ret2 == ret  )	{
 	  	pthread_t reader_thread;
-	  	uint64_t	*serial_nb_pt = malloc( sizeof( uint64_t ) );
+	  	int	*fd_idx_pt = malloc( sizeof( int ) );
 	  	
-	  	*serial_nb_pt = serial_nb;
+	  	*fd_idx_pt = fd_idx;
 	  	
+	  	#ifdef BLK_SINGLE_THREAD
+			// Avoid creating two thread at a time for the same device
+			pthread_mutex_lock( &blk_state[fd_idx].read_mutex );
+			#endif
+	
 	  	// Create listening thread
-	  	// Mutex allows for a single thread to be created at a time
-	  	pthread_mutex_lock( &blk_state[fd_idx].read_mutex );
-	  	pthread_create( &reader_thread, NULL , blk_update_helper_thread, (void*)(serial_nb_pt) );
+	  	pthread_create( &reader_thread, NULL , blk_update_helper_thread, (void*)(fd_idx_pt) );
 	  	return 0;
 	  }
 	  else {
@@ -1713,26 +1694,31 @@ void sbufSwitchToReader(sbuf_t *buf, uint8_t *base)
 //
 int main( int argc, char *argv[] )  {
 
-  int i, ii, ret, fd_idx;
+  int 								i, ii, ret, fd_idx;
+  uint32_t						d_min = BLK_PERIOD, d_max = 0, d_avg = 0;
+  #ifdef BLK_TWO_FC
+  int fd_idx2;
+  uint32_t						d_min2 = BLK_PERIOD, d_max2 = 0, d_avg2 = 0;
+  #endif
   struct timespec     start, cur;
   unsigned long long  elapsed_us;
   blk_state_t					state;
-  uint16_t						throttle_min[BLK_MAX_MOTORS] = { 	BLK_PWM_RANGE_MIN,
-  																											BLK_PWM_RANGE_MIN,
-  																											BLK_PWM_RANGE_MIN,
-  																											BLK_PWM_RANGE_MIN,
-  																											BLK_PWM_RANGE_MIN,
-  																											BLK_PWM_RANGE_MIN,
-  																											BLK_PWM_RANGE_MIN,
-  																											BLK_PWM_RANGE_MIN };
-  uint16_t						throttle_max[BLK_MAX_MOTORS] = { 	BLK_STEP_THROTTLE,
-  																											BLK_STEP_THROTTLE,
-  																											BLK_STEP_THROTTLE,
-  																											BLK_STEP_THROTTLE,
-  																											BLK_STEP_THROTTLE,
-  																											BLK_STEP_THROTTLE,
-  																											BLK_STEP_THROTTLE,
-  																											BLK_STEP_THROTTLE };
+  uint16_t						ref_min[BLK_MAX_MOTORS] = { 			BLK_MIN_VEL,
+  																											BLK_MIN_VEL,
+  																											BLK_MIN_VEL,
+  																											BLK_MIN_VEL,
+  																											BLK_MIN_VEL,
+  																											BLK_MIN_VEL,
+  																											BLK_MIN_VEL,
+  																											BLK_MIN_VEL };
+  uint16_t						ref_max[BLK_MAX_MOTORS] = { 			BLK_MIN_VEL+BLK_STEP_VEL,
+  																											BLK_MIN_VEL+BLK_STEP_VEL,
+  																											BLK_MIN_VEL+BLK_STEP_VEL,
+  																											BLK_MIN_VEL+BLK_STEP_VEL,
+  																											BLK_MIN_VEL+BLK_STEP_VEL,
+  																											BLK_MIN_VEL+BLK_STEP_VEL,
+  																											BLK_MIN_VEL+BLK_STEP_VEL,
+  																											BLK_MIN_VEL+BLK_STEP_VEL };
   uint32_t						rpm;
   
   // Initialize serial port
@@ -1740,18 +1726,36 @@ int main( int argc, char *argv[] )  {
     fprintf( stderr, "Error initializing serial port.\n" );
     exit( -1 );
   }
+  #ifdef BLK_TWO_FC
+  if ( blk_init_port( BLK_DEV2_SERIALNB ) )  {
+    fprintf( stderr, "Error initializing second serial port.\n" );
+    exit( -1 );
+  }
+  #endif
   
   // Get fd index
   fd_idx = blk_get_fd( BLK_DEV_SERIALNB );
+  #ifdef BLK_TWO_FC
+  fd_idx2 = blk_get_fd( BLK_DEV2_SERIALNB );
+  #endif
   
   // Check if fd index is valid
   if ( fd_idx == BLK_ERROR_FD )	{
   	fprintf( stderr, "Unable to find serial port descriptor.\n" );
     exit( -2 );
   }
+  #ifdef BLK_TWO_FC
+  if ( fd_idx2 == BLK_ERROR_FD )	{
+  	fprintf( stderr, "Unable to find second serial port descriptor.\n" );
+    exit( -2 );
+  }
+  #endif
   
   // Dump FC state
 	blk_dump_fc_state( BLK_DEV_SERIALNB );
+	#ifdef BLK_TWO_FC
+	blk_dump_fc_state( BLK_DEV2_SERIALNB );
+	#endif
 	
 	// Enable motor
 	ret = blk_enable_motor( BLK_DEV_SERIALNB, true );
@@ -1759,7 +1763,14 @@ int main( int argc, char *argv[] )  {
     fprintf( stderr, "Error %d in blk_enable_motor.\n", ret );
     exit( -3 );
   }
-
+  #ifdef BLK_TWO_FC
+  ret = blk_enable_motor( BLK_DEV2_SERIALNB, true );
+	if ( ret )  {
+    fprintf( stderr, "Error %d in blk_enable_motor on second FC.\n", ret );
+    exit( -3 );
+  }
+  #endif
+  
   // Testing roundtrip serial link duration
   for ( i = 0; i < BLK_NB_PING; i++ )  {
   	
@@ -1769,9 +1780,9 @@ int main( int argc, char *argv[] )  {
   	// Serial transaction with FC
     if ( ( i / BLK_STEP_PERIOD ) % 2 )	{
     	#ifdef BLK_THREADED_UPDATE
-    	ret = blk_update_threaded( BLK_DEV_SERIALNB, throttle_max );
+    	ret = blk_update_threaded( BLK_DEV_SERIALNB, ref_max );
     	#else
-    	ret = blk_update( BLK_DEV_SERIALNB, throttle_max );
+    	ret = blk_update( BLK_DEV_SERIALNB, ref_max );
     	#endif
 	    if ( ret )  {
     		fprintf( stderr, "Error %d in blk_update.\n", ret );
@@ -1780,9 +1791,9 @@ int main( int argc, char *argv[] )  {
     }
     else {
     	#ifdef BLK_THREADED_UPDATE
-    	ret = blk_update_threaded( BLK_DEV_SERIALNB, throttle_min );
+    	ret = blk_update_threaded( BLK_DEV_SERIALNB, ref_min );
     	#else
-    	ret = blk_update( BLK_DEV_SERIALNB, throttle_min );
+    	ret = blk_update( BLK_DEV_SERIALNB, ref_min );
     	#endif
     	if ( ret )  {
     		fprintf( stderr, "Error %d in blk_update.\n", ret );
@@ -1795,7 +1806,13 @@ int main( int argc, char *argv[] )  {
     elapsed_us =  ( cur.tv_sec * 1e6 + cur.tv_nsec / 1e3 ) -
                   ( start.tv_sec * 1e6 + start.tv_nsec / 1e3 );
     
-    
+    // Update stats
+    if ( elapsed_us > d_max )
+    	d_max = elapsed_us;
+    if ( elapsed_us < d_min )
+    	d_min = elapsed_us;
+    d_avg += elapsed_us;
+    	
     // Read current state
 		ret = blk_copy_state( BLK_DEV_SERIALNB, &state );
 		if ( ret )	{
@@ -1829,10 +1846,96 @@ int main( int argc, char *argv[] )  {
                 state.acc[0], state.acc[1], state.acc[2],
                 state.gyr[0], state.gyr[1], state.gyr[2],
                 rpm );
+    
+    #ifdef BLK_TWO_FC
+    
+    // Get starting time
+  	clock_gettime( CLOCK_MONOTONIC, &start );
+  	
+  	// Serial transaction with FC
+    if ( ( i / BLK_STEP_PERIOD ) % 2 )	{
+    	#ifdef BLK_THREADED_UPDATE
+    	ret = blk_update_threaded( BLK_DEV2_SERIALNB, ref_max );
+    	#else
+    	ret = blk_update( BLK_DEV2_SERIALNB, ref_max );
+    	#endif
+	    if ( ret )  {
+    		fprintf( stderr, "Error %d in blk_update on second FC.\n", ret );
+    		break;
+  		}
+    }
+    else {
+    	#ifdef BLK_THREADED_UPDATE
+    	ret = blk_update_threaded( BLK_DEV2_SERIALNB, ref_min );
+    	#else
+    	ret = blk_update( BLK_DEV2_SERIALNB, ref_min );
+    	#endif
+    	if ( ret )  {
+    		fprintf( stderr, "Error %d in blk_update on second FC.\n", ret );
+    		break;
+  		}
+    }
+    
+    // Compute time elapsed
+    clock_gettime( CLOCK_MONOTONIC, &cur );
+    elapsed_us =  ( cur.tv_sec * 1e6 + cur.tv_nsec / 1e3 ) -
+                  ( start.tv_sec * 1e6 + start.tv_nsec / 1e3 );
+    
+    // Update stats
+    if ( elapsed_us > d_max2 )
+    	d_max2 = elapsed_us;
+    if ( elapsed_us < d_min2 )
+    	d_min2 = elapsed_us;
+    d_avg2 += elapsed_us;
+    
+    // Read current state
+		ret = blk_copy_state( BLK_DEV2_SERIALNB, &state );
+		if ( ret )	{
+    	fprintf( stderr, "Error %d in blk_copy_state on second FC.\n", ret );
+    	break;
+  	}
+		
+    // Display sensors
+    
+    rpm = 0;
+    for ( ii = 0; ii < state.motor_count; ii++ )	{
+	    rpm += state.rpm[ii];
+    }
+    rpm /= state.motor_count;
+    if ( state.betalink_detected )
+      fprintf(  stderr,
+                "##:%u\t[%d\tus]\tax:%d\tay:%d\taz:%d\tgx:%d\tgy:%d\tgz:%d\tr:%d\tp:%d\ty:%d\trpm:%d\n",
+                state.timestamp,
+                (int)elapsed_us,
+                state.acc[0], state.acc[1], state.acc[2],
+                state.gyr[0], state.gyr[1], state.gyr[2],
+                (int)(state.roll * BLK_MSP_ANGLE_SCALING),
+                (int)(state.pitch * BLK_MSP_ANGLE_SCALING),
+                (int)(state.yaw * BLK_MSP_ANGLE_SCALING),
+                rpm );
+    else
+      fprintf(  stderr,
+                "##:%d\t[%d\tus]\tax:%d\tay:%d\taz:%d\tgx:%d\tgy:%d\tgz:%d\trpm:%d\n",
+                i,
+                (int)elapsed_us,
+                state.acc[0], state.acc[1], state.acc[2],
+                state.gyr[0], state.gyr[1], state.gyr[2],
+                rpm );
+    #endif
               
     // Wait loop period
-    usleep( BLK_PERIOD );
+    do	{
+    	clock_gettime( CLOCK_MONOTONIC, &cur );
+    	elapsed_us =  ( cur.tv_sec * 1e6 + cur.tv_nsec / 1e3 ) -
+                  	( start.tv_sec * 1e6 + start.tv_nsec / 1e3 );
+    } while ( elapsed_us < BLK_PERIOD );
   }
+  
+  // Display stats
+  fprintf(  stderr, "# min: %u us\t max: %u us\t avg: %u us\n", d_min, d_max, d_avg / BLK_NB_PING );
+  #ifdef BLK_TWO_FC
+  fprintf(  stderr, "## min: %u us\t max: %u us\t avg: %u us\n", d_min2, d_max2, d_avg2 / BLK_NB_PING );
+  #endif
   
   // Disable motor
 	ret = blk_enable_motor( BLK_DEV_SERIALNB, false );
@@ -1840,10 +1943,20 @@ int main( int argc, char *argv[] )  {
     fprintf( stderr, "Error %d in blk_enable_motor.\n", ret );
     exit( -3 );
   }
-
+	#ifdef BLK_TWO_FC
+	ret = blk_enable_motor( BLK_DEV2_SERIALNB, false );
+	if ( ret )  {
+    fprintf( stderr, "Error %d in blk_enable_motor.\n", ret );
+    exit( -3 );
+  }
+	#endif
+	
   // Restoring serial port initial configuration
   blk_release_port( BLK_DEV_SERIALNB );
-
+  #ifdef BLK_TWO_FC
+  blk_release_port( BLK_DEV2_SERIALNB );
+  #endif
+  
   return 0;
 }
 #endif
