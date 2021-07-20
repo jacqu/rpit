@@ -14,7 +14,7 @@
 
 /* %%%-SFUNWIZ_wrapper_includes_Changes_BEGIN --- EDIT HERE TO _END */
 #include <math.h>
-#define SFUN_BLK_MIN_PERIOD                0.001            // Minimum sampling period
+#define SFUN_BLK_MIN_PERIOD                0.003            // Minimum sampling period
 /* %%%-SFUNWIZ_wrapper_includes_Changes_END --- EDIT HERE TO _BEGIN */
 #define u_width 8
 #define y_width 1
