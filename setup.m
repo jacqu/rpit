@@ -381,6 +381,7 @@ if contains( out, 'Raspberry Pi 3' )
   disp( '  > Distant target is a Raspberry Pi 3.' );
   copyfile('../res/rpi_callback_handler_arm_pi3.m','../rpit/rpi_callback_handler.m');
   copyfile('../res/ert_rpi_2020b_arm_pi3.tmf','../rpit/ert_rpi.tmf');
+  target_is_rpi = 1;
   target_is_rpi3 = 1;
   is_tmf_configured = 1;
 end
@@ -390,6 +391,7 @@ if contains( out, 'Raspberry Pi 4' )
   disp( '  > Distant target is a Raspberry Pi 4.' );
   copyfile('../res/rpi_callback_handler_arm_pi4.m','../rpit/rpi_callback_handler.m');
   copyfile('../res/ert_rpi_2020b_arm_pi4.tmf','../rpit/ert_rpi.tmf');
+  target_is_rpi = 1;
   target_is_rpi4 = 1;
   is_tmf_configured = 1;
 end
