@@ -122,35 +122,29 @@ void rpi_sfun_betalink_Outputs_wrapper(const real_T *throttle,
   ret = blk_update_threaded( (uint32_t)*usb_serial_number, throttle_msp );
   if ( ret ) {
     fprintf( stderr, "rpi_sfun_betalink: error %d in blk_update_threaded.\n", ret );
-    return;
   }
-  else {
-    // Copy data structure locally
-    ret = blk_copy_state( (uint32_t)*usb_serial_number, &state );
-    if ( ret ) {
-      fprintf( stderr, "rpi_sfun_betalink: error %d in blk_copy_state.\n", ret );
-      return;
-    }
-    else {
-      // Copy states to block outputs
-      *timestamp = state.timestamp;
-      for ( i = 0; i < BLK_MAX_MOTORS; i++ )    {
-          rpm[i] = state.rpm[i];
-          inv[i] = state.inv[i] * BLK_MSP_INV_SCALING;
-      }
-      for ( i = 0; i < 3; i++ )    {
-          acc[i] = state.acc[i] * BLK_MSP_ACC_SCALING;
-          gyr[i] = state.gyr[i] * BLK_MSP_GYR_SCALING;
-          mag[i] = state.mag[i] * BLK_MSP_MAG_SCALING;
-      }
-      *roll = state.roll;
-      *pitch = state.pitch;
-      *yaw = state.yaw;
-      *bat_volt = state.bat_volt * BLK_MSP_BATV_SCALING;
-      *bat_amp = state.bat_amp * BLK_MSP_BATA_SCALING;
-      *bat_mah = state.bat_mah;
-    }
+  // Copy data structure locally
+  ret = blk_copy_state( (uint32_t)*usb_serial_number, &state );
+  if ( ret ) {
+    fprintf( stderr, "rpi_sfun_betalink: error %d in blk_copy_state.\n", ret );
   }
+  // Copy states to block outputs
+  *timestamp = state.timestamp;
+  for ( i = 0; i < BLK_MAX_MOTORS; i++ )    {
+      rpm[i] = state.rpm[i];
+      inv[i] = state.inv[i] * BLK_MSP_INV_SCALING;
+  }
+  for ( i = 0; i < 3; i++ )    {
+      acc[i] = state.acc[i] * BLK_MSP_ACC_SCALING;
+      gyr[i] = state.gyr[i] * BLK_MSP_GYR_SCALING;
+      mag[i] = state.mag[i] * BLK_MSP_MAG_SCALING;
+  }
+  *roll = state.roll;
+  *pitch = state.pitch;
+  *yaw = state.yaw;
+  *bat_volt = state.bat_volt * BLK_MSP_BATV_SCALING;
+  *bat_amp = state.bat_amp * BLK_MSP_BATA_SCALING;
+  *bat_mah = state.bat_mah;
   #endif
 /* %%%-SFUNWIZ_wrapper_Outputs_Changes_END --- EDIT HERE TO _BEGIN */
 }
