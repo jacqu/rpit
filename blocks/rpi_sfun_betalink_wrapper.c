@@ -127,6 +127,8 @@ void rpi_sfun_betalink_Outputs_wrapper(const real_T *throttle,
   ret = blk_copy_state( (uint32_t)*usb_serial_number, &state );
   if ( ret ) {
     fprintf( stderr, "rpi_sfun_betalink: error %d in blk_copy_state.\n", ret );
+    // Error <-> bad serial number: force all outputs to zero
+    memset( &state, 0, sizeof( blk_state_t ) );
   }
   // Copy states to block outputs
   *timestamp = state.timestamp;
