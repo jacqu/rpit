@@ -467,6 +467,14 @@ if ( status )
   disp( '  > Is your target connected to internet ?' );
   disp( '  > Please install it manually: sudo apt-get install screen' );
 end
+disp( '  > Installing the ''netstat'' utility on the target.' );
+command = sprintf( '%s pi@%s sudo apt-get -y install net-tools', ssh_command, piip );
+[ status, ~ ] = system( command );
+if ( status )
+  rpit_warning( 'Installation of ''net-tools'' returned an error.' );
+  disp( '  > Is your target connected to internet ?' );
+  disp( '  > Please install it manually: sudo apt-get install net-tools' );
+end
 disp( '  > Installing the ''libusb-1.0-0-dev'' package on the target.' );
 command = sprintf( '%s pi@%s sudo apt-get -y install libusb-1.0-0-dev', ssh_command, piip );
 [ status, ~ ] = system( command );
