@@ -141,9 +141,9 @@ void rpi_sfun_betalink_Outputs_wrapper(const real_T *throttle,
       gyr[i] = state.gyr[i] * BLK_MSP_GYR_SCALING;
       mag[i] = state.mag[i] * BLK_MSP_MAG_SCALING;
   }
-  *roll = state.roll;
-  *pitch = state.pitch;
-  *yaw = state.yaw;
+  *roll = state.roll * BLK_MSP_ANGLE_SCALING;
+  *pitch = state.pitch * BLK_MSP_ANGLE_SCALING;
+  *yaw = state.yaw * BLK_MSP_ANGLE_SCALING;
   *bat_volt = state.bat_volt * BLK_MSP_BATV_SCALING;
   *bat_amp = state.bat_amp * BLK_MSP_BATA_SCALING;
   *bat_mah = state.bat_mah;
