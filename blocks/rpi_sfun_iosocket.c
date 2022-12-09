@@ -8,11 +8,11 @@
  *   Builder which only recognizes certain fields.  Changes made
  *   outside these fields will be lost the next time the block is
  *   used to load, edit, and resave this file. This file will be overwritten
- *   by the S-function Builder block. If you want to edit this file by hand, 
- *   you must change it only in the area defined as:  
+ *   by the S-function Builder block. If you want to edit this file by hand,
+ *   you must change it only in the area defined as:
  *
  *        %%%-SFUNWIZ_defines_Changes_BEGIN
- *        #define NAME 'replacement text' 
+ *        #define NAME 'replacement text'
  *        %%% SFUNWIZ_defines_Changes_END
  *
  *   DO NOT change NAME--Change the 'replacement text' only.
@@ -24,293 +24,358 @@
  *
  *  -------------------------------------------------------------------------
  * | See matlabroot/simulink/src/sfuntmpl_doc.c for a more detailed template |
- *  ------------------------------------------------------------------------- 
+ *  -------------------------------------------------------------------------
  *
- * Created: Fri Jul 10 14:02:28 2020
+ * Created: Fri Dec 09 16:50:20 2022
  */
 
-#define S_FUNCTION_LEVEL 2
-#define S_FUNCTION_NAME rpi_sfun_iosocket
+#define S_FUNCTION_LEVEL               2
+#define S_FUNCTION_NAME                rpi_sfun_iosocket
+
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* %%%-SFUNWIZ_defines_Changes_BEGIN --- EDIT HERE TO _END */
-#define NUM_INPUTS            1
+#define NUM_INPUTS                     1
+
 /* Input Port  0 */
-#define IN_PORT_0_NAME        u0
-#define INPUT_0_WIDTH         150
-#define INPUT_DIMS_0_COL      1
-#define INPUT_0_DTYPE         real_T
-#define INPUT_0_COMPLEX       COMPLEX_NO
-#define IN_0_FRAME_BASED      FRAME_NO
-#define IN_0_BUS_BASED        0
-#define IN_0_BUS_NAME         
-#define IN_0_DIMS             1-D
-#define INPUT_0_FEEDTHROUGH   0
-#define IN_0_ISSIGNED         0
-#define IN_0_WORDLENGTH       8
-#define IN_0_FIXPOINTSCALING  1
-#define IN_0_FRACTIONLENGTH   9
-#define IN_0_BIAS             0
-#define IN_0_SLOPE            0.125
+#define IN_PORT_0_NAME                 u0
+#define INPUT_0_DIMS_ND                {150,1}
+#define INPUT_0_NUM_ELEMS              150
+#define INPUT_0_WIDTH                  150
+#define INPUT_DIMS_0_COL               1
+#define INPUT_0_DTYPE                  real_T
+#define INPUT_0_COMPLEX                COMPLEX_NO
+#define IN_0_BUS_BASED                 0
+#define IN_0_BUS_NAME
+#define IN_0_DIMS                      1-D
+#define INPUT_0_FEEDTHROUGH            0
+#define IN_0_ISSIGNED                  0
+#define IN_0_WORDLENGTH                8
+#define IN_0_FIXPOINTSCALING           1
+#define IN_0_FRACTIONLENGTH            9
+#define IN_0_BIAS                      0
+#define IN_0_SLOPE                     0.125
+#define NUM_OUTPUTS                    1
 
-#define NUM_OUTPUTS           1
 /* Output Port  0 */
-#define OUT_PORT_0_NAME       y0
-#define OUTPUT_0_WIDTH        150
-#define OUTPUT_DIMS_0_COL     1
-#define OUTPUT_0_DTYPE        real_T
-#define OUTPUT_0_COMPLEX      COMPLEX_NO
-#define OUT_0_FRAME_BASED     FRAME_NO
-#define OUT_0_BUS_BASED       0
-#define OUT_0_BUS_NAME        
-#define OUT_0_DIMS            1-D
-#define OUT_0_ISSIGNED        1
-#define OUT_0_WORDLENGTH      8
-#define OUT_0_FIXPOINTSCALING 1
-#define OUT_0_FRACTIONLENGTH  3
-#define OUT_0_BIAS            0
-#define OUT_0_SLOPE           0.125
+#define OUT_PORT_0_NAME                y0
+#define OUTPUT_0_DIMS_ND               {150,1}
+#define OUTPUT_0_NUM_ELEMS             150
+#define OUTPUT_0_WIDTH                 150
+#define OUTPUT_DIMS_0_COL              1
+#define OUTPUT_0_DTYPE                 real_T
+#define OUTPUT_0_COMPLEX               COMPLEX_NO
+#define OUT_0_BUS_BASED                0
+#define OUT_0_BUS_NAME
+#define OUT_0_DIMS                     1-D
+#define OUT_0_ISSIGNED                 1
+#define OUT_0_WORDLENGTH               8
+#define OUT_0_FIXPOINTSCALING          1
+#define OUT_0_FRACTIONLENGTH           3
+#define OUT_0_BIAS                     0
+#define OUT_0_SLOPE                    0.125
+#define NPARAMS                        6
 
-#define NPARAMS               5
 /* Parameter 0 */
-#define PARAMETER_0_NAME      rpi_Ts
-#define PARAMETER_0_DTYPE     real_T
-#define PARAMETER_0_COMPLEX   COMPLEX_NO
+#define PARAMETER_0_NAME               rpi_Ts
+#define PARAMETER_0_DTYPE              real_T
+#define PARAMETER_0_COMPLEX            COMPLEX_NO
+
 /* Parameter 1 */
-#define PARAMETER_1_NAME      rpi_ip1
-#define PARAMETER_1_DTYPE     uint8_T
-#define PARAMETER_1_COMPLEX   COMPLEX_NO
+#define PARAMETER_1_NAME               rpi_ip1
+#define PARAMETER_1_DTYPE              uint8_T
+#define PARAMETER_1_COMPLEX            COMPLEX_NO
+
 /* Parameter 2 */
-#define PARAMETER_2_NAME      rpi_ip2
-#define PARAMETER_2_DTYPE     uint8_T
-#define PARAMETER_2_COMPLEX   COMPLEX_NO
+#define PARAMETER_2_NAME               rpi_ip2
+#define PARAMETER_2_DTYPE              uint8_T
+#define PARAMETER_2_COMPLEX            COMPLEX_NO
+
 /* Parameter 3 */
-#define PARAMETER_3_NAME      rpi_ip3
-#define PARAMETER_3_DTYPE     uint8_T
-#define PARAMETER_3_COMPLEX   COMPLEX_NO
+#define PARAMETER_3_NAME               rpi_ip3
+#define PARAMETER_3_DTYPE              uint8_T
+#define PARAMETER_3_COMPLEX            COMPLEX_NO
+
 /* Parameter 4 */
-#define PARAMETER_4_NAME      rpi_ip4
-#define PARAMETER_4_DTYPE     uint8_T
-#define PARAMETER_4_COMPLEX   COMPLEX_NO
+#define PARAMETER_4_NAME               rpi_ip4
+#define PARAMETER_4_DTYPE              uint8_T
+#define PARAMETER_4_COMPLEX            COMPLEX_NO
 
-#define SAMPLE_TIME_0         rpi_Ts
-#define NUM_DISC_STATES       1
-#define DISC_STATES_IC        [0]
-#define NUM_CONT_STATES       0
-#define CONT_STATES_IC        [0]
+/* Parameter 5 */
+#define PARAMETER_5_NAME               rpi_port
+#define PARAMETER_5_DTYPE              uint32_T
+#define PARAMETER_5_COMPLEX            COMPLEX_NO
+#define SAMPLE_TIME_0                  rpi_Ts
+#define NUM_DISC_STATES                1
+#define DISC_STATES_IC                 [0]
+#define NUM_CONT_STATES                0
+#define CONT_STATES_IC                 [0]
+#define SFUNWIZ_GENERATE_TLC           1
+#define SOURCEFILES                    "__SFB__"
+#define PANELINDEX                     N/A
+#define USE_SIMSTRUCT                  0
+#define SHOW_COMPILE_STEPS             1
+#define CREATE_DEBUG_MEXFILE           0
+#define SAVE_CODE_ONLY                 0
+#define SFUNWIZ_REVISION               3.0
 
-#define SFUNWIZ_GENERATE_TLC  1
-#define SOURCEFILES           "__SFB__"
-#define PANELINDEX            8
-#define USE_SIMSTRUCT         0
-#define SHOW_COMPILE_STEPS    1
-#define CREATE_DEBUG_MEXFILE  0
-#define SAVE_CODE_ONLY        0
-#define SFUNWIZ_REVISION      3.0
 /* %%%-SFUNWIZ_defines_Changes_END --- EDIT HERE TO _BEGIN */
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 #include "simstruc.h"
-
-#define PARAM_DEF0(S) ssGetSFcnParam(S, 0)
-#define PARAM_DEF1(S) ssGetSFcnParam(S, 1)
-#define PARAM_DEF2(S) ssGetSFcnParam(S, 2)
-#define PARAM_DEF3(S) ssGetSFcnParam(S, 3)
-#define PARAM_DEF4(S) ssGetSFcnParam(S, 4)
-
-#define IS_PARAM_DOUBLE(pVal) (mxIsNumeric(pVal) && !mxIsLogical(pVal) &&\
+#define PARAM_DEF0(S)                  ssGetSFcnParam(S, 0)
+#define PARAM_DEF1(S)                  ssGetSFcnParam(S, 1)
+#define PARAM_DEF2(S)                  ssGetSFcnParam(S, 2)
+#define PARAM_DEF3(S)                  ssGetSFcnParam(S, 3)
+#define PARAM_DEF4(S)                  ssGetSFcnParam(S, 4)
+#define PARAM_DEF5(S)                  ssGetSFcnParam(S, 5)
+#define IS_PARAM_DOUBLE(pVal)          (mxIsNumeric(pVal) && !mxIsLogical(pVal) &&\
 !mxIsEmpty(pVal) && !mxIsSparse(pVal) && !mxIsComplex(pVal) && mxIsDouble(pVal))
-
-#define IS_PARAM_UINT8(pVal) (mxIsNumeric(pVal) && !mxIsLogical(pVal) &&\
+#define IS_PARAM_UINT32(pVal)          (mxIsNumeric(pVal) && !mxIsLogical(pVal) &&\
+!mxIsEmpty(pVal) && !mxIsSparse(pVal) && !mxIsComplex(pVal) && mxIsUint32(pVal))
+#define IS_PARAM_UINT8(pVal)           (mxIsNumeric(pVal) && !mxIsLogical(pVal) &&\
 !mxIsEmpty(pVal) && !mxIsSparse(pVal) && !mxIsComplex(pVal) && mxIsUint8(pVal))
 
 extern void rpi_sfun_iosocket_Start_wrapper(real_T *xD,
-			const real_T *rpi_Ts, const int_T p_width0,
-			const uint8_T *rpi_ip1, const int_T p_width1,
-			const uint8_T *rpi_ip2, const int_T p_width2,
-			const uint8_T *rpi_ip3, const int_T p_width3,
-			const uint8_T *rpi_ip4, const int_T p_width4);
+  const real_T *rpi_Ts, const int_T p_width0,
+  const uint8_T *rpi_ip1, const int_T p_width1,
+  const uint8_T *rpi_ip2, const int_T p_width2,
+  const uint8_T *rpi_ip3, const int_T p_width3,
+  const uint8_T *rpi_ip4, const int_T p_width4,
+  const uint32_T *rpi_port, const int_T p_width5);
 extern void rpi_sfun_iosocket_Outputs_wrapper(real_T *y0,
-			const real_T *xD,
-			const real_T *rpi_Ts, const int_T p_width0,
-			const uint8_T *rpi_ip1, const int_T p_width1,
-			const uint8_T *rpi_ip2, const int_T p_width2,
-			const uint8_T *rpi_ip3, const int_T p_width3,
-			const uint8_T *rpi_ip4, const int_T p_width4);
+  const real_T *xD,
+  const real_T *rpi_Ts, const int_T p_width0,
+  const uint8_T *rpi_ip1, const int_T p_width1,
+  const uint8_T *rpi_ip2, const int_T p_width2,
+  const uint8_T *rpi_ip3, const int_T p_width3,
+  const uint8_T *rpi_ip4, const int_T p_width4,
+  const uint32_T *rpi_port, const int_T p_width5);
 extern void rpi_sfun_iosocket_Update_wrapper(const real_T *u0,
-			real_T *y0,
-			real_T *xD,
-			const real_T *rpi_Ts, const int_T p_width0,
-			const uint8_T *rpi_ip1, const int_T p_width1,
-			const uint8_T *rpi_ip2, const int_T p_width2,
-			const uint8_T *rpi_ip3, const int_T p_width3,
-			const uint8_T *rpi_ip4, const int_T p_width4);
+  real_T *y0,
+  real_T *xD,
+  const real_T *rpi_Ts, const int_T p_width0,
+  const uint8_T *rpi_ip1, const int_T p_width1,
+  const uint8_T *rpi_ip2, const int_T p_width2,
+  const uint8_T *rpi_ip3, const int_T p_width3,
+  const uint8_T *rpi_ip4, const int_T p_width4,
+  const uint32_T *rpi_port, const int_T p_width5);
 extern void rpi_sfun_iosocket_Terminate_wrapper(real_T *xD,
-			const real_T *rpi_Ts, const int_T p_width0,
-			const uint8_T *rpi_ip1, const int_T p_width1,
-			const uint8_T *rpi_ip2, const int_T p_width2,
-			const uint8_T *rpi_ip3, const int_T p_width3,
-			const uint8_T *rpi_ip4, const int_T p_width4);
+  const real_T *rpi_Ts, const int_T p_width0,
+  const uint8_T *rpi_ip1, const int_T p_width1,
+  const uint8_T *rpi_ip2, const int_T p_width2,
+  const uint8_T *rpi_ip3, const int_T p_width3,
+  const uint8_T *rpi_ip4, const int_T p_width4,
+  const uint32_T *rpi_port, const int_T p_width5);
+
 /*====================*
  * S-function methods *
  *====================*/
 #define MDL_CHECK_PARAMETERS
 #if defined(MDL_CHECK_PARAMETERS) && defined(MATLAB_MEX_FILE)
+
 /* Function: mdlCheckParameters =============================================
  * Abstract:
  *     Verify parameter definitions and types.
  */
 static void mdlCheckParameters(SimStruct *S)
 {
-    int paramIndex  = 0;
-    bool invalidParam = false;
-    /* All parameters must match the S-function Builder Dialog */
+  int paramIndex = 0;
+  bool invalidParam = false;
 
-    {
-        const mxArray *pVal0 = ssGetSFcnParam(S, 0);
-        if (!mxIsDouble(pVal0)) {
-            ssSetErrorStatus(S, "Sample time parameter rpi_Ts must be of type double");
-            return;
-        }
+  /* All parameters must match the S-function Builder Dialog */
+  {
+    const mxArray *pVal0 = ssGetSFcnParam(S, 0);
+    if (!mxIsDouble(pVal0)) {
+      ssSetLocalErrorStatus(S,
+                            "Sample time parameter rpi_Ts must be of type double");
+      return;
     }
+  }
 
-    {
-        const mxArray *pVal0 = ssGetSFcnParam(S, 0);
-        if (!IS_PARAM_DOUBLE(pVal0)) {
-            invalidParam = true;
-            paramIndex = 0;
-            goto EXIT_POINT;
-        }
+  {
+    const mxArray *pVal0 = ssGetSFcnParam(S, 0);
+    if (!IS_PARAM_DOUBLE(pVal0)) {
+      invalidParam = true;
+      paramIndex = 0;
+      goto EXIT_POINT;
     }
+  }
 
-    {
-        const mxArray *pVal1 = ssGetSFcnParam(S, 1);
-        if (!IS_PARAM_UINT8(pVal1)) {
-            invalidParam = true;
-            paramIndex = 1;
-            goto EXIT_POINT;
-        }
+  {
+    const mxArray *pVal1 = ssGetSFcnParam(S, 1);
+    if (!IS_PARAM_UINT8(pVal1)) {
+      invalidParam = true;
+      paramIndex = 1;
+      goto EXIT_POINT;
     }
+  }
 
-    {
-        const mxArray *pVal2 = ssGetSFcnParam(S, 2);
-        if (!IS_PARAM_UINT8(pVal2)) {
-            invalidParam = true;
-            paramIndex = 2;
-            goto EXIT_POINT;
-        }
+  {
+    const mxArray *pVal2 = ssGetSFcnParam(S, 2);
+    if (!IS_PARAM_UINT8(pVal2)) {
+      invalidParam = true;
+      paramIndex = 2;
+      goto EXIT_POINT;
     }
+  }
 
-    {
-        const mxArray *pVal3 = ssGetSFcnParam(S, 3);
-        if (!IS_PARAM_UINT8(pVal3)) {
-            invalidParam = true;
-            paramIndex = 3;
-            goto EXIT_POINT;
-        }
+  {
+    const mxArray *pVal3 = ssGetSFcnParam(S, 3);
+    if (!IS_PARAM_UINT8(pVal3)) {
+      invalidParam = true;
+      paramIndex = 3;
+      goto EXIT_POINT;
     }
+  }
 
-    {
-        const mxArray *pVal4 = ssGetSFcnParam(S, 4);
-        if (!IS_PARAM_UINT8(pVal4)) {
-            invalidParam = true;
-            paramIndex = 4;
-            goto EXIT_POINT;
-        }
+  {
+    const mxArray *pVal4 = ssGetSFcnParam(S, 4);
+    if (!IS_PARAM_UINT8(pVal4)) {
+      invalidParam = true;
+      paramIndex = 4;
+      goto EXIT_POINT;
     }
+  }
 
-
-    EXIT_POINT:
-    if (invalidParam) {
-        char parameterErrorMsg[1024];
-        sprintf(parameterErrorMsg, "The data type and or complexity of parameter %d does not match the "
-                "information specified in the S-function Builder dialog. "
-                "For non-double parameters you will need to cast them using int8, int16, "
-                "int32, uint8, uint16, uint32 or boolean.", paramIndex + 1);
-        ssSetErrorStatus(S, parameterErrorMsg);
+  {
+    const mxArray *pVal5 = ssGetSFcnParam(S, 5);
+    if (!IS_PARAM_UINT32(pVal5)) {
+      invalidParam = true;
+      paramIndex = 5;
+      goto EXIT_POINT;
     }
-    return;
+  }
+
+ EXIT_POINT:
+  if (invalidParam) {
+    static char parameterErrorMsg[1024];
+    sprintf(parameterErrorMsg,
+            "The data type and or complexity of parameter %d does not match the "
+            "information specified in the S-function Builder dialog. "
+            "For non-double parameters you will need to cast them using int8, int16, "
+            "int32, uint8, uint16, uint32 or boolean.", paramIndex + 1);
+    ssSetLocalErrorStatus(S, parameterErrorMsg);
+  }
+
+  return;
 }
-#endif /* MDL_CHECK_PARAMETERS */
+
+#endif                                 /* MDL_CHECK_PARAMETERS */
+
 /* Function: mdlInitializeSizes ===============================================
  * Abstract:
  *   Setup sizes of the various vectors.
  */
 static void mdlInitializeSizes(SimStruct *S)
 {
+  DECL_AND_INIT_DIMSINFO(inputDimsInfo);
+  DECL_AND_INIT_DIMSINFO(outputDimsInfo);
+  ssSetNumSFcnParams(S, NPARAMS);      /* Number of expected parameters */
 
-    DECL_AND_INIT_DIMSINFO(inputDimsInfo);
-    DECL_AND_INIT_DIMSINFO(outputDimsInfo);
-    ssSetNumSFcnParams(S, NPARAMS); /* Number of expected parameters */
-    #if defined(MATLAB_MEX_FILE)
-    if (ssGetNumSFcnParams(S) == ssGetSFcnParamsCount(S)) {
-        mdlCheckParameters(S);
-        if (ssGetErrorStatus(S) != NULL) {
-            return;
-        }
-    } else {
-        return; /* Parameter mismatch will be reported by Simulink */
+#if defined(MATLAB_MEX_FILE)
+
+  if (ssGetNumSFcnParams(S) == ssGetSFcnParamsCount(S)) {
+    mdlCheckParameters(S);
+    if (ssGetErrorStatus(S) != NULL) {
+      return;
     }
-    #endif
+  } else {
+    return;                            /* Parameter mismatch will be reported by Simulink */
+  }
 
-    ssSetArrayLayoutForCodeGen(S, SS_COLUMN_MAJOR);
+#endif
 
-    ssSetSimStateCompliance(S, USE_DEFAULT_SIM_STATE);
+  ssSetArrayLayoutForCodeGen(S, SS_COLUMN_MAJOR);
+  ssSetOperatingPointCompliance(S, USE_DEFAULT_OPERATING_POINT);
+  ssSetNumContStates(S, NUM_CONT_STATES);
+  ssSetNumDiscStates(S, NUM_DISC_STATES);
+  if (!ssSetNumInputPorts(S, NUM_INPUTS))
+    return;
 
-    ssSetNumContStates(S, NUM_CONT_STATES);
-    ssSetNumDiscStates(S, NUM_DISC_STATES);
+  /* Input Port 0 */
+  ssAllowSignalsWithMoreThan2D(S);
+  inputDimsInfo.numDims = 2;
+  inputDimsInfo.width = INPUT_0_NUM_ELEMS;
+  int_T in0Dims[] = INPUT_0_DIMS_ND;
+  inputDimsInfo.dims = in0Dims;
+  ssSetInputPortDimensionInfo(S, 0, &inputDimsInfo);
+  ssSetInputPortDataType(S, 0, SS_DOUBLE);
+  ssSetInputPortComplexSignal(S, 0, INPUT_0_COMPLEX);
+  ssSetInputPortDirectFeedThrough(S, 0, INPUT_0_FEEDTHROUGH);
+  ssSetInputPortRequiredContiguous(S, 0, 1);/*direct input signal access*/
+  if (!ssSetNumOutputPorts(S, NUM_OUTPUTS))
+    return;
 
+  /* Output Port 0 */
+  ssSetOutputPortWidth(S, 0, OUTPUT_0_NUM_ELEMS);
+  ssSetOutputPortDataType(S, 0, SS_DOUBLE);
+  ssSetOutputPortComplexSignal(S, 0, OUTPUT_0_COMPLEX);
+  ssSetNumPWork(S, 0);
+  ssSetNumSampleTimes(S, 1);
+  ssSetNumRWork(S, 0);
+  ssSetNumIWork(S, 0);
+  ssSetNumModes(S, 0);
+  ssSetNumNonsampledZCs(S, 0);
+  ssSetSimulinkVersionGeneratedIn(S, "10.6");
 
-    if (!ssSetNumInputPorts(S, NUM_INPUTS)) return;
-    inputDimsInfo.width = INPUT_0_WIDTH;
-    ssSetInputPortDimensionInfo(S, 0, &inputDimsInfo);
-    ssSetInputPortFrameData(S, 0, IN_0_FRAME_BASED);
-    ssSetInputPortDataType(S, 0, SS_DOUBLE);
-
-    ssSetInputPortComplexSignal(S, 0, INPUT_0_COMPLEX);
-    ssSetInputPortDirectFeedThrough(S, 0, INPUT_0_FEEDTHROUGH);
-    ssSetInputPortRequiredContiguous(S, 0, 1); /*direct input signal access*/
-
-    if (!ssSetNumOutputPorts(S, NUM_OUTPUTS)) return;
-    outputDimsInfo.width = OUTPUT_0_WIDTH;
-    ssSetOutputPortDimensionInfo(S, 0, &outputDimsInfo);
-    ssSetOutputPortFrameData(S, 0, OUT_0_FRAME_BASED);
-    ssSetOutputPortDataType(S, 0, SS_DOUBLE);
-    ssSetOutputPortComplexSignal(S, 0, OUTPUT_0_COMPLEX);
-    ssSetOutputPortComplexSignal(S, 0, OUTPUT_0_COMPLEX);
-    ssSetNumPWork(S, 0);
-
-    ssSetNumSampleTimes(S, 1);
-    ssSetNumRWork(S, 0);
-    ssSetNumIWork(S, 0);
-    ssSetNumModes(S, 0);
-    ssSetNumNonsampledZCs(S, 0);
-
-    ssSetSimulinkVersionGeneratedIn(S, "9.2");
-
-    /* Take care when specifying exception free code - see sfuntmpl_doc.c */
-    ssSetOptions(S, (SS_OPTION_EXCEPTION_FREE_CODE |
-                     SS_OPTION_USE_TLC_WITH_ACCELERATOR |
-                     SS_OPTION_WORKS_WITH_CODE_REUSE));
+  /* Take care when specifying exception free code - see sfuntmpl_doc.c */
+  ssSetOptions(S, (SS_OPTION_EXCEPTION_FREE_CODE |
+                   SS_OPTION_USE_TLC_WITH_ACCELERATOR |
+                   SS_OPTION_WORKS_WITH_CODE_REUSE));
 }
 
 #if defined(MATLAB_MEX_FILE)
 #define MDL_SET_INPUT_PORT_DIMENSION_INFO
-static void mdlSetInputPortDimensionInfo(SimStruct        *S, 
-                                         int_T            port,
-                                         const DimsInfo_T *dimsInfo)
+
+static void mdlSetInputPortDimensionInfo(SimStruct *S,
+  int_T port,
+  const DimsInfo_T *dimsInfo)
 {
-    if(!ssSetInputPortDimensionInfo(S, port, dimsInfo)) return;
+  if (!ssSetInputPortDimensionInfo(S, port, dimsInfo))
+    return;
 }
+
 #endif
 
 #define MDL_SET_OUTPUT_PORT_DIMENSION_INFO
 #if defined(MDL_SET_OUTPUT_PORT_DIMENSION_INFO)
-static void mdlSetOutputPortDimensionInfo(SimStruct        *S, 
-                                          int_T            port, 
-                                          const DimsInfo_T *dimsInfo)
+
+static void mdlSetOutputPortDimensionInfo(SimStruct *S,
+  int_T port,
+  const DimsInfo_T *dimsInfo)
 {
-    if (!ssSetOutputPortDimensionInfo(S, port, dimsInfo)) return;
+  if (!ssSetOutputPortDimensionInfo(S, port, dimsInfo))
+    return;
 }
+
 #endif
+
+#define MDL_SET_DEFAULT_PORT_DIMENSION_INFO
+
+static void mdlSetDefaultPortDimensionInfo(SimStruct *S)
+{
+  DECL_AND_INIT_DIMSINFO(portDimsInfo);
+  int_T dims[2];
+
+  /* Setting default dimensions for input port 0 */
+  portDimsInfo.width = INPUT_0_NUM_ELEMS;
+  dims[0] = INPUT_0_NUM_ELEMS;
+  dims[1] = 1;
+  portDimsInfo.numDims = 2;
+  if (ssGetInputPortWidth(S, 0) == DYNAMICALLY_SIZED) {
+    ssSetInputPortMatrixDimensions(S, 0, 1 , 1);
+  }
+
+  /* Setting default dimensions for output port 0 */
+  portDimsInfo.width = OUTPUT_0_NUM_ELEMS;
+  dims[0] = OUTPUT_0_NUM_ELEMS;
+  dims[1] = 1;
+  portDimsInfo.numDims = 2;
+  if (ssGetOutputPortNumDimensions(S, 0) == (-1)) {
+    ssSetOutputPortDimensionInfo(S, 0, &portDimsInfo);
+  }
+
+  return;
+}
 
 /* Function: mdlInitializeSampleTimes =========================================
  * Abstract:
@@ -318,41 +383,45 @@ static void mdlSetOutputPortDimensionInfo(SimStruct        *S,
  */
 static void mdlInitializeSampleTimes(SimStruct *S)
 {
-    ssSetSampleTime(S, 0, *mxGetPr(ssGetSFcnParam(S, 0)));
-    ssSetModelReferenceSampleTimeDefaultInheritance(S);
-    ssSetOffsetTime(S, 0, 0.0);
+  ssSetSampleTime(S, 0, *mxGetPr(ssGetSFcnParam(S, 0)));
+  ssSetModelReferenceSampleTimeDefaultInheritance(S);
+  ssSetOffsetTime(S, 0, 0.0);
 }
+
 #define MDL_INITIALIZE_CONDITIONS
+
 /* Function: mdlInitializeConditions ========================================
  * Abstract:
  *    Initialize the states
  */
 static void mdlInitializeConditions(SimStruct *S)
 {
-    real_T *xD = ssGetRealDiscStates(S);
+  real_T *xD = ssGetRealDiscStates(S);
 
-    /* Warning: parameters not of type double used as IC will be replaced with 0.0 */
-
-    xD[0] = 0;
+  /* Warning: parameters not of type double used as IC will be replaced with 0.0 */
+  xD[0] = 0;
 }
 
 #define MDL_SET_INPUT_PORT_DATA_TYPE
+
 static void mdlSetInputPortDataType(SimStruct *S, int port, DTypeId dType)
 {
-    ssSetInputPortDataType(S, 0, dType);
+  ssSetInputPortDataType(S, 0, dType);
 }
 
 #define MDL_SET_OUTPUT_PORT_DATA_TYPE
+
 static void mdlSetOutputPortDataType(SimStruct *S, int port, DTypeId dType)
 {
-    ssSetOutputPortDataType(S, 0, dType);
+  ssSetOutputPortDataType(S, 0, dType);
 }
 
 #define MDL_SET_DEFAULT_PORT_DATA_TYPES
+
 static void mdlSetDefaultPortDataTypes(SimStruct *S)
 {
-    ssSetInputPortDataType(S, 0, SS_DOUBLE);
-    ssSetOutputPortDataType(S, 0, SS_DOUBLE);
+  ssSetInputPortDataType(S, 0, SS_DOUBLE);
+  ssSetOutputPortDataType(S, 0, SS_DOUBLE);
 }
 
 #define MDL_SET_WORK_WIDTHS
@@ -360,16 +429,16 @@ static void mdlSetDefaultPortDataTypes(SimStruct *S)
 
 static void mdlSetWorkWidths(SimStruct *S)
 {
+  const char_T *rtParamNames[] = { "P1", "P2", "P3", "P4", "P5", "P6" };
 
-    const char_T *rtParamNames[] = {"P1","P2","P3","P4","P5"};
-    ssRegAllTunableParamsAsRunTimeParams(S, rtParamNames);
-
+  ssRegAllTunableParamsAsRunTimeParams(S, rtParamNames);
 }
 
 #endif
 
-#define MDL_START  /* Change to #undef to remove function */
+#define MDL_START                                                /* Change to #undef to remove function */
 #if defined(MDL_START)
+
 /* Function: mdlStart =======================================================
  * Abstract:
  *    This function is called once at start of model execution. If you
@@ -378,46 +447,51 @@ static void mdlSetWorkWidths(SimStruct *S)
  */
 static void mdlStart(SimStruct *S)
 {
-    real_T *xD = ssGetDiscStates(S);
-    const int_T   p_width0  = mxGetNumberOfElements(PARAM_DEF0(S));
-    const int_T   p_width1  = mxGetNumberOfElements(PARAM_DEF1(S));
-    const int_T   p_width2  = mxGetNumberOfElements(PARAM_DEF2(S));
-    const int_T   p_width3  = mxGetNumberOfElements(PARAM_DEF3(S));
-    const int_T   p_width4  = mxGetNumberOfElements(PARAM_DEF4(S));
-    const real_T *rpi_Ts = (const real_T *) mxGetData(PARAM_DEF0(S));
-    const uint8_T *rpi_ip1 = (const uint8_T *) mxGetData(PARAM_DEF1(S));
-    const uint8_T *rpi_ip2 = (const uint8_T *) mxGetData(PARAM_DEF2(S));
-    const uint8_T *rpi_ip3 = (const uint8_T *) mxGetData(PARAM_DEF3(S));
-    const uint8_T *rpi_ip4 = (const uint8_T *) mxGetData(PARAM_DEF4(S));
-    
-    rpi_sfun_iosocket_Start_wrapper(xD, rpi_Ts, p_width0, rpi_ip1, p_width1, rpi_ip2, p_width2, rpi_ip3, p_width3, rpi_ip4, p_width4);
+  real_T *xD = ssGetDiscStates(S);
+  const int_T p_width0 = mxGetNumberOfElements(PARAM_DEF0(S));
+  const int_T p_width1 = mxGetNumberOfElements(PARAM_DEF1(S));
+  const int_T p_width2 = mxGetNumberOfElements(PARAM_DEF2(S));
+  const int_T p_width3 = mxGetNumberOfElements(PARAM_DEF3(S));
+  const int_T p_width4 = mxGetNumberOfElements(PARAM_DEF4(S));
+  const int_T p_width5 = mxGetNumberOfElements(PARAM_DEF5(S));
+  const real_T *rpi_Ts = (const real_T *) mxGetData(PARAM_DEF0(S));
+  const uint8_T *rpi_ip1 = (const uint8_T *) mxGetData(PARAM_DEF1(S));
+  const uint8_T *rpi_ip2 = (const uint8_T *) mxGetData(PARAM_DEF2(S));
+  const uint8_T *rpi_ip3 = (const uint8_T *) mxGetData(PARAM_DEF3(S));
+  const uint8_T *rpi_ip4 = (const uint8_T *) mxGetData(PARAM_DEF4(S));
+  const uint32_T *rpi_port = (const uint32_T *) mxGetData(PARAM_DEF5(S));
+  rpi_sfun_iosocket_Start_wrapper(xD, rpi_Ts, p_width0, rpi_ip1, p_width1,
+    rpi_ip2, p_width2, rpi_ip3, p_width3, rpi_ip4, p_width4, rpi_port, p_width5);
 }
-#endif /*  MDL_START */
+
+#endif                                 /*  MDL_START */
 
 /* Function: mdlOutputs =======================================================
  *
  */
 static void mdlOutputs(SimStruct *S, int_T tid)
 {
-    real_T *y0 = (real_T *) ssGetOutputPortRealSignal(S, 0);
-    const real_T *xD = ssGetDiscStates(S);
-    const int_T   p_width0  = mxGetNumberOfElements(PARAM_DEF0(S));
-    const int_T   p_width1  = mxGetNumberOfElements(PARAM_DEF1(S));
-    const int_T   p_width2  = mxGetNumberOfElements(PARAM_DEF2(S));
-    const int_T   p_width3  = mxGetNumberOfElements(PARAM_DEF3(S));
-    const int_T   p_width4  = mxGetNumberOfElements(PARAM_DEF4(S));
-    const real_T *rpi_Ts = (const real_T *) mxGetData(PARAM_DEF0(S));
-    const uint8_T *rpi_ip1 = (const uint8_T *) mxGetData(PARAM_DEF1(S));
-    const uint8_T *rpi_ip2 = (const uint8_T *) mxGetData(PARAM_DEF2(S));
-    const uint8_T *rpi_ip3 = (const uint8_T *) mxGetData(PARAM_DEF3(S));
-    const uint8_T *rpi_ip4 = (const uint8_T *) mxGetData(PARAM_DEF4(S));
-    
-    rpi_sfun_iosocket_Outputs_wrapper(y0, xD, rpi_Ts, p_width0, rpi_ip1, p_width1, rpi_ip2, p_width2, rpi_ip3, p_width3, rpi_ip4, p_width4);
-
+  real_T *y0 = (real_T *) ssGetOutputPortRealSignal(S, 0);
+  const real_T *xD = ssGetDiscStates(S);
+  const int_T p_width0 = mxGetNumberOfElements(PARAM_DEF0(S));
+  const int_T p_width1 = mxGetNumberOfElements(PARAM_DEF1(S));
+  const int_T p_width2 = mxGetNumberOfElements(PARAM_DEF2(S));
+  const int_T p_width3 = mxGetNumberOfElements(PARAM_DEF3(S));
+  const int_T p_width4 = mxGetNumberOfElements(PARAM_DEF4(S));
+  const int_T p_width5 = mxGetNumberOfElements(PARAM_DEF5(S));
+  const real_T *rpi_Ts = (const real_T *) mxGetData(PARAM_DEF0(S));
+  const uint8_T *rpi_ip1 = (const uint8_T *) mxGetData(PARAM_DEF1(S));
+  const uint8_T *rpi_ip2 = (const uint8_T *) mxGetData(PARAM_DEF2(S));
+  const uint8_T *rpi_ip3 = (const uint8_T *) mxGetData(PARAM_DEF3(S));
+  const uint8_T *rpi_ip4 = (const uint8_T *) mxGetData(PARAM_DEF4(S));
+  const uint32_T *rpi_port = (const uint32_T *) mxGetData(PARAM_DEF5(S));
+  rpi_sfun_iosocket_Outputs_wrapper(y0, xD, rpi_Ts, p_width0, rpi_ip1, p_width1,
+    rpi_ip2, p_width2, rpi_ip3, p_width3, rpi_ip4, p_width4, rpi_port, p_width5);
 }
 
-#define MDL_UPDATE  /* Change to #undef to remove function */
+#define MDL_UPDATE                                               /* Change to #undef to remove function */
 #if defined(MDL_UPDATE)
+
 /* Function: mdlUpdate ======================================================
  * Abstract:
  *    This function is called once for every major integration time step.
@@ -427,24 +501,28 @@ static void mdlOutputs(SimStruct *S, int_T tid)
  */
 static void mdlUpdate(SimStruct *S, int_T tid)
 {
-    const real_T *u0 = (real_T *) ssGetInputPortRealSignal(S, 0);
-    real_T *y0 = (real_T *) ssGetOutputPortRealSignal(S, 0);
-    real_T *xD = ssGetDiscStates(S);
-    const int_T   p_width0  = mxGetNumberOfElements(PARAM_DEF0(S));
-    const int_T   p_width1  = mxGetNumberOfElements(PARAM_DEF1(S));
-    const int_T   p_width2  = mxGetNumberOfElements(PARAM_DEF2(S));
-    const int_T   p_width3  = mxGetNumberOfElements(PARAM_DEF3(S));
-    const int_T   p_width4  = mxGetNumberOfElements(PARAM_DEF4(S));
-    const real_T *rpi_Ts = (const real_T *) mxGetData(PARAM_DEF0(S));
-    const uint8_T *rpi_ip1 = (const uint8_T *) mxGetData(PARAM_DEF1(S));
-    const uint8_T *rpi_ip2 = (const uint8_T *) mxGetData(PARAM_DEF2(S));
-    const uint8_T *rpi_ip3 = (const uint8_T *) mxGetData(PARAM_DEF3(S));
-    const uint8_T *rpi_ip4 = (const uint8_T *) mxGetData(PARAM_DEF4(S));
-    
-    rpi_sfun_iosocket_Update_wrapper(u0, y0, xD, rpi_Ts, p_width0, rpi_ip1, p_width1, rpi_ip2, p_width2, rpi_ip3, p_width3, rpi_ip4, p_width4);
-
+  const real_T *u0 = (real_T *) ssGetInputPortRealSignal(S, 0);
+  real_T *y0 = (real_T *) ssGetOutputPortRealSignal(S, 0);
+  real_T *xD = ssGetDiscStates(S);
+  const int_T p_width0 = mxGetNumberOfElements(PARAM_DEF0(S));
+  const int_T p_width1 = mxGetNumberOfElements(PARAM_DEF1(S));
+  const int_T p_width2 = mxGetNumberOfElements(PARAM_DEF2(S));
+  const int_T p_width3 = mxGetNumberOfElements(PARAM_DEF3(S));
+  const int_T p_width4 = mxGetNumberOfElements(PARAM_DEF4(S));
+  const int_T p_width5 = mxGetNumberOfElements(PARAM_DEF5(S));
+  const real_T *rpi_Ts = (const real_T *) mxGetData(PARAM_DEF0(S));
+  const uint8_T *rpi_ip1 = (const uint8_T *) mxGetData(PARAM_DEF1(S));
+  const uint8_T *rpi_ip2 = (const uint8_T *) mxGetData(PARAM_DEF2(S));
+  const uint8_T *rpi_ip3 = (const uint8_T *) mxGetData(PARAM_DEF3(S));
+  const uint8_T *rpi_ip4 = (const uint8_T *) mxGetData(PARAM_DEF4(S));
+  const uint32_T *rpi_port = (const uint32_T *) mxGetData(PARAM_DEF5(S));
+  rpi_sfun_iosocket_Update_wrapper(u0, y0, xD, rpi_Ts, p_width0, rpi_ip1,
+    p_width1, rpi_ip2, p_width2, rpi_ip3, p_width3, rpi_ip4, p_width4, rpi_port,
+    p_width5);
 }
-#endif /* MDL_UPDATE */
+
+#endif                                 /* MDL_UPDATE */
+
 /* Function: mdlTerminate =====================================================
  * Abstract:
  *    In this function, you should perform any actions that are necessary
@@ -453,28 +531,25 @@ static void mdlUpdate(SimStruct *S, int_T tid)
  */
 static void mdlTerminate(SimStruct *S)
 {
-    real_T *xD = ssGetDiscStates(S);
-    const int_T   p_width0  = mxGetNumberOfElements(PARAM_DEF0(S));
-    const int_T   p_width1  = mxGetNumberOfElements(PARAM_DEF1(S));
-    const int_T   p_width2  = mxGetNumberOfElements(PARAM_DEF2(S));
-    const int_T   p_width3  = mxGetNumberOfElements(PARAM_DEF3(S));
-    const int_T   p_width4  = mxGetNumberOfElements(PARAM_DEF4(S));
-    const real_T *rpi_Ts = (const real_T *) mxGetData(PARAM_DEF0(S));
-    const uint8_T *rpi_ip1 = (const uint8_T *) mxGetData(PARAM_DEF1(S));
-    const uint8_T *rpi_ip2 = (const uint8_T *) mxGetData(PARAM_DEF2(S));
-    const uint8_T *rpi_ip3 = (const uint8_T *) mxGetData(PARAM_DEF3(S));
-    const uint8_T *rpi_ip4 = (const uint8_T *) mxGetData(PARAM_DEF4(S));
-    
-    rpi_sfun_iosocket_Terminate_wrapper(xD, rpi_Ts, p_width0, rpi_ip1, p_width1, rpi_ip2, p_width2, rpi_ip3, p_width3, rpi_ip4, p_width4);
-
+  real_T *xD = ssGetDiscStates(S);
+  const int_T p_width0 = mxGetNumberOfElements(PARAM_DEF0(S));
+  const int_T p_width1 = mxGetNumberOfElements(PARAM_DEF1(S));
+  const int_T p_width2 = mxGetNumberOfElements(PARAM_DEF2(S));
+  const int_T p_width3 = mxGetNumberOfElements(PARAM_DEF3(S));
+  const int_T p_width4 = mxGetNumberOfElements(PARAM_DEF4(S));
+  const int_T p_width5 = mxGetNumberOfElements(PARAM_DEF5(S));
+  const real_T *rpi_Ts = (const real_T *) mxGetData(PARAM_DEF0(S));
+  const uint8_T *rpi_ip1 = (const uint8_T *) mxGetData(PARAM_DEF1(S));
+  const uint8_T *rpi_ip2 = (const uint8_T *) mxGetData(PARAM_DEF2(S));
+  const uint8_T *rpi_ip3 = (const uint8_T *) mxGetData(PARAM_DEF3(S));
+  const uint8_T *rpi_ip4 = (const uint8_T *) mxGetData(PARAM_DEF4(S));
+  const uint32_T *rpi_port = (const uint32_T *) mxGetData(PARAM_DEF5(S));
+  rpi_sfun_iosocket_Terminate_wrapper(xD, rpi_Ts, p_width0, rpi_ip1, p_width1,
+    rpi_ip2, p_width2, rpi_ip3, p_width3, rpi_ip4, p_width4, rpi_port, p_width5);
 }
 
-
-#ifdef  MATLAB_MEX_FILE    /* Is this file being compiled as a MEX-file? */
-#include "simulink.c"      /* MEX-file interface mechanism */
+#ifdef MATLAB_MEX_FILE                 /* Is this file being compiled as a MEX-file? */
+#include "simulink.c"                  /* MEX-file interface mechanism */
 #else
-#include "cg_sfun.h"       /* Code generation registration function */
+#include "cg_sfun.h"                   /* Code generation registration function */
 #endif
-
-
-

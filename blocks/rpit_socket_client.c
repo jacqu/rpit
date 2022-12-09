@@ -26,10 +26,10 @@
 
 #define RPIT_SOCKET_CON_N					150			// Nb of double sent (control)
 #define RPIT_SOCKET_MES_N					150			// Nb of double returned (measurement)
-#define RPIT_SOCKET_PORT					"31415"	// Port of the server
 #define RPIT_SOCKET_TIMEOUT				1000000	// Server answering timeout in us
 #define RPIT_SOCKET_SERVER_START	1000000	// Server startup time in us
 #define RPIT_SIZEOF_IP            20      // Size of an IP address
+#define RPIT_SIZEOF_PORT          10      // Size of a Port number
 #define RPIT_SOCKET_MAGIC					3141592	// Magic number
 #define RPIT_SOCKET_MAX_INSTANCES	10			// Max number of client instances 
 
@@ -51,6 +51,7 @@ struct RPIt_socket_instance_struct	{
 	unsigned char									ip2;
 	unsigned char									ip3;
 	unsigned char									ip4;
+  unsigned int                  port;
 	int														sfd;			// Socket file descriptor
 	pthread_t											update_thread;
 	pthread_mutex_t 							update_mutex;
@@ -64,28 +65,31 @@ struct RPIt_socket_instance_struct				instances[RPIT_SOCKET_MAX_INSTANCES] = { {
 unsigned int															nb_instances = 0;
 
 /*
- *	rpit_socket_client_ip2id : converts an ip address to instance ID
+ *	rpit_socket_client_ip2id : converts an ip:port address to instance ID
  */
 int rpit_socket_client_ip2id( 	unsigned char ip1, 
 																unsigned char ip2, 
 																unsigned char ip3, 
-																unsigned char ip4 )	{
+																unsigned char ip4,
+                                unsigned int  port
+                                                                )	{
 	int	i;
 	
-	/* Scan the instance array looking for the given IP address */
+	/* Scan the instance array looking for the given IP:port address */
 	
 	for ( i = 0; i < RPIT_SOCKET_MAX_INSTANCES; i++ )	{
 		if (	( ip1 == instances[i].ip1 ) &&
 					(	ip2 == instances[i].ip2 ) &&
 					(	ip3 == instances[i].ip3 ) &&
-					(	ip4 == instances[i].ip4 ) )
+					(	ip4 == instances[i].ip4 ) && 
+          ( port == instances[i].port ) )
 			return i;
 	}
 	
-	/* IP address was not found */
+	/* IP:port address was not found */
 	
 	flockfile( stderr );
-	fprintf( stderr, "rpit_socket_client_ip2id: %d.%d.%d.%d uninitialized.\n", ip1, ip2, ip3, ip4 );
+	fprintf( stderr, "rpit_socket_client_ip2id: %d.%d.%d.%d:%d uninitialized.\n", ip1, ip2, ip3, ip4, port );
 	funlockfile( stderr );
 	
 	return -1;
@@ -146,11 +150,12 @@ void* rpit_socket_client_update( void* prt )	{
 									sizeof( struct RPIt_socket_con_struct ) ) != 
 					sizeof( struct RPIt_socket_con_struct ) )	{
 			flockfile( stderr );
-			fprintf( stderr, "rpit_socket_client_update: partial/failed write on %d.%d.%d.%d.\n",
+			fprintf( stderr, "rpit_socket_client_update: partial/failed write on %d.%d.%d.%d:%d.\n",
 																												instance->ip1,
 																												instance->ip2,
 																												instance->ip3,
-																												instance->ip4 );
+																												instance->ip4,
+                                                        instance->port);
 			funlockfile( stderr );
 		}
 		
@@ -176,11 +181,12 @@ void* rpit_socket_client_update( void* prt )	{
 		
 		if ( nread == -1 ) {
 			flockfile( stderr );
-			fprintf( stderr, "(%d.%d.%d.%d)\t",
+			fprintf( stderr, "(%d.%d.%d.%d:%d)\t",
 												instance->ip1,
 												instance->ip2,
 												instance->ip3,
-												instance->ip4 );
+												instance->ip4,
+                        instance->port );
 			perror( "rpit_socket_client_update" );
 			funlockfile( stderr );
 			
@@ -190,12 +196,13 @@ void* rpit_socket_client_update( void* prt )	{
 			if ( nread != sizeof( struct RPIt_socket_mes_struct ) )	{
 				flockfile( stderr );
 				fprintf( stderr, 
-				"rpit_socket_client_update: received %zd bytes from %d.%d.%d.%d instead of %zd.\n", 
+				"rpit_socket_client_update: received %zd bytes from %d.%d.%d.%d:%d instead of %zd.\n", 
 																							nread, 
 																							instance->ip1,
 																							instance->ip2,
 																							instance->ip3,
 																							instance->ip4,
+                                              instance->port,
 																							sizeof( struct RPIt_socket_mes_struct ) );
 				funlockfile( stderr );
 			}
@@ -204,11 +211,12 @@ void* rpit_socket_client_update( void* prt )	{
 				if ( local_mes.magic != RPIT_SOCKET_MAGIC )	{
 					flockfile( stderr );
 					fprintf( stderr, 
-				"rpit_socket_client_update: received bad magic number from %d.%d.%d.%d.\n",  
+				"rpit_socket_client_update: received bad magic number from %d.%d.%d.%d:%d\n",  
 																							instance->ip1,
 																							instance->ip2,
 																							instance->ip3,
-																							instance->ip4 );
+																							instance->ip4,
+                                              instance->port );
 					funlockfile( stderr );
 				}
 				else
@@ -223,11 +231,12 @@ void* rpit_socket_client_update( void* prt )	{
 					
 					#ifdef RPIT_SOCKET_DISPLAY_MES
 					flockfile( stderr );
-					fprintf( stderr, "> Server IP: %d.%d.%d.%d\n",
+					fprintf( stderr, "> Server IP: %d.%d.%d.%d:%d\n",
 														instance->ip1,
 														instance->ip2,
 														instance->ip3,
-														instance->ip4 );
+														instance->ip4,
+                            instance->port );
 					fprintf( stderr, "> Timestamp: %llu\n", local_mes.timestamp );
 					fprintf( stderr, "> Ping: %llu us\n", period / 1000 );
 					for ( i = 0; i < RPIT_SOCKET_MES_N; i++ )
@@ -248,19 +257,22 @@ void* rpit_socket_client_update( void* prt )	{
 void rpit_socket_client_add( 	unsigned char ip1, 
 															unsigned char ip2, 
 															unsigned char ip3, 
-															unsigned char ip4 )	{
+															unsigned char ip4,
+                              unsigned int  port )	{
 																
 	struct addrinfo 			hints;
 	struct addrinfo 			*result, *rp;
 	int 									s;
 	struct timeval 				tv;
   char                  ip[RPIT_SIZEOF_IP];
+  char                  portStr[RPIT_SIZEOF_PORT];
   int										sfd;
   int										inst_id;
   
   /* Compute IP address */
-  
+
   snprintf( ip, RPIT_SIZEOF_IP, "%d.%d.%d.%d", ip1, ip2, ip3, ip4 );
+  snprintf( portStr, RPIT_SIZEOF_PORT, "%d", port );
 
 	/* Obtain address(es) matching host/port */
 
@@ -270,7 +282,7 @@ void rpit_socket_client_add( 	unsigned char ip1,
 	hints.ai_flags = 0;
 	hints.ai_protocol = 0;					/* Any protocol (should be UDP with SOCK_DGRAM) */
 
-	s = getaddrinfo( ip, RPIT_SOCKET_PORT, &hints, &result );
+	s = getaddrinfo( ip, portStr, &hints, &result );
 	if ( s != 0 ) {
 		flockfile( stderr );
 		fprintf( stderr, "rpit_socket_client: function getaddrinfo returned: %s\n", gai_strerror( s ) );
@@ -345,6 +357,7 @@ void rpit_socket_client_add( 	unsigned char ip1,
 	instances[inst_id].ip2 = ip2;
 	instances[inst_id].ip3 = ip3;
 	instances[inst_id].ip4 = ip4;
+  instances[inst_id].port = port;
 	instances[inst_id].sfd = sfd;
 	
 	/* Initialize magic number in control structure */
@@ -377,13 +390,14 @@ void rpit_socket_client_add( 	unsigned char ip1,
 void rpit_socket_client_close( 	unsigned char ip1, 
 																unsigned char ip2, 
 																unsigned char ip3, 
-																unsigned char ip4 )	{
+																unsigned char ip4,
+                                unsigned int port )	{
 	
 	int 						inst_id;
 	
 	/* Get instance id */
 	
-	inst_id = rpit_socket_client_ip2id( ip1, ip2, ip3, ip4 );
+	inst_id = rpit_socket_client_ip2id( ip1, ip2, ip3, ip4, port );
 	
 	/* Check instance id */
 	
@@ -418,12 +432,13 @@ void rpit_socket_client_write(	unsigned char ip1,
 																unsigned char ip2, 
 																unsigned char ip3, 
 																unsigned char ip4,
+                                unsigned int  port,
 																const double* values )	{
 	int 							inst_id, i;
 	
 	/* Get instance id */
 	
-	inst_id = rpit_socket_client_ip2id( ip1, ip2, ip3, ip4 );
+	inst_id = rpit_socket_client_ip2id( ip1, ip2, ip3, ip4, port );
 	
 	/* Check instance id */
 	
@@ -447,12 +462,13 @@ void rpit_socket_client_read(	unsigned char ip1,
 															unsigned char ip2, 
 															unsigned char ip3, 
 															unsigned char ip4,
-															double* values )	{
+                              unsigned int  port,
+															double*       values )	{
 	int inst_id, i;
 	
 	/* Get instance id */
 	
-	inst_id = rpit_socket_client_ip2id( ip1, ip2, ip3, ip4 );
+	inst_id = rpit_socket_client_ip2id( ip1, ip2, ip3, ip4, port );
 	
 	/* Check instance id */
 	

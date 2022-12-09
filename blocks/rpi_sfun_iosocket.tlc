@@ -1,5 +1,5 @@
 %% File : rpi_sfun_iosocket.tlc
-%% Created : Fri Jul 10 14:02:28 2020
+%% Created : Fri Dec 09 16:50:20 2022
 %%
 %% Description: 
 %%   Simulink Coder wrapper functions interface generated for 
@@ -22,56 +22,238 @@
 %%      generated code.
 %%
 %function BlockTypeSetup(block, system) Output
+    %assign uint32Type = LibGetDataTypeNameFromId(::CompiledModel.tSS_UINT32)
+    %assign uint8Type = LibGetDataTypeNameFromId(::CompiledModel.tSS_UINT8)
+    %assign intType = LibGetDataTypeNameFromId(::CompiledModel.tSS_INTEGER)
+    %assign realType = LibGetDataTypeNameFromId(::CompiledModel.tSS_DOUBLE)
+
+  %if IsModelReferenceSimTarget() || CodeFormat == "S-Function" || ::isRAccel
+    %assign hFileName = "rpi_sfun_iosocket_accel_wrapper"
+    %assign hFileNameMacro = FEVAL("upper", hFileName)
+    %openfile hFile = "%<hFileName>.h"
+    %selectfile hFile
+    #ifndef _%<hFileNameMacro>_H_
+    #define _%<hFileNameMacro>_H_
+
+    #ifdef MATLAB_MEX_FILE
+    #include "tmwtypes.h"
+    #else
+    #include "rtwtypes.h"
+    #endif
+    #ifdef __cplusplus
+    #define SFB_EXTERN_C extern "C"
+    #else
+    #define SFB_EXTERN_C extern
+    #endif
+    SFB_EXTERN_C void rpi_sfun_iosocket_Start_wrapper_accel(%<realType> *xD,
+			const %<realType> *rpi_Ts, const %<intType> p_width0,
+			const %<uint8Type> *rpi_ip1, const %<intType> p_width1,
+			const %<uint8Type> *rpi_ip2, const %<intType> p_width2,
+			const %<uint8Type> *rpi_ip3, const %<intType> p_width3,
+			const %<uint8Type> *rpi_ip4, const %<intType> p_width4,
+			const %<uint32Type> *rpi_port, const %<intType> p_width5);
+    SFB_EXTERN_C void rpi_sfun_iosocket_Outputs_wrapper_accel(%<realType> *y0,
+			const %<realType> *xD,
+			const %<realType> *rpi_Ts, const %<intType> p_width0,
+			const %<uint8Type> *rpi_ip1, const %<intType> p_width1,
+			const %<uint8Type> *rpi_ip2, const %<intType> p_width2,
+			const %<uint8Type> *rpi_ip3, const %<intType> p_width3,
+			const %<uint8Type> *rpi_ip4, const %<intType> p_width4,
+			const %<uint32Type> *rpi_port, const %<intType> p_width5);
+    SFB_EXTERN_C void rpi_sfun_iosocket_Update_wrapper_accel(const %<realType> *u0,
+			%<realType> *y0,
+			%<realType> *xD,
+			const %<realType> *rpi_Ts, const %<intType> p_width0,
+			const %<uint8Type> *rpi_ip1, const %<intType> p_width1,
+			const %<uint8Type> *rpi_ip2, const %<intType> p_width2,
+			const %<uint8Type> *rpi_ip3, const %<intType> p_width3,
+			const %<uint8Type> *rpi_ip4, const %<intType> p_width4,
+			const %<uint32Type> *rpi_port, const %<intType> p_width5);
+    SFB_EXTERN_C void rpi_sfun_iosocket_Terminate_wrapper_accel(%<realType> *xD,
+			const %<realType> *rpi_Ts, const %<intType> p_width0,
+			const %<uint8Type> *rpi_ip1, const %<intType> p_width1,
+			const %<uint8Type> *rpi_ip2, const %<intType> p_width2,
+			const %<uint8Type> *rpi_ip3, const %<intType> p_width3,
+			const %<uint8Type> *rpi_ip4, const %<intType> p_width4,
+			const %<uint32Type> *rpi_port, const %<intType> p_width5);
+    #undef SFB_EXTERN_C
+    #endif
+    %closefile hFile
+
+    %assign cFileName = "rpi_sfun_iosocket_accel_wrapper"
+    %openfile cFile = "%<cFileName>.c"
+    %selectfile cFile
+    #include <string.h>
+    #ifdef MATLAB_MEX_FILE
+    #include "tmwtypes.h"
+    #else
+    #include "rtwtypes.h"
+    #endif
+    #include "%<hFileName>.h"
+    
+
+    extern void rpi_sfun_iosocket_Start_wrapper(%<realType> *xD,
+			const %<realType> *rpi_Ts, const %<intType> p_width0,
+			const %<uint8Type> *rpi_ip1, const %<intType> p_width1,
+			const %<uint8Type> *rpi_ip2, const %<intType> p_width2,
+			const %<uint8Type> *rpi_ip3, const %<intType> p_width3,
+			const %<uint8Type> *rpi_ip4, const %<intType> p_width4,
+			const %<uint32Type> *rpi_port, const %<intType> p_width5);
+    extern void rpi_sfun_iosocket_Outputs_wrapper(%<realType> *y0,
+			const %<realType> *xD,
+			const %<realType> *rpi_Ts, const %<intType> p_width0,
+			const %<uint8Type> *rpi_ip1, const %<intType> p_width1,
+			const %<uint8Type> *rpi_ip2, const %<intType> p_width2,
+			const %<uint8Type> *rpi_ip3, const %<intType> p_width3,
+			const %<uint8Type> *rpi_ip4, const %<intType> p_width4,
+			const %<uint32Type> *rpi_port, const %<intType> p_width5);
+    extern void rpi_sfun_iosocket_Terminate_wrapper(%<realType> *xD,
+			const %<realType> *rpi_Ts, const %<intType> p_width0,
+			const %<uint8Type> *rpi_ip1, const %<intType> p_width1,
+			const %<uint8Type> *rpi_ip2, const %<intType> p_width2,
+			const %<uint8Type> *rpi_ip3, const %<intType> p_width3,
+			const %<uint8Type> *rpi_ip4, const %<intType> p_width4,
+			const %<uint32Type> *rpi_port, const %<intType> p_width5);
+
+    extern void rpi_sfun_iosocket_Update_wrapper(const %<realType> *u0,
+			%<realType> *y0,
+			%<realType> *xD,
+			const %<realType> *rpi_Ts, const %<intType> p_width0,
+			const %<uint8Type> *rpi_ip1, const %<intType> p_width1,
+			const %<uint8Type> *rpi_ip2, const %<intType> p_width2,
+			const %<uint8Type> *rpi_ip3, const %<intType> p_width3,
+			const %<uint8Type> *rpi_ip4, const %<intType> p_width4,
+			const %<uint32Type> *rpi_port, const %<intType> p_width5);
+    void rpi_sfun_iosocket_Start_wrapper_accel(%<realType> *xD,
+			const %<realType> *rpi_Ts, const %<intType> p_width0,
+			const %<uint8Type> *rpi_ip1, const %<intType> p_width1,
+			const %<uint8Type> *rpi_ip2, const %<intType> p_width2,
+			const %<uint8Type> *rpi_ip3, const %<intType> p_width3,
+			const %<uint8Type> *rpi_ip4, const %<intType> p_width4,
+			const %<uint32Type> *rpi_port, const %<intType> p_width5){
+    rpi_sfun_iosocket_Start_wrapper(xD,
+			rpi_Ts, p_width0,
+			rpi_ip1, p_width1,
+			rpi_ip2, p_width2,
+			rpi_ip3, p_width3,
+			rpi_ip4, p_width4,
+			rpi_port, p_width5);
+    }
+    void rpi_sfun_iosocket_Outputs_wrapper_accel(%<realType> *y0,
+			const %<realType> *xD,
+			const %<realType> *rpi_Ts, const %<intType> p_width0,
+			const %<uint8Type> *rpi_ip1, const %<intType> p_width1,
+			const %<uint8Type> *rpi_ip2, const %<intType> p_width2,
+			const %<uint8Type> *rpi_ip3, const %<intType> p_width3,
+			const %<uint8Type> *rpi_ip4, const %<intType> p_width4,
+			const %<uint32Type> *rpi_port, const %<intType> p_width5){
+    rpi_sfun_iosocket_Outputs_wrapper(y0,
+			xD,
+			rpi_Ts, p_width0,
+			rpi_ip1, p_width1,
+			rpi_ip2, p_width2,
+			rpi_ip3, p_width3,
+			rpi_ip4, p_width4,
+			rpi_port, p_width5);
+    }
+
+    void rpi_sfun_iosocket_Update_wrapper_accel(const %<realType> *u0,
+			%<realType> *y0,
+			%<realType> *xD,
+			const %<realType> *rpi_Ts, const %<intType> p_width0,
+			const %<uint8Type> *rpi_ip1, const %<intType> p_width1,
+			const %<uint8Type> *rpi_ip2, const %<intType> p_width2,
+			const %<uint8Type> *rpi_ip3, const %<intType> p_width3,
+			const %<uint8Type> *rpi_ip4, const %<intType> p_width4,
+			const %<uint32Type> *rpi_port, const %<intType> p_width5){
+    rpi_sfun_iosocket_Update_wrapper(u0,
+			y0,
+			xD,
+			rpi_Ts, p_width0,
+			rpi_ip1, p_width1,
+			rpi_ip2, p_width2,
+			rpi_ip3, p_width3,
+			rpi_ip4, p_width4,
+			rpi_port, p_width5);
+    }
+    void rpi_sfun_iosocket_Terminate_wrapper_accel(%<realType> *xD,
+			const %<realType> *rpi_Ts, const %<intType> p_width0,
+			const %<uint8Type> *rpi_ip1, const %<intType> p_width1,
+			const %<uint8Type> *rpi_ip2, const %<intType> p_width2,
+			const %<uint8Type> *rpi_ip3, const %<intType> p_width3,
+			const %<uint8Type> *rpi_ip4, const %<intType> p_width4,
+			const %<uint32Type> *rpi_port, const %<intType> p_width5){
+    rpi_sfun_iosocket_Terminate_wrapper(xD,
+			rpi_Ts, p_width0,
+			rpi_ip1, p_width1,
+			rpi_ip2, p_width2,
+			rpi_ip3, p_width3,
+			rpi_ip4, p_width4,
+			rpi_port, p_width5);
+    }
+
+    %closefile cFile
+
+    %<LibAddToCommonIncludes("%<hFileName>.h")>
+
+  %else
   %openfile externs
 
     #ifdef __cplusplus
-    extern "C" {
+    #define SFB_EXTERN_C extern "C"
+    #else
+    #define SFB_EXTERN_C extern
     #endif
 
-    extern void rpi_sfun_iosocket_Start_wrapper(real_T *xD,
-			const real_T *rpi_Ts, const int_T p_width0,
-			const uint8_T *rpi_ip1, const int_T p_width1,
-			const uint8_T *rpi_ip2, const int_T p_width2,
-			const uint8_T *rpi_ip3, const int_T p_width3,
-			const uint8_T *rpi_ip4, const int_T p_width4);
+    SFB_EXTERN_C void rpi_sfun_iosocket_Start_wrapper(%<realType> *xD,
+			const %<realType> *rpi_Ts, const %<intType> p_width0,
+			const %<uint8Type> *rpi_ip1, const %<intType> p_width1,
+			const %<uint8Type> *rpi_ip2, const %<intType> p_width2,
+			const %<uint8Type> *rpi_ip3, const %<intType> p_width3,
+			const %<uint8Type> *rpi_ip4, const %<intType> p_width4,
+			const %<uint32Type> *rpi_port, const %<intType> p_width5);
 
-    extern void rpi_sfun_iosocket_Outputs_wrapper(real_T *y0,
-			const real_T *xD,
-			const real_T *rpi_Ts, const int_T p_width0,
-			const uint8_T *rpi_ip1, const int_T p_width1,
-			const uint8_T *rpi_ip2, const int_T p_width2,
-			const uint8_T *rpi_ip3, const int_T p_width3,
-			const uint8_T *rpi_ip4, const int_T p_width4);
-    extern void rpi_sfun_iosocket_Update_wrapper(const real_T *u0,
-			real_T *y0,
-			real_T *xD,
-			const real_T *rpi_Ts, const int_T p_width0,
-			const uint8_T *rpi_ip1, const int_T p_width1,
-			const uint8_T *rpi_ip2, const int_T p_width2,
-			const uint8_T *rpi_ip3, const int_T p_width3,
-			const uint8_T *rpi_ip4, const int_T p_width4);
+    SFB_EXTERN_C void rpi_sfun_iosocket_Outputs_wrapper(%<realType> *y0,
+			const %<realType> *xD,
+			const %<realType> *rpi_Ts, const %<intType> p_width0,
+			const %<uint8Type> *rpi_ip1, const %<intType> p_width1,
+			const %<uint8Type> *rpi_ip2, const %<intType> p_width2,
+			const %<uint8Type> *rpi_ip3, const %<intType> p_width3,
+			const %<uint8Type> *rpi_ip4, const %<intType> p_width4,
+			const %<uint32Type> *rpi_port, const %<intType> p_width5);
+    SFB_EXTERN_C void rpi_sfun_iosocket_Update_wrapper(const %<realType> *u0,
+			%<realType> *y0,
+			%<realType> *xD,
+			const %<realType> *rpi_Ts, const %<intType> p_width0,
+			const %<uint8Type> *rpi_ip1, const %<intType> p_width1,
+			const %<uint8Type> *rpi_ip2, const %<intType> p_width2,
+			const %<uint8Type> *rpi_ip3, const %<intType> p_width3,
+			const %<uint8Type> *rpi_ip4, const %<intType> p_width4,
+			const %<uint32Type> *rpi_port, const %<intType> p_width5);
 
-    extern void rpi_sfun_iosocket_Terminate_wrapper(real_T *xD,
-			const real_T *rpi_Ts, const int_T p_width0,
-			const uint8_T *rpi_ip1, const int_T p_width1,
-			const uint8_T *rpi_ip2, const int_T p_width2,
-			const uint8_T *rpi_ip3, const int_T p_width3,
-			const uint8_T *rpi_ip4, const int_T p_width4);
+    SFB_EXTERN_C void rpi_sfun_iosocket_Terminate_wrapper(%<realType> *xD,
+			const %<realType> *rpi_Ts, const %<intType> p_width0,
+			const %<uint8Type> *rpi_ip1, const %<intType> p_width1,
+			const %<uint8Type> *rpi_ip2, const %<intType> p_width2,
+			const %<uint8Type> *rpi_ip3, const %<intType> p_width3,
+			const %<uint8Type> *rpi_ip4, const %<intType> p_width4,
+			const %<uint32Type> *rpi_port, const %<intType> p_width5);
 
-    #ifdef __cplusplus
-    }
-    #endif
+    #undef SFB_EXTERN_C
   %closefile externs
   %<LibCacheExtern(externs)>
+
+  %endif
   %%
 %endfunction
 
 %% InitializeConditions =========================================================
 %%
 %function InitializeConditions(block, system) Output
+    %assign realType = LibGetDataTypeNameFromId(::CompiledModel.tSS_DOUBLE)
   /* %<Type> Block: %<Name> */
 {
-  real_T initVector[1] = {0};
+  %<realType> initVector[1] = {0};
   %assign rollVars = ["<dwork>/DSTATE"]
   %assign rollRegions = [0:%<LibBlockDWorkWidth(DSTATE)-1>]
   %roll sigIdx = rollRegions, lcv = 1, block, "Roller", rollVars
@@ -126,7 +308,20 @@
   %else
     %assign pp5 = LibBlockParameterAddr(P5, "", "", 0)
   %endif
-  rpi_sfun_iosocket_Start_wrapper(%<pxd>, %<pp1>, %<param_width1>, %<pp2>, %<param_width2>, %<pp3>, %<param_width3>, %<pp4>, %<param_width4>, %<pp5>, %<param_width5>);
+  %assign nelements6 = LibBlockParameterSize(P6)
+  %assign param_width6 = nelements6[0] * nelements6[1]
+  %if (param_width6) > 1
+    %assign pp6 = LibBlockMatrixParameterBaseAddr(P6)
+  %else
+    %assign pp6 = LibBlockParameterAddr(P6, "", "", 0)
+  %endif
+  
+  %if IsModelReferenceSimTarget() || CodeFormat == "S-Function" || ::isRAccel
+    rpi_sfun_iosocket_Start_wrapper_accel(%<pxd>, %<pp1>, %<param_width1>, %<pp2>, %<param_width2>, %<pp3>, %<param_width3>, %<pp4>, %<param_width4>, %<pp5>, %<param_width5>, %<pp6>, %<param_width6>);
+  %else
+    rpi_sfun_iosocket_Start_wrapper(%<pxd>, %<pp1>, %<param_width1>, %<pp2>, %<param_width2>, %<pp3>, %<param_width3>, %<pp4>, %<param_width4>, %<pp5>, %<param_width5>, %<pp6>, %<param_width6>);
+  %endif
+
 %endfunction
 %% Function: Outputs ==========================================================
 %%
@@ -172,7 +367,20 @@
   %else
     %assign pp5 = LibBlockParameterAddr(P5, "", "", 0)
   %endif
-  rpi_sfun_iosocket_Outputs_wrapper(%<py0>, %<pxd>, %<pp1>, %<param_width1>, %<pp2>, %<param_width2>, %<pp3>, %<param_width3>, %<pp4>, %<param_width4>, %<pp5>, %<param_width5>);
+  %assign nelements6 = LibBlockParameterSize(P6)
+  %assign param_width6 = nelements6[0] * nelements6[1]
+  %if (param_width6) > 1
+    %assign pp6 = LibBlockMatrixParameterBaseAddr(P6)
+  %else
+    %assign pp6 = LibBlockParameterAddr(P6, "", "", 0)
+  %endif
+  
+  %if IsModelReferenceSimTarget() || CodeFormat == "S-Function" || ::isRAccel
+    rpi_sfun_iosocket_Outputs_wrapper_accel(%<py0>, %<pxd>, %<pp1>, %<param_width1>, %<pp2>, %<param_width2>, %<pp3>, %<param_width3>, %<pp4>, %<param_width4>, %<pp5>, %<param_width5>, %<pp6>, %<param_width6>);
+  %else
+    rpi_sfun_iosocket_Outputs_wrapper(%<py0>, %<pxd>, %<pp1>, %<param_width1>, %<pp2>, %<param_width2>, %<pp3>, %<param_width3>, %<pp4>, %<param_width4>, %<pp5>, %<param_width5>, %<pp6>, %<param_width6>);
+  %endif
+
   %%
 %endfunction
 
@@ -221,7 +429,19 @@
   %else
     %assign pp5 = LibBlockParameterAddr(P5, "", "", 0)
   %endif
-  rpi_sfun_iosocket_Update_wrapper(%<pu0>, %<py0>, %<pxd>, %<pp1>, %<param_width1>, %<pp2>, %<param_width2>, %<pp3>, %<param_width3>, %<pp4>, %<param_width4>, %<pp5>, %<param_width5>);
+  %assign nelements6 = LibBlockParameterSize(P6)
+  %assign param_width6 = nelements6[0] * nelements6[1]
+  %if (param_width6) > 1
+    %assign pp6 = LibBlockMatrixParameterBaseAddr(P6)
+  %else
+    %assign pp6 = LibBlockParameterAddr(P6, "", "", 0)
+  %endif
+    %if IsModelReferenceSimTarget() || CodeFormat == "S-Function" || ::isRAccel
+    rpi_sfun_iosocket_Update_wrapper_accel(%<pu0>, %<py0>, %<pxd>, %<pp1>, %<param_width1>, %<pp2>, %<param_width2>, %<pp3>, %<param_width3>, %<pp4>, %<param_width4>, %<pp5>, %<param_width5>, %<pp6>, %<param_width6>);
+  %else
+    rpi_sfun_iosocket_Update_wrapper(%<pu0>, %<py0>, %<pxd>, %<pp1>, %<param_width1>, %<pp2>, %<param_width2>, %<pp3>, %<param_width3>, %<pp4>, %<param_width4>, %<pp5>, %<param_width5>, %<pp6>, %<param_width6>);
+  %endif
+
   %%
 %endfunction
 %% Function: Terminate ========================================================
@@ -264,7 +484,20 @@
   %else
     %assign pp5 = LibBlockParameterAddr(P5, "", "", 0)
   %endif
-  rpi_sfun_iosocket_Terminate_wrapper(%<pxd>, %<pp1>, %<param_width1>, %<pp2>, %<param_width2>, %<pp3>, %<param_width3>, %<pp4>, %<param_width4>, %<pp5>, %<param_width5>);
+  %assign nelements6 = LibBlockParameterSize(P6)
+  %assign param_width6 = nelements6[0] * nelements6[1]
+  %if (param_width6) > 1
+    %assign pp6 = LibBlockMatrixParameterBaseAddr(P6)
+  %else
+    %assign pp6 = LibBlockParameterAddr(P6, "", "", 0)
+  %endif
+  
+  %if IsModelReferenceSimTarget() || CodeFormat == "S-Function" || ::isRAccel
+    rpi_sfun_iosocket_Terminate_wrapper_accel(%<pxd>, %<pp1>, %<param_width1>, %<pp2>, %<param_width2>, %<pp3>, %<param_width3>, %<pp4>, %<param_width4>, %<pp5>, %<param_width5>, %<pp6>, %<param_width6>);
+  %else
+    rpi_sfun_iosocket_Terminate_wrapper(%<pxd>, %<pp1>, %<param_width1>, %<pp2>, %<param_width2>, %<pp3>, %<param_width3>, %<pp4>, %<param_width4>, %<pp5>, %<param_width5>, %<pp6>, %<param_width6>);
+  %endif
+
 %endfunction
 
 %% [EOF] rpi_sfun_iosocket.tlc
