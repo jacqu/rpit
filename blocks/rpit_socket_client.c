@@ -2,7 +2,9 @@
  * rpit_socket_client : client of distant PC answering requests from
  * 											RPIt socket block.
  * 
- * Compile with : gcc -Wall -o rpit_socket_client -lpthread -lrt rpit_socket_client.c
+ * Compile with :
+ *   Linux : gcc -Wall -o rpit_socket_client -lpthread -lrt rpit_socket_client.c
+ *   OSX   : gcc -Wall -o rpit_socket_client -lpthread rpit_socket_client.c
  * 
  * JG, July 16 2016.
  */
@@ -491,7 +493,10 @@ void rpit_socket_client_read(	unsigned char ip1,
 #ifndef RPIT_SOCKET_API
  
 #define RPIT_SOCKET_IP1					127, 0, 0, 1
-#define RPIT_SOCKET_IP2					10, 0, 1, 3
+#define RPIT_SOCKET_PORT1				31415
+#define RPIT_SOCKET_IP2					127, 0, 0, 1
+#define RPIT_SOCKET_PORT2				31416
+#define RPIT_SOCKET_DISPLAY_N		10
 #define RPIT_SOCKET_MAIN_PERIOD	10000
 #define RPIT_SOCKET_MAIN_ITER		10
 
@@ -502,13 +507,13 @@ int main( void )	{
 	
 	/* Add connections */
 	
-	rpit_socket_client_add( RPIT_SOCKET_IP1 );
-	rpit_socket_client_add( RPIT_SOCKET_IP2 );
+	rpit_socket_client_add( RPIT_SOCKET_IP1, RPIT_SOCKET_PORT1 );
+	rpit_socket_client_add( RPIT_SOCKET_IP2, RPIT_SOCKET_PORT2 );
 	
 	/* Check on the fly removing and adding connection */
 	
-	rpit_socket_client_close( RPIT_SOCKET_IP1 );
-	rpit_socket_client_add( RPIT_SOCKET_IP1 );
+	rpit_socket_client_close( RPIT_SOCKET_IP1, RPIT_SOCKET_PORT1 );
+	rpit_socket_client_add( RPIT_SOCKET_IP1, RPIT_SOCKET_PORT1 );
 	
 	/* Print some iterations */
 	
@@ -523,7 +528,7 @@ int main( void )	{
 		
 		/* Send control signals on socket 1 */
 		
-		rpit_socket_client_write( RPIT_SOCKET_IP1, write_val );
+		rpit_socket_client_write( RPIT_SOCKET_IP1, RPIT_SOCKET_PORT1, write_val );
 		
 		/* Write iteration index x -1 on every control signals */
 		
@@ -532,30 +537,30 @@ int main( void )	{
 		
 		/* Send control signals on socket 2 */
 		
-		rpit_socket_client_write( RPIT_SOCKET_IP2, write_val );
+		rpit_socket_client_write( RPIT_SOCKET_IP2, RPIT_SOCKET_PORT2, write_val );
 
 		/* Read measurements on socket 1 */
 		
-		rpit_socket_client_read( RPIT_SOCKET_IP1, read_val );
+		rpit_socket_client_read( RPIT_SOCKET_IP1, RPIT_SOCKET_PORT1, read_val );
 		
 		/* Print socket 1 measurements */
 		
 		flockfile( stderr );
 		fprintf( stderr, "Socket 1 mes:" );
-		for ( j = 0; j < RPIT_SOCKET_MES_N; j++ )
+		for ( j = 0; j < RPIT_SOCKET_DISPLAY_N; j++ )
 			fprintf( stderr, "\t%d", (int)read_val[j] );
 		fprintf( stderr, "\n" );
 		funlockfile( stderr );
 			
 		/* Read measurements on socket 2 */
 		
-		rpit_socket_client_read( RPIT_SOCKET_IP2, read_val );
+		rpit_socket_client_read( RPIT_SOCKET_IP2, RPIT_SOCKET_PORT2, read_val );
 		
 		/* Print socket 2 measurements */
 		
 		flockfile( stderr );
 		fprintf( stderr, "Socket 2 mes:" );
-		for ( j = 0; j < RPIT_SOCKET_MES_N; j++ )
+		for ( j = 0; j < RPIT_SOCKET_DISPLAY_N; j++ )
 			fprintf( stderr, "\t%d", (int)read_val[j] );
 		fprintf( stderr, "\n" );
 		funlockfile( stderr );
@@ -564,8 +569,8 @@ int main( void )	{
 	
 	/* Close connections */
 	
-	rpit_socket_client_close( RPIT_SOCKET_IP1 );
-	rpit_socket_client_close( RPIT_SOCKET_IP2 );
+	rpit_socket_client_close( RPIT_SOCKET_IP1, RPIT_SOCKET_PORT1 );
+	rpit_socket_client_close( RPIT_SOCKET_IP2, RPIT_SOCKET_PORT2 );
 
 return 0;
 }
