@@ -42,8 +42,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2016-05-10T15:57:27Z</dcterms:created>
   <dc:creator>jacques</dc:creator>
   <cp:lastModifiedBy>jacques</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2022-12-09T16:54:29Z</dcterms:modified>
-  <cp:revision>9.3</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2022-12-15T14:44:42Z</dcterms:modified>
+  <cp:revision>9.4</cp:revision>
   <cp:version>R2022b</cp:version>
 </cp:coreProperties>
 
@@ -118,7 +118,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:9.3&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:9.4&gt;</P>
     </ConfigManagerSettings>
     <EditorSettings>
       <P Name="LibraryLinkDisplay">none</P>
@@ -979,7 +979,7 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
     </Array>
     <P Name="Name">Configuration</P>
     <P Name="CurrentDlgPage">Code Generation/Interface</P>
-    <P Name="ConfigPrmDlgPosition">[ 400, 170, 1280, 840 ]</P>
+    <P Name="ConfigPrmDlgPosition">[ 71, 71, 1134, 684 ]</P>
     <P Name="ExtraOptions">-aBlockCommentType=&quot;BlockPathComment&quot; -aIgnoreTestpoints=0 </P>
   </Object>
 </ConfigSet>
@@ -1022,33 +1022,33 @@ __MWOPC_PART_BEGIN__ /simulink/graphicalInterface.xml
 __MWOPC_PART_BEGIN__ /simulink/modelDictionary.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <MF0 version="1.1" defaultPackage="slid" packageUris="http://schema.mathworks.com/mf0/slid/R2022b_20220222">
-  <System type="System" uuid="5e67b426-89f1-46d1-847f-9afeb2e7999f">
-    <Interface type="Interface" uuid="e458af54-798a-41c6-85d9-bef61f15e094"/>
+  <System type="System" uuid="83c895f7-f939-4e10-b5a4-b44d7ac76924">
+    <Interface type="Interface" uuid="31aa0f4d-c9aa-45cf-bc5b-b1c76a1b0242"/>
   </System>
 </MF0>
 __MWOPC_PART_BEGIN__ /simulink/ScheduleCore.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <sltp_graph version="1.1" packageUris="http://schema.mathworks.com/mf0/sltp_mm/R2022b_202203181029">
-  <sltp.mm.core.Context type="sltp.mm.core.Context" uuid="26d2ef09-2d68-49d9-a94c-96129b0fef6a">
+  <sltp.mm.core.Context type="sltp.mm.core.Context" uuid="45e54501-6b1f-4f03-8072-01eb19b2c80d">
     <priorityDirection>HighNumberLast</priorityDirection>
     <editorState type="sltp.mm.core.EditorState" uuid="0c36cc83-ec2a-4651-aa66-ebf97a00a7b7">
       <isSynchronized>true</isSynchronized>
       <panelState type="sltp.mm.core.EditorPanelState" uuid="d2e75f51-ed1b-42b7-aa7d-36bc78bf4618"/>
     </editorState>
-    <rootTask type="sltp.mm.core.Task" uuid="1d7129bd-f351-409f-86ce-804467b88279">
-      <context type="sltp.mm.core.Context" uuid="26d2ef09-2d68-49d9-a94c-96129b0fef6a"/>
+    <rootTask type="sltp.mm.core.Task" uuid="d1b68c62-1fe5-4d10-99bf-5354d8f0f310">
+      <context type="sltp.mm.core.Context" uuid="45e54501-6b1f-4f03-8072-01eb19b2c80d"/>
       <explicit>false</explicit>
       <name>Default</name>
       <priority>-2147483648</priority>
-      <subgraph type="sltp.mm.core.Graph" uuid="357c5874-774b-4df7-95d3-85731a54a86b">
-        <tasks type="sltp.mm.core.Task" uuid="fcbdd028-54bf-4b4b-9810-b485c9d81313">
-          <context type="sltp.mm.core.Context" uuid="26d2ef09-2d68-49d9-a94c-96129b0fef6a"/>
+      <subgraph type="sltp.mm.core.Graph" uuid="bf087a94-6069-4f99-91ac-75a347fa2d4d">
+        <tasks type="sltp.mm.core.Task" uuid="b357535d-6782-4e7d-9d80-47fee6b6eb44">
+          <context type="sltp.mm.core.Context" uuid="45e54501-6b1f-4f03-8072-01eb19b2c80d"/>
           <explicit>false</explicit>
           <id>1</id>
           <isTimed>true</isTimed>
           <name>D1</name>
           <priority>40</priority>
-          <rates type="sltp.mm.core.Rate" uuid="e7d58c75-10c4-4535-8ef5-81e41b33967a">
+          <rates type="sltp.mm.core.Rate" uuid="ae09322f-38d0-488e-a45b-878e59de9fcd">
             <annotation>D1</annotation>
             <color>-436207361</color>
             <hasBlocks>true</hasBlocks>
@@ -1110,7 +1110,7 @@ __MWOPC_PART_BEGIN__ /simulink/ScheduleEditor.xml
 __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
-  <P Name="Location">[333, 49, 1285, 717]</P>
+  <P Name="Location">[142, 38, 1094, 706]</P>
   <P Name="Open">on</P>
   <P Name="ZoomFactor">125</P>
   <P Name="ReportName">simulink-default.rpt</P>
@@ -1137,10 +1137,10 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
       <P Name="RTWMemSecDataParameters">Inherit from model</P>
       <P Name="ContentPreviewEnabled">on</P>
       <P Name="rpi_mask_Ts">0.005</P>
-      <P Name="rpi_mask_ip1">192</P>
-      <P Name="rpi_mask_ip2">168</P>
-      <P Name="rpi_mask_ip3">132</P>
-      <P Name="rpi_mask_ip4">219</P>
+      <P Name="rpi_mask_ip1">130</P>
+      <P Name="rpi_mask_ip2">79</P>
+      <P Name="rpi_mask_ip3">245</P>
+      <P Name="rpi_mask_ip4">109</P>
       <P Name="rpi_mask_port">31415</P>
     </InstanceData>
   </Block>
@@ -1148,7 +1148,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <PortCounts in="1"/>
     <P Name="Position">[270, -6, 300, 26]</P>
     <P Name="ZOrder">-5</P>
-    <P Name="ScopeSpecificationString">Simulink.scopes.TimeScopeBlockCfg(&apos;CurrentConfiguration&apos;, extmgr.ConfigurationSet(extmgr.Configuration(&apos;Core&apos;,&apos;General UI&apos;,true),extmgr.Configuration(&apos;Core&apos;,&apos;Source UI&apos;,true),extmgr.Configuration(&apos;Sources&apos;,&apos;WiredSimulink&apos;,true,&apos;DataLoggingSaveFormat&apos;,&apos;StructureWithTime&apos;,&apos;DataLoggingLimitDataPoints&apos;,true,&apos;DataLoggingDecimation&apos;,&apos;1&apos;,&apos;DataLoggingDecimateData&apos;,true),extmgr.Configuration(&apos;Visuals&apos;,&apos;Time Domain&apos;,true,&apos;SerializedDisplays&apos;,{struct(&apos;MinYLimReal&apos;,&apos;-17.625&apos;,&apos;MaxYLimReal&apos;,&apos;168.625&apos;,&apos;YLabelReal&apos;,&apos;&apos;,&apos;MinYLimMag&apos;,&apos;0.00000&apos;,&apos;MaxYLimMag&apos;,&apos;168.625&apos;,&apos;LegendVisibility&apos;,&apos;off&apos;,&apos;XGrid&apos;,true,&apos;YGrid&apos;,true,&apos;PlotMagPhase&apos;,false,&apos;AxesColor&apos;,[0 0 0],&apos;AxesTickColor&apos;,[0.686274509803922 0.686274509803922 0.686274509803922],&apos;ColorOrder&apos;,[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],&apos;Title&apos;,&apos;%&lt;SignalLabel&gt;&apos;,&apos;LinePropertiesCache&apos;,{{}},&apos;UserDefinedChannelNames&apos;,{{}},&apos;NumLines&apos;,150,&apos;LineNames&apos;,{{&apos;IOSocket:1&apos;,&apos;IOSocket:2&apos;,&apos;IOSocket:3&apos;,&apos;IOSocket:4&apos;,&apos;IOSocket:5&apos;,&apos;IOSocket:6&apos;,&apos;IOSocket:7&apos;,&apos;IOSocket:8&apos;,&apos;IOSocket:9&apos;,&apos;IOSocket:10&apos;,&apos;IOSocket:11&apos;,&apos;IOSocket:12&apos;,&apos;IOSocket:13&apos;,&apos;IOSocket:14&apos;,&apos;IOSocket:15&apos;,&apos;IOSocket:16&apos;,&apos;IOSocket:17&apos;,&apos;IOSocket:18&apos;,&apos;IOSocket:19&apos;,&apos;IOSocket:20&apos;,&apos;IOSocket:21&apos;,&apos;IOSocket:22&apos;,&apos;IOSocket:23&apos;,&apos;IOSocket:24&apos;,&apos;IOSocket:25&apos;,&apos;IOSocket:26&apos;,&apos;IOSocket:27&apos;,&apos;IOSocket:28&apos;,&apos;IOSocket:29&apos;,&apos;IOSocket:30&apos;,&apos;IOSocket:31&apos;,&apos;IOSocket:32&apos;,&apos;IOSocket:33&apos;,&apos;IOSocket:34&apos;,&apos;IOSocket:35&apos;,&apos;IOSocket:36&apos;,&apos;IOSocket:37&apos;,&apos;IOSocket:38&apos;,&apos;IOSocket:39&apos;,&apos;IOSocket:40&apos;,&apos;IOSocket:41&apos;,&apos;IOSocket:42&apos;,&apos;IOSocket:43&apos;,&apos;IOSocket:44&apos;,&apos;IOSocket:45&apos;,&apos;IOSocket:46&apos;,&apos;IOSocket:47&apos;,&apos;IOSocket:48&apos;,&apos;IOSocket:49&apos;,&apos;IOSocket:50&apos;,&apos;IOSocket:51&apos;,&apos;IOSocket:52&apos;,&apos;IOSocket:53&apos;,&apos;IOSocket:54&apos;,&apos;IOSocket:55&apos;,&apos;IOSocket:56&apos;,&apos;IOSocket:57&apos;,&apos;IOSocket:58&apos;,&apos;IOSocket:59&apos;,&apos;IOSocket:60&apos;,&apos;IOSocket:61&apos;,&apos;IOSocket:62&apos;,&apos;IOSocket:63&apos;,&apos;IOSocket:64&apos;,&apos;IOSocket:65&apos;,&apos;IOSocket:66&apos;,&apos;IOSocket:67&apos;,&apos;IOSocket:68&apos;,&apos;IOSocket:69&apos;,&apos;IOSocket:70&apos;,&apos;IOSocket:71&apos;,&apos;IOSocket:72&apos;,&apos;IOSocket:73&apos;,&apos;IOSocket:74&apos;,&apos;IOSocket:75&apos;,&apos;IOSocket:76&apos;,&apos;IOSocket:77&apos;,&apos;IOSocket:78&apos;,&apos;IOSocket:79&apos;,&apos;IOSocket:80&apos;,&apos;IOSocket:81&apos;,&apos;IOSocket:82&apos;,&apos;IOSocket:83&apos;,&apos;IOSocket:84&apos;,&apos;IOSocket:85&apos;,&apos;IOSocket:86&apos;,&apos;IOSocket:87&apos;,&apos;IOSocket:88&apos;,&apos;IOSocket:89&apos;,&apos;IOSocket:90&apos;,&apos;IOSocket:91&apos;,&apos;IOSocket:92&apos;,&apos;IOSocket:93&apos;,&apos;IOSocket:94&apos;,&apos;IOSocket:95&apos;,&apos;IOSocket:96&apos;,&apos;IOSocket:97&apos;,&apos;IOSocket:98&apos;,&apos;IOSocket:99&apos;,&apos;IOSocket:100&apos;,&apos;IOSocket:101&apos;,&apos;IOSocket:102&apos;,&apos;IOSocket:103&apos;,&apos;IOSocket:104&apos;,&apos;IOSocket:105&apos;,&apos;IOSocket:106&apos;,&apos;IOSocket:107&apos;,&apos;IOSocket:108&apos;,&apos;IOSocket:109&apos;,&apos;IOSocket:110&apos;,&apos;IOSocket:111&apos;,&apos;IOSocket:112&apos;,&apos;IOSocket:113&apos;,&apos;IOSocket:114&apos;,&apos;IOSocket:115&apos;,&apos;IOSocket:116&apos;,&apos;IOSocket:117&apos;,&apos;IOSocket:118&apos;,&apos;IOSocket:119&apos;,&apos;IOSocket:120&apos;,&apos;IOSocket:121&apos;,&apos;IOSocket:122&apos;,&apos;IOSocket:123&apos;,&apos;IOSocket:124&apos;,&apos;IOSocket:125&apos;,&apos;IOSocket:126&apos;,&apos;IOSocket:127&apos;,&apos;IOSocket:128&apos;,&apos;IOSocket:129&apos;,&apos;IOSocket:130&apos;,&apos;IOSocket:131&apos;,&apos;IOSocket:132&apos;,&apos;IOSocket:133&apos;,&apos;IOSocket:134&apos;,&apos;IOSocket:135&apos;,&apos;IOSocket:136&apos;,&apos;IOSocket:137&apos;,&apos;IOSocket:138&apos;,&apos;IOSocket:139&apos;,&apos;IOSocket:140&apos;,&apos;IOSocket:141&apos;,&apos;IOSocket:142&apos;,&apos;IOSocket:143&apos;,&apos;IOSocket:144&apos;,&apos;IOSocket:145&apos;,&apos;IOSocket:146&apos;,&apos;IOSocket:147&apos;,&apos;IOSocket:148&apos;,&apos;IOSocket:149&apos;,&apos;IOSocket:150&apos;}},&apos;ShowContent&apos;,true,&apos;Placement&apos;,1)},&apos;DisplayPropertyDefaults&apos;,struct(&apos;MinYLimReal&apos;,&apos;-17.625&apos;,&apos;MaxYLimReal&apos;,&apos;168.625&apos;,&apos;YLabelReal&apos;,&apos;&apos;,&apos;MinYLimMag&apos;,&apos;0.00000&apos;,&apos;MaxYLimMag&apos;,&apos;168.625&apos;,&apos;LegendVisibility&apos;,&apos;off&apos;,&apos;XGrid&apos;,true,&apos;YGrid&apos;,true,&apos;PlotMagPhase&apos;,false,&apos;AxesColor&apos;,[0 0 0],&apos;AxesTickColor&apos;,[0.686274509803922 0.686274509803922 0.686274509803922],&apos;ColorOrder&apos;,[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],&apos;Title&apos;,&apos;%&lt;SignalLabel&gt;&apos;,&apos;LinePropertiesCache&apos;,{{}},&apos;UserDefinedChannelNames&apos;,{{}},&apos;NumLines&apos;,0,&apos;LineNames&apos;,{{[]}},&apos;ShowContent&apos;,true,&apos;Placement&apos;,1)),extmgr.Configuration(&apos;Tools&apos;,&apos;Plot Navigation&apos;,true,&apos;OnceAtStop&apos;,false),extmgr.Configuration(&apos;Tools&apos;,&apos;Measurements&apos;,true,&apos;Version&apos;,&apos;2022b&apos;)),&apos;Version&apos;,&apos;2022b&apos;,&apos;Location&apos;,[711 359 1035 598],&apos;VisibleAtModelOpen&apos;,&apos;on&apos;)</P>
+    <P Name="ScopeSpecificationString">Simulink.scopes.TimeScopeBlockCfg(&apos;CurrentConfiguration&apos;, extmgr.ConfigurationSet(extmgr.Configuration(&apos;Core&apos;,&apos;General UI&apos;,true),extmgr.Configuration(&apos;Core&apos;,&apos;Source UI&apos;,true),extmgr.Configuration(&apos;Sources&apos;,&apos;WiredSimulink&apos;,true,&apos;DataLoggingSaveFormat&apos;,&apos;StructureWithTime&apos;,&apos;DataLoggingLimitDataPoints&apos;,true,&apos;DataLoggingDecimation&apos;,&apos;1&apos;,&apos;DataLoggingDecimateData&apos;,true),extmgr.Configuration(&apos;Visuals&apos;,&apos;Time Domain&apos;,true,&apos;SerializedDisplays&apos;,{struct(&apos;MinYLimReal&apos;,&apos;-17.625&apos;,&apos;MaxYLimReal&apos;,&apos;168.625&apos;,&apos;YLabelReal&apos;,&apos;&apos;,&apos;MinYLimMag&apos;,&apos;0.00000&apos;,&apos;MaxYLimMag&apos;,&apos;168.625&apos;,&apos;LegendVisibility&apos;,&apos;off&apos;,&apos;XGrid&apos;,true,&apos;YGrid&apos;,true,&apos;PlotMagPhase&apos;,false,&apos;AxesColor&apos;,[0 0 0],&apos;AxesTickColor&apos;,[0.686274509803922 0.686274509803922 0.686274509803922],&apos;ColorOrder&apos;,[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],&apos;Title&apos;,&apos;%&lt;SignalLabel&gt;&apos;,&apos;LinePropertiesCache&apos;,{{}},&apos;UserDefinedChannelNames&apos;,{{}},&apos;NumLines&apos;,0,&apos;LineNames&apos;,{{[]}},&apos;ShowContent&apos;,true,&apos;Placement&apos;,1)},&apos;DisplayPropertyDefaults&apos;,struct(&apos;MinYLimReal&apos;,&apos;-17.625&apos;,&apos;MaxYLimReal&apos;,&apos;168.625&apos;,&apos;YLabelReal&apos;,&apos;&apos;,&apos;MinYLimMag&apos;,&apos;0.00000&apos;,&apos;MaxYLimMag&apos;,&apos;168.625&apos;,&apos;LegendVisibility&apos;,&apos;off&apos;,&apos;XGrid&apos;,true,&apos;YGrid&apos;,true,&apos;PlotMagPhase&apos;,false,&apos;AxesColor&apos;,[0 0 0],&apos;AxesTickColor&apos;,[0.686274509803922 0.686274509803922 0.686274509803922],&apos;ColorOrder&apos;,[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],&apos;Title&apos;,&apos;%&lt;SignalLabel&gt;&apos;,&apos;LinePropertiesCache&apos;,{{}},&apos;UserDefinedChannelNames&apos;,{{}},&apos;NumLines&apos;,0,&apos;LineNames&apos;,{{[]}},&apos;ShowContent&apos;,true,&apos;Placement&apos;,1)),extmgr.Configuration(&apos;Tools&apos;,&apos;Plot Navigation&apos;,true,&apos;OnceAtStop&apos;,false),extmgr.Configuration(&apos;Tools&apos;,&apos;Measurements&apos;,true,&apos;Version&apos;,&apos;2022b&apos;)),&apos;Version&apos;,&apos;2022b&apos;,&apos;Location&apos;,[739.5 299 1063.5 538],&apos;VisibleAtModelOpen&apos;,&apos;on&apos;)</P>
     <P Name="NumInputPorts">1</P>
     <P Name="Floating">off</P>
   </Block>
@@ -1170,7 +1170,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
   <Object PropName="BdWindowsInfo" ObjectID="1" ClassName="Simulink.BDWindowsInfo">
     <Object PropName="WindowsInfo" ObjectID="2" ClassName="Simulink.WindowInfo">
       <P Name="IsActive" Class="logical">1</P>
-      <P Name="Location" Class="double">[333.0, 49.0, 952.0, 668.0]</P>
+      <P Name="Location" Class="double">[142.0, 38.0, 952.0, 668.0]</P>
       <Object PropName="ModelBrowserInfo" ObjectID="3" ClassName="Simulink.ModelBrowserInfo">
         <P Name="Visible" Class="logical">0</P>
         <P Name="DockPosition" Class="char">Left</P>
@@ -1187,10 +1187,10 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
         <P Name="IsTabbed" Class="logical">1</P>
         <P Name="ViewObjType" Class="char">SimulinkTopLevel</P>
         <P Name="LoadSaveID" Class="char">0</P>
-        <P Name="Extents" Class="double">[1830.0, 899.0]</P>
+        <P Name="Extents" Class="double">[1830.0, 900.0]</P>
         <P Name="ZoomFactor" Class="double">1.25</P>
-        <P Name="Offset" Class="double">[-310.36550129283933, -171.80210318334312]</P>
-        <P Name="SceneRectInView" Class="double">[-310.36550129283933, -171.80210318334312, 732.0, 359.6]</P>
+        <P Name="Offset" Class="double">[-310.36550129283933, -172.00210318334311]</P>
+        <P Name="SceneRectInView" Class="double">[-310.36550129283933, -172.00210318334311, 732.0, 360.0]</P>
       </Object>
       <Array PropName="DockComponentsInfo" Type="Simulink.DockComponentInfo" Dimension="1*2">
         <Object ObjectID="6">
@@ -1219,7 +1219,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Minimized" Class="char">Unset</P>
         </Object>
       </Array>
-      <P Name="WindowState" Class="char">AAAA/wAAAAD9AAAAAwAAAAAAAAJgAAAFe/wCAAAABPsAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAAAAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD8AAAA8gAABXsAAAAAAP////oAAAABAgAAAAL7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAAD0AP////sAAAByAEwAaQBiAHIAYQByAHkAQgByAG8AdwBzAGUAcgAyACAATABpAGIAcgBhAHIAeQBCAHIAbwB3AHMAZQByAFMAdAB1AGQAaQBvAEMAbwBtAHAAbwBuAGUAbgB0AC8AcwBvAGMAawBlAHQAXwB0AGUAcwB0AQAAAAD/////AAAAAAAAAAD7AAAAYABTAGkAbQB1AGwAaQBuAGsAOgBFAGQAaQB0AG8AcgA6AFIAZQBmAGUAcgBlAG4AYwBlAGQARgBpAGwAZQBzAC8AUgBlAGYAZQByAGUAbgBjAGUAZAAgAEYAaQBsAGUAcwAAAAAA/////wAAAQAA////AAAAAQAAAAAAAAAA/AIAAAAB+wAAAFQARwBMAFUARQAyADoAUAByAG8AcABlAHIAdAB5AEkAbgBzAHAAZQBjAHQAbwByAC8AUAByAG8AcABlAHIAdAB5ACAASQBuAHMAcABlAGMAdABvAHIAAAAAAP////8AAANUAP///wAAAAMAAAdsAAACzfwBAAAAAfv/////AAAAAAAAAAdsAAACrgD///8AAAdsAAAD4wAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAA</P>
+      <P Name="WindowState" Class="char">AAAA/wAAAAD9AAAAAwAAAAAAAAJgAAAFe/wCAAAABPsAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAAAAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD8AAAA8gAABXsAAAAAAP////oAAAABAgAAAAL7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAAD0AP////sAAAByAEwAaQBiAHIAYQByAHkAQgByAG8AdwBzAGUAcgAyACAATABpAGIAcgBhAHIAeQBCAHIAbwB3AHMAZQByAFMAdAB1AGQAaQBvAEMAbwBtAHAAbwBuAGUAbgB0AC8AcwBvAGMAawBlAHQAXwB0AGUAcwB0AQAAAAD/////AAAAAAAAAAD7AAAAYABTAGkAbQB1AGwAaQBuAGsAOgBFAGQAaQB0AG8AcgA6AFIAZQBmAGUAcgBlAG4AYwBlAGQARgBpAGwAZQBzAC8AUgBlAGYAZQByAGUAbgBjAGUAZAAgAEYAaQBsAGUAcwAAAAAA/////wAAAQAA////AAAAAQAAAAAAAAAA/AIAAAAB+wAAAFQARwBMAFUARQAyADoAUAByAG8AcABlAHIAdAB5AEkAbgBzAHAAZQBjAHQAbwByAC8AUAByAG8AcABlAHIAdAB5ACAASQBuAHMAcABlAGMAdABvAHIAAAAAAP////8AAANUAP///wAAAAMAAAdsAAACzfwBAAAAAfv/////AAAAAAAAAAdsAAACrgD///8AAAdsAAAD5AAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAA</P>
       <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
       <P Name="WindowUuid" Class="char">780ee814-38fe-4acc-a6d1-675f5dfc06ad</P>
     </Object>
