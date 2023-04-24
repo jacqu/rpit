@@ -598,7 +598,9 @@ if ( target_is_rpi )
     disp( '  > rc.local already set cpu governor to performance mode.' );
   else
     disp( '  > Force cpu governor to performance mode in rc.local.' );
-    command = sprintf( '%s pi@%s %s', ssh_command, piip, '"sudo sed -i -e ''s/^exit 0/# Change governor to performance\nfor gov in \/sys\/devices\/system\/cpu\/cpu[0-9]*\/cpufreq\/scaling_governor; do echo performance | sudo tee `echo ''$gov''` >\/dev\/null; done\n\nexit 0/g'' /etc/rc.local"' );
+    command = sprintf( '%s ../res/rpit_performance.sh pi@%s:/tmp', scp_command, piip );
+		[ ~, ~ ] = system( command );
+    command = sprintf( '%s pi@%s %s', ssh_command, piip, 'sh /tmp/rpit_performance.sh' );
     [ status, out ] = system( command );
   end
 end
