@@ -117,8 +117,12 @@ void rpi_sfun_betalink_Outputs_wrapper(const real_T *throttle,
 
   #ifndef MATLAB_MEX_FILE
   // USB transaction with Betaflight
-  for ( i = 0; i < BLK_MAX_MOTORS; i++ )
-    throttle_msp[i] = lrint( throttle[i] );
+  for ( i = 0; i < BLK_MAX_MOTORS; i++ )	{
+  	if ( isnan( throttle[i] ) || isinf( throttle[i] ) || ( throttle[i] < 0.0 ) )
+  		throttle_msp[i] = 0;
+  	else
+    	throttle_msp[i] = lrint( throttle[i] );
+  }
   ret = blk_update_threaded( (uint32_t)*usb_serial_number, throttle_msp );
   if ( ret ) {
     fprintf( stderr, "rpi_sfun_betalink: error %d in blk_update_threaded.\n", ret );
