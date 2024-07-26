@@ -168,12 +168,13 @@ function ert_rpi_make_rtw_hook(hookMethod,modelName,rtwroot,templateMakefile,bui
     if contains( out, '/home/pi' )
 
       % Check if the target is a RPI. If yes, synchronize the clocks.
-      command = sprintf( '%s pi@%s sudo cat /etc/os-release', ssh_command, piip );
+      %command = sprintf( '%s pi@%s test -f ''/etc/rpi-issue'' && echo Raspberry Pi', ssh_command, piip ); Alternative
+      command = sprintf( '%s pi@%s cat /proc/device-tree/model', ssh_command, piip );
       [ ~, out ] = system( command );
-      if  ~contains( out, 'raspbian' ) 
-        disp( '### Target is not a Raspberry Pi.' );
+      if  ~contains( out, 'Raspberry Pi' ) 
+        disp( '### Target is not a Raspberry Pi.');
       else
-        disp( '### Target is a Raspberry Pi.' );
+        disp( '### Target is a Raspberry Pi.');
         
         % Synchronize target clock with the host clock
         disp( '### Synchronizing host and target clocks.' );

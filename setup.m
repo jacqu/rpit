@@ -301,8 +301,6 @@ target_is_x86_64 = 0;
 target_is_arm_32 = 0;
 target_is_arm_64 = 0;
 target_is_rpi = 0;
-target_is_rpi3 = 0;
-target_is_rpi4 = 0;
 target_is_jetson_xavier = 0;
 is_tmf_configured = 0;
 
@@ -376,23 +374,21 @@ if contains( out, 'Raspberry Pi' )
   is_tmf_configured = 1;
 end
 
-% Checking for Raspberry Pi 3 platform
-if contains( out, 'Raspberry Pi 3' )
-  disp( '  > Distant target is a Raspberry Pi 3.' );
-  copyfile('../res/rpi_callback_handler_arm_pi3.m','../rpit/rpi_callback_handler.m');
-  copyfile('../res/ert_rpi_2020b_arm_pi3.tmf','../rpit/ert_rpi.tmf');
+% Checking for Raspberry Pi 3 or 4 platform
+if contains( out, 'Raspberry Pi 3' ) || contains( out, 'Raspberry Pi 4' )
+  disp( '  > Distant target is a Raspberry Pi 3 or 4.' );
+  copyfile('../res/rpi_callback_handler_arm_pi3_4_5.m','../rpit/rpi_callback_handler.m');
+  copyfile('../res/ert_rpi_2020b_arm_pi3_4.tmf','../rpit/ert_rpi.tmf');
   target_is_rpi = 1;
-  target_is_rpi3 = 1;
   is_tmf_configured = 1;
 end
 
-% Checking for Raspberry Pi 4 platform
-if contains( out, 'Raspberry Pi 4' )
-  disp( '  > Distant target is a Raspberry Pi 4.' );
-  copyfile('../res/rpi_callback_handler_arm_pi4.m','../rpit/rpi_callback_handler.m');
-  copyfile('../res/ert_rpi_2020b_arm_pi4.tmf','../rpit/ert_rpi.tmf');
+% Checking for Raspberry Pi 5 platform
+if contains( out, 'Raspberry Pi 5' )
+  disp( '  > Distant target is a Raspberry Pi 5.' );
+  copyfile('../res/rpi_callback_handler_arm_pi3_4_5.m','../rpit/rpi_callback_handler.m');
+  copyfile('../res/ert_rpi_2020b_arm_pi5.tmf','../rpit/ert_rpi.tmf');
   target_is_rpi = 1;
-  target_is_rpi4 = 1;
   is_tmf_configured = 1;
 end
 
