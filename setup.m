@@ -79,10 +79,10 @@ end
 
 % Check for compatible matlab version
 mvernum = version( '-release' );
-if strcmp( mvernum, '2020a' ) || strcmp( mvernum, '2020b' ) || strcmp( mvernum, '2022b' )
+if strcmp( mvernum, '2020a' ) || strcmp( mvernum, '2020b' ) || strcmp( mvernum, '2022b' ) || strcmp( mvernum, '2023b' )
   disp( '  > Supported Matlab version detected.' );
 else
-  disp( '  > Supported releases: 2020a 2020b 2022b.' );
+  disp( '  > Supported releases: 2020a 2020b 2022b 2023b.' );
   rpit_error( 'This release of Matlab is currently not supported.' );
   clear;
   return;
